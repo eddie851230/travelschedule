@@ -158,7 +158,7 @@
 }
 
 .login .center .form-title {
-  color: #000;
+  color: #678789;
   font-size: 1.7em;
   text-align: center;
 }
@@ -244,6 +244,7 @@
   transition: all 0.3s ease;
 }
 
+/* 第三方登入icon */
 .social{
   display: flex;
   padding: 10px;
@@ -251,20 +252,44 @@
   justify-content: space-around;
 }
 
-.google,.line,.facebook{
-  font-size: 2rem;
+.signup .google,.signup .line,.signup .facebook{
+  font-size: 1.5rem;
   text-align: center;
   vertical-align: middle;
   border: 6px double var(--nav-bg-color);
   border-radius: 20px;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   padding: 5px;
+  color:#376B6D;
 }
 
-.google:hover,.line:hover,.facebook:hover{
+.signup .google:hover,.signup .line:hover,.signup .facebook:hover{
   box-shadow: 0 0 5px #666666;
+  background-color: #376B6D;
+  color:#fff;
 }
+/*  */
+.login .google,.login .line,.login .facebook{
+  font-size: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  border: 6px double #fff;
+  border-radius: 20px;
+  width: 3rem;
+  height: 3rem;
+  padding: 5px;
+  background-color: #376B6D4c;
+  color: #fff;
+}
+
+.login .google:hover,.login .line:hover,.login .facebook:hover{
+  box-shadow: 0 0 5px #666666;
+  background-color: #6B92A4;
+  color:#fff;
+  border-color: #fff;
+}
+/*  */
 
 .interstTitle{
   text-align: center;
