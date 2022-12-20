@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/schedule.css">
+    <script src="https://kit.fontawesome.com/11f63461bc.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../img/logo.png">
+    <title>行程表</title>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <header>
+        <div class="nav-bar">
+            <a href="#" class="logo"><img src="../img/logo.png" alt="">tokyo</a>
+            <div class="menu-btn"></div>
+            <div class="navigation">
+                <div class="nav-items">
+                    <i class="uil uil-times nav-close-btn"></i>
+                    <a href="./1-page.html"><i class="uil uil-home"></i>首頁</a>
+                    <a href="./2-page.html"><i class="uil uil-plane-departure"></i></i>機票</a>
+                    <a href="./3-page.html"><i class="uil uil-map-pin-alt"></i>景點推薦</a>
+                    <a href="./4-page.html"><i class="uil uil-bed"></i>住宿推薦</a>
+                    <a href="./5-page.html"><i class="uil uil-bus-alt"></i>行程交通</a>
+                    <a href="./6-page.html"><i class="uil uil-user"></i></i>會員中心</a>
+                </div>
+            </div>
+            <i class="uil uil-apps nav-menu-btn"></i>
+        </div>
+    </header>
+
+
+    <!-- 主要網站部分 -->
+    <div class="mainpage">
+        <!-- 行程表------------------------------------------- -->
+        <div class="schedule">
+            <!-- 行程表頭部 -->
+            <div class="scheduleHeader">
+                <div class="scheduleTitle">
+                    行程表:
+                    <!-- 可以同時編輯多個行程表 -->
+                    <select name="">
+                        <option value="">春天東京五天四夜</option>
+                        <option value="">夏天東京五天四夜</option>
+                        <option value="">2020夏季奧運東京五天四夜</option>
+                        <option value="">冬天東京五天四夜</option>
+                    </select>
+                    <div>日期:2022/12/18-2022/12/22</div>
+                </div>
+                <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) -->
+                <button>複製行程</button>
+                <button>分享行程</button>
+                <button>編輯行程</button>
+            </div><!-- 行程表頭部結束 -->
+
+            <!-- 行程日期條 -->
+            <div class="scheduleDaybar">
+                <!-- 左鍵 -->
+                <div class="prev">
+                    <div></div>
+                </div>
+
+                <!-- 日期 -->
+                <div>
+                    <div>12月17日<br />Day<span> 1 </span></div>
+                </div>
+                <div>
+                    <div>12月18日<br />Day<span> 2 </span></div>
+                </div>
+                <div>
+                    <div>12月19日<br />Day<span> 3 </span></div>
+                </div>
+
+                <!-- 右鍵 -->
+                <div class="next">
+                    <div></div>
+                </div>
+
+            </div><!-- 行程日期條結束 -->
+
+            <!-- 行程表景點及交通------------------------------------ -->
+            <div class="trafficAndSpot">
+                <div class="dayNum">Day<span> 1 </span> : 禮拜<span>一</span></div>
+
+                <!-- 飛機格 -->
+                <div class="airplane">
+                    <img src="../img/樂桃icon.png" alt="">
+                    <div class="text">
+                        <div class="name">成田機場</div>
+                        <div class="info">樂桃航空 &Iota;
+                            <span>12:00-13:00</span>
+                        </div>
+                        <div class="Addr">1-1 Furugome, Narita, Chiba 282-0004日本</div>
+                    </div>
+                    <a href="/airplaneInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-bus"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">1-1 Furugome, Narita, Chiba 282-0004日本</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-person-walking-luggage"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">1-1 Furugome, Narita, Chiba 282-0004日本</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-car-side"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">1-1 Furugome, Narita, Chiba 282-0004日本</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-person-walking-luggage"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">1 Chome-15-1 Kichijoji Honcho, Musashino, Tokyo 180-0004日本</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-person-walking-luggage"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">日本〒135-0024 Tokyo, Koto City, 3, 江東区清澄３丁目</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+                <!-- 交通時間格 -->
+                <div class="traffic">
+                    <i class="fa-solid fa-person-walking-luggage"></i><span> 約13分 </span>
+                </div>
+                <!-- 景點或飯店格 -->
+                <div class="spot">
+                    <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                    <div class="text">
+                        <div class="name">東京鐵塔</div>
+                        <div class="info">
+                            遊玩時間:1小時 &Iota; <span>13:00-14:00</span></div>
+                        <div class="Addr">1-1 Furugome, Narita, Chiba 282-0004日本</div>
+                    </div>
+                    <a href="/spotInfo.html"><button>查看<br />詳情</button></a>
+                </div>
+            </div>
+
+        </div><!-- 行程表結束 -->
+
+        <!-- 收藏名單 ------------------------------------------->
+        <div class="favorite">
+            <div class="favoriteTitle">收藏名單</div>
+            <!-- 飯店或景點選單 -->
+            <div class="change">
+                <!-- 左鍵 -->
+                <div class="prev">
+                    <div></div>
+                </div>
+                <!-- <div>飯店</div> -->
+                <div>景點</div>
+                <!-- 右鍵 -->
+                <div class="next">
+                    <div></div>
+                </div>
+            </div>
+            <div class="list">
+
+
+
+
+                <!-- 景點圖案，之後用::before來顯示景點詳細資訊 -->
+                <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(明亮).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+            </div>
+
+            <div class="considerTitle">待定區</div>
+            <div class="consider">
+
+
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+                <img src="../img/景點相片預覽(暗色).jpg" alt="">
+
+            </div>
+            <div class="close"></div>
+        </div><!-- 收藏名單結束 -->
+
+        <!-- 地圖------------------------------------------------>
+        <iframe class="mapping"></iframe>
+    </div>
+
+</body>
+
+</html>
