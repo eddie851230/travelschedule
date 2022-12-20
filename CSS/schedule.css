@@ -1,5 +1,24 @@
 @import url("../CSS/navAndScrollbar.css");
 
+:root {
+    --white-color: #fff;
+    --dark-color: #222;
+    --body-bg-color: #fff;
+    --section-bg-color: #202834;
+    --nav-bg-color: #376B6D;
+    --navigation-items-hover-color: #3b5378;
+
+    --text-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 5px 25px rgba(0, 0, 0/ 20%);
+
+    --scroll-bar-color: #fff;
+    --scroll-thumb-color: #14246c;
+    --scroll-thumb-hover-color: #3556b2;
+    --hover-color: rgb(109, 225, 248);
+    --logo-hover-color: rgb(238, 128, 109);
+    --black: rgb(0, 0, 0);
+}
+
 * {
     color: var(--nav-bg-color)
 }
@@ -361,5 +380,7 @@ header {
 .mapping {
     width: 70%;
     /* 下面僅預覽用，之後再刪除 */
-    background-image: url('../img/地圖示意圖.png');
+    /* background-image: url('../img/地圖示意圖.png'); */
 }
+
+
