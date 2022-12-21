@@ -1,0 +1,163 @@
+@import url("../CSS/navAndScrollbar.css");
+header{
+    background-color: #376B6D;
+}
+
+*{
+    text-align: center;
+}
+header+div{
+    margin-top: 50px;
+    font-weight: 900;
+    font-size: 45px;
+    padding-bottom: 15px;
+}
+
+main{
+    border: 5px solid #376B6D;
+    border-radius: 10px;
+    width: 40%;
+    min-width: 350px;
+    margin: auto;
+}
+
+button{
+    padding:5px;
+    border: 5px solid #376B6D;
+    border-radius: 10px;
+    background-color: #fff;
+    color:#376B6D;
+    font-weight: 900;
+}
+
+
+.username button{
+    color:#CB4042;
+    border-color:#CB4042;
+}
+
+button:hover{
+    box-shadow:0 0 3px rgb(88, 88, 88);
+    background-color: #376B6D;
+    color: #fff;
+}
+
+.username button:hover{
+    background-color: #CB4042;
+    color: #fff;
+}
+
+.interstTitle {
+    text-align: center;
+    line-height: 25px;
+    padding: 5px;
+    color: #376B6D;
+}
+
+.interstTitle div,
+.nametitle,
+.iDtitle,
+.logintitle {
+    font-weight: 900;
+    background-color: #376B6D;
+    width: 20%;
+    color: #fff;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+
+.nametitle{
+    background-color: #CB4042;
+}
+
+
+
+.iDtitle{
+    background-color: #cb8a40;
+}
+.logintitle{
+    background-color: #42863f;
+}
+
+.way{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginway img{
+    width: 30px;
+    height: 30px;
+    clip-path: circle(50% at 50% 50%);
+}
+
+
+/* checkbox costum---------------------------- */
+.container {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+/* 隱藏多選格預設 */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* 多選選單變化製作 */
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border: 2px solid #376B6D;
+    border-radius: 5px;
+}
+
+
+.container:hover input~.checkmark {
+    background-color: #d5e1e0;
+
+}
+
+
+.container input:checked~.checkmark {
+    background-color: #376B6D;
+}
+
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 3.5px;
+    top: 0px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

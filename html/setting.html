@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/setting.css">
+    <script src="https://kit.fontawesome.com/11f63461bc.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../img/logo.png">
+    <title>登入介面(未來會使用react.js)</title>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <header>
+        <div class="nav-bar">
+            <a href="#" class="logo"><img src="../img/logo.png" alt="" />tokyo</a>
+            <div class="menu-btn"></div>
+            <div class="navigation">
+                <div class="nav-items">
+                    <i class="uil uil-times nav-close-btn"></i>
+                    <a href="./1-page.html"><i class="uil uil-home"></i>首頁</a>
+                    <a href="./2-page.html"><i class="uil uil-plane-departure"></i>機票</a>
+                    <a href="./3-page.html"><i class="uil uil-map-pin-alt"></i>景點推薦</a>
+                    <a href="./4-page.html"><i class="uil uil-bed"></i>住宿推薦</a>
+                    <a href="./5-page.html"><i class="uil uil-bus-alt"></i>行程交通</a>
+                    <a href="./6-page.html"><i class="uil uil-user"></i>會員中心</a>
+                </div>
+            </div>
+            <i class="uil uil-apps nav-menu-btn"></i>
+        </div>
+    </header>
+    <!-- --------主要分頁--------------- -->
+    <div>設定</div>
+    <main>
+    <div class="username">
+        <div class="nametitle">暱稱</div>
+       <div class="nameDiv">jennifer <button>編輯</button></div>
+      
+    </div>
+  
+    <!-- 使用者ID -->
+    <div class="userID">
+        <div class="iDtitle">使用者ID</div>
+        <div class="idNum">@1234657897987985465498794</div>
+        
+    </div>
+   
+    <!-- 登入方式 -->
+    <div class="loginway">
+        <div class="logintitle">登入方式</div>
+        <div class="way"><img src="../img/地圖示意圖.png" alt="">123@gmail.com</div>
+    </div>
+   
+    <!-- 興趣偏好 -->
+    <div class="interstTitle">
+        <div>興趣偏好</div>
+
+        <label class="container">親近自然
+            <input type="checkbox" name="interst" value="nature">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">歷史人文
+            <input type="checkbox" name="interst" value="history">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="container">尋找刺激
+            <input type="checkbox" name="interst" value="activity" checked>
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="container">美食
+            <input type="checkbox" name="interst" value="food">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container">歡樂
+            <input type="checkbox" name="interst" value="havefun" checked>
+            <span class="checkmark"></span>
+        </label>
+        <button>更新</button>
+    </div>
+</main>
+
+
+
+    <script>const loginBtn = document.getElementById('login');
+        const signupBtn = document.getElementById('signup');
+
+        loginBtn.addEventListener('click', (e) => {
+            let parent = e.target.parentNode.parentNode;
+            Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+                if (element !== "slide-up") {
+                    parent.classList.add('slide-up')
+                } else {
+                    signupBtn.parentNode.classList.add('slide-up')
+                    parent.classList.remove('slide-up')
+                }
+            });
+        });
+
+        signupBtn.addEventListener('click', (e) => {
+            let parent = e.target.parentNode;
+            Array.from(e.target.parentNode.classList).find((element) => {
+                if (element !== "slide-up") {
+                    parent.classList.add('slide-up')
+                } else {
+                    loginBtn.parentNode.parentNode.classList.add('slide-up')
+                    parent.classList.remove('slide-up')
+                }
+            });
+        });</script>
+</body>
+
+</html>
