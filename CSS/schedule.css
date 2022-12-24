@@ -303,7 +303,7 @@ header {
     width: 100%;
     position:relative;
     top:0;
-    height: calc(60% - 8px - 1rem);
+    height: calc(100% - (65px + 1.5rem));
     overflow-y: scroll;
     
 }
@@ -326,39 +326,6 @@ header {
 
 
 
-
-
-/* 待定區設定 */
-.considerTitle{
-    position: absolute;
-    bottom:30%;
-    height: 30px;
-    background-color: #CB4042;
-    color: #fff;
-    padding: 5px;
-    width: 100%;
-    z-index: 999;
-}
-
-.consider{
-    width: 100%;
-    height: 30%;
-    overflow-y: scroll;
-    position:absolute;
-    bottom:0;
-}
-
-/* .consider div,.list>div:first-child{
-    position: sticky;
-    top:0;
-    background-color: #CB4042;
-    color: #fff;
-    padding: 5px;
-    width: 100%;
-    z-index: 999;
-} */
-
-
 /* 收藏名單的卷軸 */
 .list::-webkit-scrollbar,.consider::-webkit-scrollbar{
     background: #FEDFE1;
@@ -374,13 +341,26 @@ header {
     background: #ffdd00;
 }
 
+.close{
+    font-size: 25px;
+    height: 30px;
+    background-color: #CB4042;
+    /* border-radius: 2px; */
+    color: #fff;
+    font-weight: 900;
+}
+
+.close:hover{
+    -webkit-text-stroke:2px #fff;
+    color:#CB4042;
+    cursor: pointer;
+}
+
 
 
 /* 地圖--------------------------------------- */
 .mapping {
     width: 70%;
-    /* 下面僅預覽用，之後再刪除 */
-    /* background-image: url('../img/地圖示意圖.png'); */
 }
 
 

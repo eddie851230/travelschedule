@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/airplaneMain.css">
+    <script src="https://kit.fontawesome.com/11f63461bc.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../img/logo.png">
+    <title>機票主頁(篩選器)</title>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <header>
+        <div class="nav-bar">
+            <a href="#" class="logo"><img src="../img/logo.png" alt="" />tokyo</a>
+            <div class="menu-btn"></div>
+            <div class="navigation">
+                <div class="nav-items">
+                    <i class="uil uil-times nav-close-btn"></i>
+                    <a href="./1-page.html"><i class="uil uil-home"></i>首頁</a>
+                    <a href="./2-page.html"><i class="uil uil-plane-departure"></i>機票</a>
+                    <a href="./3-page.html"><i class="uil uil-map-pin-alt"></i>景點推薦</a>
+                    <a href="./4-page.html"><i class="uil uil-bed"></i>住宿推薦</a>
+                    <a href="./5-page.html"><i class="uil uil-bus-alt"></i>行程交通</a>
+                    <a href="./memberSchedule.html"><i class="uil uil-user"></i>會員中心</a>
+                </div>
+            </div>
+            <i class="uil uil-apps nav-menu-btn"></i>
+        </div>
+    </header>
+
+    <!-- 篩選器主要頁面 -->
+
+    <form action="">
+        <div class="airplaneFliter">
+            <!-- 出發地點 -->
+            <label for="departureSpot">出發地點</label>
+            <select name="" id="departureSpot">
+                <option value="TPE" selected>臺灣桃園國際機場(TPE)</option>
+                <option value="NRT">成田國際機場(NRT)</option>
+                <option value="HND">東京羽田國際機場(HND)</option>
+            </select>
+            <!-- 到達地點 -->
+            <label for="arrivalSpot">抵達地點</label>
+            <select name="" id="arrivalSpot">
+                <option value="TPE">臺灣桃園國際機場(TPE)</option>
+                <option value="NRT">成田國際機場(NRT)</option>
+                <option value="HND" selected>東京羽田國際機場(HND)</option>
+            </select>
+            <!-- 出發日期 -->
+            <label for="departureDate">去程</label><input type="date" name="" id="departureDate" />
+            <!-- 回程日期 -->
+            <label for="returnDate">回程</label><input type="date" name="" id="returnDate" />
+            <!-- 人數 -->
+            <label for="people">人數</label><input type="number" max="8" min="1" id="people" />
+        </div>
+        <!-- 確認按鈕 -->
+        <input type="submit" value="開始">
+    </form>
+
+</body>
+
+</html>

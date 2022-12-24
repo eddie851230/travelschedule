@@ -5,12 +5,14 @@ header{
 
 *{
     text-align: center;
+    line-height: 40px;
+    font-size: 20px;
 }
 header+div{
     margin-top: 50px;
     font-weight: 900;
     font-size: 45px;
-    padding-bottom: 15px;
+    padding-bottom: 30px;
 }
 
 main{
@@ -19,15 +21,19 @@ main{
     width: 40%;
     min-width: 350px;
     margin: auto;
+
 }
 
 button{
-    padding:5px;
+    padding:5px 10px;
     border: 5px solid #376B6D;
     border-radius: 10px;
     background-color: #fff;
     color:#376B6D;
+    font-size: 16px;
     font-weight: 900;
+    line-height: 20px;
+    transition: .2s ease-in;
 }
 
 
@@ -40,6 +46,7 @@ button:hover{
     box-shadow:0 0 3px rgb(88, 88, 88);
     background-color: #376B6D;
     color: #fff;
+    cursor: pointer;
 }
 
 .username button:hover{
@@ -47,14 +54,9 @@ button:hover{
     color: #fff;
 }
 
-.interstTitle {
-    text-align: center;
-    line-height: 25px;
-    padding: 5px;
-    color: #376B6D;
-}
+/* 設定內部各標題設定 */
 
-.interstTitle div,
+.interstTitle,
 .nametitle,
 .iDtitle,
 .logintitle {
@@ -64,13 +66,13 @@ button:hover{
     color: #fff;
     border-radius: 20px;
     margin: 10px auto;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .nametitle{
     background-color: #CB4042;
 }
-
-
 
 .iDtitle{
     background-color: #cb8a40;
@@ -79,16 +81,19 @@ button:hover{
     background-color: #42863f;
 }
 
+/* 登入方式 */
+
+
+.loginway img{
+    width: 40px;
+    height: 40px;
+    clip-path: circle(50% at 50% 50%);
+}
+
 .way{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.loginway img{
-    width: 30px;
-    height: 30px;
-    clip-path: circle(50% at 50% 50%);
 }
 
 
@@ -119,10 +124,10 @@ button:hover{
 /* 多選選單變化製作 */
 .checkmark {
     position: absolute;
-    top: 3px;
-    left: 4px;
-    height: 18px;
-    width: 18px;
+    top: 8px;
+    left: 0px;
+    height: 22px;
+    width: 22px;
     background-color: #eee;
     border: 2px solid #376B6D;
     border-radius: 5px;
@@ -131,12 +136,14 @@ button:hover{
 
 .container:hover input~.checkmark {
     background-color: #d5e1e0;
+    transition: .2s ease-in;
 
 }
 
 
 .container input:checked~.checkmark {
     background-color: #376B6D;
+    
 }
 
 
@@ -151,8 +158,8 @@ button:hover{
 }
 
 .container .checkmark:after {
-    left: 3.5px;
-    top: 0px;
+    left: 6px;
+    top: 2px;
     width: 4px;
     height: 8px;
     border: solid white;

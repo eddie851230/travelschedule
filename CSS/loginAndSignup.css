@@ -18,7 +18,7 @@
   width: 350px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 10px rgb(110, 110, 110);
+  box-shadow: 0 0 10px #6e6e6e;
 }
 
 .loginAndSignup::after {
@@ -37,7 +37,7 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 65%;
+  width: 70%;
   z-index: 5;
   transition: all 0.3s ease;
 }
@@ -244,6 +244,17 @@
   transition: all 0.3s ease;
 }
 
+.login a{
+  text-align: center;
+  text-decoration: none;
+  color:#376B6D4c;
+  font-weight: 700;
+}
+
+.login a:hover{
+  color:#6B92A4;
+}
+
 /* 第三方登入icon */
 .social{
   display: flex;
@@ -262,6 +273,8 @@
   height: 3rem;
   padding: 5px;
   color:#376B6D;
+  transition: .2s ease-in;
+  cursor: pointer;
 }
 
 .signup .google:hover,.signup .line:hover,.signup .facebook:hover{
@@ -281,6 +294,8 @@
   padding: 5px;
   background-color: #376B6D4c;
   color: #fff;
+  transition: .2s ease-in;
+  cursor: pointer;
 }
 
 .login .google:hover,.login .line:hover,.login .facebook:hover{
@@ -348,7 +363,7 @@
 
 .container:hover input ~ .checkmark {
   background-color: #d5e1e0;
-  
+  transition: .2s ease-in;
 }
 
 
@@ -363,12 +378,10 @@
   display: none;
 }
 
-
 .container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .container .checkmark:after {
   left: 3.5px;
   top: 0px;
@@ -379,5 +392,4 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
- 
 }
