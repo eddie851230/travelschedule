@@ -261,3 +261,8 @@ button {
 .openDiv button:hover{
     box-shadow: 0 0 5px #8a8a8a;
 }
+
+.openDiv a{
+    width:12%;
+}
+
