@@ -1,0 +1,342 @@
+
+* {
+    color: var(--nav-bg-color)
+}
+
+
+/* 主要頁面--------------------------------------- */
+.mainpage {
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    display: flex;
+}
+
+/* 行程表------------------------------------------ */
+.schedule {
+    width: 30%;
+    height: 100%;
+}
+
+/* 行程表頭部--------------------------- */
+.scheduleHeader {
+    text-align: center;
+    font-weight: 700;
+    height: 180px;
+    /* background-color: #eaeac3; */
+}
+
+.scheduleTitle {
+    padding: 3%;
+    font-size: 1.3rem;
+}
+
+.scheduleTitle div {
+    font-size: 1rem;
+    margin: 4% 0 2%;
+}
+
+.scheduleTitle select,option {
+    font-size: 1.1rem;
+    padding: 2%;
+    border-radius: 10px;
+    border: 2px solid var(--nav-bg-color);
+    /* color: #376B6D; */
+    font-weight: 700;
+    cursor:pointer;
+}
+
+/* 非選定的行程表選項 */
+.scheduleTitle option:not(:checked) {
+    background-color: var(--nav-bg-color);
+    color: #fff;
+}
+
+.scheduleTitle select:focus {
+    box-shadow: 0 0 5px var(--nav-bg-color);
+}
+
+
+/* 分享等按鈕--------------*/
+
+.scheduleHeader button{
+    background-color: var(--nav-bg-color);
+    color: #fff;
+    padding: 2%;
+    font-weight: 900;
+    font-size: 1rem;
+    border:5px solid #E8B647;
+    border-radius: 10px;
+    margin: 0 1%;
+    cursor: pointer;
+}
+
+.scheduleHeader button:hover {
+    background-color: #CB4042;
+    color: #fff;
+    box-shadow: 0 0 5px #4f4f4f;
+    border: 5px solid #e7a008;
+}
+
+
+
+
+/* 行程表日期bar------------------------ */
+.scheduleDaybar {
+    display: flex;
+    font-weight: 700;
+    height: 50px;
+}
+
+.scheduleDaybar>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scheduleDaybar div:not(:first-child, :last-child) {
+    width: calc((100%-60px)/3);
+    text-align: center;
+    border: 3px solid var(--nav-bg-color);
+    background-color: #fff;
+    cursor:move;
+}
+
+/* 日期bar的左鍵及右鍵------------------ */
+.prev,
+.next {
+    background-color: var(--nav-bg-color);
+    width: 30px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+.prev:hover,
+.next:hover {
+    background-color: #E8B647;
+    box-shadow:0 0 5px #4f4f4f;
+}
+
+/* 左鍵 */
+.prev div {
+    background-color: #fff;
+    width: 15px;
+    height: 40%;
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}
+
+/* 右鍵 */
+.next div {
+    width: 15px;
+    height: 40%;
+    background-color: #fff;
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+
+
+
+/* 行程表景點區------------------- */
+.trafficAndSpot {
+    width: 100%;
+    height: calc(100% - 180px - 50px);
+    overflow-y: scroll;
+    text-align: center;
+}
+/* 景點處最上方時間顯示(禮拜幾) */
+.dayNum{
+    padding: 6px 0 0;
+}
+
+/* 景點文字及照片排版 */
+.airplane,.spot{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 3% 0;
+    margin: 3% 0;
+    box-shadow: 0 0 5px #acacac;
+    cursor:grab;
+}
+
+
+.spot:hover{
+    box-shadow: 0 0 5px #4f4f4f;
+}
+
+.airplane{
+    background-color: #dddddd;
+    cursor:auto;
+}
+
+/* 景點照片 */
+.trafficAndSpot img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* 飛機icon */
+.airplane img{
+    object-fit: contain;
+    background-color: #fff;
+}
+
+.trafficAndSpot .text{
+    text-align: start;
+    font-weight: 700;
+    padding: 3% 0.5%;
+}
+
+.trafficAndSpot button{
+    background-color: var(--nav-bg-color);
+    color: #fff;
+    padding: 5px;
+    border:0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.trafficAndSpot button:hover{
+    box-shadow: 0 0 5px #4f4f4f;
+}
+
+/* 景點文字大小調整 */
+.text{
+    width:60%;
+}
+
+.text .name{
+    font-size: 1.5rem;
+}
+
+.text .info{
+    font-size:0.8rem;
+
+}
+.text .info span{
+    color:#CB4042;
+    font-size:1rem;
+}
+
+.text .Addr{
+    width: 100%;
+    height: 2rem;
+    font-size:0.75rem;
+    color: #7a7a7a;
+}
+
+
+/* ------------------------------------------ */
+
+
+/* 收藏名單----------------------------------- */
+.favorite{
+    border:8px solid #CB4042;
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    /* display: none; */
+}
+
+.favorite img{
+    width:calc(150px * 0.6);
+    height: 60px;
+    margin: 5%;
+    border-radius: 5px;
+    cursor:grab;
+}
+
+.favorite img:hover{
+    box-shadow:0 0 5px #4f4f4f;
+}
+
+/* .favorite img:hover::before{
+    position:absolute;
+    top:0;
+    left:700px;
+    background-color:#7a7a7acc;
+    width: 600px;
+    height: 600px;
+    color: #fff;
+    content: "詳細資訊";
+} */
+
+/* 上方收藏名單設定 */
+.favoriteTitle{
+    position: relative;
+    top:0;
+    background-color: #CB4042;
+    color: #fff;
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    z-index: 999;
+}
+.list{
+    width: 100%;
+    position:relative;
+    top:0;
+    height: calc(100% - (65px + 1.5rem));
+    overflow-y: scroll;
+    
+}
+.change{
+    display:flex;
+    justify-content: space-between;
+    border:3px solid var(--nav-bg-color);
+}
+
+.change .prev,.change .next{
+    width:15px;
+    height: 1.5rem;
+}
+
+.change .prev div,
+.change .next div{
+    width:5px;
+}
+
+
+
+
+/* 收藏名單的卷軸 */
+.list::-webkit-scrollbar,.consider::-webkit-scrollbar{
+    background: #FEDFE1;
+    width: 6px;
+}
+
+.list::-webkit-scrollbar-thumb,.consider::-webkit-scrollbar-thumb{
+    background: #e7a008;
+    border-radius: 50px;
+    width: 6px;
+}
+.list::-webkit-scrollbar-thumb:hover,.consider::-webkit-scrollbar-thumb:hover{
+    background: #ffdd00;
+}
+
+.close{
+    font-size: 25px;
+    height: 30px;
+    background-color: #CB4042;
+    /* border-radius: 2px; */
+    color: #fff;
+    font-weight: 900;
+}
+
+.close:hover{
+    -webkit-text-stroke:2px #fff;
+    color:#CB4042;
+    cursor: pointer;
+}
+
+
+
+/* 地圖--------------------------------------- */
+.mapping {
+    width: 70%;
+}
+
+
