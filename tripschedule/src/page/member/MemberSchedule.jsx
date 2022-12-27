@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./css/member.css";
+import "../member/member.css";
 
 class MemberSchedule extends Component {
     state = {}
@@ -7,7 +7,7 @@ class MemberSchedule extends Component {
         return (
             <>
                 {/* <!-- 封面故事 --> */}
-                <img src="/img/景點相片預覽(暗色).jpg" alt="mainstory" id="mainstory" className="w-100" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG" alt="mainstory" id="mainstory" className="w-100" />
 
                 {/* <!-- 主要頁面 --> */}
                 <div className="main">
@@ -23,12 +23,12 @@ class MemberSchedule extends Component {
                             </a>
                         </div>
                         {/* <!-- 新增行程表按鈕 --> */}
-                        <a href="#"><input type="button" value="新增行程表" className="addSchdule" /></a>
+                        <a href="/"><input type="button" value="新增行程表" className="addSchdule" /></a>
                         {/* <!-- 卡片分頁 --> */}
                         <div className="card-columns col">
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">秋天東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>
@@ -39,7 +39,7 @@ class MemberSchedule extends Component {
 
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">秋天東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>
@@ -52,7 +52,7 @@ class MemberSchedule extends Component {
 
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">春天東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>
@@ -64,7 +64,7 @@ class MemberSchedule extends Component {
 
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>
@@ -77,7 +77,7 @@ class MemberSchedule extends Component {
 
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>
@@ -90,7 +90,7 @@ class MemberSchedule extends Component {
 
                             <div className="card p-3">
                                 <a href="/Schedule">
-                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card image cap" />
+                                    <img className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">東京五天四夜</h3>
                                         <p className="card-text">2022年12月24日-2022年12月29日</p>

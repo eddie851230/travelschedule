@@ -10,10 +10,6 @@ a:active {
     padding: 50px;
 }
 
-header {
-    background-color: var(--nav-bg-color);
-}
-
 
 
 h3 {
@@ -28,15 +24,16 @@ h5{
 }
 
 #avatar {
-    width: 10vw;
-    height: 10vw;
+    width: 9vw;
+    height: 9vw;
     clip-path: circle(50% at 50% 50%);
-    margin: 30px;
+    margin: 10px;
 }
 
 #mainstory {
     object-fit: cover;
     height: 35vh;
+    margin-bottom: -8vh;
 }
 
 /* 旁邊導覽列 */
@@ -50,6 +47,8 @@ h5{
     left: 0;
     height: calc(100vh - 2.5rem);
     overflow: auto;
+    z-index: 99;
+    border-radius: 10px;
 }
 
 

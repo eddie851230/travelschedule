@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import "./css/airplaneMain.css";
+import "../airticket/airplaneMain.css";
 
 
 class Airticket extends Component {
     state = {}
     render() {
         return (
-            <div className='airticket'>
+            <form action={'/Airticket/departure'+1}>
                 <div className="airplaneFliter">
                     {/* <!-- 出發地點 --> */}
                     <label for="departureSpot">出發地點</label>
@@ -31,7 +31,7 @@ class Airticket extends Component {
                 </div>
                 {/* <!-- 確認按鈕 --> */}
                 <input type="submit" value="開始" />
-            </div>
+            </form>
         );
     }
 }

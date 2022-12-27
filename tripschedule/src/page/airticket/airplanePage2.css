@@ -1,28 +1,24 @@
-@import url("../CSS/navAndScrollbar.css");
-
-/* 導覽列設定 */
-header {
-    background-color: var(--nav-bg-color);
-}
-
 #mainpic {
     object-fit: cover;
-    height: 300px;
+    height: 35vh;
     width: 100%;
+    margin-bottom: 0vh; 
+
 }
 
 main{
-    width:80%;
-    text-align: center;
+    width:100%;
+    display: flex;
+    justify-content: center;
 }
 
-.output{
+.finaloutput{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.departureSpot,.returnSpot{
+.finaldepartureSpot,.finalreturnSpot{
     width:80%;
     margin:2%;
     padding: 20px;
@@ -35,10 +31,10 @@ main{
 }
 
 /* 景點文字及照片排版 */
-.outputDiv {
+.finaloutputDiv {
     border-radius: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     width: 80%;
@@ -49,20 +45,20 @@ main{
 
 
 /* 景點照片 */
-.outputDiv img {
-    width: 10vw;
+.finaloutputDiv img {
+    width: 8vw;
     height: 6vw;
     object-fit: contain;
     border-radius: 10px;
 }
 
 
-.output .text {
+.finaloutput .text {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     font-weight: 700;
-    padding: 3% 0.5%;
+    padding: 2% 0;
     /* outline: 2px solid #000; */
 }
 
@@ -83,14 +79,14 @@ button {
 
 /* 景點文字大小調整 */
 
-.flyingTime,.price {
+.finalflyingTime,.price {
     font-size: 1.2rem;
     font-weight: 700;
 }
 
 
 /* 連結按鈕 */
-.price+a{
+.finalprice+a{
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -114,4 +110,10 @@ button {
 
 .mutipleButton button:hover{
     box-shadow:0 0 5px #4f4f4f;
+}
+
+/* 價格顏色 */
+.price span{
+
+    color:#da663c;
 }

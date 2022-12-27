@@ -1,47 +1,67 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // 安裝icon、bootstrap、jquery
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 // import axios from "axois";
 
+
 // 元件
-import Home from './components/Home';
-import Airticket from './components/Airticket';
-import Spot from './components/Spot';
-import Hotel from './components/Hotel';
-import Schedule from './components/Schedule';
-import MemberFavorite from './components/MemberFavorite';
-import MemberSchedule from './components/MemberSchedule';
 import Error from './components/Error';
+
+// 首頁
+import Home from './page/index/Home';
+// 機票
+import Airticket from './page/airticket/Airticket';
+import AirticketP1 from './page/airticket/AirticketP1';
+import AirticketP2 from './page/airticket/AirticketP2';
+// 景點
+import Spot from './page/spot/Spot';
+// 飯店
+import Hotel from './page/hotel/Hotel';
+// 行程表
+import Schedule from './page/schedule/Schedule';
+// 會員中心
+import MemberFavorite from './page/member/MemberFavorite';
+import MemberSchedule from './page/member/MemberSchedule';
+
+
+// 導覽列
 import Navigation from './components/Navigation';
 
+// 頁尾
+// import Footer from './components/Footer';
 
 
-class App extends Component {
-  render() {
-    return (
+
+function App() {
+  return (
+
+    <div>
       <BrowserRouter>
-        <div>
-          <Navigation />
-          <Switch>
-            <Route path="/" component={Home} exact/>
-            <Route path="/Home" component={Home} exact/>
-            <Route path="/Airticket" component={Airticket} />
-            <Route path="/Airticket/:id" component={Airticket} />
-            <Route path="/Spot" component={Spot} />
-            <Route path="/Spot/:id" component={Spot} />
-            <Route path="/Hotel" component={Hotel} />
-            <Route path="/Hotel/:id" component={Hotel} />
-            <Route path="/Schedule" component={Schedule} />
-            <Route path="/member/MemberFavorite" component={MemberFavorite} />
-            <Route path="/member/MemberSchedule" component={MemberSchedule} />
-            <Route component={Error} />
-          </Switch>
-        </div>
+        <Navigation />
+
+        <Routes>
+          <Route path="/" element={<Home/>} exact />
+          <Route path="/Home" element={<Home/>} exact />
+          <Route path="/Airticket" element={<Airticket/>} exact />
+          <Route path="/Airticket/departure/:id" element={<AirticketP1/>} exact />
+          <Route path="/Airticket/return/:id" element={<AirticketP1/>} exact />
+          <Route path="/Airticket/output/:id" element={<AirticketP2/>} exact />
+          <Route path="/Spot" element={<Spot/>} />
+          <Route path="/Spot/:id" element={<Spot/>} />
+          <Route path="/Hotel" element={<Hotel/>} />
+          <Route path="/Hotel/:id" element={<Hotel/>} />
+          <Route path="/Schedule" element={<Schedule/>} />
+          <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
+          <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
+          <Route component={Error} />
+        </Routes>
       </BrowserRouter>
-    );
-  }
+    </div>
+
+  );
 }
+
 
 export default App;

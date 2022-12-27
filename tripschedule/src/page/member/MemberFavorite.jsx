@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./css/member.css";
+import "../member/member.css";
 
 class MemberFavorite extends Component {
     state = {}
@@ -23,8 +23,8 @@ class MemberFavorite extends Component {
                         {/* <!-- 卡片分頁 --> */}
                         <div className="card-columns col">
                             <div className="card p-3">
-                                <a href="#">
-                                    <img className="card-img-top" src="/img/東京鐵塔(維基百科).jpg" alt="Card image cap" />
+                                <a href="/Spot">
+                                    <img className="card-img-top" src="/img/東京鐵塔(維基百科).jpg" alt="Card cap" />
                                         <div className="card-body">
                                             <h3 className="card-title">東京鐵塔</h3>
                                             <h5 className="card-text">
@@ -37,8 +37,8 @@ class MemberFavorite extends Component {
                             </div>
 
                             <div className="card p-3">
-                                <a href="#">
-                                    <img className="card-img-top" src="/img/淺草寺.jpg" alt="Card image cap" />
+                                <a href="Spot">
+                                    <img className="card-img-top" src="/img/淺草寺.jpg" alt="Card cap" />
                                         <div className="card-body">
                                             <h3 className="card-title">淺草寺</h3>
                                             <h5 className="card-text">
@@ -51,8 +51,8 @@ class MemberFavorite extends Component {
                             </div>
 
                             <div className="card p-3">
-                                <a href="#">
-                                    <img className="card-img-top" src="/img/淺草寺(維基百科夜景).jpg" alt="Card image cap" />
+                                <a href="Spot">
+                                    <img className="card-img-top" src="/img/淺草寺(維基百科夜景).jpg" alt="Card cap" />
                                         <div className="card-body">
                                             <h3 className="card-title">淺草寺</h3>
                                             <h5 className="card-text">
@@ -65,8 +65,8 @@ class MemberFavorite extends Component {
                             </div>
 
                             <div className="card p-3">
-                                <a href="#">
-                                    <img className="card-img-top" src="/img/淺草寺(維基百科夜景).jpg" alt="Card image cap" />
+                                <a href="/Spot">
+                                    <img className="card-img-top" src="/img/淺草寺(維基百科夜景).jpg" alt="Card cap" />
                                         <div className="card-body">
                                             <h3 className="card-title">淺草寺</h3>
                                             <h5 className="card-text">

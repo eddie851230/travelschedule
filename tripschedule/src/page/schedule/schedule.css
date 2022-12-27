@@ -5,37 +5,37 @@
 
 
 /* 主要頁面--------------------------------------- */
-.mainpage {
+.smainpage {
     width: 100%;
-    height: calc(100vh - 3.5rem);
+    height: calc(100vh - 6vh);
     display: flex;
 }
 
 /* 行程表------------------------------------------ */
-.schedule {
+.sschedule {
     width: 30%;
     height: 100%;
 }
 
 /* 行程表頭部--------------------------- */
-.scheduleHeader {
+.sscheduleHeader {
     text-align: center;
     font-weight: 700;
     height: 180px;
     /* background-color: #eaeac3; */
 }
 
-.scheduleTitle {
+.sscheduleTitle {
     padding: 3%;
     font-size: 1.3rem;
 }
 
-.scheduleTitle div {
+.sscheduleTitle div {
     font-size: 1rem;
     margin: 4% 0 2%;
 }
 
-.scheduleTitle select,option {
+.sscheduleTitle select,option {
     font-size: 1.1rem;
     padding: 2%;
     border-radius: 10px;
@@ -46,19 +46,19 @@
 }
 
 /* 非選定的行程表選項 */
-.scheduleTitle option:not(:checked) {
+.sscheduleTitle option:not(:checked) {
     background-color: var(--nav-bg-color);
     color: #fff;
 }
 
-.scheduleTitle select:focus {
+.sscheduleTitle select:focus {
     box-shadow: 0 0 5px var(--nav-bg-color);
 }
 
 
 /* 分享等按鈕--------------*/
 
-.scheduleHeader button{
+.sscheduleHeader button{
     background-color: var(--nav-bg-color);
     color: #fff;
     padding: 2%;
@@ -70,7 +70,7 @@
     cursor: pointer;
 }
 
-.scheduleHeader button:hover {
+.sscheduleHeader button:hover {
     background-color: #CB4042;
     color: #fff;
     box-shadow: 0 0 5px #4f4f4f;
@@ -81,19 +81,19 @@
 
 
 /* 行程表日期bar------------------------ */
-.scheduleDaybar {
+.sscheduleDaybar {
     display: flex;
     font-weight: 700;
     height: 50px;
 }
 
-.scheduleDaybar>div {
+.sscheduleDaybar>div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.scheduleDaybar div:not(:first-child, :last-child) {
+.sscheduleDaybar div:not(:first-child, :last-child) {
     width: calc((100%-60px)/3);
     text-align: center;
     border: 3px solid var(--nav-bg-color);
@@ -102,8 +102,8 @@
 }
 
 /* 日期bar的左鍵及右鍵------------------ */
-.prev,
-.next {
+.sprev,
+.snext {
     background-color: var(--nav-bg-color);
     width: 30px;
     display: flex;
@@ -112,14 +112,14 @@
     cursor: pointer;
 
 }
-.prev:hover,
-.next:hover {
+.sprev:hover,
+.snext:hover {
     background-color: #E8B647;
     box-shadow:0 0 5px #4f4f4f;
 }
 
 /* 左鍵 */
-.prev div {
+.sprev div {
     background-color: #fff;
     width: 15px;
     height: 40%;
@@ -127,7 +127,7 @@
 }
 
 /* 右鍵 */
-.next div {
+.snext div {
     width: 15px;
     height: 40%;
     background-color: #fff;
@@ -137,19 +137,19 @@
 
 
 /* 行程表景點區------------------- */
-.trafficAndSpot {
+.stripSpot {
     width: 100%;
     height: calc(100% - 180px - 50px);
     overflow-y: scroll;
     text-align: center;
 }
 /* 景點處最上方時間顯示(禮拜幾) */
-.dayNum{
+.sdayNum{
     padding: 6px 0 0;
 }
 
 /* 景點文字及照片排版 */
-.airplane,.spot{
+.sairplane,.sspot{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -161,35 +161,35 @@
 }
 
 
-.spot:hover{
+.sspot:hover{
     box-shadow: 0 0 5px #4f4f4f;
 }
 
-.airplane{
+.sairplane{
     background-color: #dddddd;
     cursor:auto;
 }
 
 /* 景點照片 */
-.trafficAndSpot img{
+.stripSpot img{
     width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: 10px;
 }
 /* 飛機icon */
-.airplane img{
+.sairplane img{
     object-fit: contain;
     background-color: #fff;
 }
 
-.trafficAndSpot .text{
+.stripSpot .text{
     text-align: start;
     font-weight: 700;
     padding: 3% 0.5%;
 }
 
-.trafficAndSpot button{
+.stripSpot button{
     background-color: var(--nav-bg-color);
     color: #fff;
     padding: 5px;
@@ -198,29 +198,29 @@
     cursor: pointer;
 }
 
-.trafficAndSpot button:hover{
+.stripSpot button:hover{
     box-shadow: 0 0 5px #4f4f4f;
 }
 
 /* 景點文字大小調整 */
-.text{
+.stext{
     width:60%;
 }
 
-.text .name{
+.stext .name{
     font-size: 1.5rem;
 }
 
-.text .info{
+.stext .info{
     font-size:0.8rem;
 
 }
-.text .info span{
+.stext .info span{
     color:#CB4042;
     font-size:1rem;
 }
 
-.text .Addr{
+.stext .Addr{
     width: 100%;
     height: 2rem;
     font-size:0.75rem;
@@ -232,24 +232,26 @@
 
 
 /* 收藏名單----------------------------------- */
-.favorite{
+.sfavorite{
     border:8px solid #CB4042;
-    width: 150px;
+    width: 15vw;
     height: 100%;
     text-align: center;
     position: relative;
+    top:0;
     /* display: none; */
 }
 
-.favorite img{
-    width:calc(150px * 0.6);
-    height: 60px;
+.sfavorite img{
+    width:80%;
+    height: 70px;
+    object-fit: cover;
     margin: 5%;
     border-radius: 5px;
     cursor:grab;
 }
 
-.favorite img:hover{
+.sfavorite img:hover{
     box-shadow:0 0 5px #4f4f4f;
 }
 
@@ -265,7 +267,7 @@
 } */
 
 /* 上方收藏名單設定 */
-.favoriteTitle{
+.sfavoriteTitle{
     position: relative;
     top:0;
     background-color: #CB4042;
@@ -275,7 +277,7 @@
     height: 30px;
     z-index: 999;
 }
-.list{
+.slist{
     width: 100%;
     position:relative;
     top:0;
@@ -283,19 +285,19 @@
     overflow-y: scroll;
     
 }
-.change{
+.schange{
     display:flex;
     justify-content: space-between;
     border:3px solid var(--nav-bg-color);
 }
 
-.change .prev,.change .next{
+.schange .prev,.change .next{
     width:15px;
     height: 1.5rem;
 }
 
-.change .prev div,
-.change .next div{
+.schange .prev div,
+.schange .next div{
     width:5px;
 }
 
@@ -303,32 +305,32 @@
 
 
 /* 收藏名單的卷軸 */
-.list::-webkit-scrollbar,.consider::-webkit-scrollbar{
+.slist::-webkit-scrollbar,.consider::-webkit-scrollbar{
     background: #FEDFE1;
     width: 6px;
 }
 
-.list::-webkit-scrollbar-thumb,.consider::-webkit-scrollbar-thumb{
+.slist::-webkit-scrollbar-thumb,.consider::-webkit-scrollbar-thumb{
     background: #e7a008;
     border-radius: 50px;
     width: 6px;
 }
-.list::-webkit-scrollbar-thumb:hover,.consider::-webkit-scrollbar-thumb:hover{
-    background: #ffdd00;
+.slist::-webkit-scrollbar-thumb:hover,.consider::-webkit-scrollbar-thumb:hover{
+    background: #feda02;
 }
 
-.close{
+.sclose{
     font-size: 25px;
     height: 30px;
-    background-color: #CB4042;
+    background-color: #feda02;
     /* border-radius: 2px; */
-    color: #fff;
+    color: #000;
     font-weight: 900;
 }
 
-.close:hover{
-    -webkit-text-stroke:2px #fff;
-    color:#CB4042;
+.sclose:hover{
+    -webkit-text-stroke:2px #000;
+    color:#feda02;
     cursor: pointer;
 }
 
