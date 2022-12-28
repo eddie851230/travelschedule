@@ -1,0 +1,308 @@
+/* 照片 */
+#detailBG{
+    width: 100%;
+    height: 35vh;
+    /* background-color: rgb(34, 20, 125); */
+    clear: both;
+
+}
+#detailBG img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+.coverBG{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height:35vh;
+    background-color: rgba(55,107,109,0.5);
+}
+/* 目前行程 */
+section{
+    width: 80%;
+    margin: auto;
+    height: 100%;
+    /* background-color: rgb(29, 163, 58); */
+}
+/* 包所有近期資訊 */
+#yourTrip{
+    margin-top: 5vh;
+    /* border: 10px solid black; */
+    display: flex;
+    width: 100%;
+}
+#yourTrip>div{
+    margin: 0px 15px;
+}
+#yourTrip>div:nth-child(1),
+#yourTrip>div:nth-child(4){
+    flex: 1.3;
+}
+#yourTrip>div:nth-child(2),
+#yourTrip>div:nth-child(3)
+{
+    flex: 1;
+}
+.cardForm{
+    border: 1.5px solid #376B6D;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    /* background-color: yellow; */
+    border-radius: 10px;
+}
+
+.iconFrame{
+    width:30%;
+    height:30px;
+}
+.iconFrame img{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+}
+.cardText p{
+    margin: 0%;
+    font-size:15px ;
+    margin-left: 15px;
+}
+/* 主要內容 */
+.hotelBar{
+    margin-top: 5vh;
+    width: 100%;
+    /* background-color: antiquewhite; */
+    padding-top:10px ;
+    padding-bottom:10px ;
+    padding-left: 15px;
+}
+.picZone{
+    /* border: 1.5px solid black; */
+
+    display: flex;
+
+}
+.mainPic{
+    padding: 10px;
+    flex:2;
+    height:60vh;
+    /* background-color: red; */
+}
+.mainPic img{
+    width: 100%;
+    height:100%;
+    
+    object-fit: cover;
+    border-radius: 10px;
+}
+.otherZone{
+    flex:3;
+    height:60vh;
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+}
+.otherZone>div:nth-of-type(1){
+    flex:1;
+    /* background-color: yellow; */
+}
+.otherZone>div:nth-of-type(2){
+    flex:2;
+    /* background-color: rgb(255, 151, 40); */
+}
+.otherZone>div:nth-of-type(2) iframe{
+    border-radius: 10px;
+    padding: 10px;
+    width:100% ;
+    height:100%;
+    object-fit: cover;
+}
+.otherPics{
+    display: flex;
+}
+.otherPics>div{
+    flex: 1;
+    height: 100%;
+    margin: 5px;
+}
+.otherPics>div>img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* _______________________________ */
+/* 飯店搜尋 */
+.hotelArea{
+    background-color: #376B6D;
+    padding: 15px;
+    border-radius: 15px;
+}
+.hotelIntro{
+    border: 2px solid #376B6D;
+    border-radius: 10px ;
+    width: 100%;
+    height: 80vh;
+    background-color: #fff;
+    padding: 15px;
+}
+.roomTitle{
+    font-size: 18px;
+    padding: 10px ;
+    padding-left: 10px;
+    color: #fff;
+    text-align: center;
+}
+/* 所有房間 */
+#allRooms{
+    width: 100%;
+    display: flex;
+}
+.roomCard{
+    
+    flex:1;
+    border-radius: 10px;
+    border: 2px solid #376B6D;
+    
+    padding: 10px;
+    margin: 0 1%;
+    background-color: #fff;
+}
+.roomPic{
+    width: 100%;
+    height:30vh;
+    margin-bottom:2vh ;
+}
+.roomPic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* 共用其他飯店推薦 */
+.recommendationTitle{
+    margin-top:15vh ;
+    margin-bottom: 15vh ;
+   
+  }
+  .recommendationTitle p:nth-child(1){
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #376B6D;
+  }
+  .recommendationTitle p:nth-child(2){
+    text-align: center;
+    font-size: 15px;
+    /* font-weight: 700; */
+    color: #000000;
+  }
+  /* _______________________________ */
+  .optionZone{
+    display: flex;
+    justify-content: space-between;
+  }
+  .hotelCard{
+    width:23%;
+    height: 55vh;
+    /* background-color: #f7905c; */ 
+    /* 背景色橘色 */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hotelImage{
+    width:100% ;
+    height:40vh;
+  }
+  .hotelImage img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+  /* 查看飯店 */
+  .clickForCheck{
+    position: absolute;
+    padding: 10px;
+    background-color:#376B6D;
+    top: 35vh;
+    color: #ffffff;
+    /* font-size:larger; */
+    /* margin: auto; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    border-radius: 10px;
+    
+  }
+  .clickForCheck:hover{
+    background-color: #57a6a9;
+    transition: 0.2s ease-out;
+    border: 1.5px solid white;
+  }
+  .imageZone{
+    width: 100%;
+    position: relative;
+  }
+  .hotelDes{
+   
+  }
+  .hotelText{
+    text-align: center;
+  }
+  .hotelTitle{
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .ntd{
+    font-size: 18px;
+    font-weight: 900;
+    color: #da663c;
+    
+  }
+  .ntd span{
+    font-size: large;
+  }
+/* 頁尾 */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    height: 30vh;
+    background-image: linear-gradient(rgba(150, 150, 150, 0.5), rgba(0, 0, 0, 0.823));
+}
+
+.footer h4 {
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.footer p {
+    color: var(--white-color);
+    font-size: 20px;
+}
+
+.icons {
+    color: var(--white-color);
+    cursor: pointer;
+    padding: 18px;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+
+.icons i:not(:last-child) {
+    margin-right: 20px;
+}
+
+
+.icons i:hover {
+    transform: scale(1.8);
+}
