@@ -10,7 +10,7 @@ function AirBackgroundImg() {
 
         return (
                 <>
-                        <div id='Airticket_img' className={BgimgState}></div>
+                        <div id='Airticket_img' className={BgimgState}> </div>
                 </>
         );
 
