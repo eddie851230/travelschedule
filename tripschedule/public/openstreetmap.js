@@ -55,24 +55,23 @@ data.forEach((item) => {
     .bindPopup(`<h1>${item.name}</h1>` + `<p>${item.name}</p>`);
 });
 
-document
-  .querySelector(".airplane")
-  .addEventListener("mouseenter", function () {
-    // 處理資料
-    data.forEach((item) => {
-      // 夢時代購物中心 icon 顯示金色，其餘則為黑色
-      let myIcon;
-      if (item.name === "大統百貨") {
-        myIcon = goldIcon;
-      } else {
-        myIcon = blackIcon;
-      }
-      // 添加標記點
-      L.marker(item.local, {
-        title: item.name,
-        icon: myIcon,
-      })
-        .addTo(map)
-        .bindPopup(`<h1>${item.name}</h1>` + `<p>${item.name}</p>`);
-    });
+document.querySelector(".airplane").addEventListener("mouseenter", function () {
+
+  // 處理資料
+  data.forEach((item) => {
+    // 夢時代購物中心 icon 顯示金色，其餘則為黑色
+    let myIcon;
+    if (item.name === "大統百貨") {
+      myIcon = goldIcon;
+    } else {
+      myIcon = blackIcon;
+    }
+    // 添加標記點
+    L.marker(item.local, {
+      title: item.name,
+      icon: myIcon,
+    })
+      .addTo(map)
+      .bindPopup(`<h1>${item.name}</h1>` + `<p>${item.name}</p>`);
   });
+});

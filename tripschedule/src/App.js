@@ -6,6 +6,7 @@ import "jquery/dist/jquery.min.js";
 // import axios from "axois";
 
 
+
 // 元件
 import Error from './components/Error';
 
@@ -13,8 +14,9 @@ import Error from './components/Error';
 import Home from './page/index/Home';
 // 機票
 import Airticket from './page/airticket/Airticket';
-import AirticketP1 from './page/airticket/AirticketP1';
-import AirticketP2 from './page/airticket/AirticketP2';
+// import AirticketP1 from './page/airticket/AirticketP1';
+// import AirticketP2 from './page/airticket/AirticketP2';
+
 // 景點
 import Spot from './page/spot/Spot';
 // 飯店
@@ -27,10 +29,10 @@ import MemberSchedule from './page/member/MemberSchedule';
 
 
 // 導覽列
-import Navigation from './components/Navigation';
+import Navigation from './components/tool/Navigation';
 
 // 頁尾
-// import Footer from './components/Footer';
+import Footer from './components/tool/Footer';
 
 
 
@@ -39,15 +41,13 @@ function App() {
 
     <div>
       <BrowserRouter>
+
         <Navigation />
 
         <Routes>
           <Route path="/" element={<Home/>} exact />
           <Route path="/Home" element={<Home/>} exact />
           <Route path="/Airticket" element={<Airticket/>} exact />
-          <Route path="/Airticket/departure/:id" element={<AirticketP1/>} exact />
-          <Route path="/Airticket/return/:id" element={<AirticketP1/>} exact />
-          <Route path="/Airticket/output/:id" element={<AirticketP2/>} exact />
           <Route path="/Spot" element={<Spot/>} />
           <Route path="/Spot/:id" element={<Spot/>} />
           <Route path="/Hotel" element={<Hotel/>} />
@@ -57,6 +57,7 @@ function App() {
           <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
           <Route component={Error} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
 

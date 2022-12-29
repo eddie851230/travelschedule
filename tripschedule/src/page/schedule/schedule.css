@@ -317,19 +317,21 @@
 .scheduleMainpage .change {
     display: flex;
     justify-content: space-between;
-    border: 5px solid var(--nav-bg-color);
+    border:solid var(--nav-bg-color);
+    border: 5px 0;
 }
 
 .scheduleMainpage .change .prev,
 .scheduleMainpage .change .next {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 20%;
+    height: fit-content;
 }
 
 .scheduleMainpage .change .prev div,
 .scheduleMainpage .change .next div {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 12px;
+    height: 15px;
+    margin: 5px ;
 }
 .scheduleMainpage .change .prev div {
     clip-path: polygon(100% 0, 100% 100%, 0 50%);

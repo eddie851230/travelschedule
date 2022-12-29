@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { UilHome, UilPlaneDeparture, UilMapPinAlt, UilBed, UilSchedule, UilUserCircle,UilApps} from "@iconscout/react-unicons";
 import "https://kit.fontawesome.com/11f63461bc.js";
-import "../page/index/navAndScrollbar.css";
+import "./navAndScrollbar.css";
 
 
 const Navigation = () => {
@@ -26,7 +26,6 @@ const Navigation = () => {
             <UilApps className="nav-menu-btn" />
          </div>
       </header>
-
    );
 }
 

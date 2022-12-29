@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { UilFacebook, UilTwitter, UilInstagram, UilLine } from "@iconscout/react-unicons";
 
-import "./css/footer.css";
-class Footer extends Component {
-    state = {}
-    render() {
+import "./footer.css";
+const Footer=() => {
+
+   
         return (
             <section className="footer">
                 <h4>About Us</h4>
@@ -18,7 +18,7 @@ class Footer extends Component {
                 </div>
             </section>
         );
-    }
+    
 }
 
 export default Footer;

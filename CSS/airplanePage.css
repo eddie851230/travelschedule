@@ -3,6 +3,9 @@
 /* 導覽列設定 */
 header {
     background-color: var(--nav-bg-color);
+    position: fixed;
+    top:0;
+    z-index: 999;
 }
 
 #mainpic {
@@ -18,7 +21,7 @@ header {
     background-color: var(--nav-bg-color);
     width: 70%;
     height: 20%;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 2%;
     color: #fff;
     display: flex;
@@ -68,7 +71,7 @@ header {
 
 /* 旁邊篩選器 */
 .sideFilter {
-    margin: 3% 0;
+    margin: 2% 0;
     padding: 2%;
     background-color: #f1f1f1;
     position: absolute;
@@ -76,7 +79,7 @@ header {
     left: 4vw;
     height: calc(100vh - 2.5rem);
     width: 12vw;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 /* 自訂多選設定---------------------------- */
@@ -164,7 +167,7 @@ header {
 
 /* 景點文字及照片排版 */
 .outputDiv {
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;

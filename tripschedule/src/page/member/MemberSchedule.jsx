@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import "../member/member.css";
 
-class MemberSchedule extends Component {
-    state = {}
-    render() {
+const MemberSchedule=()=>{
+ 
         return (
             <>
                 {/* <!-- 封面故事 --> */}
                 <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG" alt="mainstory" id="mainstory" className="w-100" />
 
                 {/* <!-- 主要頁面 --> */}
-                <div className="main">
+                <div className="membermain">
                     <div className="row w-100">
                         {/* <!-- 旁邊導覽列 --> */}
                         <div className="sidebar col-2">
@@ -105,7 +104,7 @@ class MemberSchedule extends Component {
                 </div>
             </>
         );
-    }
+    
 }
 
 export default MemberSchedule;

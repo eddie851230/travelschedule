@@ -30,13 +30,13 @@ main{
     font-weight: 700;
     text-align: center;
     background-color: #f1f1f1;
-    border-radius: 20px;
+    border-radius: 10px;
     color: #376B6D;
 }
 
 /* 景點文字及照片排版 */
 .outputDiv {
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -80,6 +80,7 @@ button {
 
 
 
+
 /* 景點文字大小調整 */
 
 .flyingTime,.price {
@@ -108,6 +109,9 @@ button {
 }
 
 .mutipleButton button{
-    font-size: 1.5rem;
     width: 20vw;
+}
+
+.mutipleButton button:hover{
+    box-shadow:0 0 5px #4f4f4f;
 }
