@@ -1,20 +1,13 @@
-/* 背景設定 */
-form{
-    /* background-blend-mode: multiply; */
-    /* 富士山圖片-作者:Midori */
-    background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.5)),url("https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: calc(100vh - 3.5rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    font-size: 18px;
+/* 篩選器設定 */
+* {
+    border: pink 1px solid;
 }
 
-/* 篩選器設定 */
+#AirticketSearchForm {
+    width: 80%;
+    height: 50vh;
+}
+
 .airplaneFliter {
     background-color: var(--nav-bg-color);
     width: 75%;
@@ -51,7 +44,7 @@ form{
 
 /* 確認鍵裝飾 */
 input[type="submit"] {
-    margin-top: 200px;
+    /* margin-top: 200px; */
     padding: 10px 30px;
     letter-spacing: 5px;
     background-color: var(--nav-bg-color);
@@ -71,3 +64,16 @@ input[type="submit"]:hover {
     transition: .3s ease-in;
     cursor: pointer;
 }
+
+/* form{
+    font-weight: 600;
+    font-size: 18px;
+} */
+/* 
+#mainpic {
+    object-fit: cover;
+    height: 35vh;
+    width: 100%;
+    margin-bottom: 15vh;
+    outline: 3px solid #feda02;
+} */
