@@ -1,6 +1,6 @@
 import React from 'react';
 import AirBackgroundImg from '../../components/airticket/AirticketComponents/AirBackgroundImg/AirBackgroundImg';
-import "../airticket/Airticket.css";
+import "./Airticket.css";
 
 function Airticket() {
     // const [AirPageState, setAirPageState] = useState();
