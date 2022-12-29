@@ -1,20 +1,20 @@
 #Airticket_img{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.1)),url("../../../../../public/img/airport.webp");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.1)),url("../../Airticket_Img/Airticked_img.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
 }
 
-.Airtickedimg_none {
+.Airticketimg_none {
     display: none;
 }
 
-.Airtickedimg_full {
+.Airticketimg_full {
     height: 94vh;
     width: 100%;
 }
 
-.Airtickedimg_top {
+.Airticketimg_top {
     background-position: center 75%;
     height: 35vh;
     width: 100%;

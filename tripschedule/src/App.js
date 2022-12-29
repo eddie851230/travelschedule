@@ -9,14 +9,10 @@ import "jquery/dist/jquery.min.js";
 
 // 元件
 import Error from './components/Error';
-
 // 首頁
 import Home from './page/index/Home';
 // 機票
 import Airticket from './page/airticket/Airticket';
-// import AirticketP1 from './page/airticket/AirticketP1';
-// import AirticketP2 from './page/airticket/AirticketP2';
-
 // 景點
 import Spot from './page/spot/Spot';
 // 飯店

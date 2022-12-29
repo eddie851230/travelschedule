@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import "./AirBackgroundImg.css"
 
 function AirBackgroundImg() {
-        const [BgimgState, setBgimgState] = useState("Airtickedimg_none");
+        const [BgimgState, setBgimgState] = useState("Airticketimg_none");
 
         useEffect(() => {
-                setBgimgState("Airtickedimg_full")
+                setBgimgState("Airticketimg_full")
         },[])
 
         return (
