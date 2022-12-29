@@ -5,12 +5,11 @@ import Footer from "../../components/Footer";
 // import Footer from "./hotel/hotel.index.css;"
 // import "https://unicons.iconscout.com/release/v4.0.0/css/line.css";
 
-class Hotel extends Component {
-  state = {};
-
+const Hotel=()=>{
+  
   // a="/img/hotel-icon/index-popular.png";
 
-  render() {
+
     return (
       <div id="likeBody">
 
@@ -461,7 +460,7 @@ class Hotel extends Component {
         <Footer />
       </div>
     );
-  }
+  
 }
 
 export default Hotel;
