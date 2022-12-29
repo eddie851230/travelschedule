@@ -32,7 +32,7 @@ import MemberSchedule from './page/member/MemberSchedule';
 import Navigation from './components/tool/Navigation';
 
 // 頁尾
-import Footer from './components/tool/Footer';
+// import Footer from './components/tool/Footer';
 
 
 
@@ -57,7 +57,6 @@ function App() {
           <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
           <Route component={Error} />
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </div>
 
