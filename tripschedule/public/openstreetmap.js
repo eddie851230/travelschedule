@@ -56,7 +56,7 @@ data.forEach((item) => {
 });
 
 document
-  .querySelector(".sairplane")
+  .querySelector(".airplane")
   .addEventListener("mouseenter", function () {
     // 處理資料
     data.forEach((item) => {
