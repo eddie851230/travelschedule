@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React  from "react";
 import "./index.css";
 import "./hotel-index.css";
-import Footer from "../../components/Footer";
+import Footer from "../../components/tool/Footer";
 // import Footer from "./hotel/hotel.index.css;"
 // import "https://unicons.iconscout.com/release/v4.0.0/css/line.css";
 
