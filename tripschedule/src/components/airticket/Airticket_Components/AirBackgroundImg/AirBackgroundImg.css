@@ -1,0 +1,22 @@
+#Airticket_img{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.1)),url("../../../../../public/img/airport.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.Airtickedimg_none {
+    display: none;
+}
+
+.Airtickedimg_full {
+    height: 94vh;
+    width: 100%;
+}
+
+.Airtickedimg_top {
+    background-position: center 75%;
+    height: 35vh;
+    width: 100%;
+    outline: 3px solid #feda02;
+}
