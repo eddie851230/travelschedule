@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
+    z-index: -999;
 }
 
 .Airticketimg_none {
