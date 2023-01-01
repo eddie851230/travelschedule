@@ -1,0 +1,30 @@
+
+
+[datatitle]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    display: block;
+}
+
+
+[datatitle]:after {
+    content: attr(datatitle);
+      background-color: #feda02;
+      color: #000;
+      font-size: 80%;
+      font-weight: 700;
+      position: absolute;
+      padding: 5px 10px;
+      bottom: -2.2em;
+      left: 8%;
+      white-space: nowrap;
+      box-shadow: 1px 1px 3px #222222;
+      opacity: 0;
+      border-radius: 10px;
+      z-index: 99999;
+      display: none;
+}
+
+[datatitle] {
+    position: relative;
+}

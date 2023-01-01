@@ -22,6 +22,8 @@ import Schedule from './page/schedule/Schedule';
 // 會員中心
 import MemberFavorite from './page/member/MemberFavorite';
 import MemberSchedule from './page/member/MemberSchedule';
+import Setting from './page/member/Setting';
+import ForgetPassword from './page/member/ForgetPassword';
 
 
 // 導覽列
@@ -49,8 +51,10 @@ function App() {
           <Route path="/Hotel" element={<Hotel/>} />
           <Route path="/Hotel/:id" element={<Hotel/>} />
           <Route path="/Schedule" element={<Schedule/>} />
-          <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
-          <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
+          <Route path="/member/MemberFavorite/:username" element={<MemberFavorite/>} />
+          <Route path="/member/MemberSchedule/:username" element={<MemberSchedule/>} />
+          <Route path="/member/Setting/:username" element={<Setting/>} />
+          <Route path="/forgetpassword" element={<ForgetPassword/>} />
           <Route component={Error} />
         </Routes>
       </BrowserRouter>

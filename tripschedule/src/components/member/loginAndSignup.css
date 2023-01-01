@@ -1,12 +1,16 @@
 .modelbox {
-  position: relative;
+  position: absolute;
+  top: 0;
   min-height: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: rgba(129, 129, 129, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  z-index: 10000;
 }
 
 .loginAndSignup {
@@ -28,6 +32,13 @@
   bottom: 0;
   left: 0;
   background-color: var(--nav-bg-color);
+}
+
+.loginAndSignup .loginError {
+  font-size: 80%;
+  color: red;
+  text-align: center;
+  padding: 2%;
 }
 
 .signup {
@@ -53,7 +64,7 @@
 }
 
 .signup.slide-up .form-title {
-  font-size: 1em;
+  font-size: 100%;
   cursor: pointer;
 }
 
@@ -61,7 +72,9 @@
 
 .signup .form-title {
   color: #fff;
-  font-size: 1.7em;
+  font-size: 170%;
+  font-weight: 900;
+  letter-spacing: 0.2em;
   text-align: center;
 }
 
@@ -70,7 +83,7 @@
   border-radius: 15px;
   background-color: #fff;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   opacity: 1;
   visibility: visible;
@@ -88,7 +101,9 @@
   border-bottom: 1px solid #eee;
   width: 100%;
   font-size: 14px;
+
 }
+
 
 .signup .form-holder .input:last-child {
   border-bottom: 0;
@@ -157,7 +172,9 @@
 
 .login .center .form-title {
   color: #678789;
-  font-size: 1.7em;
+  font-size: 170%;
+  font-weight: 900;
+  letter-spacing: 0.2em;
   text-align: center;
 }
 
@@ -196,7 +213,7 @@
 
 .login .center .submit-btn {
   background-color: #6B92A4;
-  color:#fff;
+  color: #fff;
   border: 0;
   border-radius: 15px;
   display: block;
@@ -242,89 +259,120 @@
   transition: all 0.3s ease;
 }
 
-.login a{
+.login a {
   text-align: center;
   text-decoration: none;
-  color:#376B6D4c;
+  color: #376B6D4c;
   font-weight: 700;
 }
 
-.login a:hover{
-  color:#6B92A4;
+.login a:hover {
+  color: #6B92A4;
 }
 
 /* 第三方登入icon */
-.social{
+.social {
   display: flex;
-  padding: 10px;
+  padding: 10px 10px 0;
   width: 100%;
   justify-content: space-around;
 }
 
-.signup .google,.signup .line,.signup .facebook{
-  font-size: 1.5rem;
+.signup .google,
+.signup .line,
+.signup .facebook {
+  font-size: 150%;
   text-align: center;
   vertical-align: middle;
   border: 6px double var(--nav-bg-color);
   border-radius: 10px;
   width: 3rem;
   height: 3rem;
-  padding: 5px;
-  color:#376B6D;
+  color: #376B6D;
   transition: .2s ease-in;
   cursor: pointer;
 }
 
-.signup .google:hover,.signup .line:hover,.signup .facebook:hover{
+.signup .google:hover,
+.signup .line:hover,
+.signup .facebook:hover {
   box-shadow: 0 0 5px #666666;
   background-color: #376B6D;
-  color:#fff;
+  color: #fff;
 }
+
 /*  */
-.login .google,.login .line,.login .facebook{
-  font-size: 1.5rem;
+.login .google,
+.login .line,
+.login .facebook {
+  font-size: 150%;
   text-align: center;
   vertical-align: middle;
   border: 6px double #fff;
   border-radius: 10px;
   width: 3rem;
   height: 3rem;
-  padding: 5px;
   background-color: #376B6D4c;
   color: #fff;
   transition: .2s ease-in;
   cursor: pointer;
 }
 
-.login .google:hover,.login .line:hover,.login .facebook:hover{
+.login .google:hover,
+.login .line:hover,
+.login .facebook:hover {
   box-shadow: 0 0 5px #666666;
   background-color: #6B92A4;
-  color:#fff;
+  color: #fff;
   border-color: #fff;
 }
-/*  */
 
-.interstTitle{
-  text-align: center;
-  line-height: 25px;
-  padding: 5px;
-  color:#376B6D;
+/*  */
+/* 註冊上一頁 */
+.signup .step2 .back {
+  background-color: #376B6D;
+  color: #fff;
+  padding: 2% 5%;
+  margin: -2% 3% 5%;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
-.interstTitle div{
+.signup .step2 .back div {
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  background-color: #fff;
+  height: 0.75rem;
+  width: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+/* 興趣設定 */
+.signup .interstTitle {
+
+  line-height: 25px;
+  padding: 10px;
+  padding-left: 20px;
+  color: #376B6D;
+}
+
+.signup .interstTitle div {
+  text-align: center;
   font-weight: 900;
   background-color: #376B6D;
   width: 50%;
-  color:#fff;
+  color: #fff;
   border-radius: 10px;
-  margin:10px auto;
+  margin: 10px auto;
 
 }
 
 
 /* 自製多選設定---------------------------- */
-.container {
-  display:inline-block; 
+.signup .container {
+  display: inline-block;
   position: relative;
   padding-left: 25px;
   margin-bottom: 12px;
@@ -334,11 +382,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  
+
 }
 
 /* 隱藏多選格預設 */
-.container input {
+.signup .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -347,47 +395,68 @@
 }
 
 /* 多選選單變化製作 */
-.checkmark {
+.signup .checkmark {
   position: absolute;
   top: 3px;
   left: 4px;
   height: 18px;
   width: 18px;
   background-color: #eee;
-  border:2px solid #376B6D;
-  border-radius:5px;
+  border: 2px solid #376B6D;
+  border-radius: 5px;
 }
 
 
-.container:hover input ~ .checkmark {
+.signup .container:hover input~.checkmark {
   background-color: #d5e1e0;
   transition: .2s ease-in;
 }
 
 
-.container input:checked ~ .checkmark {
+.signup .container input:checked~.checkmark {
   background-color: #376B6D;
 }
 
 
-.checkmark:after {
+.signup .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.container input:checked ~ .checkmark:after {
+.signup .container input:checked~.checkmark:after {
   display: block;
 }
 
-.container .checkmark:after {
+.signup .container .checkmark:after {
   left: 3.5px;
   top: 0px;
-  width: 4px;
-  height: 8px;
+  width: 7px;
+  height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* JS之後的CSS */
+
+/* 註冊下一步 */
+@keyframes nextstep {
+  form {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.step1 {
+  display: block;
+}
+
+.step2 {
+  display: none;
 }

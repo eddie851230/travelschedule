@@ -8,7 +8,7 @@ import "./navAndScrollbar.css";
 
 
 const Navigation = () => {
-   return (
+   return (<>
       <header>
          <div className="nav-bar">
             <a href="/" className="logo"><img src="/img/logo.png" alt="logo" /><img src="/img/大專logo title.png" alt="logo title" /></a>
@@ -26,6 +26,7 @@ const Navigation = () => {
             <UilApps className="nav-menu-btn" />
          </div>
       </header>
+      </>
    );
 }
 

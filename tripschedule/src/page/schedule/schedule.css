@@ -256,7 +256,7 @@
     font-weight: 650;
     color: var(--nav-bg-color);
     z-index: 100;
-    /* display: none; */
+    display: none;
 }
 
 /* 收藏名單設定 */
@@ -290,7 +290,10 @@
     padding: 2% 0;
 }
 
-
+/*設定收藏名單分類顯示(hotel、spot) */
+.scheduleMainpage .favorite .list .hotel{
+    display: none;
+}
 
 /* 上方收藏名單設定 */
 .scheduleMainpage .favoriteTitle {
