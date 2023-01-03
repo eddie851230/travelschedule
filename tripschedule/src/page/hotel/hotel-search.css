@@ -1,4 +1,4 @@
-*{
+.likeBody{
     padding: 0;
     margin: 0;
 }
@@ -13,7 +13,7 @@
     height: 100%;
     object-fit: cover;
 }
-article{
+.articleZone{
     
     width: 75%;
     /* height: 180vh ; */
@@ -61,6 +61,7 @@ p{
     text-align: center;
     border: 1.5px solid #376B6D;
     font-size:medium ;
+    margin-bottom: 15px;
     
 }
 label{
@@ -182,6 +183,7 @@ p, .opH{
     font-size: 22px;
     font-weight: 700;
     color: #376B6D;
+    margin-bottom: 30px;
     /* line-height: 2rem; */
 }
 .hotelDescription>span{
@@ -227,7 +229,7 @@ p, .opH{
     font-size: 18px;
 
     position: absolute;
-    bottom: 1%;
+    bottom: 15%;
     right:5%;
 }
 .priceF span{
@@ -283,8 +285,8 @@ footer {
 }
 
 .container::before{
-    content: ". ";
-    letter-spacing: 2px;
+    /* content: ". "; */
+    /* letter-spacing: 2px; */
 }
 
 

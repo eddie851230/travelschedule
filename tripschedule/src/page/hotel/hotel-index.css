@@ -98,7 +98,7 @@
   width: 28px;
   height:28px;
   background-size: contain;
-  /* background-image:url("/travelschedule/tripschedule/public/img/hotel-icon/close.png") ; */
+  /* background-image:url("/tripschedule/public/img/hotel-icon/close.png") ; */
 
   position:absolute;
   right: 3%;
@@ -338,11 +338,13 @@ footer {
 
   z-index: 1000;
 
-  visibility:hidden;
+ 
 
   display: flex;
 
   /* margin: auto; */
+
+  /* visibility:"hidden" */
 }
 .filterZone{
   
@@ -371,10 +373,15 @@ footer {
   
   
 }
-
+.optionFontStyle p{
+  margin: 0 ;
+}
 .filterPart{
   width: 23%;
   height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
   /* background-color: aqua; */
   /* background-color: var(--white-color); */
   /* margin: 3%; */
@@ -395,10 +402,7 @@ footer {
 
   
 }
-form  {
-  /* display: block; */
-  
-}
+
 .filterPart-36 >div{
   display: flex;
   width:100%

@@ -17,6 +17,8 @@ import Airticket from './page/airticket/Airticket';
 import Spot from './page/spot/Spot';
 // 飯店
 import Hotel from './page/hotel/Hotel';
+import Search from './page/hotel/Search';
+import Detail from './page/hotel/Detail';
 // 行程表
 import Schedule from './page/schedule/Schedule';
 // 會員中心
@@ -47,7 +49,8 @@ function App() {
           <Route path="/Spot" element={<Spot/>} />
           <Route path="/Spot/:id" element={<Spot/>} />
           <Route path="/Hotel" element={<Hotel/>} />
-          <Route path="/Hotel/:id" element={<Hotel/>} />
+          <Route path="/Hotel/Search" element={<Search/>} />
+          <Route path="/Hotel/Detail" element={<Detail/>} />
           <Route path="/Schedule" element={<Schedule/>} />
           <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
           <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
