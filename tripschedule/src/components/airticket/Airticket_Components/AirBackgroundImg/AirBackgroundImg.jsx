@@ -5,7 +5,7 @@ function AirBackgroundImg(props) {
 
         return (
                 <>
-                         <div id='Airticket_img' className={props.AirticketImgSize}> </div>
+                        <div id='Airticket_img' className={props.AirticketImgSize}></div>
                 </>
         );
 

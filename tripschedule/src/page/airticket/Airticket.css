@@ -3,6 +3,16 @@
     width: 100%;
 }
 
-.AirticketPageSize_free {
+.AirticketPageSize_free {}
 
+.ChoosePageOutput {
+    position: absolute;
+    border: solid red 1px;
+    margin-top: 35vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 5vh;
+    padding-bottom: 10vh;
+    width: 90vw;
+    padding-top: 20vh;
 }

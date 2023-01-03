@@ -1,9 +1,9 @@
 import React from 'react';
 import "./AirticketSearchList.css"
 
-function AirticketSearchList() {
+function AirticketSearchList(props) {
     return (
-            <div id="AirticketSearchBar">
+            <div id="AirticketSearchBar" className={props.setSearchList}>
                 {/* <!-- 出發地點 --> */}
                 <label htmlFor="departureSpot">出發地點</label>
                 <select name="" id="departureSpot">
