@@ -1,45 +1,75 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "../schedule/schedule.css";
-import Favoritelist from "./Favoritelist";
+import Favoritelist from "../../components/schedule/Favoritelist";
+import SchduleList from "../../components/schedule/SchduleList";
 import $ from "jquery";
 
 function Schedule() {
 
+
+  // 打開收藏名單編輯
   const openFavorite = () => {
-    let display =$('.favorite').css('display');
-    if(display !== 'block')  {
-      $('.favorite').css('display','block');
+    let display = $('.favorite').css('display');
+    if (display !== 'block') {
+      $('.favorite').addClass('slidOut');
+      setTimeout(() => {
+        $('.favorite').removeClass('slidOut');
+      }, 200);
+      $('.favorite').css('display', 'block');
       $("#editSchdule").css({
-        backgroundColor:"#feda02",
-        color:"#000"
+        backgroundColor: "#feda02",
+        color: "#000"
       });
       $("#editSchdule").text("編輯完成");
+
     }
     else {
-      $('.favorite').css('display','none');
+      $('.favorite').addClass('slidClose');
+      setTimeout(() => {
+        $('.favorite').removeClass('slidClose');
+        $('.favorite').css('display', 'none');
+      }, 200);
       $("#editSchdule").css({
-        backgroundColor:"var(--nav-bg-color)",
-        color:"#fff"
+        backgroundColor: "var(--nav-bg-color)",
+        color: "#fff"
       });
       $("#editSchdule").text("編輯行程");
+
+    }
+
+  }
+
+  // 切換收藏名單分類
+  const listChangeGroup = () => {
+    let changeSpot = $(".selectList").text();
+    if (changeSpot === "景點") {
+      $(".selectList").text("飯店");
+      $(".selectList").addClass("showup");
+      $(".list .fHotel").addClass("showup");
+      setTimeout(() => {
+        $(".selectList").removeClass("showup");
+        $(".list .fHotel").removeClass("showup");
+      }, 1500)
+      $(".list .fHotel").css("display", "block");
+      $(".list .fSpot").css("display", "none");
+
+    }
+    if (changeSpot === "飯店") {
+      $(".selectList").addClass("showup");
+      $(".list .fSpot").addClass("showup");
+      setTimeout(() => {
+        $(".selectList").removeClass("showup");
+        $(".list .fSpot").removeClass("showup");
+      }, 1500)
+      $(".list .fSpot").css("display", "block");
+      $(".list .fHotel").css("display", "none");
+      $(".selectList").text("景點");
     }
   }
 
-  const listChangeGroup=()=>{
-    let changeSpot=$(".selectList").text();
-    if(changeSpot==="景點"){
-      $(".selectList").text("飯店");
-      $(".list .spot").css("display","none");
-      $(".list .hotel").css("display","block");
-    }
-    if(changeSpot==="飯店"){
-      $(".list .spot").css("display","block");
-      $(".list .hotel").css("display","none");
-      $(".selectList").text("景點");
-     
-    }
-  }
+  // 行程表內部拖曳
+
 
   return (
     <>
@@ -75,27 +105,39 @@ function Schedule() {
             </div>
 
             {/* <!-- 日期 --> */}
-            <div>
-              <div>
+            <div className="daymain">
+              <a href="#Day1">
                 12月17日
                 <br />
                 Day<span> 1 </span>
-              </div>
-            </div>
-            <div>
-              <div>
+              </a>
+
+              <a>
                 12月18日
                 <br />
                 Day<span> 2 </span>
-              </div>
-            </div>
-            <div>
-              <div>
+              </a>
+
+              <a>
                 12月19日
                 <br />
                 Day<span> 3 </span>
-              </div>
+              </a>
+
+              <a style={{ visibility: "hidden" }}>
+                12月20日
+                <br />
+                Day<span> 4 </span>
+              </a>
+
+              <a style={{ visibility: "hidden" }}>
+                12月21日
+                <br />
+                Day<span> 5 </span>
+              </a>
+
             </div>
+
 
             {/* <!-- 右鍵 --> */}
             <div className="next">
@@ -106,79 +148,7 @@ function Schedule() {
 
           {/* <!-- 行程表景點及交通------------------------------------ --> */}
           <div className="tripSpot">
-            <div className="dayNum">
-              Day<span> 1 </span> : 禮拜<span>一</span>
-            </div>
-            <div className="morning">
-              <div className="dayTime">上午</div>
-              {/* <!-- 飛機格 --> */}
-              <div className="airplane">
-                <img src="/img/樂桃icon.png" alt="flyicon" />
-                <div className="text">
-                  <div className="name">成田機場</div>
-                  <div className="info">
-                    抵達時間:
-                    <span>08:00</span>&Iota;<span>樂桃航空</span>
-                  </div>
-                  <div className="Addr">
-                    1-1 Furugome, Narita, Chiba 282-0004日本
-                  </div>
-                </div>
-                <a href="/Airticket/output/1">
-                  <button>
-                    查看
-                    <br />
-                    詳情
-                  </button>
-                </a>
-              </div>
-
-              {/* <!-- 景點或飯店格 --> */}
-              <div className="spot">
-                <img src="/img/景點相片預覽(明亮).jpg" alt="" />
-                <div className="text">
-                  <div className="name">東京鐵塔</div>
-                  <div className="info">
-                    遊玩時間: <span>1小時</span>
-                  </div>
-                  <div className="Addr">
-                    1-1 Furugome, Narita, Chiba 282-0004日本
-                  </div>
-                </div>
-                <a href="/Spot">
-                  <button>
-                    查看
-                    <br />
-                    詳情
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div className="afternoon">
-              <div className="dayTime">下午</div>
-              <div className="spot">
-                <img src="/img/景點相片預覽(暗色).jpg" alt="" />
-                <div className="text">
-                  <div className="name">東京鐵塔</div>
-                  <div className="info">
-                    遊玩時間: <span>1小時</span>
-                  </div>
-                  <div className="Addr">
-                    1-1 Furugome, Narita, Chiba 282-0004日本
-                  </div>
-                </div>
-                <a href="/Spot">
-                  <button>
-                    查看
-                    <br />
-                    詳情
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div className="evening">
-              <div className="dayTime">晚間</div>
-            </div>
+            <SchduleList />
           </div>
 
           {/* <!-- 行程表結束 --> */}
@@ -193,10 +163,10 @@ function Schedule() {
             <div className="prev" onClick={listChangeGroup}>
               <div></div>
             </div>
-        
+
             <div className="selectList">景點</div>
             {/* <!-- 右鍵 --> */}
-            <div className="next"  onClick={listChangeGroup}>
+            <div className="next" onClick={listChangeGroup}>
               <div></div>
             </div>
           </div>
