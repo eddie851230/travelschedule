@@ -284,10 +284,10 @@ footer {
     vertical-align: middle;
 }
 
-.container::before{
+/* .container::before{
     /* content: ". "; */
     /* letter-spacing: 2px; */
-}
+/* } */
 
 
 /* 隱藏多選格預設 */
