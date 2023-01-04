@@ -48,9 +48,9 @@ function App() {
           <Route path="/Airticket" element={<Airticket/>} exact />
           <Route path="/Spot" element={<Spot/>} />
           <Route path="/Spot/:id" element={<Spot/>} />
-          <Route path="/Hotel" element={<Hotel/>} />
-          <Route path="/Hotel/Search" element={<Search/>} />
-          <Route path="/Hotel/Detail" element={<Detail/>} />
+          <Route path="/Hotel" element={<Hotel/>} exact/>
+          <Route path="/Hotel/Search" element={<Search/>} exact/>
+          <Route path="/Hotel/Detail" element={<Detail/>} exact/>
           <Route path="/Schedule" element={<Schedule/>} />
           <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
           <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />

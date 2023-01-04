@@ -2,6 +2,7 @@ import React, { useState }  from "react";
 import "./index.css";
 import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
+import {Link} from 'react-router-dom';
 
 // 自製元件
 import HotelCard from "../../components/hotel/HotelCard";
@@ -11,26 +12,35 @@ import HotelCard from "../../components/hotel/HotelCard";
 //引入圖片
 // import closeBTN from "./img/hotel-icon/close.png"
 const Hotel=()=>{
-  // const [isModalVisible,setModalVisibility] = useState(true);
-
-  // const clickForVisibility = ()={
-  //   setModalVisibility(!isModalVisible);
-  // }
+ 
+  const [isVisible, setIsVisible] = useState(false);
+  
+    
+    // 點擊的時候會改變原本的狀態useModal沒有設定是false
+    // 點擊後變成true
+    
 
     return (
       <div id="likeBody">
+
+
+
+
         {/* // 彈出modal */}
         <div className="filterZone-outer" 
-        // style={{visibility:isModalVisible? 'visible':'hidden'}}
+        style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+        onClick={() => setIsVisible(!isVisible)}
         >
           <div className="filterZone Position-relative">
           <form className="filterBtnPosition" action="">
-            <button type="submit">搜尋</button>
+            <Link to="/Hotel/Search"><button type="submit">搜尋</button></Link>
           </form>
 
           {/* <!-- 關閉 --> */}
-          <div className="closeBtn" id="forClose-id"
-          ></div>
+          <div className="closeBtn"
+          onClick={() => setIsVisible(!isVisible)}>
+            <img src={process.env.PUBLIC_URL+"/img/hotel-icon/close.png"} alt="" />
+          </div>
 
           <div className="filterPart">
             <form  className="optionFontStyle" action="post">
@@ -215,9 +225,11 @@ const Hotel=()=>{
                     type="search"
                     placeholder="東京王子飯店"
                   />
+                  <Link to="/Hotel/Search">
                   <button id="submitBtn" type="submit">
-                    <a>搜尋</a>
+                    搜尋
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -249,7 +261,9 @@ const Hotel=()=>{
 
           {/* 熱門篩選 */}
           <div className="flexContent">
-            <div className="searchBtnArea">
+            <div className="searchBtnArea" 
+            onClick={() => setIsVisible(!isVisible)}>
+            {/* 當典籍的時候，不可以跟原始狀態依樣 */}
               <div>熱門篩選</div>
               <div className="iconForSearch">
                 <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-popular.png"} alt="" />
@@ -258,7 +272,8 @@ const Hotel=()=>{
           </div>
           {/* 地區 */}
           <div className="flexContent">
-            <div className="searchBtnArea">
+            <div className="searchBtnArea"
+            onClick={() => setIsVisible(!isVisible)}>
               <div>地區篩選</div>
               <div className="iconForSearch">
                 <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-district.png"} alt="" />
@@ -267,7 +282,8 @@ const Hotel=()=>{
           </div>
           {/* 價錢 */}
           <div className="flexContent">
-            <div className="searchBtnArea">
+            <div className="searchBtnArea"
+            onClick={() => setIsVisible(!isVisible)}>
               <div>價格範圍</div>
               <div className="iconForSearch">
                 <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-price.png"} alt="" />
@@ -275,7 +291,8 @@ const Hotel=()=>{
             </div>
           </div>
           <div className="flexContent">
-            <div className="searchBtnArea">
+            <div className="searchBtnArea"
+            onClick={() => setIsVisible(!isVisible)}>
               <div>所有設施</div>
               <div className="iconForSearch">
                 <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-facilities.png"} alt="" />

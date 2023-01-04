@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from "../../components/tool/Footer";
 import SearchCard from '../../components/hotel/SearchCard';
+import {Link} from 'react-router-dom';
 
 import "./index.css";
 import "./hotel-search.css";
@@ -85,7 +86,7 @@ const Search = () => {
                     <label className="container"> 洗衣機<input type="checkbox" name="company" value="a11"/><span className="checkmark"></span></label>
                 
                 {/* <!-- 確認按鈕 --> */}
-                    <button id="searchBtn" type="submit">搜尋</button>
+                <Link to="/Hotel/Search"><button id="searchBtn" type="submit">重新搜尋 </button></Link>
 
                 </form>
                 

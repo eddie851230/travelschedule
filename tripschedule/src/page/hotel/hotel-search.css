@@ -347,11 +347,11 @@ footer {
     transform: rotate(45deg);
 }
 /* ----------確認按鈕-------------- */
-#searchBtn{
+#searchBtn {
     padding: 5px;
-    font-size: 18px;
+    font-size: 12px;
     /* height: 20px; */
-    width: 80px;
+    width: 80%;
     border-radius: 18px;
     background-color: #da663c;
     color: var(--white-color);

@@ -1,11 +1,12 @@
-import React from 'react'
-import "./HotelCard.css"
+import React from 'react';
+import "./HotelCard.css";
+import {Link} from 'react-router-dom';
 // {process.env.PUBLIC_URL+"/img/Hotel_For_SQL/A02_01.webp"}
 
 const HotelCard = () => {
   return (
   
-      
+      <Link to="/Hotel/Detail">
       <div className="Card-hotel">
             {/* <!-- 照片區 --> */}
             <div className="zoneImage">
@@ -27,6 +28,7 @@ const HotelCard = () => {
               </p> */}
             </div>
       </div>
+      </Link>
 
 
     

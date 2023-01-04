@@ -1,9 +1,11 @@
-import React from 'react'
-import "./RoomCard.css"
+import React from 'react';
+import "./RoomCard.css";
+
 
 const RoomCard = () => {
   return (
-    <div className="roomCard">
+    
+      <div className="roomCard">
                 <div className="roomPic">
                     <img src={process.env.PUBLIC_URL+"/img/Hotel_for_SQL/A03_01.webp"} alt=""/>
                 </div>
@@ -25,7 +27,8 @@ const RoomCard = () => {
                   <button className="styleForBtn colorCollection">放入收藏</button>
                   <button className="styleForBtn colorSchedule">安排此行程</button>
                 </div>
-            </div>
+      </div>
+    
   )
 }
 
