@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from "../../components/tool/Footer";
+import SearchCard from '../../components/hotel/SearchCard';
 
 import "./index.css";
 import "./hotel-search.css";
@@ -11,7 +12,7 @@ const Search = () => {
     <div className="likeBody">
       
       <div id="contextImage">
-        {/* <img src={bgImg} alt=""/> */}
+        <img src={process.env.PUBLIC_URL+"/img/hotel_img/search-page-bg.jpg"} alt=""/>
       </div>
 
       <div className='articleZone'>
@@ -106,125 +107,14 @@ const Search = () => {
                     </div>   
                 </div>
 
-                {/* <!-- 飯店卡01 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡02 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡03 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡04 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡05 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡06 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>
-                {/* <!-- 飯店卡07 --> */}
-                <div className="cardArea">
-                    <div className="imageZone">
-                        <img src="./img/hotel01.jpg" alt=""/>
-                    </div>
-                    {/* <!-- 飯店描述 --> */}
-                    <div className="hotelDescription">
-                        <p className="hotelTitle">東京xx飯店</p>
-                        <span>位於<span>新宿區</span></span>
-                        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-                    </div>
-                    {/* <!-- 放入收藏與行程 --> */}
-                    <div className="btnZone">
-                        <button className="btnStyle colorCollection">放入收藏</button>
-                        <button className="btnStyle colorSchedule">安排此行程</button>
-                    </div>
-                </div>    
+                
+                <SearchCard/>
+                <SearchCard/>
+                <SearchCard/>
+                <SearchCard/>
+                <SearchCard/>
+                <SearchCard/>
+                    
             </div>    
         </div>
       </div>

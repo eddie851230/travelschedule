@@ -1,33 +1,45 @@
-import React  from "react";
+import React, { useState }  from "react";
 import "./index.css";
 import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
 
+// 自製元件
+import HotelCard from "../../components/hotel/HotelCard";
+
+// {process.env.PUBLIC_URL+"/img/Hotel_For_SQL/A03_01.webp"}
 
 //引入圖片
 // import closeBTN from "./img/hotel-icon/close.png"
 const Hotel=()=>{
+  // const [isModalVisible,setModalVisibility] = useState(true);
 
-  // 彈出modal
-  const modal=(
-    <div className="filterZone-outer" >
-      <div className="filterZone Position-relative">
-      <form className="filterBtnPosition" action="">
-        <button type="submit">搜尋</button>
-      </form>
+  // const clickForVisibility = ()={
+  //   setModalVisibility(!isModalVisible);
+  // }
 
-      {/* <!-- 關閉 --> */}
-      <div className="closeBtn" id="forClose-id"
-      ></div>
+    return (
+      <div id="likeBody">
+        {/* // 彈出modal */}
+        <div className="filterZone-outer" 
+        // style={{visibility:isModalVisible? 'visible':'hidden'}}
+        >
+          <div className="filterZone Position-relative">
+          <form className="filterBtnPosition" action="">
+            <button type="submit">搜尋</button>
+          </form>
 
-      <div className="filterPart">
-        <form  className="optionFontStyle" action="post">
-          <p>熱門篩選</p>
-          <p>
-            <input id="a01" type="checkbox" value="" />
-            <label for="a01">免費wifi</label>
-          </p>
-          <p>
+          {/* <!-- 關閉 --> */}
+          <div className="closeBtn" id="forClose-id"
+          ></div>
+
+          <div className="filterPart">
+            <form  className="optionFontStyle" action="post">
+              <p>熱門篩選</p>
+              <p>
+                <input id="a01" type="checkbox" value="" />
+                <label for="a01">免費wifi</label>
+              </p>
+            <p>
             <input id="a02" type="checkbox" value="" />
             <label for="a02">攜帶寵物</label>
           </p>
@@ -182,14 +194,6 @@ const Hotel=()=>{
       </div>
     </div>
     </div>
-  );
-
- 
-
-    return (
-      <div id="likeBody">
-
-        {modal}
 
 
 
@@ -212,7 +216,7 @@ const Hotel=()=>{
                     placeholder="東京王子飯店"
                   />
                   <button id="submitBtn" type="submit">
-                    <a href="">搜尋</a>
+                    <a>搜尋</a>
                   </button>
                 </div>
               </div>
@@ -237,56 +241,48 @@ const Hotel=()=>{
         {/* 飯店篩選器 */}
         <div id="filterZone">
           {/* <!-- 這個不是彈出視窗，彈出視窗是class --> */}
-          <div className="filterPart part1">
-            <p className="filterTitle">選擇</p>
-            <p className="filterTitle">你的</p>
-            <p className="filterTitle">飯店</p>
+          <div className="flexTitle">
+            <p>挑選</p>
+            <p>您的</p>
+            <p>住宿</p>
           </div>
 
-          <div className="filterPart padding-narrow">
-            {/* <!-- 彈出按鈕 --> */}
-            <div className="btnForJS">
-              <p className="filterBtn ">人氣類別</p>
-              <img
-                className="filterIcon"
-                src="/img/hotel-icon/index-popular.png"
-                alt="OK"
-              />
+          {/* 熱門篩選 */}
+          <div className="flexContent">
+            <div className="searchBtnArea">
+              <div>熱門篩選</div>
+              <div className="iconForSearch">
+                <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-popular.png"} alt="" />
+              </div>
             </div>
           </div>
-
-          <div className="filterPart padding-narrow">
-            <div className="btnForJS">
-              <p className="filterBtn">選擇區域</p>
-              <img
-                className="filterIcon"
-                src="/img/hotel-icon/index-district.png"
-                alt=""
-              />
+          {/* 地區 */}
+          <div className="flexContent">
+            <div className="searchBtnArea">
+              <div>地區篩選</div>
+              <div className="iconForSearch">
+                <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-district.png"} alt="" />
+              </div>
             </div>
           </div>
-
-          <div className="filterPart padding-narrow">
-            <div className="btnForJS">
-              <p className="filterBtn">篩選價格</p>
-              <img
-                className="filterIcon"
-                src="/img/hotel-icon/index-price.png"
-                alt=""
-              />
+          {/* 價錢 */}
+          <div className="flexContent">
+            <div className="searchBtnArea">
+              <div>價格範圍</div>
+              <div className="iconForSearch">
+                <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-price.png"} alt="" />
+              </div>
             </div>
           </div>
-
-          <div className="filterPart padding-narrow">
-            <div className="btnForJS">
-              <p className="filterBtn">選擇設施</p>
-              <img
-                className="filterIcon"
-                src="/img/hotel-icon/index-facilities.png"
-                alt="OK"
-              />
+          <div className="flexContent">
+            <div className="searchBtnArea">
+              <div>所有設施</div>
+              <div className="iconForSearch">
+                <img src={process.env.PUBLIC_URL+"/img/hotel-icon/index-facilities.png"} alt="" />
+              </div>
             </div>
           </div>
+          
         </div>
 
         {/* 主要標題 */}
@@ -296,84 +292,17 @@ const Hotel=()=>{
         </div>
 
         {/* <!-- 總排名區 --> */}
-        <div className="optionZone">
-          {/* <!-- 飯店卡01 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡02 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡03 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡04 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
+        <div className="wid80">
+          <div className="optionZone">
+          
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
+          
           </div>
         </div>
+        
 
         {/* 主要標題 */}
         <div className="recommendationTitle">
@@ -382,82 +311,14 @@ const Hotel=()=>{
         </div>
 
         {/* <!-- 總排名區 --> */}
-        <div className="optionZone">
-          {/* <!-- 飯店卡01 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡02 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡03 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- 飯店卡04 --> */}
-          <div className="hotelCard">
-            {/* <!-- 照片區 --> */}
-            <div className="imageZone">
-              <div className="hotelImage">
-                <img src="/img/hotel_img/hotel01.jpg" alt="" />
-              </div>
-              <div className="clickForCheck">點選查看</div>
-            </div>
-            {/* <!-- 描述區 --> */}
-            <div className="hotelDes">
-              <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p>
-            </div>
+        <div className="wid80">
+          <div className="optionZone">
+          
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
+          
           </div>
         </div>
 

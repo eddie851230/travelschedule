@@ -1,0 +1,95 @@
+/* --卡片----------------------------------- */
+.cardArea{
+  /* padding: 10px; */
+  margin-top:2vh;
+  /* clear: both; */
+  /* width: 100%; */
+  height: 25vh;
+  display: flex;
+  border: 1.5px solid #376B6D;
+  border-radius: 10px;
+  /* background-color:yellow ; */
+}
+.imageZone{
+  width: 35%;
+  height:100%;
+  border-radius: 10px;
+
+  /* background-color: rgb(255, 169, 40); */
+}
+.imageZone img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.hotelDescription{
+  width:50% ;
+  height:100%;
+
+  /* background-color: aquamarine; */
+
+  padding-left: 20px;
+  /* border-radius: 10px; */
+
+  position: relative;
+}
+.hotelTitle{
+  font-size: 22px;
+  font-weight: 700;
+  color: #376B6D;
+  margin-bottom: 30px;
+  /* line-height: 2rem; */
+}
+.hotelDescription>span{
+  display: block;
+  font-size:12px;
+}
+/* ------------按鈕區-------------------- */
+.btnZone{
+  width:15% ;
+  height:100%;
+  display: flex;
+  flex-direction:column ;
+  justify-content: space-around;
+
+  /* background-color: rgb(73, 156, 239); */
+}
+.btnStyle{
+  color:var(--white-color);
+  padding:10px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1.5px solid var(--white-color);
+
+  font-size:12px;
+  margin-right: 10px;
+}
+.colorCollection{
+  background-color: #376B6D;
+}
+.colorCollection:hover{
+  background-color: #57a6a9;
+  transition: 0.2s ease-in;
+}
+.colorSchedule{
+  background-color: #da663c;
+}
+.colorSchedule:hover{
+  background-color: #f69b7a;
+  transition: 0.2s ease-in;
+}
+/* --------------------------- */
+.priceF{
+  color: rgb(44, 44, 44);
+  font-size: 18px;
+
+  position: absolute;
+  bottom: 15%;
+  right:5%;
+}
+.priceF span{
+  color: #da663c;
+  font-size: 25px;
+  font-weight: 900;
+}
