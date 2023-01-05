@@ -6,19 +6,19 @@ import "jquery/dist/jquery.min.js";
 // import axios from "axois";
 
 
+
 // 元件
 import Error from './components/Error';
-
 // 首頁
 import Home from './page/index/Home';
 // 機票
 import Airticket from './page/airticket/Airticket';
-import AirticketP1 from './page/airticket/AirticketP1';
-import AirticketP2 from './page/airticket/AirticketP2';
 // 景點
 import Spot from './page/spot/Spot';
 // 飯店
 import Hotel from './page/hotel/Hotel';
+import Search from './page/hotel/Search';
+import Detail from './page/hotel/Detail';
 // 行程表
 import Schedule from './page/schedule/Schedule';
 // 會員中心
@@ -27,10 +27,10 @@ import MemberSchedule from './page/member/MemberSchedule';
 
 
 // 導覽列
-import Navigation from './components/Navigation';
+import Navigation from './components/tool/Navigation';
 
 // 頁尾
-// import Footer from './components/Footer';
+// import Footer from './components/tool/Footer';
 
 
 
@@ -39,19 +39,18 @@ function App() {
 
     <div>
       <BrowserRouter>
+
         <Navigation />
 
         <Routes>
           <Route path="/" element={<Home/>} exact />
           <Route path="/Home" element={<Home/>} exact />
           <Route path="/Airticket" element={<Airticket/>} exact />
-          <Route path="/Airticket/departure/:id" element={<AirticketP1/>} exact />
-          <Route path="/Airticket/return/:id" element={<AirticketP1/>} exact />
-          <Route path="/Airticket/output/:id" element={<AirticketP2/>} exact />
           <Route path="/Spot" element={<Spot/>} />
           <Route path="/Spot/:id" element={<Spot/>} />
-          <Route path="/Hotel" element={<Hotel/>} />
-          <Route path="/Hotel/:id" element={<Hotel/>} />
+          <Route path="/Hotel" element={<Hotel/>} exact/>
+          <Route path="/Hotel/Search" element={<Search/>} exact/>
+          <Route path="/Hotel/Detail" element={<Detail/>} exact/>
           <Route path="/Schedule" element={<Schedule/>} />
           <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
           <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />

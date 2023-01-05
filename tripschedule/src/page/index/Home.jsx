@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-class Home extends Component {
-    state = {  } 
-    render() { 
-        return (<h1>Home</h1>);
+import React from 'react';
+import Footer from "../../components/tool/Footer";
+const Home= ()=>{
+
+        return (<h1><Footer/></h1>);
     }
-}
  
 export default Home;

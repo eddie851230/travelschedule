@@ -6,11 +6,10 @@ header {
 
 /* 背景設定 */
 form {
-    /* 透明度 0.6 的黑色半透明遮罩 */
-    background-color: rgba(104, 104, 104, 0.4);
-    background-blend-mode: multiply;
+
+    /* background-blend-mode: multiply; */
     /* 富士山圖片-作者:Midori */
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG");
+    background-image: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.5)),url("https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG");
     background-size: cover;
     background-repeat: no-repeat;
     height: calc(100vh - 3.5rem);
@@ -27,7 +26,7 @@ form {
     background-color: var(--nav-bg-color);
     width: 70%;
     height: 20%;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 2%;
     color: #fff;
     display: flex;

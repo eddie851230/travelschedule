@@ -3,6 +3,7 @@
 
 a,a:hover,a:active{
     text-decoration: none;
+    color: black;
 }
 
 .card-columns {
@@ -137,7 +138,7 @@ div.content {
 
 .card,
 .card-img-top {
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 
