@@ -6,8 +6,6 @@ import $ from 'jquery';
 
 const LoginandSignup = () => {
 
-
-
     const loginOpen = () => {
         $('.signup').addClass('slide-up');
         $('.login').removeClass('slide-up');
@@ -30,7 +28,7 @@ const LoginandSignup = () => {
     const prevstep = () => {
         $(".step2").css("display", "none");
         $(".step1").css("display", "block");
-        $(".submit-btn").text("下一步");
+        $("#signsubmit").text("下一步");
         $("#signsubmit").removeAttr("type","submit");
     }
 
@@ -82,6 +80,11 @@ const LoginandSignup = () => {
                                     <span className="checkmark"></span>
                                 </label>
 
+                                <label className="container">學習新知
+                                    <input type="checkbox" name="interst" value="havefun" />
+                                    <span className="checkmark"></span>
+                                </label>
+
                                 <label className="container">美食
                                     <input type="checkbox" name="interst" value="food" />
                                     <span className="checkmark"></span>
@@ -90,6 +93,7 @@ const LoginandSignup = () => {
                                     <input type="checkbox" name="interst" value="havefun" />
                                     <span className="checkmark"></span>
                                 </label>
+                                
                             </div>
 
                             <div className="back" onClick={prevstep}><div></div>back</div>

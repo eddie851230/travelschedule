@@ -1,16 +1,16 @@
 .modelbox {
   position: absolute;
   top: 0;
-  min-height: 100vh;
+  min-height: 94vh;
   height: 100%;
   width: 100%;
-  background-color: rgba(129, 129, 129, 0.5);
+  /* background-color: rgba(129, 129, 129, 0.5); */
   display: flex;
   align-items: center;
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  z-index: 10000;
+  z-index: 1;
 }
 
 .loginAndSignup {

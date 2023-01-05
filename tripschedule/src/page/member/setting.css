@@ -8,8 +8,8 @@ header {
 
 }
 
-.settingtitle {
-    margin-top: 50px;
+.settingTitle {
+    margin-top: 40px;
     font-weight: 900;
     font-size: 45px;
     padding-bottom: 30px;
@@ -18,50 +18,54 @@ header {
 .setting main {
     border: 5px solid #376B6D;
     border-radius: 10px;
-    width: 40%;
+    width: 50%;
     min-width: 350px;
     margin: auto;
     font-size: 18px;
 }
 
-.setting div[class$="Title"]{
+.setting div[class$="Title"] {
     letter-spacing: 3px;
 }
 
 .setting button {
-    padding: 5px 10px;
-    border: 5px solid #376B6D;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #376B6D;
-    font-size: 16px;
-    font-weight: 900;
-    line-height: 20px;
-    transition: .2s ease-in;
-}
-
-
-.setting .username button {
-    color: #CB4042;
-    border-color: #CB4042;
+    /* width: 100px; */
+    color: var(--white-color);
+    font-size: 18px;
+    padding: 0;
+    background: rgb(240, 240, 240);
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    color: rgb(55, 107, 109);
+    transition: 0.5s;
+    border: 2px solid rgb(95, 156, 127);
 }
 
 .setting button:hover {
-    box-shadow: 0 0 3px rgb(88, 88, 88);
-    background-color: #376B6D;
-    color: #fff;
-    cursor: pointer;
+
+    color: var(--black);
+    background-color: #feda02;
+    font-weight: 700;
+    border: 2px solid var(--white-color);
 }
 
-.setting .username button:hover {
-    background-color: #CB4042;
-    color: #fff;
+.setting button:nth-child(3){
+    margin-bottom: 5px;
+    margin-top: -5px;
 }
 
-.setting .nameDiv{
+
+.setting .nameDiv,
+.idNum,
+.way,
+.interstTitle+div {
+    width: 90%;
+    margin: auto;
     display: flex;
     justify-content: center;
 }
+
 
 /* 設定內部各標題設定 */
 
@@ -79,19 +83,6 @@ header {
     vertical-align: middle;
 }
 
-.setting .nameTitle {
-    background-color: #CB4042;
-}
-
-.setting .iDTitle {
-    background-color: #cb8a40;
-}
-
-.setting .loginTitle {
-    background-color: #42863f;
-}
-
-/* 登入方式 */
 
 
 .setting .loginway img {
@@ -108,7 +99,7 @@ header {
 
 
 /* checkbox costum---------------------------- */
-.container {
+.setting .container {
     display: inline-block;
     position: relative;
     padding-left: 25px;
@@ -123,7 +114,7 @@ header {
 }
 
 /* 隱藏多選格預設 */
-.container input {
+.setting .container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -132,7 +123,7 @@ header {
 }
 
 /* 多選選單變化製作 */
-.checkmark {
+.setting .checkmark {
     position: absolute;
     top: 8px;
     left: 0px;
@@ -144,14 +135,14 @@ header {
 }
 
 
-.container:hover input~.checkmark {
+.setting .container:hover input~.checkmark {
     background-color: #d5e1e0;
     transition: .2s ease-in;
 
 }
 
 
-.container input:checked~.checkmark {
+.setting .container input:checked~.checkmark {
     background-color: #376B6D;
 
 }
@@ -163,15 +154,15 @@ header {
     display: none;
 }
 
-.container input:checked~.checkmark:after {
+.setting .container input:checked~.checkmark:after {
     display: block;
 }
 
-.container .checkmark:after {
+.setting .container .checkmark:after {
     left: 6px;
     top: 2px;
-    width: 4px;
-    height: 8px;
+    width: 6px;
+    height: 12px;
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);

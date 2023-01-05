@@ -78,11 +78,11 @@ const SchduleList = () => {
     
     return (
         <DragDropContext onDragEnd={shandleOnDragEnd}>
-
+ <Droppable droppableId='Day1'>
             <div className="dayNum" id='Day1'>
                 Day<span> 1 </span> : 禮拜<span>一</span>
             </div>
-            <Droppable droppableId='Day1'>
+           
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps} >
                         <div className="morning">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { UilFacebook, UilTwitter, UilInstagram, UilLine } from "@iconscout/react-unicons";
-
 import "./footer.css";
+
 const Footer=() => {
 
    

@@ -51,10 +51,10 @@ section {
     background: var(--body-bg-color);
 }
 
-header{
+header {
     z-index: 999;
     position: sticky;
-    top:0;
+    top: 0;
     width: 100%;
     height: 6vh;
     top: 0;
@@ -62,13 +62,13 @@ header{
     display: flex;
     justify-content: center;
     transform: 1s ease;
-    transition-property: height,background;
+    transition-property: height, background;
     background-color: var(--nav-bg-color);
     font-size: 16px;
     font-weight: 900;
 }
 
-header.sticky{
+header.sticky {
     height: calc(2.5rem+1rem);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
@@ -83,29 +83,31 @@ header .nav-bar {
     justify-content: space-between;
     padding: 0 50px;
     transition: 0.3s ease;
-    
+
 }
 
-.nav-close-btn,.nav-menu-btn {
+.nav-close-btn,
+.nav-menu-btn {
     display: none;
 }
 
 
 
 
-header .logo img{
+
+header .logo img {
     float: left;
     max-height: 55px;
     padding: 5px;
 }
 
-header .logo img:first-child{
+header .logo img:first-child {
     margin-top: 0.25rem;
-    width:48px;
+    width: 48px;
     height: 48px;
 }
 
-.navigation .nav-items a,.user {
+.navigation .nav-items a,.navigation .nav-items div{
     /*  */
     display: inline-block;
     vertical-align: middle;
@@ -123,11 +125,11 @@ header .logo img:first-child{
 
 
 
-.navigation .nav-items a:not(:last-child) {
+.navigation .nav-items a:not(:last-child){
     margin-right: 45px;
 }
 
-header .navigation .nav-items a:before {
+header .navigation .nav-items a:before,header .navigation .nav-items div:before {
     content: '';
     position: absolute;
     background: #fff;
@@ -138,11 +140,12 @@ header .navigation .nav-items a:before {
     transition: 0.3s ease;
 }
 
-header .navigation .nav-items a:hover:before {
+header .navigation .nav-items a:hover:before,header .navigation .nav-items div:hover:before{
     width: 100%;
-    background-color:#feda02 ;
+    background-color: #feda02;
 }
 
-header .navigation .nav-items a:hover{
-    color:#feda02;
+header .navigation .nav-items a:hover,header .navigation .nav-items div:hover{
+    color: #feda02;
+    cursor: pointer;
 }

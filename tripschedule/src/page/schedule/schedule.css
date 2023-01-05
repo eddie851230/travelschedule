@@ -282,6 +282,7 @@
 .scheduleMainpage .listinfo {
     width: 80%;
     height: calc(85% / 3);
+    max-height:150px;
     margin: 5% auto;
     border-radius: 10px;
     border: 5px solid var(--nav-bg-color);
