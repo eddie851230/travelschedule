@@ -1,10 +1,22 @@
 import React from 'react';
 import './searchCard.css';
 import{Link} from 'react-router-dom';
+// import { useState } from 'react';
 
 const SearchCard = () => {
-  return (
-    
+  // 建立飯店變數:
+  const Hotelinfo = [
+    {tittle:"東京OO飯店",
+    address:"新宿區"},
+    {cost:'7,456元'} 
+  ]
+//  const [Hotelinfo,setHotelinfo] = useState([
+//   {tittle:"東京OO飯店"},
+//   {address:"新宿區"},
+//   {cost:'7,456元'}
+// ])
+
+  return (  
     <div className="cardArea">
       {/* 照片 */}
       <Link to="/Hotel/Detail">
@@ -15,7 +27,7 @@ const SearchCard = () => {
       {/* <!-- 飯店描述 --> */}
       <div className="hotelDescription">
 
-        <p className="hotelTitle">東京xx飯店</p>
+        <p className="hotelTitle">{Hotelinfo[0].tittle}</p>
         <span>位於<span>新宿區</span></span>
         <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
       </div>

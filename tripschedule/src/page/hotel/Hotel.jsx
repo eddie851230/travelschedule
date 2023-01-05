@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import "./index.css";
 import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
@@ -12,7 +12,21 @@ import HotelCard from "../../components/hotel/HotelCard";
 //引入圖片
 // import closeBTN from "./img/hotel-icon/close.png"
 const Hotel=()=>{
- 
+
+
+
+
+//   useEffect(api);
+// api=()=>{
+//   axios()
+// }
+
+
+
+
+
+
+//  const [data, setData] = useState(data);//data array of obj
   const [isVisible, setIsVisible] = useState(false);
   
     
@@ -331,10 +345,9 @@ const Hotel=()=>{
         <div className="wid80">
           <div className="optionZone">
           
-            <HotelCard/>
-            <HotelCard/>
-            <HotelCard/>
-            <HotelCard/>
+
+          {/* {data.map( (x) => <HotelCard  {...data}/>)} */}
+         
           
           </div>
         </div>
