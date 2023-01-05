@@ -1,0 +1,8 @@
+.ticketBox {
+    width: 90%;
+    height: 30vh;
+    margin-bottom: 5vh;
+    box-shadow: 0 0 5px #acacac;
+    border-radius: 19px;
+}
+
