@@ -1,47 +1,116 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from "react-router-dom";
 import "./loginAndSignup.css";
 import "../tool/cueTitle.css";
-import $ from 'jquery';
 
 const LoginandSignup = () => {
 
+
+    // 前端動畫
+
+    // 開關
+    const [toggle, setToggle] = useState(true);
+
+    // 加入classList
+    const loginRef = useRef(null);
+    const signupRef = useRef(null);
+
     const loginOpen = () => {
-        $('.signup').addClass('slide-up');
-        $('.login').removeClass('slide-up');
+        let loginNode = loginRef.current;
+        let signupRefNode = signupRef.current;
+        signupRefNode.classList.add("slide-up");
+        loginNode.classList.remove("slide-up");
     }
 
     const signupOpen = () => {
-        $('.login').addClass('slide-up');
-        $('.signup').removeClass('slide-up');
+        const loginNode = loginRef.current;
+        const signupRefNode = signupRef.current;
+        loginNode.classList.add("slide-up");
+        signupRefNode.classList.remove("slide-up");
     }
 
-    const signupNext = () => {
-        if ($(".step1")) {
-            $(".step2").css("display", "block");
-            $(".step1").css("display", "none");
-            $("#signsubmit").text("註冊");
-            $("#signsubmit").attr("type","submit");
+    const step1 = useRef(null);
+    const step2 = useRef(null);
+
+
+    // 註冊兩分頁
+    const stepChange = () => {
+        let step1Node = step1.current;
+        let step2Node = step2.current;
+
+
+        if (toggle) {
+            step1Node.classList.add("closeSignupStep");
+            setTimeout(() => {
+                step1Node.classList.remove("closeSignupStep");
+                step2Node.classList.remove("showSignupStep");
+                step2Node.classList.add("showSignupStep");
+                setToggle(false)
+            }, 500);
+
+        } else {
+            step2Node.classList.add("closeSignupStep");
+            setTimeout(() => {
+                step2Node.classList.remove("closeSignupStep");
+                step1Node.classList.remove("showSignupStep");
+                step1Node.classList.add("showSignupStep");
+                setToggle(true)
+
+            }, 500);
+
         }
+
     }
 
-    const prevstep = () => {
-        $(".step2").css("display", "none");
-        $(".step1").css("display", "block");
-        $("#signsubmit").text("下一步");
-        $("#signsubmit").removeAttr("type","submit");
-    }
+    // const [errorMessage, setErrorMessage] = useState(false);
 
- 
+    // useEffect
+
+    // 以上為前端動畫
+
+    // login連接後端
+    const [useremail, setUseremail] = useState("");
+    // const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = (e) => {
+        // setLoading(true);
+        // setErrorMessage(null);
+        // login(useremail, password).then((data) => {
+        //     if (data.token == null) {
+        //         setLoading(false);
+        //         return setErrorMessage(data.status);
+        //     }
+        //     setLoading(false);
+        // });
+    };
+
+    const handleUseremail = (e) => {
+        setUseremail(e.target.value);
+    };
+    // const handleUsername = (e) => {
+    //     setUsername(e.target.value);
+    // };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+
+
+
+
 
 
     return (
         <div className="modelbox">
             <div className="loginAndSignup">
-                <div className="signup">
+                <div className="signup slide-up" ref={signupRef}>
                     <h2 className="form-title" id="signup" onClick={signupOpen}>註冊</h2>
                     <div className="form-holder">
-                        <div className="step1">
+                        <div className="step1" ref={step1} style={{ display: toggle ? "block" : "none" }}>
                             <div className="social">
                                 <div className="google"><i className="fa-brands fa-google"></i></div>
                                 <div className="facebook"><i className="fa-brands fa-facebook"></i></div>
@@ -61,8 +130,8 @@ const LoginandSignup = () => {
 
 
 
-                        <div className="step2">
-                            
+                        <div className="step2" ref={step2} style={{ display: toggle ? "none" : "block" }}>
+
                             {/* <!-- 興趣偏好 --> */}
                             <div className="interstTitle"><div>興趣偏好</div>
 
@@ -93,15 +162,15 @@ const LoginandSignup = () => {
                                     <input type="checkbox" name="interst" value="havefun" />
                                     <span className="checkmark"></span>
                                 </label>
-                                
+
                             </div>
 
-                            <div className="back" onClick={prevstep}><div></div>back</div>
+                            <div className="back" onClick={stepChange}><div></div>back</div>
                         </div>
                     </div>
-                    <button className="submit-btn" id="signsubmit" onClick={signupNext} >下一步</button>
+                    <button className="submit-btn" id="signsubmit" onClick={stepChange} type={toggle ? "" : "submit"}>{toggle ? "下一步" : "註冊"}</button>
                 </div>
-                <div className="login slide-up">
+                <div className="login" ref={loginRef}>
                     <div className="center">
                         <h2 className="form-title" id="login" onClick={loginOpen}>登入</h2>
                         <div className="form-holder">
@@ -111,10 +180,11 @@ const LoginandSignup = () => {
                                 <div className="line"><i className="fa-brands fa-line"></i></div>
                             </div>
                             <hr />
-                            <input type="email" className="input" placeholder="Email" required />
-                            <input type="password" className="input" placeholder="密碼" required />
+                            <input type="email" className="input" placeholder="Email" value={useremail} onChange={handleUseremail} required />
+                            <input type="password" className="input" placeholder="密碼" value={password} onChange={handlePassword} required />
+                            {errorMessage && <><hr /><small style={{ color: 'red' }}>{errorMessage}</small></>}
                         </div>
-                        <button className="submit-btn">登 入</button>
+                        <button className="submit-btn" onClick={handleLogin} disabled={loading}>登 入</button>
                         <Link to="/forgetpassword"><div className="forget">忘記密碼</div></Link>
                     </div>
                 </div>
