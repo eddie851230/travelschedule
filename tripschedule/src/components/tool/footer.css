@@ -5,13 +5,8 @@
     height: 30vh;
     /* background-image: linear-gradient(rgba(150, 150, 150, 1), hsla(182, 33%, 32%, 0.95)); */
     background-color: gray;
-<<<<<<< HEAD
-    
-    /* position: sticky;
-    bottom:0; */
-=======
     bottom:0;
->>>>>>> origin/spot
+
 }
 
 .footer h4 {
@@ -37,16 +32,10 @@
     justify-content: center;
 }
 
-<<<<<<< HEAD
 .iconsi{
     color:#fff;
 }
-=======
-.iconsi {
-    color:#fff;
-}
 
->>>>>>> origin/spot
 
 .iconsi:not(:last-child) {
     margin-right: 20px;

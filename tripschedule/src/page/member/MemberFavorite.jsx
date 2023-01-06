@@ -9,6 +9,13 @@ const MemberFavorite=()=> {
     
     }, []);
 
+    const Row = styled.div`
+    margin-top: 0%;
+    margin-left: 0%;
+    align-items:flex-start;
+    `;
+
+
 const CardGroup=styled.div`
 column-count: 4;
 padding-left:40px;
@@ -37,7 +44,7 @@ border-radius:10px;
 
                 {/* <!-- 主要頁面 --> */}
                 <div className="membermain">
-                    <div className="row w-100">
+                    <Row className="row w-100">
                         {/* <!-- 旁邊導覽列 --> */}
                         <div className="sidebar col-2">
                             <div>
@@ -108,7 +115,7 @@ border-radius:10px;
 
                            
                         </CardGroup>
-                    </div>
+                    </Row>
                 </div>
             </>
         );

@@ -59,9 +59,12 @@ const Memberlist = (props) => {
     flex-direction:column;
     `
     const StyledLink = styled(Link)`
+    text-decoration: none;
+    color:#000;
     padding:5px;
     &:hover{
         color:#376B6D;
+        text-decoration: none;
     }
     `
 
