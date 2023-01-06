@@ -7,10 +7,10 @@
   #376b6d
 ); */
 /* 五天四夜東京之旅倒數 29天3小時48分鐘 */
-*{
+/* *{ */
   /* border: 1px solid #000; */
   /* outline: #da663c solid 1px; */
-}
+  
 #indexContext{
   width:100%;
   height:60vh;

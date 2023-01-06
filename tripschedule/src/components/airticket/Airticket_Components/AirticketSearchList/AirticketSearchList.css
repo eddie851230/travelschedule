@@ -1,0 +1,49 @@
+#AirticketSearchBar {
+    /* 寬高 */
+    width: 70%;
+    height: 20%;
+    background-color: var(--nav-bg-color);
+    border-radius: 10px;
+
+    /* 內容對齊 */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    /* 字體大小 */
+    font-weight: 600;
+    font-size: large;
+}
+
+#AirticketSearchBar input,
+#AirticketSearchBar select {
+    padding: 5px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #fff;
+    color: var(--nav-bg-color);
+}
+
+#AirticketSearchBar input:focus,
+#AirticketSearchBar select:focus {
+    outline: 3px solid var(--section-bg-color);
+}
+
+/* 位置 */
+/* 首頁位置 */
+.SearchList_full {
+    /* 置中  */
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 選擇頁位置 */
+.SearchList_free {
+    /* 靠右邊 */
+    position: absolute;
+    top: 41%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}

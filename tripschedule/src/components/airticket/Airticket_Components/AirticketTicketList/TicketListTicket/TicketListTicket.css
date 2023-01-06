@@ -1,0 +1,25 @@
+.ticketBox {
+    width: 90%;
+    height: 30vh;
+    margin-bottom: 5vh;
+    box-shadow: 0 0 5px #acacac;
+    border-radius: 19px;
+    display: flex;
+    padding: 2vw;
+    flex-direction: row;
+}
+
+.ticketCarrierImg {
+    height: 10vh;
+    align-self: center;
+}
+
+/* .ticketFlyingPlace {
+    font-size: 3rem;
+    align-self: center;
+}
+
+.ticketPrice {
+    font-size: 3rem;
+    align-self: flex-end;
+} */
