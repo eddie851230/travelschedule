@@ -1,4 +1,3 @@
-
 /* 主要頁面--------------------------------------- */
 .scheduleMainpage {
     width: 100%;
@@ -10,6 +9,7 @@
 .scheduleMainpage .schedule {
     width: 30%;
     height: 100%;
+    z-index: 30;
 }
 
 /* 行程表頭部--------------------------- */
@@ -80,6 +80,7 @@
     display: flex;
     font-weight: 700;
     height: 50px;
+    width: 100%;
 }
 
 .scheduleMainpage .scheduleDaybar>div {
@@ -88,14 +89,28 @@
     align-items: center;
 }
 
-.scheduleMainpage .scheduleDaybar div:not(:first-child, :last-child) {
-    width: calc((100%-60px)/3);
+.scheduleMainpage .scheduleDaybar .daymain {
+    max-width: calc(100% - 60px);
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.scheduleMainpage .scheduleDaybar .daymain a {
+    max-width: calc(100% / 3);
+    height: 100%;
     text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
     border: 3px solid var(--nav-bg-color);
     background-color: #fff;
-    color:var(--nav-bg-color);
-    cursor: move;
+    color: var(--nav-bg-color);
+    padding: 2px 30px;
+    line-height: 20px;
 }
+
 
 /* 日期bar的左鍵及右鍵------------------ */
 .scheduleMainpage .prev,
@@ -106,7 +121,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    z-index: 99;
 }
 
 .scheduleMainpage .prev:hover,
@@ -124,7 +139,7 @@
 }
 
 /* 右鍵 */
-.scheduleMainpage  .next div {
+.scheduleMainpage .next div {
     width: 15px;
     height: 40%;
     background-color: #fff;
@@ -145,18 +160,18 @@
 /* 景點處最上方時間顯示(禮拜幾) */
 .scheduleMainpage .dayNum {
     padding: 6px 0;
-    color:var(--nav-bg-color);
+    color: var(--nav-bg-color);
 }
 
 /* 行程表早上、下午、晚上分布 */
-.scheduleMainpage .dayTime{
+.scheduleMainpage .dayTime {
     padding: 3px 15px 0;
     width: fit-content;
     border-radius: 30px;
-    vertical-align:middle;
+    vertical-align: middle;
     margin: auto;
     background-color: var(--nav-bg-color);
-    color:#fff;
+    color: #fff;
 }
 
 /* 景點文字及照片排版 */
@@ -182,6 +197,10 @@
     cursor: auto;
 }
 
+.scheduleMainpage .spot {
+    background-color: #fff;
+}
+
 /* 景點照片 */
 .scheduleMainpage .tripSpot img {
     width: 60px;
@@ -194,12 +213,14 @@
 .scheduleMainpage .airplane img {
     object-fit: contain;
     background-color: #fff;
+
 }
 
 .scheduleMainpage .tripSpot .text {
     text-align: start;
     font-weight: 700;
-    padding: 3% 0.5%;
+    padding: 3% 0;
+    width: 62%;
 }
 
 .scheduleMainpage .tripSpot button {
@@ -216,9 +237,7 @@
 }
 
 /* 景點文字大小調整 */
-.scheduleMainpage .text {
-    width: 60%;
-}
+
 
 .scheduleMainpage .text .name {
     font-size: 1.5rem;
@@ -255,42 +274,58 @@
     top: 0;
     font-weight: 650;
     color: var(--nav-bg-color);
-    z-index: 100;
-    /* display: none; */
+    z-index: 10;
+    display: none;
 }
 
 /* 收藏名單設定 */
-.scheduleMainpage .listinfo{
+.scheduleMainpage .listinfo {
     width: 80%;
-    height: 100px;
-    object-fit: cover;
+    height: calc(85% / 3);
+    max-height:150px;
     margin: 5% auto;
-    border-radius: 5px;
-    cursor: grab;
     border-radius: 10px;
     border: 5px solid var(--nav-bg-color);
-    cursor: grab;
+    /* cursor: grab; */
     z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .scheduleMainpage .favorite .listinfo:hover {
     box-shadow: 0 0 5px #4f4f4f;
 }
 
-.scheduleMainpage .favorite img {
-    width: 100%;
+.scheduleMainpage .favorite .listinfo img {
+    width: 101%;
     height: 70%;
+    max-height:90px;
     object-fit: cover;
     border-radius: 5px 5px 0 0;
+    margin: -0.2px;
 }
 
-.scheduleMainpage .favorite .listinfo .text{
-    margin: auto;
+.scheduleMainpage .favorite .listinfo .text {
+    /* margin: auto;
     vertical-align:middle;
+    text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2% 0;
+    font-size: 95%;
+    width: 100%;
+    height: calc(100% - 70%);
+    background-color: #fff;
+    border-radius:0 0 5px 5px;
 }
 
-
+/*設定收藏名單分類顯示(hotel、spot) */
+.scheduleMainpage .favorite .list .fHotel {
+    display: none;
+}
 
 /* 上方收藏名單設定 */
 .scheduleMainpage .favoriteTitle {
@@ -309,7 +344,7 @@
     width: 100%;
     position: relative;
     top: 0;
-    height: calc(100% - (40px + 1.5rem));
+    height: calc(100% - (40px + 20px));
     overflow-y: scroll;
     color: var(--nav-bg-color);
 }
@@ -317,7 +352,7 @@
 .scheduleMainpage .change {
     display: flex;
     justify-content: space-between;
-    border:solid var(--nav-bg-color);
+    border: solid var(--nav-bg-color);
     border: 5px 0;
 }
 
@@ -331,11 +366,13 @@
 .scheduleMainpage .change .next div {
     width: 12px;
     height: 15px;
-    margin: 5px ;
+    margin: 5px;
 }
+
 .scheduleMainpage .change .prev div {
     clip-path: polygon(100% 0, 100% 100%, 0 50%);
 }
+
 .scheduleMainpage .change .next div {
     clip-path: polygon(0 0, 0% 100%, 100% 50%);
 }
@@ -345,21 +382,20 @@
 
 
 /* 收藏名單的卷軸 */
-.scheduleMainpage .list::-webkit-scrollbar {
+.scheduleMainpage .list::-webkit-scrollbar,
+.scheduleMainpage .list::-webkit-scrollbar-thumb
+ {
     width: 6px;
 }
 
-.scheduleMainpage .list::-webkit-scrollbar-thumb {
-    width: 6px;
-}
 
 .scheduleMainpage .close {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     font-size: 25px;
     height: 30px;
-    padding:3px;
+    padding: 3px;
     background-color: #feda02;
     color: #000;
     font-weight: 900;
@@ -376,4 +412,41 @@
 /* 地圖--------------------------------------- */
 .scheduleMainpage .mapping {
     width: 70%;
+}
+
+
+
+/* JS動畫設定區 */
+@keyframes showup{
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
+    }
+    
+}
+
+@keyframes slidOut{
+    0%{
+        width: 0vw;
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0);
+        width: 15vw;
+        opacity: 1;
+    }
+    
+}
+
+.showup{
+    animation:showup 1.5s cubic-bezier(0.23, 1, 0.320, 1); 
+}
+
+.slidOut{
+    animation:slidOut .2s cubic-bezier(0.075, 0.82, 0.165, 1); 
+}
+
+.slidClose{
+    animation:slidOut .3s ease reverse; 
 }

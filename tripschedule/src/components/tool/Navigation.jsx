@@ -1,14 +1,16 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Memberlist from '../member/Memberlist';
 
-import { UilHome, UilPlaneDeparture, UilMapPinAlt, UilBed, UilSchedule, UilUserCircle,UilApps} from "@iconscout/react-unicons";
+import { UilHome, UilPlaneDeparture, UilMapPinAlt, UilBed, UilSchedule, UilUserCircle, UilApps } from "@iconscout/react-unicons";
 import "https://kit.fontawesome.com/11f63461bc.js";
 import "./navAndScrollbar.css";
 
 
 const Navigation = () => {
-   return (
+   const [show, setShow] = useState(false);
+
+   return (<>
       <header>
          <div className="nav-bar">
             <a href="/" className="logo"><img src="/img/logo.png" alt="logo" /><img src="/img/大專logo title.png" alt="logo title" /></a>
@@ -20,12 +22,16 @@ const Navigation = () => {
                   <NavLink to="/Spot"><UilMapPinAlt /> 景點推薦</NavLink>
                   <NavLink to="/Hotel"><UilBed /> 住宿推薦</NavLink>
                   <NavLink to="/Schedule"><UilSchedule /> 行程表規劃</NavLink>
-                  <NavLink to="/member/MemberSchedule"><UilUserCircle /> 會員中心</NavLink>
+                  <div onClick={()=>setShow(true)}><UilUserCircle /> 會員中心</div>
                </div>
             </div>
             <UilApps className="nav-menu-btn" />
          </div>
+        
+         <Memberlist trigger={show} setShow={setShow}/>
+
       </header>
+   </>
    );
 }
 

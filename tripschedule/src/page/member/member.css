@@ -11,6 +11,30 @@ a:active {
     color: black;
 }
 
+/* 會員中心的按鈕格式 */
+
+.membermain button {
+    width: 120px;
+    color: var(--white-color);
+    font-size: 16px;
+    padding: 5px 0;
+    background: rgb(240, 240, 240);
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top:10px;
+    color: rgb(55, 107, 109);
+    transition: 0.5s;
+    border: 2px solid rgb(95, 156, 127);
+}
+
+.membermain button:hover {
+    color: var(--black);
+    background-color: #feda02;
+    font-weight: 700;
+    border: 2px solid var(--white-color);
+}
+
 .card-columns {
     column-count: 3;
     padding-left: 40px;
@@ -32,7 +56,7 @@ a:active {
 }
 
 h5{
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18px;
 }
 
@@ -47,6 +71,18 @@ h5{
     margin: 15px 0;
 }
 
+#avatar+div{
+    background-color:transparent;
+    padding:0;
+    margin-bottom:10px;
+    font-size:22px;
+    color:#000;
+    width: 100%;
+    white-space: wrap;
+}
+
+
+
 #mainstory {
     object-fit: cover;
     height: 35vh;
@@ -55,7 +91,7 @@ h5{
 
 /* 旁邊導覽列 */
 
-.sidebar {
+.membermain .sidebar {
     margin: 0;
     padding: 0;
     background-color: #f1f1f1;
@@ -70,7 +106,7 @@ h5{
 
 
 
-.sidebar div {
+.membermain .sidebar div {
     display: block;
     color: #fff;
     background-color: var(--nav-bg-color);
@@ -78,24 +114,25 @@ h5{
     font-size: 18px;
     font-weight: 900;
     text-align: center;
+    width: 100%;
 }
 
-.sidebar>div:first-child {
+.membermain .sidebar>div:first-child {
     background-color: #f1f1f1;
     width: 100%;
     height: 30%;
+    margin-bottom: 50px;
 }
-
-.sidebar:first-child {
+.membermain .sidebar:first-child {
     background-color: #f1f1f1;
 }
 
-.sidebar a div {
+.membermain .sidebar a div {
     background-color: #f1f1f1;
     color: var(--nav-bg-color);
 }
 
-.sidebar a div:hover:not(.active) {
+.membermain .sidebar a div:hover:not(.active) {
     background-color: #feda02;
     color: #000;
     transition: .2s cubic-bezier(0.215, 0.610, 0.355, 1);
@@ -105,27 +142,26 @@ h5{
 div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: 1000px;
 }
 
 @media screen and (max-width: 700px) {
-    .sidebar {
+    .membermain .sidebar {
         width: 100%;
         height: auto;
         position: relative;
     }
 
-    .sidebar a {
+    .membermain .sidebar a {
         float: left;
     }
 
-    div.content {
+    .membermain div.content {
         margin-left: 0;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .sidebar a {
+    .membermain .sidebar a {
         text-align: center;
         float: none;
     }
@@ -167,8 +203,3 @@ div.content {
     box-shadow: 0 0 5px #6e6e6e;
 }
 
-/* 景點地址文字大小 */
-.spotAddr {
-    font-size: 16px;
-    padding-top: 2px;
-}
