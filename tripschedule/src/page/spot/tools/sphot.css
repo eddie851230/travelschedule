@@ -1,0 +1,33 @@
+.sphotspot .sprow {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sphotspot {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.sphotspot-col {
+    flex-basis: 23%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background-color: var(--nicegreen);
+    height: 30vh;
+}
+
+.sphotspot-col p {
+    padding: 0px 15px 3px 15px;
+    color: #fff;
+}
+
+.sphotspot-col img {
+    width: 100%;
+    height: 70%;
+    border-radius: 10px;
+    object-fit: cover;
+}

@@ -1,0 +1,103 @@
+.hotspot {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.hotspot h1 {
+    color: black;
+    font-size: 45px;
+    font-weight: 700;
+
+}
+
+.hotspot p {
+    color: var(--black);
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 22px;
+    padding: 10px 0;
+
+}
+
+
+.hotspot .row {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hotspot-col {
+    flex-basis: 31%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background-color: #0152af3a;
+    box-sizing: border-box;
+}
+
+
+.hotspot-col img {
+    width: 26vw;
+    border-radius: 10px 10px 0px 0px;
+    height: 35vh;
+    object-fit: cover;
+}
+
+.p1 p {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 450;
+    height: 15vh;
+    padding: 0 5px;
+    line-height: 30px;
+}
+
+.p2 p {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 450;
+    height: 15vh;
+    padding: 0 5px;
+    line-height: 30px;
+}
+
+.p3 p {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 450;
+    height: 15vh;
+    padding: 0 5px;
+    line-height: 30px;
+}
+
+/* .hotspot-col p {
+    padding: 0;
+} */
+
+.hotspot-col:hover{
+    box-shadow: 0 0 10px 5px  rgb(63, 102, 159);
+}
+
+.hotspot-col h3 {
+    margin-top: 16px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.p1 h1{
+    font-size: 30px;
+    font-weight: 800;
+    padding: 3px 0 0 5px ;
+}
+.p2 h1{
+    font-size: 30px;
+    font-weight: 800;
+    padding: 3px 0 0 5px ;
+}
+.p3 h1{
+    font-size: 30px;
+    font-weight: 800;
+    padding: 3px 0 0 5px ;
+}

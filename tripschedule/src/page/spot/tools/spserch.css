@@ -1,0 +1,163 @@
+.chareati {
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.charea {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.chicon {
+    background-color: var(--nicegreen);
+    width: 10vw;
+    border-radius: 20px;
+    border: 10px 10px 10px 10px;
+    margin: 0 3% 0 10%;
+    height: 75vh;
+
+}
+
+.spcicons {
+    height: 100%;
+    font-size: 25px;
+}
+
+.spcicons input {
+    margin: 15px 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.spotde {
+    background-color: var(--nicegreen);
+    height: 85vh;
+    width: 100%;
+    margin-right: 10%;
+    border-radius: 10px;
+    overflow-y: scroll;
+    border: 5px solid rgba(26, 90, 39, 0.563);
+}
+
+.spotde::-webkit-scrollbar {
+    width: 11px;
+    background: var(--nicegreen);
+}
+
+.spotde::-webkit-scrollbar-thumb {
+    width: 100%;
+    background: #fff;
+    border-radius: 2em;
+}
+
+.spotde::-webkit-scrollbar-thumb:hover {
+    width: 100%;
+    background: rgb(254, 218, 2);
+    border-radius: 2em;
+}
+
+
+
+.spde {
+    background-color: rgb(255, 255, 255);
+    width: 96%;
+    height: 300px;
+    border-radius: 15px;
+    margin: 2% 2% 0 2%;
+    display: flex;
+}
+
+.spde img {
+    width: 30vw;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.spde .spdeInformation {
+    width: 34vw;
+    height: 29vh;
+    margin: 10px 0 0 10px;
+}
+
+.spde .spdeInformation h1 {
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: 35px;
+    border: 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 252, 55, 0.137);
+}
+
+.spde .spdeInformation p {
+    font-size: 22px;
+    line-height: 35px;
+    height: 16.5vh;
+    font-weight: 600;
+}
+
+.spde .spdeInformation .spdec {
+    height: 5vh;
+    display: flex;
+}
+
+.spde .spdeInformation .spdeCard1 {
+    width: 10vw;
+    display: flex;
+    height: 3vh;
+    margin: 2vh 0 0 0;
+}
+.spdeCard1 h4{
+    width: 8vw;
+    font-size: 18px;
+    height: 100%;
+}
+.spdec h3 {
+    color: rgb(255, 106, 0);
+    width: 20vw;
+    font-size: 25px;
+    margin: 0px 0 0 10px;
+    text-align: right;
+    height: 100%;
+}
+
+.spdeCard2{ 
+    width: 10vw;
+    display: flex;
+    height: 3vh;
+    margin: 2vh 0 0 1vw;}
+
+.spdeCard2 h4{
+    width: 8vw;
+    font-size: 18px;
+    height: 100%;
+}
+
+.spdeCard3{
+    text-align: right;
+    width: 14vw;
+}
+
+.spdeCard3 button{
+    width: 180px;
+    color: black;
+    font-size: 20px;
+    background: var(--white-color);
+    border: 3px solid var(--niceye);
+    border-radius: 20px;
+    outline: none;
+    transition: 0.5s;
+    height: 45px;
+    align-items: center;
+    font-weight: 550;
+}
+
+
+.spdeCard3 button:hover{
+    color:var(--black);
+    background-color: var(--niceye);
+    font-weight: 700;
+    border: 3px solid rgb(55, 107, 109);
+}

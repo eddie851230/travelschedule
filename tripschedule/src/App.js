@@ -10,7 +10,9 @@ import "jquery/dist/jquery.min.js";
 // 元件
 import Error from './components/Error';
 // 首頁
+import BeforeLogin from './page/beforeLogin/beforeLogin';
 import Home from './page/index/Home';
+
 // 機票
 import Airticket from './page/airticket/Airticket';
 // 景點
@@ -48,8 +50,8 @@ function App() {
         <Navigation />
 
         <Routes>
-          <Route path="/" element={<Home/>} exact />
-          <Route path="/Home" element={<Home/>} exact />
+          <Route path="/" element={<BeforeLogin/>} exact />
+          <Route path="/Home/:id" element={<Home/>} exact />
           <Route path="/Airticket" element={<Airticket/>} exact />
           <Route path="/Spot" element={<Spot/>} />
           <Route path="/Spot/:id" element={<Spot/>} />
