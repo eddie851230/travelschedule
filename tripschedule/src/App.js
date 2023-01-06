@@ -22,8 +22,11 @@ import Detail from './page/hotel/Detail';
 // 行程表
 import Schedule from './page/schedule/Schedule';
 // 會員中心
+import LoginandSignup from "./components/member/loginAndSignup"
 import MemberFavorite from './page/member/MemberFavorite';
 import MemberSchedule from './page/member/MemberSchedule';
+import Setting from './page/member/Setting';
+import ForgetPassword from './page/member/ForgetPassword';
 
 
 // 導覽列
@@ -32,6 +35,8 @@ import Navigation from './components/tool/Navigation';
 // 頁尾
 // import Footer from './components/tool/Footer';
 
+// 測試
+import Resetpassword from "./page/member/Resetpassword";
 
 
 function App() {
@@ -52,8 +57,12 @@ function App() {
           <Route path="/Hotel/Search" element={<Search/>} exact/>
           <Route path="/Hotel/Detail" element={<Detail/>} exact/>
           <Route path="/Schedule" element={<Schedule/>} />
-          <Route path="/member/MemberFavorite" element={<MemberFavorite/>} />
-          <Route path="/member/MemberSchedule" element={<MemberSchedule/>} />
+          <Route path="/member/LoginandSignup" element={<LoginandSignup/>} />
+          <Route path="/member/MemberFavorite/" element={<MemberFavorite/>} />
+          <Route path="/member/MemberSchedule/" element={<MemberSchedule/>} />
+          <Route path="/member/Setting/" element={<Setting/>} />
+          <Route path="/forgetpassword" element={<ForgetPassword/>} />
+          <Route path="/Resetpassword" element={<Resetpassword/>} />
           <Route component={Error} />
         </Routes>
       </BrowserRouter>
