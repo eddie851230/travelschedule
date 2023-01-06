@@ -5,6 +5,7 @@
     --section-bg-color: #202834;
     --navigation-items-hover-color: #3b5378;
     --nav-bg-color: #376B6D;
+    --nav-bg-color2: #005558;
 
     --text-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     --box-shadow: 0 5px 25px rgba(0, 0, 0/ 20%);
@@ -26,7 +27,7 @@
 
 ::-webkit-scrollbar-thumb {
     width: 100%;
-    background: var(--nav-bg-color);
+    background: var(--nav-bg-color2);
     border-radius: 2em;
 }
 
@@ -110,21 +111,22 @@ header .logo img:first-child{
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    font-weight: 900;
-    margin-left: 10px;
+    font-weight: 400;
+    /* margin-left: 10px; */
     transition: 0.3s ease;
     /*  */
     color: var(--white-color);
-    font-size: 16px;
+    font-size: 22px;
     text-decoration: none;
     text-shadow: var(--text-shadow);
+
 }
 
 
 
 
 .navigation .nav-items a:not(:last-child) {
-    margin-right: 45px;
+    margin-right: 25px;
 }
 
 header .navigation .nav-items a:before {
@@ -145,4 +147,5 @@ header .navigation .nav-items a:hover:before {
 
 header .navigation .nav-items a:hover{
     color:#feda02;
+    font-weight: 700;
 }
