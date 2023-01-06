@@ -1,9 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import "../member/member.css";
 import styled from 'styled-components';
 
 const MemberFavorite=()=> {
+    useEffect(() => {
 
+        window.scrollTo(0, 0);
+    
+    }, []);
 
 const CardGroup=styled.div`
 column-count: 4;

@@ -23,7 +23,7 @@ width:30%;
 
             請重新點擊郵件連結重新設定密碼</div>
 
-        <Link to="/member/LoginandSignup"><Button>返回登入頁</Button></Link>
+        <Link to="/"><Button>返回登入頁</Button></Link>
 
     </Main>
     </div>

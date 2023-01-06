@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../member/member.css";
 import CreateNewSchedule from "../../components/member/CreateNewSchedule";
 import styled from 'styled-components';
 
 const MemberSchedule = () => {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+    
+    }, []);
 
     const Cardimg=styled.img`
     height:150px;
