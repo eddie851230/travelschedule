@@ -1,0 +1,49 @@
+.oneday {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+    
+}
+
+.onedaybr{
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--nicegreen);
+    height: 55vh;
+    display: flex;
+    flex-direction: row;
+    margin: 2.5% 0 0 0;
+}
+
+.bigoneday{
+    width: 45%;
+    margin: 15px 15px;
+}
+
+.bigoneday img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 10px;
+}
+
+.smoneday-col{
+    width: 55%;
+    margin: 15px 0px 15px 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.smd{
+    width: 30%;
+    margin: 10px 10px 10px 10px;
+    height: 46%;
+}
+
+.smd img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}

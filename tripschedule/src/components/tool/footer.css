@@ -25,7 +25,7 @@
 }
 
 .icons {
-    color: var(--white-color);
+    color: #fff;
     cursor: pointer;
     padding: 18px;
     font-size: 2em;
@@ -43,5 +43,5 @@
 
 
 .iconsi:hover {
-    transform: scale(1.8);
+    transform: scale(2);
 }
