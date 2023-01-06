@@ -345,6 +345,10 @@ const Hotel=()=>{
         <div className="wid80">
           <div className="optionZone">
           
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
+            <HotelCard/>
 
           {/* {data.map( (x) => <HotelCard  {...data}/>)} */}
          

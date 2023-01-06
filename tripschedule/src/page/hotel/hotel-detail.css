@@ -279,27 +279,6 @@
   .ntd span{
     font-size: large;
   }
-/* ------------------------------------------- */
-/* 
-.icons {
-    color: var(--white-color);
-    cursor: pointer;
-    padding: 18px;
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
-}
-
-
-.icons i:not(:last-child) {
-    margin-right: 20px;
-}
-
-
-.icons i:hover {
-    transform: scale(1.8);
-} */
-
 
 
 
