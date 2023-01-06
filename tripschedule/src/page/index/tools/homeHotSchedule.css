@@ -1,0 +1,122 @@
+.campus .row {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.campus {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.campus h1{
+    color: black;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.campus p {
+    color: var(--black);
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 22px;
+    padding: 10px 0;
+
+}
+
+.campus-col {
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.campus-col img {
+    width: 100%;
+    display: block;
+}
+
+.layer {
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: 2s;
+}
+
+.layer:hover {
+    background-color: rgb(55, 107, 109, 0.7);
+}
+
+.layer h3 {
+    width: 100%;
+    font-weight: 500;
+    color: #fff;
+    font-size: 26px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.layer:hover h3 {
+    bottom: 80%;
+    font-weight: 1000;
+    opacity: 1;
+    font-size: 50px;
+    color: var(--white-color);
+}
+
+.layer p {
+    color: #fff;
+    font-size: 20px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+    letter-spacing: 3px;
+    line-height: 50px;
+    width: 100%;
+}
+
+.layer:hover p {
+    bottom: 18%;
+    opacity: 1;
+    font-size: 30px;
+    color: var(--white-color);
+    font-weight: 400;
+}
+
+
+.layer button {
+    width: 180px;
+    color: var(--nicegreen);
+    font-size: 20px;
+    background: var(--white-color);
+    border: 3px solid rgba(26, 90, 39, 0.563);
+    border-radius: 20px;
+    outline: none;
+    margin-top: 120%;
+    bottom: 10%;
+    transition: 0.5s;
+    height: 45px;
+    align-items: center;
+    font-weight: 550;
+}
+
+.layer button:hover {
+    color:var(--black);
+    background-color: var(--niceye);
+    font-weight: 700;
+    border: 3px solid rgb(255, 255, 255);
+}
