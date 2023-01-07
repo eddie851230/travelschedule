@@ -97,8 +97,6 @@ const CreateNewSchedule = (props) => {
 
 
 
-
-
     return (props.trigger) ? (
         <Modelbox>
             <NewSchedule>

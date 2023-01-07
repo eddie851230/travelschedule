@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// 安裝icon、bootstrap、jquery
+// 安裝icon、bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
 // import axios from "axois";
 
 

@@ -26,10 +26,8 @@ const Navigation = () => {
                   <NavLink to="/Hotel"><UilBed /> 住宿推薦</NavLink>
                   <NavLink to="/Schedule"><UilSchedule /> 行程表規劃</NavLink>
                   <div onClick={() => setShow(true)}><UilUserCircle /> 會員中心</div>
-              
-
-
                </div>
+               
             </div>
             <UilApps className="nav-menu-btn" />
          </div>
