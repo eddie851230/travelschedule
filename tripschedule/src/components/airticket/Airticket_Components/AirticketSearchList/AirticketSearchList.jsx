@@ -8,7 +8,7 @@ function AirticketSearchList(props) {
     const departureDateRef = useRef()
     const returnDateRef = useRef()
     
-    props.setAirticketSearch("coolcat")
+
 
     // const searchArr = [departureSpotRef, arrivalSpotRef, departureDateRef, returnDateRef];
 
