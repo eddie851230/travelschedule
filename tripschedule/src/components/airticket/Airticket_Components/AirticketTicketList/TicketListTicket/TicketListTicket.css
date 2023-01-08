@@ -6,7 +6,6 @@
     border-radius: 19px;
     display: flex;
     padding: 2vw;
-    flex-direction: row;
 }
 
 .ticketCarrierImg {
@@ -14,12 +13,13 @@
     align-self: center;
 }
 
-/* .ticketFlyingPlace {
-    font-size: 3rem;
-    align-self: center;
+.placeTime {
+    border: solid black 1px;
+    width: 30vw;
 }
 
 .ticketPrice {
     font-size: 3rem;
     align-self: flex-end;
-} */
+    
+}

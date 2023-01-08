@@ -8,7 +8,14 @@ import "../airticket/Airticket.css";
 
 
 
-function Airticket() {
+function Airticket() {    
+
+    const [AirticketSearch, setAirticketSearch] = useState();
+    
+    const searchRef = () => {
+        console.log(AirticketSearch)
+    }
+    
     const [AirticketPageState, setAirticketPageState] = useState("HomePage");
 
     switch (AirticketPageState) {
@@ -16,8 +23,8 @@ function Airticket() {
             return (
                 <div id="AirticketPage" className='AirticketPageSize_full'>
                     <AirBackgroundImg AirticketImgSize="Airticketimg_full"/>
-                    <AirticketSearchList setSearchList="SearchList_full"/>
-                    <AirticketSearchButton setPage={e => setAirticketPageState("ChoosePage")} setSearchButton="SearchButton_full"/>
+                    <AirticketSearchList setSearchList="SearchList_full" setAirticketSearch={(x) => setAirticketSearch(x)}/>
+                    <AirticketSearchButton setPage={() => setAirticketPageState("ChoosePage")} searchRef={() => searchRef()} setSearchButton="SearchButton_full"/>
                 </div>
             )
 
@@ -25,8 +32,8 @@ function Airticket() {
             return (
                 <div id="AirticketPage" className='AirticketPageSize_free'>
                     <AirBackgroundImg AirticketImgSize="Airticketimg_top"/>
-                    <AirticketSearchList setSearchList="SearchList_free"/>
-                    <AirticketSearchButton setPage={e => setAirticketPageState("ChoosePage")} setSearchButton="SearchButton_free"/>
+                    <AirticketSearchList setSearchList="SearchList_free" setAirticketSearch={(x) => setAirticketSearch(x)}/>
+                    <AirticketSearchButton setPage={() => setAirticketPageState("ChoosePage")} searchRef={() => searchRef()} setSearchButton="SearchButton_free"/>
 
                     <div className="ChoosePageOutput">
                        <AirticketSideFilter/>

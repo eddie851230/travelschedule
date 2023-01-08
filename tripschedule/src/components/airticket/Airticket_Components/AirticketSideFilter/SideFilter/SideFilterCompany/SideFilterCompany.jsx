@@ -12,14 +12,14 @@ function SideFilterCompany() {
         return (
             <div key={"Carriers-" + x.iata}>
                 <label htmlFor={"Carriers-" + x.iata}>{x.name}</label>
-                <input type="checkbox" id={"Carriers-" + x.iata} />
+                <input type="checkbox" id={"Carriers-" + x.iata} value={x.iata}/>
             </div>
         )
     })
 
     return (
         <>
-            <div id='SideFilterCompanyTitle'>Title</div>
+            <div id='SideFilterCompanyTitle'>Company</div>
             <div id="SideFilterCompany">
                 {CoolCatMaker}
             </div>

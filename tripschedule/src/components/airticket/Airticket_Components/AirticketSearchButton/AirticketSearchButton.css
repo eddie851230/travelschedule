@@ -14,7 +14,8 @@
     z-index: 99;
 
     /* 動畫 */
-    transition: .3s ease-in;
+    transition: color .3s ease-in, background-color .3s ease-in, box-shadow .3s ease-in, border-color .3s ease-in;
+    /* transition: .3s ease-in; */
 }
 
 /* 動畫 */
@@ -26,6 +27,8 @@
     transition: .3s ease-in;
     cursor: pointer;
 }
+
+
 
 /* 首頁位置 */
 .SearchButton_full {
