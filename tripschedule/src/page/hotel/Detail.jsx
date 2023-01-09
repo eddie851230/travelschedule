@@ -1,14 +1,16 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
 import Footer from "../../components/tool/Footer";
 import RoomCard from '../../components/hotel/RoomCard';
 import HotelCard from '../../components/hotel/HotelCard';
 import {Link} from 'react-router-dom';
 
 
+
 import "./index.css";
 import "./hotel-detail.css";
 
-const Detail = () => {
+const Detail = () => { 
+    window.scrollTo(0, 0);
   return (
     <div id="body">
       <div className='index'></div>

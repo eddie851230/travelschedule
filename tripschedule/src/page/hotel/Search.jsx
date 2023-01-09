@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useEffect, useState }from 'react';
 import Footer from "../../components/tool/Footer";
 import SearchCard from '../../components/hotel/SearchCard';
 import {Link} from 'react-router-dom';
@@ -9,6 +9,7 @@ import "./hotel-search.css";
 
 
 const Search = () => {
+  window.scrollTo(0, 0);
   return (
     <div className="likeBody">
       

@@ -1,13 +1,13 @@
 .Card-hotel{
   flex: 1;
-  height: 55vh;
+  height: 500px;
   /* background-color: #da663c; */
   padding: 20px;
  
 }
 .zoneImage{
   width: 100%;
-  height: 65%;
+  height: 55%;
   /* background-color: aqua; */
   border-radius: 10px;
 }
@@ -20,7 +20,7 @@
 .hotelTextZone{
   padding: 8px;
   width: 100%;
-  height:35%;
+  height:45%;
   /* background-color: blueviolet; */
 
   position: relative;
@@ -28,6 +28,7 @@
 .hotelName{
   color:#376B6D;
   font-size: 22px;
+  margin-bottom:15px ;
 }
 .hotelStars{
   color: #376B6D;
