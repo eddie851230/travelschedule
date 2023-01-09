@@ -8,6 +8,8 @@ import "./navAndScrollbar.css";
 
 
 const Navigation = () => {
+  
+   // 控制展開
    const [show, setShow] = useState(false);
 
    return (<>
@@ -17,18 +19,20 @@ const Navigation = () => {
             <div className="menu-btn"></div>
             <div className="navigation">
                <div className="nav-items">
+
                   <NavLink to="/"><UilHome /> 首頁</NavLink>
                   <NavLink to="/Airticket"><UilPlaneDeparture /> 機票</NavLink>
                   <NavLink to="/Spot"><UilMapPinAlt /> 景點推薦</NavLink>
                   <NavLink to="/Hotel"><UilBed /> 住宿推薦</NavLink>
                   <NavLink to="/Schedule"><UilSchedule /> 行程表規劃</NavLink>
-                  <div onClick={()=>setShow(true)}><UilUserCircle /> 會員中心</div>
+                  <div onClick={() => setShow(true)}><UilUserCircle /> 會員中心</div>
                </div>
+               
             </div>
             <UilApps className="nav-menu-btn" />
          </div>
-        
-         <Memberlist trigger={show} setShow={setShow}/>
+
+         <Memberlist trigger={show} setShow={setShow} />
 
       </header>
    </>

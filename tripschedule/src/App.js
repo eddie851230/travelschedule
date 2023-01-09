@@ -5,8 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 // import axios from "axois";
 
-
-
 // 元件
 import Error from './components/Error';
 // 首頁
@@ -40,13 +38,10 @@ import Navigation from './components/tool/Navigation';
 // 測試
 import Resetpassword from "./page/member/Resetpassword";
 
-
 function App() {
   return (
-
     <div>
       <BrowserRouter>
-
         <Navigation />
 
         <Routes>
@@ -69,9 +64,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-
   );
 }
-
 
 export default App;

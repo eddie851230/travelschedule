@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../member/member.css";
 import CreateNewSchedule from "../../components/member/CreateNewSchedule";
@@ -6,7 +6,32 @@ import styled from 'styled-components';
 
 const MemberSchedule = () => {
 
-    const Cardimg=styled.img`
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+        console.log("test");
+
+    }, []);
+
+    const Row = styled.div`
+    margin-top: 0%;
+    margin-left: 0%;
+    align-items:flex-start;
+    `;
+
+    const Col=styled.div`
+    display:flex;
+    flex-wrap:wrap;
+    `
+
+
+    const Card=styled.div`
+    margin:1%;
+    margin-top:0;
+    width:calc((90%)/3);
+    `
+
+    const Cardimg = styled.img`
     height:150px;
     width:100%;
     object-fit:cover;
@@ -20,7 +45,7 @@ const MemberSchedule = () => {
 
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
-                <div className="row w-100">
+                <Row className="row w-100">
                     {/* <!-- 旁邊導覽列 --> */}
                     <div className="sidebar col-2">
                         <div>
@@ -35,86 +60,29 @@ const MemberSchedule = () => {
                         </Link>
                     </div>
                     {/* <!-- 新增行程表按鈕 --> */}
-                    <input type="button" value="新增行程表" className="addSchdule"  onClick={()=>setScheshow(true)} />
-                    <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow}/>
+                    <input type="button" value="新增行程表" className="addSchdule" onClick={() => setScheshow(true)} />
+                    <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow} />
+
+
                     {/* <!-- 卡片分頁 --> */}
-                    <div className="card-columns col">
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">秋天東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
+                    <Col className="col">
+                        
+                            <Card className="card p-3">
+                                <a href="/Schedule">
+                                    <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
+                                    <div className="card-body">
+                                        <h3 className="card-title">秋天東京五天四夜</h3>
+                                        <p className="card-text">2022年12月24日-2022年12月29日</p>
+                                        <button>編輯</button>
+                                    </div>
+                                </a>
+                            </Card>
 
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">秋天東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
+                            
 
 
-
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">春天東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
-
-
-
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
-
-
-
-                        <div className="card p-3">
-                            <a href="/Schedule">
-                                <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">東京五天四夜</h3>
-                                    <p className="card-text">2022年12月24日-2022年12月29日</p>
-                                    <button className="btn btn-outline-danger">編輯</button>
-                                </div>
-                            </a>
-                        </div>
-
-
-                    </div>
-                </div>
+                    </Col>
+                </Row>
             </div>
         </>
     );

@@ -6,7 +6,7 @@ import SchduleList from "../../components/schedule/SchduleList";
 // import Favoritelisttest from "../../components/schedule/Favoritelist copy";
 // import SchduleListtest from "../../components/schedule/SchduleList copy";
 import { columnsFromBackend } from "./scheduledata";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+// import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import $ from "jquery";
 
 
