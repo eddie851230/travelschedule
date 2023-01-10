@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, {  useState }  from "react";
 import "./index.css";
 import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
