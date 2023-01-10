@@ -28,6 +28,14 @@
     cursor: pointer;
 }
 
+#AirticketSearchButton:active {
+    color: black;
+    border-color: black;
+    transition: .0s ease-in;
+}
+
+
+
 
 
 /* 首頁位置 */

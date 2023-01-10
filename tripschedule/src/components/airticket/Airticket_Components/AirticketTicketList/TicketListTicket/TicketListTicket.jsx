@@ -19,6 +19,7 @@ function TicketListTicket(props) {
     var destinationPlaceId = ticket.destinationPlaceId
     var marketingCarrierIds = ticket.marketingCarrierIds[0]
     var priceAmount = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].price.amount
+    var deepLink = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].items[0].deepLink
 
     // 時間
     var startDateTime = ticket.departureDateTime
@@ -54,6 +55,8 @@ function TicketListTicket(props) {
               {ticketSearch.content.results.places[destinationPlaceId].name}
             </div>
           </div>
+
+          <div><a href={deepLink}>LINK</a></div>
         </div>
 
         <div className="ticketPrice">價格 : {priceAmount / 1000}</div>
