@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\HotelsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('schedules', SchedulesController::class);
+Route::resource('hotels', HotelsController::class);
+
+//寫法二
+Route::get('/showSpot', [SchedulesController::class, 'showSpot']);

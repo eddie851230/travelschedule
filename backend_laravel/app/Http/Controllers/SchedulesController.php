@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SchedulesController extends Controller
 {
+    function array_to_json($sel_array)
+    {
+
+        foreach ($sel_array as $key => $value) {
+            if (
+                is_string($key) || is_string($value)
+            ) {
+
+                $new_array[urlencode($key)] = urlencode($value);
+            }
+        }
+
+        return urldecode(json_encode($new_array));
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,36 +30,53 @@ class SchedulesController extends Controller
      */
     public function index()
     {
+        // function array_to_json($sel_array)
+        // {
 
-        //
+        //     foreach ($sel_array as $key => $value) {
+        //         if (
+        //             is_string($key) || is_string($value)
+        //         ) {
+
+        //             $new_array[urlencode($key)] = urlencode($value);
+        //         }
+        //     }
+
+        //     return urldecode(json_encode($new_array));
+        // }
+
         DB::connection('mysql');
 
-        $users = DB::select('select * from schedules_info');
-       
-        foreach ($users as $key => $value) {
-            $data[$key] = (array)$value;
-        }
-        function array_to_json($sel_array)
-        {
+        $users
+            = DB::table('schedules_info')
+            ->get();
 
-            foreach ($sel_array as $key => $value) {
-                if (
-                    is_string($key) || is_string($value)
-                ) {
-
-                    $new_array[urlencode($key)] = urlencode($value);
-                }
-            }
-
-            return urldecode(json_encode($new_array));
-        }
-
-        foreach ($users as $key => $value) {
-
-            echo array_to_json($data[$key]) . '<br>';
-        }
+        $users = json_decode($users->toJson());
+        return $users;
 
 
+
+
+
+
+        // $data=[];
+        // foreach ($users as $key => $value) {
+        //     $data[$key] = (array)$value;
+        // }
+
+
+        // // foreach ($users as $key => $value) {
+
+        // //     echo array_to_json($data[$key]);
+        // // }
+        // foreach ($users as $key => $value) {
+
+        //     $data[$key] = array_to_json($data[$key]);
+        // }
+        // return $data;
+
+
+        /////////////////////////
         // //select
         // $users = DB::select('select * from hotels_info where active = ?', [1]);
         // //insert
@@ -54,6 +87,10 @@ class SchedulesController extends Controller
         // $deleted = DB::delete('delete from users where id = ?', [1]);
         // //一般陳述式
         // DB::statement('drop table users');
+
+        // var_dump($data) ;
+        // return $data;
+        // return json_encode($data);
     }
 
     /**
@@ -64,6 +101,7 @@ class SchedulesController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -75,6 +113,7 @@ class SchedulesController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -86,6 +125,7 @@ class SchedulesController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -97,6 +137,7 @@ class SchedulesController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -109,6 +150,7 @@ class SchedulesController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -120,5 +162,23 @@ class SchedulesController extends Controller
     public function destroy($id)
     {
         //
+
+    }
+
+
+
+    public function showSpot()
+    {
+        //
+        
+
+        DB::connection('mysql');
+
+        $users
+            = DB::table('attractions_info')
+            ->get();
+
+        $users = json_decode($users->toJson());
+        return $users;
     }
 }

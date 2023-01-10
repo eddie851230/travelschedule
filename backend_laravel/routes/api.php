@@ -20,3 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::resource('schedules', SchedulesController::class);
+
+Route::resource('hotels', HotelsController::class);
+
+//寫法2
+Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
