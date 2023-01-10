@@ -1,13 +1,14 @@
 import React from 'react';
 import "./TicketListTicket.css"
-import Fake from '../../AirticketSideFilter/SideFilter/SideFilterCompany/Fake';
+// import Fake from '../../AirticketSideFilter/SideFilter/SideFilterCompany/Fake';
 
 
-function TicketListTicket() {
+function TicketListTicket(props) {
 
-  var ticketlegsObj = Object.values(Fake.content.results.legs)
-  var ticketlegskey = Object.keys(Fake.content.results.legs)
-  var ticketSearch = Fake
+  var Data = props.apiData
+  var ticketlegsObj = Object.values(Data.content.results.legs)
+  var ticketlegskey = Object.keys(Data.content.results.legs)
+  var ticketSearch = Data
 
   // LEGS
   const ticketMake = ticketlegsObj.map((ticket, x) => {
