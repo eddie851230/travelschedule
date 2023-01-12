@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //匯入package
 // import { Helmet } from "react-helmet";
 import axios from "axios";
@@ -75,6 +75,11 @@ function Schedule() {
     setSpotListinfo([...response.data]);
     // console.log(response.data);
   };
+
+  useEffect(() => {
+    loadDataAsync();
+  }, []);
+
   // 先找有幾天，再來找一天內早中晚各幾筆資料
 
   // 多個拖拉的表單DEMO
@@ -255,15 +260,15 @@ function Schedule() {
             {/* <!-- 行程日期條結束 --> */}
 
             {/* <!-- 行程表景點及交通------------------------------------ --> */}
-            {/* <div className="tripSpot"> */}
-            <ScheduleList
-              spotListinfo={spotListinfo}
-              setSpotListinfo={setSpotListinfo}
-              loadDataAsync={function () {
-                loadDataAsync();
-              }}
-            />
-            {/* </div> */}
+            <div className="tripSpot">
+              <ScheduleList
+                spotListinfo={spotListinfo}
+                setSpotListinfo={setSpotListinfo}
+                loadDataAsync={function () {
+                  loadDataAsync();
+                }}
+              />
+            </div>
 
             {/* <!-- 行程表結束 --> */}
           </div>
@@ -293,10 +298,11 @@ function Schedule() {
         </DragDropContext>
         {/* <!-- 地圖------------------------------------------------> */}
         <SpotMap
-          loadDataAsync={function () {
+          spotListinfo={spotListinfo}
+          setSpotListinfo={setSpotListinfo}
+          loadDataAsync={() => {
             loadDataAsync();
           }}
-          spotListinfo={spotListinfo}
         />
         {/* <div id="myMap" className="mapping"></div>
         

@@ -19,7 +19,10 @@ export  const initSpotListinfo = [
     ticketprice: 1,
     address: 1,
     suggestedtime: 1,
-    path: 1,
+    coordinates: 1,
+    lat: 1,
+    lng: 1,
+    detailed: 1,
   },
   {
     id: 2,
@@ -29,7 +32,10 @@ export  const initSpotListinfo = [
     ticketprice: 1,
     address: 1,
     suggestedtime: 1,
-    path: 1,
+    coordinates: 1,
+    lat: 1,
+    lng: 1,
+    detailed: 1,
   },
 ];
 export const spotListinfo = [

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const ScheduleList = (p) => {
+  // console.log(p);
+  
+  
   const airPlaneDepartinfo = [
     {
       id: "depart",
@@ -27,78 +30,78 @@ const ScheduleList = (p) => {
   //   ticketprice: 1800,
   // };
 
-  const spotData = [
-    {
-      id: "S01",
-      day: "Day1",
-      dayTime: "morning",
-      spotImg: "/img/景點相片預覽(明亮).jpg",
-      spotName: "東京鐵塔",
-      duringTime: "1小時",
-      addr: "1-1 Furugome, Narita, Chiba 282-0004日本",
-      href: "/Spot",
-    },
-    {
-      id: "S02",
-      day: "Day1",
-      dayTime: "morning",
-      spotImg: "/img/景點相片預覽(暗色).jpg",
-      spotName: "東京晴空塔",
-      duringTime: "1.5小時",
-      addr: "日本東京銀座區富人天堂",
-      href: "/Spot",
-    },
-    {
-      id: "S03",
-      day: "Day1",
-      dayTime: "afternoon",
-      spotImg: "/img/淺草寺.jpg",
-      spotName: "東京淺草寺",
-      duringTime: "2小時",
-      addr: "日本東京銀座區假鬼假怪逛不了街",
-      href: "/Spot",
-    },
-    {
-      id: "S04",
-      day: "Day1",
-      dayTime: "evening",
-      spotImg: "/img/淺草寺(維基百科夜景).jpg",
-      spotName: "東京淺草寺(晚上)",
-      duringTime: "2小時",
-      addr: "日本東京銀座區假鬼假怪逛不了街",
-      href: "/Spot",
-    },
-    {
-      id: "S05",
-      day: "Day1",
-      dayTime: "evening",
-      spotImg: "/img/淺.jpg",
-      spotName: "東",
-      duringTime: "2小時",
-      addr: "日本東京銀座區假鬼假怪逛不了街",
-      href: "/Spot",
-    },
-    {
-      id: "S06",
-      day: "Day1",
-      dayTime: "evening",
-      spotImg: "/img/淺草.jpg",
-      spotName: "東京",
-      duringTime: "2小時",
-      addr: "日本東京銀座區假鬼假怪逛不了街",
-      href: "/Spot",
-    },
-    {
-      id: "S07",
-      day: "Day1",
-      dayTime: "evening",
-      spotImg: "/img/淺草寺.jpg",
-      spotName: "東京淺",
-      duringTime: "2小時",
-      addr: "日本東京銀座區假鬼假怪逛不了街",
-      href: "/Spot",
-    },
-  ];
+  // const spotData = [
+  //   {
+  //     id: "S01",
+  //     day: "Day1",
+  //     dayTime: "morning",
+  //     spotImg: "/img/景點相片預覽(明亮).jpg",
+  //     spotName: "東京鐵塔",
+  //     duringTime: "1小時",
+  //     addr: "1-1 Furugome, Narita, Chiba 282-0004日本",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S02",
+  //     day: "Day1",
+  //     dayTime: "morning",
+  //     spotImg: "/img/景點相片預覽(暗色).jpg",
+  //     spotName: "東京晴空塔",
+  //     duringTime: "1.5小時",
+  //     addr: "日本東京銀座區富人天堂",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S03",
+  //     day: "Day1",
+  //     dayTime: "afternoon",
+  //     spotImg: "/img/淺草寺.jpg",
+  //     spotName: "東京淺草寺",
+  //     duringTime: "2小時",
+  //     addr: "日本東京銀座區假鬼假怪逛不了街",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S04",
+  //     day: "Day1",
+  //     dayTime: "evening",
+  //     spotImg: "/img/淺草寺(維基百科夜景).jpg",
+  //     spotName: "東京淺草寺(晚上)",
+  //     duringTime: "2小時",
+  //     addr: "日本東京銀座區假鬼假怪逛不了街",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S05",
+  //     day: "Day1",
+  //     dayTime: "evening",
+  //     spotImg: "/img/淺.jpg",
+  //     spotName: "東",
+  //     duringTime: "2小時",
+  //     addr: "日本東京銀座區假鬼假怪逛不了街",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S06",
+  //     day: "Day1",
+  //     dayTime: "evening",
+  //     spotImg: "/img/淺草.jpg",
+  //     spotName: "東京",
+  //     duringTime: "2小時",
+  //     addr: "日本東京銀座區假鬼假怪逛不了街",
+  //     href: "/Spot",
+  //   },
+  //   {
+  //     id: "S07",
+  //     day: "Day1",
+  //     dayTime: "evening",
+  //     spotImg: "/img/淺草寺.jpg",
+  //     spotName: "東京淺",
+  //     duringTime: "2小時",
+  //     addr: "日本東京銀座區假鬼假怪逛不了街",
+  //     href: "/Spot",
+  //   },
+  // ];
 
   //   // 調整拖曳功能可以儲存
 
@@ -141,14 +144,14 @@ const ScheduleList = (p) => {
   // const eveningSpot = spotinfo.filter((elem) => elem.dayTime === "evening");
 
   return (
-    <div className="tripSpot">
+    
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="Day1">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <div className="dayNum" id="Day1">
                 Day
-                <span> 1 </span>: 禮拜
+                <span> 1 {+1}</span>: 禮拜
                 <span>一</span>
               </div>
 
@@ -292,7 +295,7 @@ const ScheduleList = (p) => {
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    
   );
 };
 

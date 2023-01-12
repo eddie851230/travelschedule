@@ -1,9 +1,11 @@
 // src/SpotMap.js
 import React, { Component, useEffect } from "react";
 // import "./LeafletMap.css";
-import axios from "axios";
+// import axios from "axios";
 
 export default function Spotmap(p) {
+  console.log(p.spotListinfo);
+
   // constructor(props) {
   //   super(props);
   // }
@@ -15,7 +17,7 @@ export default function Spotmap(p) {
   //   data: {},
   //   dataLoaded: false,
   // // };
-  
+
   // state =[
   //    {
   //   id: {},
@@ -41,12 +43,12 @@ export default function Spotmap(p) {
 
   //methods
   //-----------------------------------------------------------------
-  //   loadDataAsync = async () => {
+  // loadDataAsync = async () => {
   //     // let response=await fetch(
   //     //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
   //     //   {}
   //     // )
-  //     let response = await axios({
+  // let response = await axios({
   //       //请求方法
   //       method: "GET",
   //       //url
@@ -68,15 +70,14 @@ export default function Spotmap(p) {
 
   //   };
 
-  //hooks
-  //-----------------------------------------------------------------
-  useEffect(() => {
+  const mapping = () => {
+    let map;
+    if (map) {
+      map.remove();
+    }
     let L = window.L;
-    // [a1+a2+a3.../n,a1+a2+a3.../n]
-    let map = new L.Map("Spotmap").setView(
-      [23.79037129915711, 120.95281938174952],
-      10
-    );
+    map = new L.Map("Spotmap").setView([35.6267108, 139.8850779], 15);
+
     let layer = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
@@ -85,39 +86,48 @@ export default function Spotmap(p) {
       }
     );
     map.addLayer(layer);
-    // this.setState({ map: map });
-    console.log(p);
+    console.log(2);
+  };
+  let L = window.L;
+  let marker = new L.marker(
+    new L.latLng([p.spotListinfo[0].lat, p.spotListinfo[0].lng])
+  );
+  console.log(p.spotListinfo);
+  // mapping();
+  //hooks
+  //-----------------------------------------------------------------
+  useEffect(() => {
+    mapping();
+  }, []);
 
-    console.log(p.onSpotUpdate);
-    // p.onSpotUpdate();
-  });
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
+  // useEffect(() => {
+  //   mapping();
+  //  console.log(this);
   //   let L = window.L;
-  //   // if (prevState.dataLoaded) {
-  //   //   let first10Spot = prevState.data["features"].slice(0, 10);
-  //   //   for (let Spot of first10Spot) {
-  //   //     let coordiantes = Spot["geometry"]["coordinates"];
-  //   // coordiantes = [coordiantes[1], coordiantes[0]];
-  //   // let marker = new L.marker(new L.latLng(coordiantes));
-  //   // let popupmsg = `
-  //   //         景點名稱: ${Spot["properties"]["name"]}<br/>
-  //   //         地址: ${Spot["properties"]["address"]}<br/>
-  //   //         開放時間: ${Spot["properties"]["id"]} <br/>
-  //   //         價格: ${Spot["properties"]["phone"]}<br/>
-
-  //   //         `;
-
-  //   // marker.bindPopup(popupmsg);
-  //   // prevState.map.addLayer(marker);
-  //   //   }
-  //   // }
-  //   return null;
-  // }
+  //   // [a1+a2+a3.../n,a1+a2+a3.../n]
+  //   let map = new L.Map("Spotmap").setView(
+  //     [23.79037129915711, 120.95281938174952],
+  //     10
+  //   );
+  //   let layer = L.tileLayer(
+  //     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  //     {
+  //       attribution:
+  //         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  //     }
+  //   );
+  // let marker = new L.marker(
+  //   new L.latLng([p.spotListinfo[0].lat, p.spotListinfo[0].lng])
+  // );
+  // map.addLayer(layer);
+  // this.setState({ map: map });
+  // console.log(p.onSpotUpdate);
+  // p.onSpotUpdate();
+  // });
 
   return (
     <div id="Spotmap" style={{ width: "70%" }}>
-      {console.log(p)}
+      {/* {mapping()} */}
     </div>
   );
 }
