@@ -15,15 +15,15 @@ function Airticket() {
     const url = "https://partners.api.skyscanner.net/apiservices/v3/flights/live/search/create";
 
     const [apiData, setapiData] = useState();
-
+    const [sideFilter, setsideFilter] = useState();
     const [departureSpot, setdepartureSpot] = useState("TPE");
     const [arrivalSpot, setarrivalSpot] = useState("HND");
     const [departureDate, setdepartureDate] = useState(moment().format("YYYY-M-D"));
     const [returnDate, setreturnDate] = useState(moment().format("YYYY-M-D"));
     const [people, setpeople] = useState(1);
-
     const searchRef = () => {
         console.log(returnDate)
+        // console.log(sideFilter)
         fetch(url, {
             method: "POST",
             body: JSON.stringify({
@@ -103,8 +103,13 @@ function Airticket() {
                         } searchRef={() => searchRef()} setSearchButton="SearchButton_free" />
 
                     <div className="ChoosePageOutput">
-                        <AirticketSideFilter />
-                        <AirticketTicketList apiData={apiData} />
+                        <AirticketSideFilter apiData={apiData} 
+                        setsideFilter={(e) => setsideFilter(e)}
+                        sideFilter={sideFilter}
+                        />
+                        <AirticketTicketList apiData={apiData} 
+                        sideFilter={sideFilter}
+                        />
                     </div>
                 </div>
             )

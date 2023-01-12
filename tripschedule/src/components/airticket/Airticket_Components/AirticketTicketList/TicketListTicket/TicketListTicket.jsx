@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./TicketListTicket.css"
 // import Fake from '../../AirticketSideFilter/SideFilter/SideFilterCompany/Fake';
 
-
 function TicketListTicket(props) {
-
+  const [FilterArr, setFilterArr] = useState([]);
+  
   var Data = props.apiData
   var ticketlegsObj = Object.values(Data.content.results.legs)
   var ticketlegskey = Object.keys(Data.content.results.legs)
@@ -25,9 +25,11 @@ function TicketListTicket(props) {
     var startDateTime = ticket.departureDateTime
     var endDateTime = ticket.arrivalDateTime
 
-    return (
-      <div className="ticketBox" key={ticketNum}>
 
+
+    return (
+      <div className={marketingCarrierIds + " ticketBox"} key={ticketNum}>
+        {marketingCarrierIds}
         <img className="ticketCarrierImg" src={ticketSearch.content.results.carriers[marketingCarrierIds].imageUrl} alt={ticketSearch.content.results.carriers[marketingCarrierIds].name} />
 
         <div className='placeTime'>
@@ -65,13 +67,28 @@ function TicketListTicket(props) {
     )
   })
 
+  useEffect(() => {
+    var filterArr = []
+    for (let key in props.sideFilter) {
+      if (props.sideFilter[key] === true) {
+        filterArr.push(key)
+      }
+    }
+    setFilterArr(filterArr)
+  }, [props.sideFilter])
+
+  const filterTicket = ticketMake.filter(ticket => {
+    return FilterArr.includes((ticket.props.className).split(" ")[0]);
+  });
+
 
 
   return (
     <>
-      {ticketMake}
+      {filterTicket}
     </>
   );
 }
+ 
 
 export default TicketListTicket;
