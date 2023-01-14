@@ -3,7 +3,8 @@ import "./index.css";
 import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
 import { Link } from "react-router-dom";
-import { Formik } from 'formik';
+import axios from "axios";
+// import { Formik } from 'formik';
 
 // 自製元件
 import HotelCard from "../../components/hotel/HotelCard";
@@ -14,6 +15,22 @@ import HotelCard from "../../components/hotel/HotelCard";
 // import closeBTN from "./img/hotel-icon/close.png"
 const Hotel = () => {
   window.scrollTo(0, 0);
+
+  let [data,setData] = useState (null);//07設定一開始沒有資料為null
+  setData(result.xxx.xx);//08抓到resul中的photo陣列xxx要看json有包含什麼屬性質
+  // 09跳到hotel card or search car 的jsx
+  //10將此picture component放入homepage中=>看homepage
+
+
+  const initialURL = "https://localhost.hotel";//05要找到Sql傳到MVC controller的網址
+  //  setData(result.data.photos);//08抓到resul中的photo陣列
+
+  // 03建立典籍事件search 的非同步事件去抓資料，用axios
+  const search = async()=>{
+    let result = await axios.get(initialURL//04~~ 去抓後端laravel的資料
+    )
+  };
+
 
   //   useEffect(api);
   // api=()=>{
@@ -54,7 +71,7 @@ const Hotel = () => {
           </div>
 
           <div className="checkZone">
-            <Formik  className="flexForm"  action="" method="post"
+            <form  className="flexForm"  action="" method="post"
                   // onSubmit={this.handleSubmit}
             >
              {/* B01產生表單點擊的事件 */}
@@ -260,11 +277,13 @@ const Hotel = () => {
 
               {/* 搜尋按鈕 */}
               <Link to="/Hotel/Search">
-                <button className="filterBtnPosition" type="submit">
+                <button className="filterBtnPosition" type="submit" 
+                onClick={search}
+                >
                   搜尋
                 </button>
               </Link>
-            </Formik>
+            </form>
           </div>
         </div>
       </div>

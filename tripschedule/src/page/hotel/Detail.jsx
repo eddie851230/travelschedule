@@ -2,7 +2,7 @@ import React , { useEffect, useState } from 'react'
 import Footer from "../../components/tool/Footer";
 import RoomCard from '../../components/hotel/RoomCard';
 import HotelCard from '../../components/hotel/HotelCard';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 
 
