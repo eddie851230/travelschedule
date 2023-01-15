@@ -16,6 +16,8 @@ const MemberFavorite = () => {
         .catch(function (error) {
             console.log(error);
         });
+
+        
     useEffect(() => {
 
         window.scrollTo(0, 0);

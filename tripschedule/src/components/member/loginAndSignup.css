@@ -162,7 +162,7 @@
 
 .login .center {
   position: absolute;
-  top: calc(50% - 10%);
+  top: calc(55% - 10%);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 65%;
@@ -371,7 +371,7 @@
 
 
 /* 自製多選設定---------------------------- */
-.signup .container {
+.loginAndSignup .container {
   display: inline-block;
   position: relative;
   padding-left: 25px;
@@ -386,7 +386,7 @@
 }
 
 /* 隱藏多選格預設 */
-.signup .container input {
+.loginAndSignup .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -395,7 +395,7 @@
 }
 
 /* 多選選單變化製作 */
-.signup .checkmark {
+.loginAndSignup .checkmark {
   position: absolute;
   top: 3px;
   left: 4px;
@@ -407,28 +407,28 @@
 }
 
 
-.signup .container:hover input~.checkmark {
+.loginAndSignup .container:hover input~.checkmark {
   background-color: #d5e1e0;
   transition: .2s ease-in;
 }
 
 
-.signup .container input:checked~.checkmark {
+.loginAndSignup .container input:checked~.checkmark {
   background-color: #376B6D;
 }
 
 
-.signup .checkmark:after {
+.loginAndSignup .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.signup .container input:checked~.checkmark:after {
+.loginAndSignup .container input:checked~.checkmark:after {
   display: block;
 }
 
-.signup .container .checkmark:after {
+.loginAndSignup .container .checkmark:after {
   left: 3.5px;
   top: 0px;
   width: 7px;
@@ -440,27 +440,31 @@
   transform: rotate(45deg);
 }
 
+.loginAndSignup label {
+  color: #376B6D;
+}
+
 /* JS之後的CSS */
 
 /* 註冊下一步 */
 @keyframes nextstep {
-  
+
   from {
     opacity: 1;
-    
+
   }
 
   to {
     opacity: 0;
-    
+
   }
 
 }
 
-.closeSignupStep{
+.closeSignupStep {
   animation: nextstep .6s ease-in;
 }
-.showSignupStep{
+
+.showSignupStep {
   animation: nextstep .6s ease-in reverse;
 }
-

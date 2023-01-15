@@ -1,3 +1,5 @@
+/* navbar及scrollbar */
+
 :root {
     --white-color: #fff;
     --dark-color: #222;
@@ -12,12 +14,11 @@
 
     --scroll-bar-color: #fff;
     --scroll-thumb-color: #14246c;
-    --scroll-thumb-hover-color: #3556b2;
-    --hover-color: rgb(109, 225, 248);
+    --scroll-thumb-hover-color: rgb(156, 196, 156);
+    --hover-color: #feda02;
     --logo-hover-color: rgb(238, 128, 109);
     --black: rgb(0, 0, 0);
 }
-
 /* ====== scroll bar ======= */
 
 ::-webkit-scrollbar {

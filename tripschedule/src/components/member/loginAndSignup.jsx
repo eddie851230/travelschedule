@@ -1,9 +1,21 @@
-import React, { useHistory, useRef, useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useRef, useState,useContext } from 'react';
+import { Link,useNavigate } from "react-router-dom";
 import "./loginAndSignup.css";
 import "../tool/cueTitle.css";
+import { http,loginapi,memberapi } from '../../WebAPI';
+import { setAuthToken } from "../../utils";
+import AuthContext  from "../../contexts";
+
+
+
+
 
 const LoginandSignup = () => {
+    // 轉跳頁面
+    const navigate=useNavigate();
+
+    // 登入辨認
+    const { setUser } = useContext(AuthContext);
 
 
     // 前端動畫
@@ -62,14 +74,61 @@ const LoginandSignup = () => {
 
     }
 
-    // const [errorMessage, setErrorMessage] = useState(false);
-
-    // useEffect
-
     // 以上為前端動畫
 
 
 
+//登入api
+
+
+//  登入表單資料抓取
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
+
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+ 
+    await http.get('/sanctum/csrf-cookie');
+    await loginapi(email, password).then((data) => {
+        
+    // 失敗顯示登入失敗原因
+       if(data===422){
+        return setErrorMessage(`帳號未註冊或輸入格式錯誤`);
+       }else if(data === 401)  return setErrorMessage("密碼錯誤");
+        // 成功的話就把 token 存到 localStorage
+        setAuthToken(data.data.token);
+
+        // 驗證
+        memberapi().then((res) => {
+           console.log("member",res)
+        if (res === 401) {
+          // 在 memberapi() 出錯代表還沒成功登入，因此要把 token 清空
+          setAuthToken(null);
+          setErrorMessage("密碼錯誤");
+        }
+        else{
+            setUser(res.data);
+            // 導到首頁
+            navigate("/");
+        }
+         })
+
+        });
+    };
+
+
+
+ 
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
 
 
@@ -153,11 +212,15 @@ const LoginandSignup = () => {
                                     <div className="line"><i className="fa-brands fa-line"></i></div>
                                 </div>
                                 <hr />
-                                <input type="email" className="input" placeholder="Email" required />
-                                <input type="password" className="input" placeholder="密碼" required />
-                                {/* {errorMessage && <><hr /><small style={{ color: 'red' }}>{errorMessage}</small></>} */}
+                                <input type="email" name="email" className="input" placeholder="Email" required onChange={handleEmail} value={email}/>
+                                <input type="password" name="password" className="input" placeholder="密碼" required onChange={handlePassword} value={password}/>
+                                {errorMessage && <><small style={{ color: 'red' }}>&nbsp;&nbsp;&nbsp;{errorMessage}</small></>}
                             </div>
-                            <button className="submit-btn" >登 入</button>
+                            <button className="submit-btn" onClick={handleSubmit}>登 入</button>
+                            <label className="container">記住我
+                                        <input type="checkbox" name="interst" value="havefun" />
+                                        <span className="checkmark"></span>
+                                    </label>
                         </form>
                         <Link to="/forgetpassword"><div className="forget">忘記密碼</div></Link>
                     </div>
@@ -165,9 +228,30 @@ const LoginandSignup = () => {
             </div>
         </div>
     )
+};
 
-}
 
 
 
 export default LoginandSignup;
+
+
+// export const LoginButton = () => {
+//     const { authenticated, user, signIn } = useSanctum();
+  
+//     const handleLogin = () => {
+//       const email = "sanctum@example.org";
+//       const password = "example";
+//       const remember = true;
+  
+//       signIn(email, password, remember)
+//         .then(() => window.alert("Signed in!"))
+//         .catch(() => window.alert("Incorrect email or password"));
+//     };
+  
+//     if (authenticated === true) {
+//       return <h1>Welcome, {user.name}</h1>;
+//     } else {
+//       return <button onClick={handleLogin}>Sign in</button>;
+//     }
+//   };

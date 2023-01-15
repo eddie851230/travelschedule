@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // 安裝icon、bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-// import axios from "axois";
 
 
 
@@ -32,42 +31,61 @@ import ForgetPassword from './page/member/ForgetPassword';
 // 導覽列
 import Navigation from './components/tool/Navigation';
 
+//驗證登入狀態
+import AuthContext from "./contexts";
+import { getAuthToken } from "./utils";
+import { memberapi } from './WebAPI';
+
 // 頁尾
 // import Footer from './components/tool/Footer';
 
-// 測試
-import Resetpassword from "./page/member/Resetpassword";
 
 
 function App() {
 
+  //  驗證是否持續還在登入中
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    // 以 getAuthToken 從 localStorage 讀取 token
+    if (getAuthToken()) {
+      // 有 token 才 call API
+      memberapi().then((response) => {
+        if (response.status===200) {
+          setUser(response.data);
+        }
+      });
+    }
+  }, []);
 
   return (
     <div>
-      <BrowserRouter>
 
-        <Navigation />
+      <AuthContext.Provider value={{ user, setUser }}>
+        <BrowserRouter>
 
-        <Routes>
-          <Route path="/" element={<BeforeLogin/>} exact />
-          <Route path="/Home/:id" element={<Home/>} exact />
-          <Route path="/Airticket" element={<Airticket/>} exact />
-          <Route path="/Spot" element={<Spot/>} />
-          <Route path="/Spot/:id" element={<Spot/>} />
-          <Route path="/Hotel" element={<Hotel/>} />
-          <Route path="/Hotel/:id" element={<Hotel/>} />
-          {/* <Route path="/beforeLogin" element={<beforeLogin/>} /> */}
-          <Route path="/Schedule" element={<Schedule/>} />
-          <Route path="/member/LoginandSignup" element={<LoginandSignup/>} />
-          <Route path="/member/MemberFavorite/" element={<MemberFavorite/>} />
-          <Route path="/member/MemberSchedule/" element={<MemberSchedule/>} />
-          <Route path="/member/Setting/" element={<Setting/>} />
-          <Route path="/forgetpassword" element={<ForgetPassword/>} />
-          <Route path="/Resetpassword" element={<Resetpassword/>} />
-          <Route component={Error} />
-        </Routes>
-      </BrowserRouter>
+          <Navigation />
+
+          <Routes>
+            {!user &&(<Route path="/" element={<BeforeLogin />} />)}
+            {user &&(<Route path="/" element={<Home />} />)}
+            <Route path="/Airticket" element={<Airticket />} />
+            <Route path="/Spot" element={<Spot />} />
+            <Route path="/Spot/:id" element={<Spot />} />
+            <Route path="/Hotel" element={<Hotel />} />
+            <Route path="/Hotel/:id" element={<Hotel />} />
+            <Route path="/Schedule" element={<Schedule />} />
+            <Route path="/LoginandSignup" element={<LoginandSignup />} />
+            <Route path="/member/MemberFavorite/" element={<MemberFavorite />} />
+            <Route path="/member/MemberSchedule/" element={<MemberSchedule />} />
+            <Route path="/member/Setting/" element={<Setting />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            {/* <Route path="/Resetpassword" element={<Resetpassword/>} /> */}
+            <Route component={Error} />
+          </Routes>
+        </BrowserRouter>
+      </AuthContext.Provider>
+
     </div>
 
   );

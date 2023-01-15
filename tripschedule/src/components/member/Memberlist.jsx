@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+import AuthContext from '../../contexts';
+import { setAuthToken } from '../../utils';
 
 const Memberlist = (props) => {
+    // 導向頁面的宣告
+    const {setUser}  = useContext(AuthContext);
+    const navigate = useNavigate();
 
+    // 設定登出後狀態
+    const handleLogout = () => {
+        setAuthToken("");
+        setUser(null);
+        navigate("/");
+    };
+
+    // CSS
     const Modelbox = styled.div`
     position: fixed;
     top: 0;
@@ -20,7 +33,7 @@ const Memberlist = (props) => {
     z-index: 10000;
     `
 
-    const MemberList=styled.div`
+    const MemberList = styled.div`
     padding:1%;
     width:fit-content;
     height:fit-content;
@@ -29,32 +42,32 @@ const Memberlist = (props) => {
    
     `
 
-    const Userinfo=styled.div`
+    const Userinfo = styled.div`
     margin:auto;
     display: flex;
     justify-content:space-evenly;
     align-items:center;
     `
 
-    const Userimg=styled.img`
+    const Userimg = styled.img`
     width:50px;
     height:50px;
     clip-path: circle(50% at 50% 50%);
     `
 
-    const UserInfotext=styled.div`
+    const UserInfotext = styled.div`
     padding:10px;
     `;
 
-    const Username=styled.div`
+    const Username = styled.div`
     font-size:150%;
     `
 
-    const Email=styled.div`
+    const Email = styled.div`
     font-size:80%;
     `
 
-    const Membermenu=styled.div`
+    const Membermenu = styled.div`
     display: flex;
     flex-direction:column;
     `
@@ -68,7 +81,7 @@ const Memberlist = (props) => {
     }
     `
 
-    const Logout=styled.div`
+    const Logout = styled.div`
     cursor:pointer;
     padding-left:5px;
     &:hover{
@@ -78,7 +91,7 @@ const Memberlist = (props) => {
     `
 
     return (props.trigger) ? (
-        <Modelbox onClick={()=>props.setShow(false)}>
+        <Modelbox onClick={() => props.setShow(false)}>
             <MemberList>
                 <Userinfo>
                     <Userimg src="/img/淺草寺.jpg" alt="avatar" />
@@ -94,7 +107,7 @@ const Memberlist = (props) => {
                     <StyledLink to="/member/Setting/">設定</StyledLink>
                 </Membermenu>
                 <hr />
-                <Logout>登出</Logout>
+                <Logout onClick={handleLogout}>登出</Logout>
             </MemberList>
 
         </Modelbox>
