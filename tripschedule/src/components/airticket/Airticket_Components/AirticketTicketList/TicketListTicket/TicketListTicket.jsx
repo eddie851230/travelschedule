@@ -9,7 +9,7 @@ function TicketListTicket(props) {
   var ticketlegsObj = Object.values(Data.content.results.legs)
   var ticketlegskey = Object.keys(Data.content.results.legs)
   var ticketSearch = Data
-
+  
   // LEGS
   const ticketMake = ticketlegsObj.map((ticket, x) => {
     var ticketNum = ticketlegskey[x]
@@ -66,21 +66,23 @@ function TicketListTicket(props) {
       </div>
     )
   })
-
+  
   useEffect(() => {
     var filterArr = []
+    
     for (let key in props.sideFilter) {
       if (props.sideFilter[key] === true) {
         filterArr.push(key)
       }
     }
     setFilterArr(filterArr)
+    console.log("123")
   }, [props.sideFilter])
-
+  
+  
   const filterTicket = ticketMake.filter(ticket => {
     return FilterArr.includes((ticket.props.className).split(" ")[0]);
   });
-
 
 
   return (

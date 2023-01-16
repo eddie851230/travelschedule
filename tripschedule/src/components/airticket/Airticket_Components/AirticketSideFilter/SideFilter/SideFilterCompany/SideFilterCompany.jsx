@@ -16,7 +16,7 @@ function SideFilterCompany(props) {
     const searchcheck = (e) => {
         var sideValue = props.sideFilter;
         sideValue[e.target.value] = e.target.checked
-        props.setsideFilter(sideValue)
+        props.setsideFilter(sideValue) 
     };
     
     const CoolCatMaker = CarriersObj.map((x, Carrykey) => {

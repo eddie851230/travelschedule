@@ -21,9 +21,9 @@ function Airticket() {
     const [departureDate, setdepartureDate] = useState(moment().format("YYYY-M-D"));
     const [returnDate, setreturnDate] = useState(moment().format("YYYY-M-D"));
     const [people, setpeople] = useState(1);
+    
     const searchRef = () => {
         console.log(returnDate)
-        // console.log(sideFilter)
         fetch(url, {
             method: "POST",
             body: JSON.stringify({
