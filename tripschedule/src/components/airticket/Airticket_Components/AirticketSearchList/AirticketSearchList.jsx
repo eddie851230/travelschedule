@@ -18,7 +18,7 @@ function AirticketSearchList(props) {
             </select>
             {/* <!-- 到達地點 --> */}
             <label htmlFor="arrivalSpot">抵達地點</label>
-            <select name="" id="arrivalSpot" onChange={(e) => props.setarrivalSpot(moment(e.target.value))}>
+            <select name="" id="arrivalSpot" onChange={(e) => props.setarrivalSpot(e.target.value)}>
                 <option value="HND">東京羽田國際機場(HND)</option>
                 <option value="NRT">成田國際機場(NRT)</option>
                 <option value="TPE">臺灣桃園國際機場(TPE)</option>

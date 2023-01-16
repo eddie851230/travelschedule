@@ -20,7 +20,7 @@ function TicketListTicket(props) {
     var marketingCarrierIds = ticket.marketingCarrierIds[0]
     var priceAmount = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].price.amount
     var deepLink = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].items[0].deepLink
-
+    
     // 時間
     var startDateTime = ticket.departureDateTime
     var endDateTime = ticket.arrivalDateTime
@@ -76,7 +76,7 @@ function TicketListTicket(props) {
       }
     }
     setFilterArr(filterArr)
-    console.log("123")
+      
   }, [props.sideFilter])
   
   
@@ -84,7 +84,7 @@ function TicketListTicket(props) {
     return FilterArr.includes((ticket.props.className).split(" ")[0]);
   });
 
-
+ 
   return (
     <>
       {filterTicket}
