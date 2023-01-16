@@ -4,12 +4,12 @@ import "./TicketListTicket.css"
 
 function TicketListTicket(props) {
   const [FilterArr, setFilterArr] = useState([]);
-  
+
   var Data = props.apiData
   var ticketlegsObj = Object.values(Data.content.results.legs)
   var ticketlegskey = Object.keys(Data.content.results.legs)
   var ticketSearch = Data
-  
+
   // LEGS
   const ticketMake = ticketlegsObj.map((ticket, x) => {
     var ticketNum = ticketlegskey[x]
@@ -20,7 +20,7 @@ function TicketListTicket(props) {
     var marketingCarrierIds = ticket.marketingCarrierIds[0]
     var priceAmount = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].price.amount
     var deepLink = ticketSearch.content.results.itineraries[ticketNum].pricingOptions[0].items[0].deepLink
-    
+
     // 時間
     var startDateTime = ticket.departureDateTime
     var endDateTime = ticket.arrivalDateTime
@@ -66,31 +66,29 @@ function TicketListTicket(props) {
       </div>
     )
   })
-  
+
   useEffect(() => {
     var filterArr = []
-    
     for (let key in props.sideFilter) {
-      if (props.sideFilter[key] === true) {
+      if (props.sideFilter[key] === true) { 
         filterArr.push(key)
       }
     }
     setFilterArr(filterArr)
-      
   }, [props.sideFilter])
-  
-  
+
+
   const filterTicket = ticketMake.filter(ticket => {
     return FilterArr.includes((ticket.props.className).split(" ")[0]);
   });
 
- 
+
   return (
     <>
       {filterTicket}
     </>
   );
 }
- 
 
-export default TicketListTicket;
+
+export default TicketListTicket; 

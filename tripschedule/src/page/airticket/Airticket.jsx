@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AirBackgroundImg from "../../components/airticket/Airticket_Components/AirBackgroundImg/AirBackgroundImg"
 import AirticketSearchList from '../../components/airticket/Airticket_Components/AirticketSearchList/AirticketSearchList';
 import AirticketSearchButton from '../../components/airticket/Airticket_Components/AirticketSearchButton/AirticketSearchButton';
@@ -21,7 +21,7 @@ function Airticket() {
     const [departureDate, setdepartureDate] = useState(moment().format("YYYY-M-D"));
     const [returnDate, setreturnDate] = useState(moment().format("YYYY-M-D"));
     const [people, setpeople] = useState(1);
-    
+
     const searchRef = () => {
         console.log(returnDate)
         fetch(url, {
