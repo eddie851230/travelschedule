@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulesController;
+use App\Http\Controllers\HotelsController;
+
+// fortify
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +18,25 @@ use App\Http\Controllers\SchedulesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// fortify
+// Authentication...
+
+
+// $limiter = config('fortify.limiters.login');
+
+
+// Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+// ->middleware(array_filter([
+//     'guest:'.config('fortify.guard'),
+//     $limiter ? 'throttle:'.$limiter : null,
+// ]));
+
+// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+// ->name('logout');
+
 Route::resource('schedules', SchedulesController::class);
+// Route::resource('hotels', HotelsController::class);
+
+//寫法二
+Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
