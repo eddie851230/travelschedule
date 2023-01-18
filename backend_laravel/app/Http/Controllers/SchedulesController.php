@@ -33,6 +33,7 @@ class SchedulesController extends Controller
     {
         // function array_to_json($sel_array)
         // {
+<<<<<<< HEAD
 
         //     foreach ($sel_array as $key => $value) {
         //         if (
@@ -54,6 +55,26 @@ class SchedulesController extends Controller
             = DB::table('schedules_info')
             ->get();
             // ->where('user_id',$data['userid'])
+=======
+
+        //     foreach ($sel_array as $key => $value) {
+        //         if (
+        //             is_string($key) || is_string($value)
+        //         ) {
+
+        //             $new_array[urlencode($key)] = urlencode($value);
+        //         }
+        //     }
+
+        //     return urldecode(json_encode($new_array));
+        // }
+
+        DB::connection('mysql');
+
+        $users
+            = DB::table('schedules_info')
+            ->get();
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
 
         $users = json_decode($users->toJson());
         return $users;
@@ -124,8 +145,12 @@ class SchedulesController extends Controller
         DB::table('schedules_info')->insert([
             'name' => $data['schduleName'],
             'date_start' => $data['startdate'],
+<<<<<<< HEAD
             'date_end' => $data['enddate'],
             'user_id'=>$data['userid']
+=======
+            'date_end' => $data['enddate']
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
         ]);
         return "success";
 

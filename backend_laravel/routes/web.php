@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\HotelsController;
+<<<<<<< HEAD
 
 // fortify
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
+=======
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +21,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 |
 */
 
+<<<<<<< HEAD
 
 // fortify
 // Authentication...
@@ -37,6 +41,13 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 Route::resource('schedules', SchedulesController::class);
 // Route::resource('hotels', HotelsController::class);
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::resource('schedules', SchedulesController::class);
+Route::resource('hotels', HotelsController::class);
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
 
 //寫法二
 Route::get('/showSpot', [SchedulesController::class, 'showSpot']);

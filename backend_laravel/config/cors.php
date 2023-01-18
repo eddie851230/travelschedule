@@ -15,6 +15,7 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'paths' => [
         'api/*',
         'login',
@@ -27,6 +28,9 @@ return [
         'user/profile-information',
         'email/verification-notification',
     ],
+=======
+    'paths' => ['api/*','login', 'sanctum/csrf-cookie'],
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
 
     'allowed_methods' => ['*'],
 

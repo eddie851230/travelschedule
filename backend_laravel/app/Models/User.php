@@ -21,10 +21,14 @@ class User extends Authenticatable
         'loginway',
         'name',
         'email',
+<<<<<<< HEAD
         'password',
         'profile_photo_path',
         'coverphoto_path',
        
+=======
+        'password'
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
     ];
 
     /**

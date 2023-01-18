@@ -46,6 +46,7 @@ Route::post('/register', [AuthController::class, 'register']);
 // 登入
 Route::post('/login', [AuthController::class, 'login']);
 
+<<<<<<< HEAD
 
 // 登入之後才能做的事情
 Route::group(['middleware' => ['auth:sanctum']], function () { {
@@ -55,10 +56,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () { {
         return $request->user();
     });
     
+=======
+// 身分驗證
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// 登入之後才能做的事情
+Route::group(['middleware' => ['auth:sanctum']], function () { {
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::resource('schedules', SchedulesController::class);
     
+<<<<<<< HEAD
     // Route::resource('hotels', HotelsController::class);
   
     //寫法2
@@ -187,4 +198,10 @@ if (Features::enabled(Features::twoFactorAuthentication())) {
 
 
 
+=======
+    Route::resource('hotels', HotelsController::class);
+  
+    //寫法2
+    Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
+>>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
 }});
