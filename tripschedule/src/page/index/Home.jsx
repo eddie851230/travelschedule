@@ -1,17 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Footer from "../../components/tool/Footer";
 import Video from "../index/tools/video";
 import Teach from "../index/tools/teach";
 import Hhtspot from "../index/tools/homeHotSpot";
 import Homesch from "../index/tools/homeHotSchedule";
 import "../index/Home.css";
+import CreateNewSchedule from "../../components/member/CreateNewSchedule";
+
+
 const Home = () => {
+    
+// 展開建立行程表單
+    const [scheShow, setScheshow] = useState(false);
 
     return (
         <div>
             < Video />
             < Teach />
-            <div className="homeBtn"><button type="button">開始您的行程</button></div>
+            <div className="homeBtn"><button type="button" onClick={() => setScheshow(true)}>開始您的行程</button></div>
+            <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow}/>
             < Homesch />
             < Hhtspot />
             <section className="cta">

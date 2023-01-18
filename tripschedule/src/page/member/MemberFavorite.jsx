@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect,useContext } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
 import "../member/member.css";
 import styled from 'styled-components';
-import axios from "axios"
+// import axios from "axios"
+import AuthContext from '../../contexts';
 
 const MemberFavorite = () => {
-    // targetURL使用的網址是範例，實際測試要搭配你的認證碼喔
-    let targetURL = "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-A0012-001?Authorization=CWB-1234ABCD-78EF-GH90-12XY-IJKL12345678&format=XML";
 
-    axios.get(targetURL)
-        .then(function (response) {
-            // console.log(response) //<-- 你可以顯示完整的response
-            console.log(response.data.cwbopendata.dataset);
-        }) //<-- response資料太多，我們顯示回傳的資料
-        .catch(function (error) {
-            console.log(error);
-        });
+    const navigate=useNavigate();
 
+     // 判斷是否有會員登入中
+     const {user}  = useContext(AuthContext);
         
     useEffect(() => {
 
@@ -59,24 +53,22 @@ font-weight:700;
 background-color:#376B6D;
 border-radius:10px;
 `
+// alert(user);
 
     return (
         <>
             {/* <!-- 封面故事 --> */}
-            <img src="/img/景點相片預覽(暗色).jpg" alt="mainstory" id="mainstory" className="w-100" />
-
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
                     {/* <!-- 旁邊導覽列 --> */}
                     <div className="sidebar col-2">
                         <div>
-                            <img src="/img/景點相片預覽(暗色).jpg" alt="avatar" id="avatar" />
-                            <div>
-                                檸檬怪jiojekjlkejlkgjl
-                            </div>
+                        <img src={user["profile_photo_path"]} alt="avatar" id="avatar" />
+                            <div>{user.name}</div>
                         </div>
-                        <a href="/member/MemberSchedule"><div>行程表</div></a>
+                        <div className="thisPage" onClick={()=>navigate("/member/MemberSchedule/")}>行程表</div>
                         <div>收藏名單</div>
                     </div>
 

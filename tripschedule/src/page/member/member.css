@@ -127,12 +127,12 @@ h5{
     background-color: #f1f1f1;
 }
 
-.membermain .sidebar a div {
+.membermain .sidebar .thisPage{
     background-color: #f1f1f1;
     color: var(--nav-bg-color);
 }
 
-.membermain .sidebar a div:hover:not(.active) {
+.membermain .sidebar .thisPage:hover:not(.active) {
     background-color: #feda02;
     color: #000;
     transition: .2s cubic-bezier(0.215, 0.610, 0.355, 1);

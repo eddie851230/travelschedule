@@ -35,5 +35,8 @@ export const memberapi = () => {
         headers: {
             authorization: `Bearer ${token}`
         },
-    }).then((res) => res).catch((error) => error.response.status);
+    }).then((res) => res).catch((error) => error
+    // .response.status
+    );
 };
+

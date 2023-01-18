@@ -46,17 +46,27 @@ function App() {
   //  驗證是否持續還在登入中
   const [user, setUser] = useState(null);
 
+  // 設定是否有會員存在?優化重整畫面會閃出未登入畫面
+  const [ismember,setIsmember]=useState(true);
+
   useEffect(() => {
-    // 以 getAuthToken 從 localStorage 讀取 token
+    // 以 getAuthToken 從 cookies讀取 token
     if (getAuthToken()) {
+   
       // 有 token 才 call API
-      memberapi().then((response) => {
+     memberapi().then((response) => {
+      console.log(response)
         if (response.status===200) {
+          console.log("app",response.data)
           setUser(response.data);
+          setIsmember(false);
+        }
+        else {
+          setIsmember(false);
         }
       });
     }
-  }, []);
+  } , []);
 
   return (
     <div>
@@ -67,17 +77,17 @@ function App() {
           <Navigation />
 
           <Routes>
-            {!user &&(<Route path="/" element={<BeforeLogin />} />)}
+            {user===null &&(<Route path="/" element={<BeforeLogin />} />)}
             {user &&(<Route path="/" element={<Home />} />)}
             <Route path="/Airticket" element={<Airticket />} />
             <Route path="/Spot" element={<Spot />} />
-            <Route path="/Spot/:id" element={<Spot />} />
+            <Route path="/Spot/:id" element={<Spot />} exact/>
             <Route path="/Hotel" element={<Hotel />} />
             <Route path="/Hotel/:id" element={<Hotel />} />
             <Route path="/Schedule" element={<Schedule />} />
-            <Route path="/LoginandSignup" element={<LoginandSignup />} />
+            <Route path="/LoginandSignup" element={<LoginandSignup />}/>
             <Route path="/member/MemberFavorite/" element={<MemberFavorite />} />
-            <Route path="/member/MemberSchedule/" element={<MemberSchedule />} />
+            <Route path="/member/MemberSchedule/" element={<MemberSchedule/>} />
             <Route path="/member/Setting/" element={<Setting />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
             {/* <Route path="/Resetpassword" element={<Resetpassword/>} /> */}

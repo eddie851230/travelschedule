@@ -1,15 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect,useContext } from 'react';
+import { Link,useNavigate } from "react-router-dom";
 import "../member/member.css";
 import CreateNewSchedule from "../../components/member/CreateNewSchedule";
 import styled from 'styled-components';
-import axios from "axios"
+import axios from "axios";
+import AuthContext from '../../contexts';
 
 
 const MemberSchedule = () => {
+    const navigate=useNavigate();
 
 
 
+     // 判斷是否有會員登入中
+     const {user}  = useContext(AuthContext);
+
+     console.log("user",user);
+     
+    //  useEffect(()=>{
+    //     axios.post(`http://localhost:8000/${user.id}/schedules`,{
+    //         userid:user.id
+    //     }).then((res)=>{
+    //         // alert("跑進來了??");
+    //         // 如果回應成功變200時進行登入
+    //         if(res.status===200){
+    //             console.log(res.data)
+    //             return res.data
+    //         }});
+    //  },[])
+
+    // 轉址後轉跳最上方
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -57,7 +77,10 @@ const MemberSchedule = () => {
     useEffect(() => {
         axios.get("http://localhost:8000/schedules").then((response) => {
             setSchdule(response.data);
-        });
+        }).catch(()=>"無法找到");
+
+
+
     }, []);
 
     if (!schdule) return "沒有行程表";
@@ -69,25 +92,21 @@ const MemberSchedule = () => {
 
     return (
         <>
-            {/* <!-- 封面故事 --> */}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG" alt="mainstory" id="mainstory" className="w-100" />
-
+               {/* <!-- 封面故事 --> */}
+               <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
             {/* <!-- 主要頁面 --> */}
-
             <div className="membermain">
                 <Row className="row w-100">
                     {/* <!-- 旁邊導覽列 --> */}
                     <div className="sidebar col-2">
                         <div>
-                            <img src="/img/景點相片預覽(暗色).jpg" alt="avatar" id="avatar" />
-                            <div>
-                                檸檬怪jiojekjlkejlkgjl
-                            </div>
+                        <img src={user["profile_photo_path"]} alt="avatar" id="avatar" />
+                            <div>{user.name}</div>
                         </div>
                         <div>行程表</div>
-                        <Link to="/member/MemberFavorite">
-                            <div>收藏名單</div>
-                        </Link>
+                        
+                        <div className="thisPage" onClick={()=>navigate("/member/MemberFavorite/")}>收藏名單</div>
+                        
                     </div>
                     {/* <!-- 新增行程表按鈕 --> */}
                     <input type="button" value="新增行程表" className="addSchdule" onClick={() => setScheshow(true)} />

@@ -14,7 +14,6 @@ const BeforeLogin = () => {
                             前往東京自由行的旅客,根據自身的喜好<br />
                             以系統的判斷來推薦行程,進而創建行程表<br />
                             提供交通、景點、機票、住宿等服務.<hr />
-<br/><br/><br/>
                             為方便系統推薦與增加行程請先註冊或登錄會員。</p>
                         <Link to="/LoginandSignup"><button type="button">登錄/註冊</button></Link>
                     </div>
