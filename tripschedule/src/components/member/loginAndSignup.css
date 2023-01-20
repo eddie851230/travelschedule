@@ -444,19 +444,23 @@
 
 /* 註冊下一步 */
 @keyframes nextstep {
-  form {
-    opacity: 0;
+  
+  from {
+    opacity: 1;
+    
   }
 
   to {
-    opacity: 1;
+    opacity: 0;
+    
   }
+
 }
 
-.step1 {
-  display: block;
+.closeSignupStep{
+  animation: nextstep .6s ease-in;
+}
+.showSignupStep{
+  animation: nextstep .6s ease-in reverse;
 }
 
-.step2 {
-  display: none;
-}

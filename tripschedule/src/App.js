@@ -31,6 +31,7 @@ import Setting from './page/member/Setting';
 import ForgetPassword from './page/member/ForgetPassword';
 
 
+
 // 導覽列
 import Navigation from './components/tool/Navigation';
 
@@ -42,8 +43,10 @@ import Resetpassword from "./page/member/Resetpassword";
 
 
 function App() {
-  return (
 
+
+
+  return (
     <div>
       <BrowserRouter>
 

@@ -4,9 +4,9 @@
     text-shadow:0 0 5px var(--nav-bg-color);
 }
 
-a,
-a:hover,
-a:active {
+.membermain a,
+.membermain a:hover,
+.membermain a:active {
     text-decoration: none;
     color: black;
 }

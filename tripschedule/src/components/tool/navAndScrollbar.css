@@ -118,7 +118,7 @@ header .logo img:first-child {
     transition: 0.3s ease;
     /*  */
     color: var(--white-color);
-    font-size: 22px;
+    font-size: 16px;
     text-decoration: none;
     text-shadow: var(--text-shadow);
 
@@ -127,9 +127,9 @@ header .logo img:first-child {
 
 
 
+
 .navigation .nav-items a:not(:last-child) {
     margin-right: 25px;
-    /* 45 */
 }
 
 header .navigation .nav-items a:before,header .navigation .nav-items div:before {
@@ -148,8 +148,8 @@ header .navigation .nav-items a:hover:before,header .navigation .nav-items div:h
     background-color: #feda02;
 }
 
+
 header .navigation .nav-items a:hover,header .navigation .nav-items div:hover{
     color: #feda02;
     cursor: pointer;
-    font-weight: 700;
 }
