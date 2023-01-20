@@ -187,7 +187,7 @@ const handleRPassword=(e)=>{
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+
  
     await http.get('/sanctum/csrf-cookie');
     await loginapi(email, password).then((data) => {
@@ -202,7 +202,7 @@ const handleRPassword=(e)=>{
         // console.log(data.data.token);
         setAuthToken(data.data.token);
 
-        // 驗證
+        // // 驗證
         memberapi().then((res) => {
         //    console.log("member",res)
         if (res === 401) {
@@ -234,7 +234,7 @@ const handleRPassword=(e)=>{
     //             setUser(res.data.user);
     //             navigate("/");
     //         }
-        // }
+    //     }
 
         // )
     // })
@@ -395,7 +395,7 @@ const handleRPassword=(e)=>{
                                         <span className="checkmark"></span>
                                     </label>
                         </form>
-                        <Link to="/forgetpassword"><div className="forget">忘記密碼</div></Link>
+                        <Link to="/forgot-password"><div className="forget">忘記密碼</div></Link>
                     </div>
                 </div>
             </div>

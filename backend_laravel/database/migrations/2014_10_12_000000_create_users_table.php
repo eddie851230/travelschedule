@@ -13,19 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-=======
-            $table->string('loginway');
->>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-<<<<<<< HEAD
-=======
-            $table->foreignId('current_team_id')->nullable();
->>>>>>> df4af21f9842f7e95e6ec82588c18f6037adfdca
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('coverphoto_path', 100)->nullable();
             $table->timestamps();
