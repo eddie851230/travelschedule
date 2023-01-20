@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
+    z-index: -999;
 }
 
 .Airticketimg_none {
@@ -18,5 +19,4 @@
     background-position: center 75%;
     height: 35vh;
     width: 100%;
-    outline: 3px solid #feda02;
 }

@@ -1,0 +1,10 @@
+.AirticketSideFilterBar {
+    padding-top: 5vh;
+    padding-bottom: -2vh;
+    background-color: #f1f1f1;
+    border: 3px pink solid;
+    width: 12vw;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
