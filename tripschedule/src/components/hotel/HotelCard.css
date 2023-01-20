@@ -1,5 +1,6 @@
 .Card-hotel{
-  flex: 1;
+  /* flex: 1; */
+  /* width: 25%; */
   height: 500px;
   /* background-color: #da663c; */
   padding: 20px;
@@ -28,10 +29,40 @@
 .hotelName{
   color:#376B6D;
   font-size: 22px;
-  margin-bottom:15px ;
+  font-weight: bolder;
+  margin-bottom:10px ;
+  height: 25px;
+  line-height: 25px;
+
+}
+.overFlowHandel{
+  
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+.hotelName-EN{
+  color:#376B6D;
+  font-size: 18px;
+  
+  /* margin-bottom:15px ; */
+}
+.marginTop38{
+  margin-top: 38px;
 }
 .hotelStars{
+  /* margin-top: 38px; */
   color: #376B6D;
+}
+.hotelStars{
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+.hotelStars span{
+  font-size: 18px;
 }
 .showPrice{
   font-size: 20px;

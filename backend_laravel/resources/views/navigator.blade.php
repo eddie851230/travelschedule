@@ -1,0 +1,1 @@
+這段文字來自navigator.blade.php的文字!

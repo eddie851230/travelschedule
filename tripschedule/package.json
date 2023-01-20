@@ -11,12 +11,15 @@
     "axios": "^1.2.2",
     "axois": "^0.0.1-security",
     "bootstrap": "^4.6.2",
+    "browserify-fs": "^1.0.0",
+    "browserify-zlib": "^0.2.0",
     "express": "^4.18.2",
     "formik": "^2.2.9",
     "helmet": "^6.0.1",
     "jquery": "^3.6.3",
     "leaflet": "^1.9.3",
     "mysql": "^2.18.1",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.7.0",
@@ -27,6 +30,7 @@
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
+ 
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -50,5 +54,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "react-app-rewired": "^2.2.1"
   }
 }

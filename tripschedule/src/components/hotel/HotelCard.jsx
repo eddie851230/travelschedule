@@ -4,92 +4,104 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+
 // {process.env.PUBLIC_URL+"/img/Hotel_For_SQL/A02_01.webp"}
 
+// http://127.0.0.1:8000/hotel_list
+
 const HotelCard = () => {
-  useEffect(function () {
+  const [items, setItems] = useState([]);
 
-    axios({
-      //請求方法
-      // get
-      // 獲取數據
-      // post
-      // 提交數據（表單提交+文件上傳）
-      // put
-      // 更新數據（將所有數據均推放到服務端）
-      // patch
-      // 更新數據（只將修改的數據推送到後端）
-      // delete
-      // 刪除數據
-      method: "GET",
-      //url
-      url: "http://127.0.0.1:8000/schedules",
-    
-    }).then((response) => {
-      console.log(response);
-      //狀態
-      // console.log(response.status);
-      //字串
-      // console.log(response.statusText);
-      //文字
-      // console.log(response.headers);
-      //
-      // console.log(response.data);
+  useEffect(() => {
+    getAllHotel();
+  }, []);
+
+  const getAllHotel = () => {
+    axios.get("http://127.0.0.1:8000/hotel_list").then((response) => {
+      console.log(response.data);
+
+      return setItems(response.data);
     });
-  });
+  };
 
-  const [hotelData, sethotelData] = useState([
-    {
-      name: "東京01飯店",
-      stars: 3,
-      price: 1234,
-    },
-    {
-      name: "東京02飯店",
-      stars: 4,
-      price: 4172,
-    },
-    {
-      name: "東京03飯店",
-      stars: 2,
-      price: 8596,
-    },
-  ]);
+  console.log("p".props);
+  // async function example2() {
+  //   //axios 也會回傳一個promise object
+  //   let axiosRes = await axios.get("http://127.0.0.1:8000/hotel_list");
+  //   // console.log(axiosRes.data[0].area);
+  //   const Ch_Name = axiosRes.data.name_CH;
+  //   const En_Name = axiosRes.data.name_EN;
+  // }
+  // example2()
+
+  console.log("items", items);
+
+  // 解決價錢顯示出錯問題
+  // const priceItems = items.'$min(hotels_roomtype.price_weekdays)'
+  // console.log(priceItems)
+
+  //處理出現在前端畫面的陣列物件數量
+  const newItems = items.slice(0, 4); //顯示4個
+
+  // 使用陣列的forEach()方法
 
   return (
-    <Link to="/Hotel/Detail">
-      <div className="Card-hotel">
-        {/* <!-- 照片區 --> */}
-        <div className="zoneImage">
-          <img
-            src={process.env.PUBLIC_URL + "/img/Hotel_For_SQL/A03_01.webp"}
-            alt=""
-          />
-        </div>
-        {/* <!-- 描述區 --> */}
-        <div className="hotelTextZone">
-          {/* 中文 */}
-          <p className="hotelName">{hotelData[2].name}</p>
-          {/* 英文 */}
-          <p className="hotelName">xxx_hotel</p>
-          <p className="hotelStars">
-            <span>{hotelData[2].stars}</span>顆星
-          </p>
-          {/* 位於 */}
-          <p className="hotelStars">位於<span>xxx</span></p>
-          <p className="showPrice">
-            NT$&nbsp;&nbsp;<span>{hotelData[2].price}</span>/晚
-          </p>
+    <>
+      {newItems.map((v) => (
+        <Link to="/Hotel/Detail" >
+          <div className="Card-hotel">
+            {/* <!-- 照片區 --> */}
+            <div className="zoneImage">
+              <img
+                src={process.env.PUBLIC_URL + "/img/Hotel_For_SQL/" + v.path}
+                alt="我很棒棒"
+              />
+            </div>
+            {/* <!-- 描述區 --> */}
+            <div className="hotelTextZone">
+              {/* 中文 */}
+              <p className="hotelName overFlowHandel">{v.name_CH}</p>
 
-          {/* <p className="hotelText hotelTitle">東京xx酒店</p>
-              <p className="ntd">NT$</p>
-              <p className="ntd ">
-                7,456 <span>/晚</span>
-              </p> */}
-        </div>
-      </div>
-    </Link>
+              {/* 英文 */}
+              <p className="hotelName-EN">{v.name_EN}</p>
+
+              {/* 評價 */}
+              <p className="hotelStars marginTop38">
+                <span>{v.stars}</span>顆星
+              </p>
+
+              {/* 位於 */}
+              <p className="hotelStars">
+                位於<span>{v.area}</span>
+              </p>
+
+              <p className="showPrice">
+                NT$&nbsp;&nbsp;
+                <span>{v["min(hotels_roomtype.price_weekdays)"]}</span>/晚
+                {/* <span>{v.'$min(hotels_roomtype.price_weekdays)'}</span>/晚 */}
+                {/* <span>{v.'$min(hotels_roomtype.price_weekdays)'}</span>/晚 */}
+              </p>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </>
   );
+  // 測試
+  // (items.length === 0) ? <p>Loading...</p> :  items.map( (item)=>{
+  //   return <p>{item.name_CH}</p>
+  //   })
+
+  // <div>
+  //   {items.map((item)=>{
+  //     return <p>{item.name_CH}</p>
+  //   })}
+  // </div>
+
+  // -------------------------------------
+  // {items.map(()=>{
+
+  // })}
 };
 
 export default HotelCard;

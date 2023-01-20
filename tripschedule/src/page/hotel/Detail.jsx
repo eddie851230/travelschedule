@@ -118,9 +118,7 @@ const Detail = () => {
         <div className="optionZone">
         {/* <!-- 飯店卡 --> */}
         <HotelCard/>
-        <HotelCard/>
-        <HotelCard/>
-        <HotelCard/>
+       
         </div>
       </div>
 

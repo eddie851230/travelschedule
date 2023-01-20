@@ -1,43 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from "react";
 import './searchCard.css';
 import{Link} from 'react-router-dom';
+import axios from 'axios';
 // import { useState } from 'react';
 
 const SearchCard = () => {
-  // 建立飯店變數:
-  const Hotelinfo = [
-    {tittle:"東京OO飯店",
-    address:"新宿區"},
-    {cost:'7,456元'} 
-  ]
-//  const [Hotelinfo,setHotelinfo] = useState([
-//   {tittle:"東京OO飯店"},
-//   {address:"新宿區"},
-//   {cost:'7,456元'}
-// ])
+
+  // 提取後端資料
+  const[items,setItems] = useState([]);
+
+  useEffect(()=>{
+    getAllHotel();
+  },[]);
+
+  const getAllHotel = ()=>{
+    axios.get('http://127.0.0.1:8000/hotel_list')
+      .then((response)=>{
+        console.log(response.data);
+
+        return setItems(response.data);
+      });
+  };
+
 
   return (  
-    <div className="cardArea">
-      {/* 照片 */}
-      <Link to="/Hotel/Detail">
-      <div className="imageZone">
-        <img src={process.env.PUBLIC_URL+"/img/Hotel_For_SQL/A02_01.webp"} alt=""/>
-      </div>
-      </Link>
-      {/* <!-- 飯店描述 --> */}
-      <div className="hotelDescription">
+    <>
+      {items.map((v)=>(
+          <div className="cardArea">
+          {/* 照片 */}
+          <Link to="/Hotel/Detail">
+          <div id="imageZone">
+            <img id="wherePicture" src={process.env.PUBLIC_URL+"/img/Hotel_For_SQL/"+ v.path} alt=""/>
+          </div>
+          </Link>
+          {/* <!-- 飯店描述 --> */}
+          <div className="hotelDescription">
+    
+            <p id="hotelTitle">{v.name_CH}</p>
+            <span id="hotelDetails">位在<span>{v.area}</span></span>
+            <span id="hotelDetails">評價:&nbsp;<span>{v.stars}</span>&nbsp;/5顆星</span>
+            <p className="priceF">NT$&nbsp;<span>{v["min(hotels_roomtype.price_weekdays)"]}</span>元/晚</p>
+          </div>
+          {/* <!-- 放入收藏與行程 --> */}
+          <div className="btnZone">
+    
+            <button id='btnText01' className='btnStyle colorCollection'>放入收藏</button>
+            <button id='btnText02' className='btnStyle colorSchedule'>安排行程</button>
+          </div>
+        </div>
+      ))}
+    </>
 
-        <p className="hotelTitle">{Hotelinfo[0].tittle}</p>
-        <span>位於<span>新宿區</span></span>
-        <p className="priceF">NT$ <span>7,456元</span>/一晚</p>
-      </div>
-      {/* <!-- 放入收藏與行程 --> */}
-      <div className="btnZone">
 
-        <button className="btnStyle colorCollection">放入收藏</button>
-        <button className="btnStyle colorSchedule">安排此行程</button>
-      </div>
-    </div>
+    
     
   )
 }
