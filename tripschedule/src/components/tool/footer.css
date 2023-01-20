@@ -5,7 +5,10 @@
     height: 30vh;
     /* background-image: linear-gradient(rgba(150, 150, 150, 1), hsla(182, 33%, 32%, 0.95)); */
     background-color: gray;
-    bottom:0;
+    
+    
+    /* position: sticky;
+    bottom:0; */
 }
 
 .footer h4 {

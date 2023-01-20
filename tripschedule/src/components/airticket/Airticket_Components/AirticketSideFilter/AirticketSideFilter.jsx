@@ -1,13 +1,13 @@
 import React from 'react';
 import "./AirticketSideFilter.css"
 import SideFilterCompany from './SideFilter/SideFilterCompany/SideFilterCompany';
+import SideFilterTime from './SideFilter/SideFilterTime/SideFilterTime';
 
 function AirticketSideFilter() {
     return (
-        <div class="AirticketSideFilterBar">
+        <div className="AirticketSideFilterBar">
             <SideFilterCompany/>
-            <SideFilterCompany/>
-            <SideFilterCompany/>
+            <SideFilterTime/>
         </div>
     );
 }

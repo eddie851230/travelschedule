@@ -6,7 +6,7 @@ function SideFilterTime() {
 
     const CoolCatMaker = fake.map((x) => {
         return (
-            <div>
+            <div key={x}>
                 {x}<input type="checkbox" name="Time" value={x}/>
             </div>
         )
@@ -14,7 +14,7 @@ function SideFilterTime() {
 
     return (
         <>
-        <div id='SideFilterTimeTitle'>Title</div>
+        <div id='SideFilterTimeTitle'>Time</div>
         <div id="SideFilterTime">
             {CoolCatMaker}
         </div>

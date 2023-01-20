@@ -1,23 +1,28 @@
 import React from 'react';
 import "./SideFilterCompany.css"
+import Fake from './Fake';
+
+
 
 function SideFilterCompany() {
-    var fake = ["cool", "cat", "men", "tou"]
 
-    const CoolCatMaker = fake.map((x) => {
+    var CarriersObj = Object.values(Fake.content.results.carriers)
+
+    const CoolCatMaker = CarriersObj.map((x) => {
         return (
-            <div>
-                {x}<input type="checkbox" name="company" value={x}/>
+            <div key={"Carriers-" + x.iata}>
+                <label htmlFor={"Carriers-" + x.iata}>{x.name}</label>
+                <input type="checkbox" id={"Carriers-" + x.iata} />
             </div>
         )
     })
 
     return (
         <>
-        <div id='SideFilterCompanyTitle'>Title</div>
-        <div id="SideFilterCompany">
-            {CoolCatMaker}
-        </div>
+            <div id='SideFilterCompanyTitle'>Title</div>
+            <div id="SideFilterCompany">
+                {CoolCatMaker}
+            </div>
         </>
     );
 }
