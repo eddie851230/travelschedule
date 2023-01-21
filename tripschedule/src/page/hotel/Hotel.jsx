@@ -4,6 +4,10 @@ import "./hotel-index.css";
 import Footer from "../../components/tool/Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
+// 會員登入細節
+import  { useContext } from 'react';
+// import AuthContext from '../../contexts';
+// import { setAuthToken } from '../../utils';
 // import { Formik } from 'formik';
 
 // 自製元件
@@ -85,6 +89,10 @@ const Hotel = (props) => {
   // },[])
 
   // console.log(items)
+
+  // 會員登入細節
+  // const {user,setUser}  = useContext(AuthContext);
+  // console.log(user);
 
   return (
     <div id="likeBody">
@@ -563,7 +571,7 @@ const Hotel = (props) => {
             className="searchBtnArea"
             onClick={() => setIsVisible(!isVisible)}
           >
-            <div>價格範圍</div>
+            <div id="btnName">價格範圍</div>
             <div className="iconForSearch">
               <img
                 src={process.env.PUBLIC_URL + "/img/hotel-icon/index-price.png"}
@@ -579,7 +587,7 @@ const Hotel = (props) => {
             className="searchBtnArea"
             onClick={() => setIsVisible(!isVisible)}
           >
-            <div>地區篩選</div>
+            <div id="btnName">地區篩選</div>
             <div className="iconForSearch">
               <img
                 src={
@@ -598,7 +606,7 @@ const Hotel = (props) => {
             className="searchBtnArea"
             onClick={() => setIsVisible(!isVisible)}
           >
-            <div>所有設施</div>
+            <div id="btnName">所有設施</div>
             <div className="iconForSearch">
               <img
                 src={
