@@ -11,6 +11,7 @@
     font-size: large;
     width: 10%;
     text-align: center;
+    z-index: 99;
 
     /* 動畫 */
     transition: .3s ease-in;

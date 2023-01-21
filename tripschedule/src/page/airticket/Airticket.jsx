@@ -3,7 +3,9 @@ import AirBackgroundImg from "../../components/airticket/Airticket_Components/Ai
 import AirticketSearchList from '../../components/airticket/Airticket_Components/AirticketSearchList/AirticketSearchList';
 import AirticketSearchButton from '../../components/airticket/Airticket_Components/AirticketSearchButton/AirticketSearchButton';
 import AirticketSideFilter from '../../components/airticket/Airticket_Components/AirticketSideFilter/AirticketSideFilter';
+import AirticketTicketList from '../../components/airticket/Airticket_Components/AirticketTicketList/AirticketTicketList';
 import "../airticket/Airticket.css";
+
 
 
 function Airticket() {
@@ -28,6 +30,7 @@ function Airticket() {
 
                     <div className="ChoosePageOutput">
                        <AirticketSideFilter/>
+                        <AirticketTicketList/>
                     </div>
                 </div>
             )

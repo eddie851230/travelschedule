@@ -8,7 +8,6 @@ function AirBackgroundImg(props) {
                         <div id='Airticket_img' className={props.AirticketImgSize}></div>
                 </>
         );
-
 }
 
 export default AirBackgroundImg;
