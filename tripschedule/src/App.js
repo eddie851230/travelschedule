@@ -43,21 +43,14 @@ import { memberapi } from "./WebAPI";
 function App() {
   //  驗證是否持續還在登入中
   const [user, setUser] = useState(null);
-  // 設定是否有會員存在?優化重整畫面會閃出未登入畫面
-  const [ismember, setIsmember] = useState(true);
 
   useEffect(() => {
     // 以 getAuthToken 從 cookies讀取 token
     if (getAuthToken()) {
       // 有 token 才 call API
       memberapi().then((response) => {
-        console.log(response);
         if (response.status === 200) {
-          console.log("app", response.data);
           setUser(response.data);
-          setIsmember(false);
-        } else {
-          setIsmember(false);
         }
       });
     }
@@ -65,28 +58,36 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
-        <Navigation />
+      <AuthContext.Provider value={{ user, setUser }}>
+        <BrowserRouter>
+          <Navigation />
 
-        <Routes>
-          <Route path="/" element={<BeforeLogin />} exact />
-          <Route path="/Home/:id" element={<Home />} exact />
-          <Route path="/Airticket" element={<Airticket />} exact />
-          <Route path="/Spot" element={<Spot />} />
-          <Route path="/Spot/:id" element={<Spot />} />
-          <Route path="/Hotel" element={<Hotel />} exact />
-          <Route path="/Hotel/Search" element={<Search />} exact />
-          <Route path="/Hotel/Detail" element={<Detail />} exact />
-          <Route path="/Schedule" element={<Schedule />} />
-          <Route path="/member/LoginandSignup" element={<LoginandSignup />} />
-          <Route path="/member/MemberFavorite/" element={<MemberFavorite />} />
-          <Route path="/member/MemberSchedule/" element={<MemberSchedule />} />
-          <Route path="/member/Setting/" element={<Setting />} />
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
-          <Route path="/Resetpassword" element={<Resetpassword />} />
-          <Route component={Error} />
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            {!user && <Route path="/" element={<BeforeLogin />} />}
+            {user && <Route path="/" element={<Home />} />}
+            <Route path="/Airticket" element={<Airticket />} exact />
+            <Route path="/Spot" element={<Spot />} />
+            <Route path="/Spot/:id" element={<Spot />} />
+            <Route path="/Hotel" element={<Hotel />} exact />
+            <Route path="/Hotel/Search" element={<Search />} exact />
+            <Route path="/Hotel/Detail" element={<Detail />} exact />
+            <Route path="/Schedule" element={<Schedule />} />
+            <Route path="/LoginandSignup" element={<LoginandSignup />} />
+            <Route
+              path="/member/MemberFavorite/"
+              element={<MemberFavorite />}
+            />
+            <Route
+              path="/member/MemberSchedule/"
+              element={<MemberSchedule />}
+            />
+            <Route path="/member/Setting/" element={<Setting />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            {/* <Route path="/Resetpassword" element={<Resetpassword/>} /> */}
+            <Route component={Error} />
+          </Routes>
+        </BrowserRouter>
+      </AuthContext.Provider>
     </div>
   );
 }
