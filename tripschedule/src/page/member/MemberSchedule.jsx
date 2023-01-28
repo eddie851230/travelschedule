@@ -1,22 +1,30 @@
-import React, { useState, useEffect,useContext } from 'react';
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import "../member/member.css";
 import CreateNewSchedule from "../../components/member/CreateNewSchedule";
 import styled from 'styled-components';
-import axios from "axios";
+import { http } from '../../WebAPI';
 import AuthContext from '../../contexts';
+import { getAuthToken } from "../../utils";
 
 
 const MemberSchedule = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
 
 
-     // 判斷是否有會員登入中
-     const {user}  = useContext(AuthContext);
+    // 判斷是否有會員登入中
+    const { user, setUser } = useContext(AuthContext);
 
-     console.log("user",user);
-     
+    useEffect(() => {
+        if (!getAuthToken()) {
+            setUser(null);
+            navigate("/");
+        } else {
+            setUser(user)
+        }
+    }, [setUser, navigate])
+
     //  useEffect(()=>{
     //     axios.post(`http://localhost:8000/${user.id}/schedules`,{
     //         userid:user.id
@@ -62,9 +70,9 @@ const MemberSchedule = () => {
     `;
 
 
- 
 
-// 
+
+    // 
     const [scheShow, setScheshow] = useState(false);
 
 
@@ -72,18 +80,21 @@ const MemberSchedule = () => {
     // 從laravel拉資料
     const [schdule, setSchdule] = useState(null);
 
-
     //   讀取行程表資料
     useEffect(() => {
-        axios.get("http://localhost:8000/schedules").then((response) => {
-            setSchdule(response.data);
-        }).catch(()=>"無法找到");
+        http.get('http://localhost:8000/schedules/').then((response) => {
+            let newArray = response.data.filter(({ user_id }) => {
+                return user_id===user.id
+            })
+            setSchdule(newArray);
+            
+        }).catch(() => "無法找到");
 
 
 
     }, []);
 
-    if (!schdule) return "沒有行程表";
+
 
 
 
@@ -92,36 +103,37 @@ const MemberSchedule = () => {
 
     return (
         <>
-               {/* <!-- 封面故事 --> */}
-               <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
+            {/* <!-- 封面故事 --> */}
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
                     {/* <!-- 旁邊導覽列 --> */}
                     <div className="sidebar col-2">
                         <div>
-                        <img src={user["profile_photo_path"]} alt="avatar" id="avatar" />
+                            <img src={user["profile_photo_path"]} alt="avatar" id="avatar" />
                             <div>{user.name}</div>
                         </div>
                         <div>行程表</div>
-                        
-                        <div className="thisPage" onClick={()=>navigate("/member/MemberFavorite/")}>收藏名單</div>
-                        
+
+                        <div className="thisPage" onClick={() => navigate("/member/MemberFavorite/")}>收藏名單</div>
+
                     </div>
                     {/* <!-- 新增行程表按鈕 --> */}
                     <input type="button" value="新增行程表" className="addSchdule" onClick={() => setScheshow(true)} />
-                            <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow}/>
-                  
+                    <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow} />
+
 
 
 
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
-                        {schdule.map(({ id, name, date_start, date_end }) => {
+                        {!schdule && <h3><b>沒有行程表</b></h3>}
+                        {schdule && schdule.map(({ id, name, date_start, date_end }) => {
                             return (
                                 <Card className="card p-3" key={id}>
-                                    <Link to="/Schedule">
-                                        <Cardimg className="card-img-top" src="/img/景點相片預覽(明亮).jpg" alt="Card cap" />
+                                    <Link to={'/Schedule/'+id}>
+                                        <Cardimg className="card-img-top" src="https://picsum.photos/500/250" alt="Card cap" />
                                         <div className="card-body">
                                             <h3 className="card-title">{name}</h3>
                                             <p className="card-text">{date_start}至{date_end}</p>

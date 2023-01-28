@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import AuthContext from '../../contexts';
-import { setAuthToken } from '../../utils';
+import { setAuthToken, setAuthTokenlimter } from '../../utils';
 
 const Memberlist = (props) => {
     // 導向頁面的宣告
@@ -12,6 +12,7 @@ const Memberlist = (props) => {
     // 設定登出後狀態
     const handleLogout = () => {
         setAuthToken("");
+        setAuthTokenlimter("");
         setUser(null);
         navigate("/");
     };

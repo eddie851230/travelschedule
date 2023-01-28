@@ -1,16 +1,17 @@
 // import Cookies from "universal-cookie";
 
-//cookie
+// //cookie
 // const cookies = new Cookies();
 
-// export const setAuthToken = (token) => {
+// export const setAuthTokenCookies = (token) => {
 // cookies.set('token', token, 
-// { path: '/',secure: true,sameSite :true}
+// { path: '/',secure: true,sameSite :true, expires: new Date(Date.now()+21600000)}
+// // 設定六小時後自動登出
 // );
 
 // };
 
-// export const getAuthToken = () => {
+// export const getAuthTokenCookies = () => {
 // if (cookies.get('token')===undefined){
 //   return '';
 // }
@@ -34,4 +35,13 @@ export const setAuthToken = (token) => {
 // 從 localStorage 讀取 token
 export const getAuthToken = () => {
   return localStorage.getItem("token");
+};
+
+// 有時效性的token
+export const setAuthTokenlimter = (token) => {
+  localStorage.setItem("token", token);
+  setTimeout(()=>{
+    localStorage.setItem("token", '');
+  },21600000)
+  // 六小時候過期
 };

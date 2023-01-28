@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuthToken } from "./utils";
+import { getAuthToken} from "./utils";
 
 
 // axios預設值
@@ -48,4 +48,16 @@ export const memberapi = () => {
     // .response.status
     );
 };
+// export const cookiesapi = () => {
+//     // 從 cookies 拿取 token
+//     const token = getAuthTokenCookies();
+
+//     return http.get(`/api/user`, {
+//         headers: {
+//             authorization: `Bearer ${token}`
+//         },
+//     }).then((res) => res).catch((error) => error
+//     // .response.status
+//     );
+// };
 

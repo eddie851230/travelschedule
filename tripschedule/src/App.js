@@ -36,6 +36,10 @@ import AuthContext from "./contexts";
 import { getAuthToken } from "./utils";
 import { memberapi } from './WebAPI';
 
+// 第三方登入驗證
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleLogin from './components/member/GoogleLogin';
+
 // 頁尾
 // import Footer from './components/tool/Footer';
 
@@ -45,13 +49,14 @@ function App() {
 
   //  驗證是否持續還在登入中
   const [user, setUser] = useState(null);
+  console.log(user)
 
   // 設定是否有會員存在?優化重整畫面會閃出未登入畫面
   const [ismember,setIsmember]=useState(true);
 
   useEffect(() => {
     // 以 getAuthToken 從 cookies讀取 token
-    if (getAuthToken()) {
+    if (getAuthToken()||ismember) {
    
       // 有 token 才 call API
      memberapi().then((response) => {
@@ -72,6 +77,7 @@ function App() {
     <div>
 
       <AuthContext.Provider value={{ user, setUser }}>
+      <GoogleOAuthProvider clientId="250841553348-5e2n3s3tv4nr5j4n57ardiep8joscr6m.apps.googleusercontent.com">
         <BrowserRouter>
 
           <Navigation />
@@ -91,9 +97,11 @@ function App() {
             <Route path="/member/Setting/" element={<Setting />} />
             <Route path="/forgot-password" element={<ForgetPassword />} />
             <Route path="/reset-password/:token" element={<Resetpassword/>} />
+            <Route path='/auth/google' element={<GoogleLogin/>}/>
             <Route component={Error} />
           </Routes>
         </BrowserRouter>
+        </GoogleOAuthProvider>
       </AuthContext.Provider>
 
     </div>
