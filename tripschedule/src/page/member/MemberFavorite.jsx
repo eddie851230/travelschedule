@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "../member/member.css";
 import styled from 'styled-components';
@@ -8,7 +8,6 @@ import AuthContext from '../../contexts';
 const MemberFavorite = () => {
 
     const navigate = useNavigate();
-
 
     // 判斷是否有會員登入中
     const { user } = useContext(AuthContext);
@@ -106,7 +105,6 @@ cursor: pointer;
 
     useEffect(() => {
 
-        console.log("listChange", listChange);
         http.get(handleChange())
             .then(response => {
                 let newArray = response.data.filter(({ user_id }) => user_id === user.id);
@@ -115,6 +113,19 @@ cursor: pointer;
             .catch(error => console.log(error));
 
     }, [user, handleChange()]);
+
+
+    const handleDelete = (id) => {
+        // 將刪除的名單從 favorite 中移除
+        const Newfavorite = favorite.filter(e => e.id !== id);
+
+        http.delete(handleChange() + '/' + id)
+            .then(response =>console.log(response))
+            .catch(error => console.log(error));
+        // 使用 setState 更新 favorite 並重新渲染
+        return setFavorite(Newfavorite);
+
+    }
 
     return (
         <>
@@ -140,36 +151,38 @@ cursor: pointer;
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
                         {favorite === null && <h3><b>沒有收藏名單</b></h3>}
-                        {(listChange === "spot" && favorite) && favorite.map(({ attraction_id, name, path, suggestedtime }) => {
+                        {(listChange === "spot" && favorite) && favorite.map(({ id, attraction_id, name, path, suggestedtime }) => {
                             return (
                                 <Card className="card p-3" key={attraction_id}>
-                                    <Link to="/Spot">
-                                        <Cardimg className="card-img-top" src={path} alt={name} />
-                                        <div className="card-body">
-                                            <h3 className="card-title">{name}</h3>
-                                            <h5 className="card-text">
-                                                <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
-                                            </h5>
-                                            <button>詳細資訊</button>
-                                        </div>
-                                    </Link>
+
+                                    <Cardimg className="card-img-top" src={path} alt={name} />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{name}</h3>
+                                        <h5 className="card-text">
+                                            <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
+                                        </h5>
+                                        <Link to="/Spot"><button>詳細資訊</button></Link>
+                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                    </div>
+
                                 </Card>
                             )
                         })}
 
-                        {(listChange === "hotel" && favorite) && favorite.map(({ hotel_id, name_CH, path, area }) => {
+                        {(listChange === "hotel" && favorite) && favorite.map(({ id, hotel_id, name_CH, path, area }) => {
                             return (
-                                <Card className="card p-3" key={hotel_id}>
-                                    <Link to="/Spot">
-                                        <Cardimg className="card-img-top" src={path} alt={name_CH} />
-                                        <div className="card-body">
-                                            <h3 className="card-title">{name_CH}</h3>
-                                            <h5 className="card-text">
-                                                <Favorititle>位置</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
-                                            </h5>
-                                            <button>詳細資訊</button>
-                                        </div>
-                                    </Link>
+                                <Card className="card p-3" key={hotel_id} id={hotel_id}>
+
+                                    <Cardimg className="card-img-top" src={path} alt={name_CH} />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{name_CH}</h3>
+                                        <h5 className="card-text">
+                                            <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
+                                        </h5>
+                                        <Link to="/Hotel"><button>詳細資訊</button></Link>
+                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                    </div>
+
                                 </Card>
                             )
                         })

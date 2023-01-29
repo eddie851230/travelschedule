@@ -25,17 +25,7 @@ const MemberSchedule = () => {
         }
     }, [setUser, navigate])
 
-    //  useEffect(()=>{
-    //     axios.post(`http://localhost:8000/${user.id}/schedules`,{
-    //         userid:user.id
-    //     }).then((res)=>{
-    //         // alert("跑進來了??");
-    //         // 如果回應成功變200時進行登入
-    //         if(res.status===200){
-    //             console.log(res.data)
-    //             return res.data
-    //         }});
-    //  },[])
+
 
     // 轉址後轉跳最上方
     useEffect(() => {
@@ -84,17 +74,25 @@ const MemberSchedule = () => {
     useEffect(() => {
         http.get('http://localhost:8000/schedules/').then((response) => {
             let newArray = response.data.filter(({ user_id }) => {
-                return user_id===user.id
+                return user_id === user.id
             })
             setSchdule(newArray);
-            
+
         }).catch(() => "無法找到");
 
 
 
     }, []);
 
-
+    const handleDelete = (id) => {
+        // 新array
+        let newSchdule = schdule.filter(e => e.id !== id);
+        http.delete('http://localhost:8000/schedules/' + id)
+            .then(response =>console.log(response))
+            .catch(error => console.log(error));
+        // 使用 setState 更新 並重新渲染
+        return setSchdule(newSchdule);
+    }
 
 
 
@@ -132,14 +130,15 @@ const MemberSchedule = () => {
                         {schdule && schdule.map(({ id, name, date_start, date_end }) => {
                             return (
                                 <Card className="card p-3" key={id}>
-                                    <Link to={'/Schedule/'+id}>
-                                        <Cardimg className="card-img-top" src="https://picsum.photos/500/250" alt="Card cap" />
-                                        <div className="card-body">
-                                            <h3 className="card-title">{name}</h3>
-                                            <p className="card-text">{date_start}至{date_end}</p>
-                                            <button>編輯</button>
-                                        </div>
-                                    </Link>
+
+                                    <Cardimg className="card-img-top" src="https://picsum.photos/500/250" alt="Card cap" />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{name}</h3>
+                                        <p className="card-text">{date_start}至{date_end}</p>
+                                        <Link to={'/Schedule/' + id}><button>編輯</button></Link>
+                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                    </div>
+
                                 </Card>
                             )
                         })}
