@@ -3,8 +3,8 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const ScheduleList = (p) => {
   // console.log(p);
-  
-  
+  // console.log(p.spotDateInfo);
+
   const airPlaneDepartinfo = [
     {
       id: "depart",
@@ -137,6 +137,13 @@ const ScheduleList = (p) => {
     p.setSpotListinfo(items);
   }
 
+
+
+  function MouseEnterHandler(){
+
+
+
+  }
   // 一天內早上中午晚上的資料分類(array)
   // const morningSpot = spotinfo.filter((elem) => elem.dayTime === "morning");
 
@@ -144,158 +151,160 @@ const ScheduleList = (p) => {
   // const eveningSpot = spotinfo.filter((elem) => elem.dayTime === "evening");
 
   return (
-    
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="Day1">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <div className="dayNum" id="Day1">
-                Day
-                <span> 1 {+1}</span>: 禮拜
-                <span>一</span>
-              </div>
-
-              {/*  */}
-              {/* <div className="dayTime">上午</div> */}
-              {/* <!-- 飛機格 --> */}
-
-              {airPlaneDepartinfo.map((item, index) => (
-                <div className="airplane" key={item.id}>
-                  <img src={item.flyIcon} alt={item.airPlaneName} />
-                  <div className="text">
-                    <div className="name">{item.airportName}</div>
-                    <div className="info">
-                      抵達時間:
-                      <span>{item.arrivingTime}</span>&Iota;
-                      <span>{item.airPlaneName}</span>
-                    </div>
-                    <div className="Addr">{item.addr}</div>
-                  </div>
-                  <a href={item.herf}>
-                    <button>
-                      查看
-                      <br />
-                      詳情
-                    </button>
-                  </a>
-                </div>
-              ))}
-
-              {/* <!-- 景點或飯店格 --> */}
-              {p.spotListinfo.map((item, index) => {
-                return (
-                  <Draggable
-                    key={item.id}
-                    draggableId={item.id.toString()}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        className="spot"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        key={index}
-                      >
-                        <img src={item.path} alt={index + 1} />
-                        <div className="text">
-                          <div className="name">{item.name}</div>
-                          <div className="">{item.opentime}</div>
-                          <div className="info">
-                            遊玩時間: <span>{item.suggestedtime}</span>
-                          </div>
-                          <div className="Addr">{item.address}</div>
-                          <div className="">{item.ticketprice}</div>
-                        </div>
-                        <a href={item.href}>
-                          <button>
-                            查看
-                            <br />
-                            詳情
-                          </button>
-                        </a>
-                      </div>
-                    )}
-                  </Draggable>
-                );
-              })}
-
-              {/*  */}
-              {/* <div className="dayTime">下午</div> */}
-
-              {/* {afternoonSpot.map(
-              ({ id, spotImg, spotName, duringTime, addr, href }, index) => (
-                <Draggable key={id} draggableId={id} index={index}>
-                  {(provided) => (
-                    <div
-                      className="spot"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      key={index}
-                    >
-                      <img src={spotImg} alt={id} />
-                      <div className="text">
-                        <div className="name">{spotName}</div>
-                        <div className="info">
-                          遊玩時間: <span>{duringTime}</span>
-                        </div>
-                        <div className="Addr">{addr}</div>
-                      </div>
-                      <a href={href}>
-                        <button>
-                          查看
-                          <br />
-                          詳情
-                        </button>
-                      </a>
-                    </div>
-                  )}
-                </Draggable>
-              )
-            )} */}
-
-              {/*  */}
-              {/* <div className="dayTime">晚間</div> */}
-
-              {/* {eveningSpot.map(
-              ({ id, spotImg, spotName, duringTime, addr, href }, index) => (
-                <Draggable key={id} draggableId={id} index={index}>
-                  {(provided) => (
-                    <div
-                      className="spot"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      key={index}
-                    >
-                      <img src={spotImg} alt={id} />
-                      <div className="text">
-                        <div className="name">{spotName}</div>
-                        <div className="info">
-                          遊玩時間: <span>{duringTime}</span>
-                        </div>
-                        <div className="Addr">{addr}</div>
-                      </div>
-                      <a href={href}>
-                        <button>
-                          查看
-                          <br />
-                          詳情
-                        </button>
-                      </a>
-                    </div>
-                  )}
-                </Draggable>
-              )
-            )} */}
-
-              {provided.placeholder}
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <Droppable droppableId="Day1">
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            <div className="dayNum" id="Day1">
+              <p>
+                <span>Day</span>
+                <span> 1</span>: 禮拜
+                <span>{"一"}</span>
+              </p>
             </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    
+
+            {/*  */}
+            {/* <div className="dayTime">上午</div> */}
+            {/* <!-- 飛機格 --> */}
+
+            {airPlaneDepartinfo.map((item, index) => (
+              <div className="airplane" key={item.id}>
+                <img src={item.flyIcon} alt={item.airPlaneName} />
+                <div className="text">
+                  <div className="name">{item.airportName}</div>
+                  <div className="info">
+                    抵達時間:
+                    <span>{item.arrivingTime}</span>&Iota;
+                    <span>{item.airPlaneName}</span>
+                  </div>
+                  <div className="Addr">{item.addr}</div>
+                </div>
+                <a href={item.herf}>
+                  <button>
+                    查看
+                    <br />
+                    詳情
+                  </button>
+                </a>
+              </div>
+            ))}
+
+            {/* <!-- 景點或飯店格 --> */}
+            {p.spotListinfo.map((item, index) => {
+              return (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id.toString()}
+                  index={index}
+                  // onMouseEnter={MouseEnterHandler}
+                >
+                  {(provided) => (
+                    <div
+                      className="spot"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      key={index}
+                      // id={index}
+                    >
+                      <img src={item.path} alt={index + 1} />
+                      <div className="text">
+                        <div className="name">{item.name}</div>
+                        <div className="">{item.opentime}</div>
+                        <div className="info">
+                          遊玩時間: <span>{item.suggestedtime}</span>
+                        </div>
+                        <div className="Addr">{item.address}</div>
+                        <div className="">{item.ticketprice}</div>
+                      </div>
+                      <a href={item.href}>
+                        <button>
+                          查看
+                          <br />
+                          詳情
+                        </button>
+                      </a>
+                    </div>
+                  )}
+                </Draggable>
+              );
+            })}
+
+            {/*  */}
+            {/* <div className="dayTime">下午</div> */}
+
+            {/* {afternoonSpot.map(
+              ({ id, spotImg, spotName, duringTime, addr, href }, index) => (
+                <Draggable key={id} draggableId={id} index={index}>
+                  {(provided) => (
+                    <div
+                      className="spot"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      key={index}
+                    >
+                      <img src={spotImg} alt={id} />
+                      <div className="text">
+                        <div className="name">{spotName}</div>
+                        <div className="info">
+                          遊玩時間: <span>{duringTime}</span>
+                        </div>
+                        <div className="Addr">{addr}</div>
+                      </div>
+                      <a href={href}>
+                        <button>
+                          查看
+                          <br />
+                          詳情
+                        </button>
+                      </a>
+                    </div>
+                  )}
+                </Draggable>
+              )
+            )} */}
+
+            {/*  */}
+            {/* <div className="dayTime">晚間</div> */}
+
+            {/* {eveningSpot.map(
+              ({ id, spotImg, spotName, duringTime, addr, href }, index) => (
+                <Draggable key={id} draggableId={id} index={index}>
+                  {(provided) => (
+                    <div
+                      className="spot"
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      key={index}
+                    >
+                      <img src={spotImg} alt={id} />
+                      <div className="text">
+                        <div className="name">{spotName}</div>
+                        <div className="info">
+                          遊玩時間: <span>{duringTime}</span>
+                        </div>
+                        <div className="Addr">{addr}</div>
+                      </div>
+                      <a href={href}>
+                        <button>
+                          查看
+                          <br />
+                          詳情
+                        </button>
+                      </a>
+                    </div>
+                  )}
+                </Draggable>
+              )
+            )} */}
+
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 };
 

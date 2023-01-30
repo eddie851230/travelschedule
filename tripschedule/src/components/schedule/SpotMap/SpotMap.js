@@ -5,9 +5,7 @@ import React, { useEffect } from "react";
 
 export default function Spotmap(p) {
   // var isload;
-  console.log(p.spotListinfo);
-
-
+  // console.log(p.spotListinfo);
 
   //methods
   //-----------------------------------------------------------------
@@ -37,8 +35,7 @@ export default function Spotmap(p) {
   //     // console.log(response.data);
 
   //   };
-  
- 
+
   //hooks
   //-----------------------------------------------------------------
   useEffect(() => {
@@ -134,12 +131,9 @@ export default function Spotmap(p) {
         popupAnchor: [1, -34],
         shadowSize: [45, 45],
       });
-      let popupmsg = `
-            景點名稱: ${1}<br/>
-            地址: ${1}<br/>
-            開放時間: ${1} <br/>
-            價格: ${1}<br/>
-            `;
+
+      let index;
+
       ////for marker v1
       // for (let index = 0; index < p.spotListinfo.length; index++) {
       //   let marker = new L.marker(
@@ -152,12 +146,51 @@ export default function Spotmap(p) {
       // }
 
       //for marker v2
-      for (let index = 0; index < p.spotListinfo.length; index++) {
-        L.marker([p.spotListinfo[index].lat, p.spotListinfo[index].lng], {
-          icon: greenIcon,
-        })
-          .addTo(map)
-          .bindPopup(popupmsg);
+      for (index = 0; index < p.spotListinfo.length; index++) {
+        let popupmsg = `
+            <h3>景點名稱:${p.spotListinfo[index].name}</h3>
+            <p>地址: ${p.spotListinfo[index].address}</p>
+            開放時間: ${p.spotListinfo[index].opentime} <br/>
+            價格: ${p.spotListinfo[index].ticketprice}<br/>
+            `;
+
+        
+        let marker = L.marker(
+          [p.spotListinfo[index].lat, p.spotListinfo[index].lng],
+          {
+            icon: greenIcon,
+          }
+        );
+        marker.addTo(map).bindPopup(popupmsg);
+
+        // // get the div block
+        // var divBlock = document.getElementById("2");
+
+        // // // add the event listener
+        // divBlock.addEventListener("mouseenter", function () {
+        //   marker.openPopup();
+        // });
+        // =============================================================================
+
+        // this["marker" + index] = L.marker(
+        //   [p.spotListinfo[index].lat, p.spotListinfo[index].lng],
+        //   {
+        //     icon: greenIcon,
+        //   }
+        // );
+        // this["marker" + index].addTo(map).bindPopup(popupmsg);
+
+        // // get the div block
+        // var divBlock = document.getElementById("2");
+
+        // // add the event listener
+        // divBlock.addEventListener("mouseenter", function () {
+        //   this["marker" + index].openPopup();
+        // });
+
+        //    divBlock.addEventListener("mouseenter", function () {
+        // marker.openPopup();
+        // .openPopup();
       }
       // L.marker([p.spotListinfo[index].lat, p.spotListinfo[index].lng], {
       //   icon: greenIcon,

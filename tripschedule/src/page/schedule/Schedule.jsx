@@ -46,10 +46,37 @@ function Schedule() {
   //   },
   // ];
   //hooks
+
+  const [schedule, setSchedule] = useState([]);
   const [spotListinfo, setSpotListinfo] = useState(initSpotListinfo);
-
+  const [spotDateInfo, setSpotDateInfo] = useState([]);
   //定義改資料的方法傳給子
-
+  let loadData0Async = async () => {
+    console.log("loadData0Async");
+    //   // let response=await fetch(
+    //   //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
+    //   //   {}
+    //   // )
+    let response = await axios({
+      //请求方法
+      method: "GET",
+      //url
+      // url: "http://127.0.0.1:8000/schedules",
+      url: "http://127.0.0.1:8000/api/showSchedule/",
+      // url: "https://jsonplaceholder.typicode.com/users",
+    });
+    //响应状态码
+    console.log(response.status);
+    //响应状态字符串
+    console.log(response.statusText);
+    //响应头信息
+    console.log(response.headers);
+    //响应体
+    console.log(response.data);
+    //response.data array
+    setSchedule([...response.data]);
+    // console.log(response.data);
+  };
   let loadDataAsync = async () => {
     // let response=await fetch(
     //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
@@ -60,7 +87,7 @@ function Schedule() {
       method: "GET",
       //url
       // url: "http://127.0.0.1:8000/schedules",
-      url: "http://127.0.0.1:8000/showSpot",
+      url: "http://127.0.0.1:8000/api/showSpot",
       // url: "https://jsonplaceholder.typicode.com/users",
     });
     //响应状态码
@@ -75,9 +102,35 @@ function Schedule() {
     setSpotListinfo([...response.data]);
     // console.log(response.data);
   };
-
+  let loadData2Async = async () => {
+    //   // let response=await fetch(
+    //   //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
+    //   //   {}
+    //   // )
+    let response = await axios({
+      //请求方法
+      method: "GET",
+      //url
+      // url: "http://127.0.0.1:8000/schedules",
+      url: "http://127.0.0.1:8000/api/showSpotDate",
+      // url: "https://jsonplaceholder.typicode.com/users",
+    });
+    //响应状态码
+    console.log(response.status);
+    //响应状态字符串
+    console.log(response.statusText);
+    //响应头信息
+    console.log(response.headers);
+    //响应体
+    console.log(response.data);
+    //response.data array
+    setSpotDateInfo([...response.data]);
+    // console.log(response.data);
+  };
   useEffect(() => {
+    loadData0Async();
     loadDataAsync();
+    loadData2Async();
   }, []);
 
   // 先找有幾天，再來找一天內早中晚各幾筆資料
@@ -188,19 +241,24 @@ function Schedule() {
         <DragDropContext
           onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
         >
-          {/* <!-- 行程表------------------------------------------- --> */}
+          {/* <!--  (left)行程表------------------------------------------- --> */}
           <div className="schedule">
-            {/* <!-- 行程表頭部 --> */}
+            {/* <!-- 1行程表頭部 --> */}
             <div className="scheduleHeader">
               <div className="scheduleTitle">
                 行程表:&nbsp;&nbsp;
                 {/* <!-- 可以同時編輯多個行程表 --> */}
                 <select name="schedule">
+                  {schedule.map((e,i)=>(
+                  <option value={e.id}>{e.name}</option>))}
+
+                  {/* <option value="tokyo">春天東京五天四夜</option>
                   <option value="tokyo">春天東京五天四夜</option>
                   <option value="tokyo">夏天東京五天四夜</option>
                   <option value="tokyo">2020夏季奧運東京五天四夜</option>
-                  <option value="tokyo">冬天東京五天四夜</option>
+                  <option value="tokyo">冬天東京五天四夜</option> */}
                 </select>
+                {/* <div>{`日期:`}</div> */}
                 <div>日期:2022/12/18-2022/12/22</div>
               </div>
               {/* <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) --> */}
@@ -212,7 +270,7 @@ function Schedule() {
             </div>
             {/* <!-- 行程表頭部結束 --> */}
 
-            {/* <!-- 行程日期條 --> */}
+            {/* <!-- 2行程日期條 --> */}
             <div className="scheduleDaybar">
               {/* <!-- 左鍵 --> */}
               <div className="prev">
@@ -221,25 +279,37 @@ function Schedule() {
 
               {/* <!-- 日期 --> */}
               <div className="daymain">
-                <a href="#Day1">
+                {spotDateInfo.map((item, index) => {
+                  return (
+                    <a href="#Day1" key={item.id}>
+                      <p>{item.date}</p>
+
+                      <p>
+                        Day<span>{index + 1} </span>
+                      </p>
+                    </a>
+                  );
+                })}
+
+                {/* <a href="#Day1">
                   12月17日
                   <br />
                   Day<span> 1 </span>
-                </a>
+                </a> */}
 
-                <a href="/">
+                {/* <a href="/">
                   12月18日
                   <br />
                   Day<span> 2 </span>
-                </a>
-
+                </a> */}
+                {/* 
                 <a href="/">
                   12月19日
                   <br />
                   Day<span> 3 </span>
-                </a>
+                </a> */}
 
-                <a href="/" style={{ visibility: "hidden" }}>
+                {/* <a href="/" style={{ visibility: "hidden" }}>
                   12月20日
                   <br />
                   Day<span> 4 </span>
@@ -249,7 +319,7 @@ function Schedule() {
                   12月21日
                   <br />
                   Day<span> 5 </span>
-                </a>
+                </a> */}
               </div>
 
               {/* <!-- 右鍵 --> */}
@@ -264,16 +334,16 @@ function Schedule() {
               <ScheduleList
                 spotListinfo={spotListinfo}
                 setSpotListinfo={setSpotListinfo}
+                spotDateInfo={spotDateInfo}
                 loadDataAsync={function () {
                   loadDataAsync();
                 }}
               />
             </div>
-
             {/* <!-- 行程表結束 --> */}
           </div>
 
-          {/* <!-- 收藏名單 -------------------------------------------> */}
+          {/* <!-- (mid)收藏名單 -------------------------------------------> */}
           <div className="favorite">
             <div className="favoriteTitle">收藏名單</div>
             {/* <!-- 飯店或景點選單 --> */}
@@ -296,7 +366,8 @@ function Schedule() {
           </div>
           {/* <!-- 收藏名單結束 --> */}
         </DragDropContext>
-        {/* <!-- 地圖------------------------------------------------> */}
+
+        {/* <!-- (right)地圖------------------------------------------------> */}
         <SpotMap
           spotListinfo={spotListinfo}
           setSpotListinfo={setSpotListinfo}

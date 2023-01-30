@@ -5,7 +5,14 @@ header {
 .setting * {
     text-align: center;
     line-height: 40px;
+    margin:auto;
+}
 
+.setting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .settingTitle {
@@ -21,6 +28,7 @@ header {
     width: 50%;
     min-width: 350px;
     margin: auto;
+    margin-bottom: 30px;
     font-size: 18px;
 }
 
@@ -32,7 +40,7 @@ header {
     /* width: 100px; */
     color: var(--white-color);
     font-size: 18px;
-    padding: 0;
+    padding: 0 10%;
     background: rgb(240, 240, 240);
     border: 0;
     border-radius: 20px;
@@ -59,12 +67,14 @@ header {
 .setting .nameDiv,
 .idNum,
 .way,
-.interstTitle+div {
+.interstTitle~div:nth-of-type(2) {
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: center;
 }
+
+
 
 
 /* 設定內部各標題設定 */

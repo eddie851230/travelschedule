@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import AuthContext from '../../contexts';
 
 const Setting = () => {
 const Button=styled.button`
-    width:80px;
+    width:30%;
     height:fit-content;
     padding:0px;
-    justify-self:end;
+
     `;
+
+    
+     // 判斷是否有會員登入中
+     const {user}  = useContext(AuthContext);
 
     return (
         <div className="setting">
@@ -15,25 +20,26 @@ const Button=styled.button`
             <main>
                 <div className="username">
                     <div className="nameTitle">暱稱</div>
-                    <div className="nameDiv">jennifer&nbsp;&nbsp;<Button>編輯</Button></div>
+                    <div className="nameDiv">{user.name}</div>
                 </div>
                 <hr />
 
                 {/* <!-- 使用者ID --> */}
                 <div className="userID">
-                    <div className="iDTitle">使用者ID</div>
-                    <div className="idNum">@1234657897987985465498794</div>
+                    <div className="iDTitle">Email</div>
+                    <div className="idNum">{user.email}</div>
 
                 </div>
                 <hr />
-                {/* <!-- 登入方式 --> */}
-                <div className="loginway">
+                {/* <!-- 大頭貼 -->*/}
+                {/* <div className="loginway">
                     <div className="loginTitle">登入方式</div>
-                    <div className="way"><img src="/img/景點相片預覽(暗色).jpg" alt="" />&nbsp;<span>123@gmail.com</span></div>
-                </div>
-                <hr />
+                    <div className="way"><img src="/img/景點相片預覽(暗色).jpg" alt="" /></div>
+                </div> */}
+                <hr /> 
                 {/* <!-- 興趣偏好 --> */}
-                <div className="interst"> <div className="interstTitle">興趣偏好</div>
+                <div className="interst"><div className="interstTitle">興趣偏好</div>
+               
                 <div>
                     <label className="container">親近自然
                         <input type="checkbox" name="interst" value="nature" />
@@ -62,12 +68,13 @@ const Button=styled.button`
                         <input type="checkbox" name="interst" value="havefun"/>
                         <span className="checkmark"></span>
                     </label>
-                 
+                    
                 </div>
-                    <Button>更新</Button>
+                    
                 </div>
                
             </main>
+            <Button>編輯</Button>
         </div>
     )
 }

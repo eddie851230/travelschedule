@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useContext, useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "../member/member.css";
 import styled from 'styled-components';
-import axios from "axios"
+import { http } from '../../WebAPI';
+import AuthContext from '../../contexts';
 
 const MemberFavorite = () => {
-    // targetURL使用的網址是範例，實際測試要搭配你的認證碼喔
-    let targetURL = "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-A0012-001?Authorization=CWB-1234ABCD-78EF-GH90-12XY-IJKL12345678&format=XML";
 
-    axios.get(targetURL)
-        .then(function (response) {
-            // console.log(response) //<-- 你可以顯示完整的response
-            console.log(response.data.cwbopendata.dataset);
-        }) //<-- response資料太多，我們顯示回傳的資料
-        .catch(function (error) {
-            console.log(error);
-        });
+    const navigate = useNavigate();
+
+    // 判斷是否有會員登入中
+    const { user } = useContext(AuthContext);
+
+    // 重整時置頂
     useEffect(() => {
 
         window.scrollTo(0, 0);
 
     }, []);
+
+
 
     const Row = styled.div`
     margin-top: 0%;
@@ -31,16 +30,16 @@ const MemberFavorite = () => {
 
 
 
-const Col=styled.div`
+    const Col = styled.div`
 display:flex;
 flex-wrap:wrap;
 `
 
 
-const Card=styled.div`
+    const Card = styled.div`
 margin:1%;
 margin-top:0;
-width:calc(90%/4);
+width:calc(90%/3);
 `
 
     const Cardimg = styled.img`
@@ -58,40 +57,136 @@ background-color:#376B6D;
 border-radius:10px;
 `
 
+    const FavoritSelect = styled.select`
+font-size: 1.3rem;
+padding:0 1%;
+border-radius: 10px;
+border: 2px solid var(--nav-bg-color);
+color:var(--nav-bg-color);
+font-weight: 700;
+position: absolute;
+top: calc(35vh + 7vh);
+left: calc(100% * (2 / 8));
+cursor: pointer;
+&:focus{
+        box-shadow: 0 0 5px var(--nav-bg-color);
+}
+`;
+
+    const FavoritOption = styled.option`
+font-size: 1.1rem;
+padding:0 1%;
+border-radius: 10px;
+border: 2px solid var(--nav-bg-color);
+color:var(--nav-bg-color);
+font-weight: 700;
+position: absolute;
+top: calc(35vh + 7vh);
+left: calc(100% / 4);
+cursor: pointer;
+`
+
+    // 取得名單
+    // 從laravel拉資料
+    const [favorite, setFavorite] = useState(null);
+    // 選擇不同的畫面
+    const [listChange, setListChange] = useState("spot");
+
+    const handleChange = () => {
+
+        if (listChange === "spot") { return 'http://localhost:8000/favorite/spot' }
+        else { return 'http://localhost:8000/favorite/hotel' };
+
+    }
+
+
+
+
+
+    useEffect(() => {
+
+        http.get(handleChange())
+            .then(response => {
+                let newArray = response.data.filter(({ user_id }) => user_id === user.id);
+                return setFavorite(newArray);
+            })
+            .catch(error => console.log(error));
+
+    }, [user, handleChange()]);
+
+
+    const handleDelete = (id) => {
+        // 將刪除的名單從 favorite 中移除
+        const Newfavorite = favorite.filter(e => e.id !== id);
+
+        http.delete(handleChange() + '/' + id)
+            .then(response =>console.log(response))
+            .catch(error => console.log(error));
+        // 使用 setState 更新 favorite 並重新渲染
+        return setFavorite(Newfavorite);
+
+    }
+
     return (
         <>
             {/* <!-- 封面故事 --> */}
-            <img src="/img/景點相片預覽(暗色).jpg" alt="mainstory" id="mainstory" className="w-100" />
-
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
                     {/* <!-- 旁邊導覽列 --> */}
                     <div className="sidebar col-2">
                         <div>
-                            <img src="/img/景點相片預覽(暗色).jpg" alt="avatar" id="avatar" />
-                            <div>
-                                檸檬怪jiojekjlkejlkgjl
-                            </div>
+                            <img src={user["profile_photo_path"]} alt="avatar" id="avatar" />
+                            <div>{user.name}</div>
                         </div>
-                        <a href="/member/MemberSchedule"><div>行程表</div></a>
+                        <div className="thisPage" onClick={() => navigate("/member/MemberSchedule/")}>行程表</div>
                         <div>收藏名單</div>
                     </div>
-
+                    {/* 收藏名單切換 */}
+                    <FavoritSelect onChange={e => setListChange(e.target.value)}>
+                        <FavoritOption value='spot' selected={listChange === "spot"}>景點</FavoritOption>
+                        <FavoritOption value='hotel' selected={listChange === "hotel"}>飯店</FavoritOption>
+                    </FavoritSelect>
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
-                        <Card className="card p-3">
-                            <Link to="/Spot">
-                                <Cardimg className="card-img-top" src="/img/東京鐵塔(維基百科).jpg" alt="Card cap" />
-                                <div className="card-body">
-                                    <h3 className="card-title">東京鐵塔</h3>
-                                    <h5 className="card-text">
-                                        <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>1小時</b></span><br />
-                                    </h5>
-                                    <button>詳細資訊</button>
-                                </div>
-                            </Link>
-                        </Card>
+                        {favorite === null && <h3><b>沒有收藏名單</b></h3>}
+                        {(listChange === "spot" && favorite) && favorite.map(({ id, attraction_id, name, path, suggestedtime }) => {
+                            return (
+                                <Card className="card p-3" key={attraction_id}>
+
+                                    <Cardimg className="card-img-top" src={path} alt={name} />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{name}</h3>
+                                        <h5 className="card-text">
+                                            <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
+                                        </h5>
+                                        <Link to="/Spot"><button>詳細資訊</button></Link>
+                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                    </div>
+
+                                </Card>
+                            )
+                        })}
+
+                        {(listChange === "hotel" && favorite) && favorite.map(({ id, hotel_id, name_CH, path, area }) => {
+                            return (
+                                <Card className="card p-3" key={hotel_id} id={hotel_id}>
+
+                                    <Cardimg className="card-img-top" src={path} alt={name_CH} />
+                                    <div className="card-body">
+                                        <h3 className="card-title">{name_CH}</h3>
+                                        <h5 className="card-text">
+                                            <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
+                                        </h5>
+                                        <Link to="/Hotel"><button>詳細資訊</button></Link>
+                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                    </div>
+
+                                </Card>
+                            )
+                        })
+                        };
 
                     </Col>
                 </Row>
