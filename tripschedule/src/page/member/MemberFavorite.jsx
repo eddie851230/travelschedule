@@ -86,16 +86,24 @@ left: calc(100% / 4);
 cursor: pointer;
 `
 
+const Shownone = styled.h3`
+width:100%;
+text-align:center;
+margin:5%;
+`
+
     // 取得名單
     // 從laravel拉資料
-    const [favorite, setFavorite] = useState(null);
+    const [favorite, setFavorite] = useState([]);
     // 選擇不同的畫面
     const [listChange, setListChange] = useState("spot");
+    // 控制加載完才出現資訊
+    const [isLoading,setIsLoading]=useState(false);
 
     const handleChange = () => {
 
-        if (listChange === "spot") { return 'http://localhost:8000/favorite/spot' }
-        else { return 'http://localhost:8000/favorite/hotel' };
+        if (listChange === "spot") { return '/favorite/spot' }
+        else { return '/favorite/hotel' };
 
     }
 
@@ -104,10 +112,11 @@ cursor: pointer;
 
 
     useEffect(() => {
-
+        setIsLoading(true);
         http.get(handleChange())
             .then(response => {
                 let newArray = response.data.filter(({ user_id }) => user_id === user.id);
+                setIsLoading(false);
                 return setFavorite(newArray);
             })
             .catch(error => console.log(error));
@@ -126,6 +135,7 @@ cursor: pointer;
         return setFavorite(Newfavorite);
 
     }
+
 
     return (
         <>
@@ -150,8 +160,9 @@ cursor: pointer;
                     </FavoritSelect>
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
-                        {favorite === null && <h3><b>沒有收藏名單</b></h3>}
-                        {(listChange === "spot" && favorite) && favorite.map(({ id, attraction_id, name, path, suggestedtime }) => {
+                        {isLoading&&<Shownone><b>資料正在找尋中，請稍後</b></Shownone>}
+                        {(favorite.length===0 && !isLoading) && <Shownone><b>沒有收藏名單</b></Shownone>}
+                        {(listChange === "spot" &&favorite.length!==0 && !isLoading) && favorite.map(({ id, attraction_id, name, path, suggestedtime }) => {
                             return (
                                 <Card className="card p-3" key={attraction_id}>
 
@@ -161,7 +172,7 @@ cursor: pointer;
                                         <h5 className="card-text">
                                             <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
                                         </h5>
-                                        <Link to="/Spot"><button>詳細資訊</button></Link>
+                                        <Link to={"/Spot/"+attraction_id}><button>詳細資訊</button></Link>
                                         <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
@@ -169,7 +180,7 @@ cursor: pointer;
                             )
                         })}
 
-                        {(listChange === "hotel" && favorite) && favorite.map(({ id, hotel_id, name_CH, path, area }) => {
+                        {(listChange === "hotel" &&favorite.length!==0 && !isLoading) && favorite.map(({ id, hotel_id, name_CH, path, area }) => {
                             return (
                                 <Card className="card p-3" key={hotel_id} id={hotel_id}>
 
@@ -179,14 +190,14 @@ cursor: pointer;
                                         <h5 className="card-text">
                                             <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
                                         </h5>
-                                        <Link to="/Hotel"><button>詳細資訊</button></Link>
+                                        <Link to={"/Hotel/"+hotel_id}><button>詳細資訊</button></Link>
                                         <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
                                 </Card>
                             )
                         })
-                        };
+                        }
 
                     </Col>
                 </Row>

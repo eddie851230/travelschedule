@@ -23,7 +23,7 @@ const Home = () => {
             < Hhtspot />
             <section className="cta">
                 <h1>有任何建議都可以聯絡我們</h1>
-                <a href="" className="btnhome"><button>聯絡我們</button></a>
+                <a href="/" className="btnhome"><button>聯絡我們</button></a>
             </section>
 
             <Footer />

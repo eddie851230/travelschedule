@@ -45,18 +45,18 @@ class SchedulesController extends Controller
 
         //     return urldecode(json_encode($new_array));
         // }
-        
+
         DB::connection('mysql');
 
-        $data = request()->all();
-        dd($data);
-        $users
+        // $data = request()->all();
+        // dd($data);
+        $schedule
             = DB::table('schedules_info')
             ->get();
-            // ->where('user_id',$data['userid'])
+        // ->where('user_id',$data['userid'])
 
-        $users = json_decode($users->toJson());
-        return $users;
+        $schedule = json_decode($schedule->toJson());
+        return $schedule;
 
 
 
@@ -125,10 +125,9 @@ class SchedulesController extends Controller
             'name' => $data['schduleName'],
             'date_start' => $data['startdate'],
             'date_end' => $data['enddate'],
-            'user_id'=>$data['userid']
+            'user_id' => $data['userid']
         ]);
         return "success";
-
     }
 
     /**
@@ -177,7 +176,12 @@ class SchedulesController extends Controller
     public function destroy($id)
     {
         //
-
+        DB::connection('mysql');
+        $users
+            = DB::table('schedules_info')
+            ->where('id', $id)
+            ->delete();
+        return $users;
     }
 
 
@@ -185,12 +189,13 @@ class SchedulesController extends Controller
     public function showSpot()
     {
         //
-        
+
 
         DB::connection('mysql');
 
         $users
             = DB::table('attractions_info')
+            ->join('attraction_img', 'attraction_img.attraction_id', '=', 'attractions_info.id')
             ->get();
 
         $users = json_decode($users->toJson());

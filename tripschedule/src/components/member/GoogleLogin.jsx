@@ -1,110 +1,61 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-// import axios from 'axios';
 import { http } from '../../WebAPI';
+import { setAuthTokenlimter } from '../../utils';
+import styled from 'styled-components';
+import AuthContext from 'contexts';
+import { memberapi } from '../../WebAPI';
+
 const GoogleLogin = () => {
 
     const navigate = useNavigate();
+    // 裝飾
+    const Shownone = styled.h3`
+width:70vw;
+text-align:center;
+margin:15%;
+`
 
-     // 取得email
-     const location = useLocation();
-     const searchParams = new URLSearchParams(location.search);
- 
-    
-     console.log("location",location)
-
-    console.log('searchParams',searchParams);
-
-     // 從url取得參數
-     const state = searchParams.get('state');
-     const authuser=searchParams.get('authuser')
-     const code=searchParams.get('code')
-     const token=searchParams.get('access_token')
-     
-     
-
-     console.log("state",state)
-     console.log("code",code)
-     console.log("authuser",authuser)
+    // 取得email
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
 
 
-    const googleConfig = {
-        clientId: "250841553348-5e2n3s3tv4nr5j4n57ardiep8joscr6m.apps.googleusercontent.com",
-        state:state,
-        responseType: "code",
-        endpoints: {
-            token: "/auth/google/callback",
-            userInfo: "/user",
-        },
-        grantType: "authorization_code",
-    };
+    // 從url取得參數
+    const code = searchParams.get('code');
+    const clientId = "250841553348-5e2n3s3tv4nr5j4n57ardiep8joscr6m.apps.googleusercontent.com";
+    console.log(code)
+
+    //將會員資料加入browser中
+    const {setUser} = useContext(AuthContext);
+
+    useEffect(() => {
 
 
-    // const handleGoogleLogin = () => {
-    // try {
-    //     http.post(googleConfig.endpoints.token, {
-    //         clientId: googleConfig.clientId,
-    //         codeChallengeMethod: googleConfig.codeChallengeMethod,
-    //         responseType: googleConfig.responseType,
-    //         grantType: googleConfig.grantType,
-    //         withCredentials: false
-    //     });
-    //     const userInfo = axios.get(googleConfig.endpoints.userInfo);
-    //     console.log(userInfo)
-    // } catch (error) {
-    //     console.error(error);
-    // }
+        http.post('/auth/google/callback?code=' + code, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `client_id=${clientId}&grant_type=authorization_code`
+        })
+            .then((res) => {
+                setAuthTokenlimter(res.data.access_token);
+                memberapi().then(res => {
+                    setUser(res.data);
 
-    const [data, setData] = useState({});
+                    if(res.data){
+                        // 導到首頁 
+                        return navigate("/");
+                    }
+                })
+            })
+            .catch(err => console.log(err));
 
-    // useEffect(() => {
-
-    //     axios.post(googleConfig.endpoints.token, {
-    //         clientId: googleConfig.clientId,
-    //         codeChallengeMethod: googleConfig.codeChallengeMethod,
-    //         responseType: googleConfig.responseType,
-    //         grantType: googleConfig.grantType,
-    //         headers: {
-    //             accept: 'application/json',
-    //             withCredentials: false,
-    //         }
-    //     })
-    //         .then(response => {
-
-    //             setData(response.data);
-    //             console.log(data)
-    //         })
-    //         .catch(error => {
-    //             alert(error)
-    //             console.error(error);
-    //         });
-    // }, [location.search]);
+    }, [])
 
 
-    const test=()=>{
-        // http.post(googleConfig.endpoints.token, {
-        //     state:state,
-        //     headers: {
-        //         accept: 'application/json',
-        //         withCredentials: false,
-        //     }
-        // })
-        //     .then(response => {
-
-        //         setData(response.data);
-        //         console.log(data)
-        //     })
-        //     .catch(error => {
-        //         alert(error)
-        //         console.error(error);
-        //     });
-        http.get(googleConfig.endpoints.token,{ headers: {
-                    accept: 'application/json',
-                    // withCredentials: false,
-                }}).then((res)=>console.log('res',res))
-    }
-
-    return (<><button onClick={test} width="100px" height="100px">測試</button></>);
+    return (<Shownone><b>登入驗證中，請稍後...</b></Shownone>);
 }
 
 export default GoogleLogin;

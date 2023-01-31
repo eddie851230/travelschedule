@@ -1,0 +1,75 @@
+.roomCard{
+    
+  flex:1;
+  border-radius: 10px;
+  border: 2px solid #376B6D;
+  
+  padding: 10px;
+  margin: 0 1%;
+  background-color: #fff;
+}
+.roomPic{
+  width: 100%;
+  height:30vh;
+  margin-bottom:2vh ;
+}
+.roomPic img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+/* ------------------------------------ */
+.desForRoom p:nth-of-type(1){
+  font-size: 22px;
+  height:100%;
+  padding: 0;
+}
+.priceForRoom{
+  float: right;
+  font-size: 22px;
+  height:100%;
+  padding: 0;
+  margin: 0;
+}
+ul{
+  list-style: none;
+  margin: 0;
+}
+.roomsOffer {
+  
+  font-size: 16px;
+}
+.offerLists>li{
+  font-size: 14px;
+}
+
+/* -------------------------------------- */
+.btnForRooms{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.styleForBtn{
+  padding: 6px;
+  color:var(--white-color);
+  border-radius: 15px;
+  border: 1.5px solid var(--white-color);
+
+  font-size:12px;
+}
+.colorCollection{
+  background-color: #376B6D;
+}
+.colorCollection:hover{
+  background-color: #57a6a9;
+  transition: 0.2s ease-in;
+}
+.colorSchedule{
+  background-color: #da663c;
+}
+.colorSchedule:hover{
+  background-color: #f69b7a;
+  transition: 0.2s ease-in;
+}

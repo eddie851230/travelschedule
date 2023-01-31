@@ -24,7 +24,7 @@ const Resetpassword = () => {
 
     const Main = styled.main`
 position:absolute;
-top:30%;
+top:20%;
 left:25%;
 padding:1%;
 `;
