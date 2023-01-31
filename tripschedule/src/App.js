@@ -17,6 +17,8 @@ import Home from "./page/index/Home";
 import Airticket from "./page/airticket/Airticket";
 // 景點
 import Spot from "./page/spot/Spot";
+import Spotdetail from './page/spot/Spotdetail';
+
 // 飯店
 import Hotel from "./page/hotel/Hotel";
 import Search from "./page/hotel/Search";
