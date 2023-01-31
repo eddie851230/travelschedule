@@ -91,7 +91,7 @@ function App() {
 
             <Routes>
 
-              {user === null && (<Route path="/" element={<BeforeLogin />} />)}
+              {(user === null&&!isLoading) && (<Route path="/" element={<BeforeLogin />} />)}
               {(user && !isLoading) && (<Route path="/" element={<Home />} />)}
               {!isLoading && (<Route path="/Airticket" element={<Airticket />} />)}
               {!isLoading && (<Route path="/Spot" element={<Spot />} />)}

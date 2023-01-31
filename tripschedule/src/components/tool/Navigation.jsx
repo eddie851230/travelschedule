@@ -11,7 +11,7 @@ import "./navAndScrollbar.css";
 const Navigation = () => {
    
    // 判斷是否有會員登入中
-   const { user } = useContext(AuthContext);
+   const { user,isLoading } = useContext(AuthContext);
    
 
    // 控制展開
@@ -19,7 +19,7 @@ const Navigation = () => {
    const [show, setShow] = useState(false);
 
 
-   return (user!==null)?(
+   return (user!==null && !isLoading)?(
   
       <header>
          <div className="nav-bar">
@@ -60,7 +60,7 @@ const Navigation = () => {
          <div className="navigation">
             <div className="nav-items">
                {/* 登入前 */}
-               <NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>
+               {!isLoading&&<NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>}
                
             </div>
 
