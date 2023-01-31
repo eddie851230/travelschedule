@@ -46,6 +46,7 @@
 
 body {
     background: var(--body-bg-color);
+    overflow-x: hidden;
 }
 
 section {

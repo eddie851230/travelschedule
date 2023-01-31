@@ -1,7 +1,7 @@
 .bfcontainer {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/public/img/jp1.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(/public/img/jp1.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -9,7 +9,7 @@
     display: flex;
     height: 88%;
     align-items: center;
-    margin-left: 20%;
+    margin-left: 15%;
     max-width: 66%;
 }
 .col1{
@@ -23,6 +23,7 @@
     font-size: 100px;
     font-weight: 700;
     width: 18vw;
+    text-shadow:  0.1em 0.1em 0.05em rgb(0, 0, 0) ;
 
 }
 .col1 p{
@@ -31,6 +32,8 @@
     line-height: 40px;
     text-align: left;
     height: 50vh;
+    font-weight: 700;
+    text-shadow:  0.15em 0.15em 0.05em rgb(0, 0, 0) ;
 }
 
 
@@ -70,6 +73,7 @@
     background-size: cover;
     transition: 0.5s ease;
     overflow: hidden;
+    text-align: center;
     /* margin-right: 20%; */
 
 }
@@ -78,14 +82,16 @@
     font-size: 35px;
     color:var(--black);
     font-weight: 600;
+    
 }
 .bfcard:hover h2{
     font-size: 35px;
     color:white;
     font-weight: 600;
+    text-shadow:  0.15em 0.15em 0.05em rgb(0, 0, 0) ;
 }
 
-.more{
+/* .more{
     position: absolute;
     background: none;
     width: 100%;
@@ -93,15 +99,35 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-}
+} */
 .bfcard p{
     color: var(--black);
-    font-size: 18px;
-    display: block;
+    width: 90%;
+    font-size: 28px;
+    /* display: block; */
     /* line-height: 15px; */
     /* display: flex; */
-    padding: 15px 15px;
+    transform: translateX(0%);
+    position: absolute;
+    opacity: 0;
+    /* padding: 0 15px 0 0; */
+    transition: 0.8s;
+    bottom: 70%;
+    letter-spacing: 5px;
+    text-align: center;
 }
+
+.bfcard:hover p{
+    letter-spacing: 4px;
+    bottom: 10%;
+    font-weight: 500;
+    opacity: 1;
+    font-size: 28px;
+    color: var(--white-color);
+    text-align: center;
+    text-shadow:  0.15em 0.15em 0.05em rgb(0, 0, 0) ;
+}
+
 .bfcard1{
   background-image: url(/public/img/晴空塔.jpg);  
   /* background-color: #3b5378; */
