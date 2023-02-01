@@ -1,75 +1,88 @@
-.roomCard{
-    
-  flex:1;
+.roomCard {
+  flex: 1;
   border-radius: 10px;
-  border: 2px solid #376B6D;
-  
+  border: 2px solid #376b6d;
+
   padding: 10px;
   margin: 0 1%;
   background-color: #fff;
 }
-.roomPic{
+.roomPic {
   width: 100%;
-  height:30vh;
-  margin-bottom:2vh ;
+  height: 30vh;
+  margin-bottom: 2vh;
 }
-.roomPic img{
+.roomPic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 /* ------------------------------------ */
-.desForRoom p:nth-of-type(1){
-  font-size: 22px;
-  height:100%;
+/* 房間標題 */
+.desForRoom p:nth-of-type(1) {
+  font-size: 25px;
+  height: 100%;
   padding: 0;
+  font-weight: 900;
 }
-.priceForRoom{
+.desForRoom span {
+  font-size: 18px;
+}
+.priceForRoom {
   float: right;
   font-size: 22px;
-  height:100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
-ul{
+.priceForRoom span {
+  color: #da663c;
+  font-size: 28px;
+  font-weight: 900;
+  font-style: italic;
+}
+ul {
   list-style: none;
   margin: 0;
 }
 .roomsOffer {
-  
-  font-size: 16px;
+  display: block;
+  font-size: 25px;
 }
-.offerLists>li{
+.offerLists > li {
   font-size: 14px;
 }
 
 /* -------------------------------------- */
-.btnForRooms{
+.btnForRooms {
   width: 100%;
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
 }
-.styleForBtn{
+.styleForBtn {
   padding: 6px;
-  color:var(--white-color);
+  color: var(--white-color);
   border-radius: 15px;
   border: 1.5px solid var(--white-color);
-
-  font-size:12px;
 }
-.colorCollection{
-  background-color: #376B6D;
+.colorCollection {
+  background-color: #376b6d;
 }
-.colorCollection:hover{
+.colorCollection:hover {
   background-color: #57a6a9;
-  transition: 0.2s ease-in;
+  transition: 0.1s ease-in;
 }
-.colorSchedule{
+.colorSchedule {
   background-color: #da663c;
 }
-.colorSchedule:hover{
+.colorSchedule:hover {
   background-color: #f69b7a;
   transition: 0.2s ease-in;
+}
+.btnForRooms button {
+  font-size: 20px;
+  padding: 10px;
+  font-weight: ;
 }

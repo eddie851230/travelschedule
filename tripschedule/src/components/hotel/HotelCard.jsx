@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, createContext } from "react";
+import ReactDOM from "react-dom/client";
 import "./HotelCard.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+//轉跳其他頁面
+// 1.引用
+import { useNavigate } from "react-router-dom";
 
 // {process.env.PUBLIC_URL+"/img/Hotel_For_SQL/A02_01.webp"}
 
@@ -17,7 +21,7 @@ const HotelCard = () => {
   }, []);
 
   const getAllHotel = () => {
-    axios.get("http://127.0.0.1:8000/hotel_list").then((response) => {
+    axios.get("http://127.0.0.1:8000/hotelList").then((response) => {
       console.log(response.data);
 
       return setItems(response.data);
@@ -45,16 +49,32 @@ const HotelCard = () => {
 
   // 使用陣列的forEach()方法
 
+  // const CardDetail = () => useNavigate("/Hotel/Detail");
+
+  // 頁面導入
+  const navigateDetail = useNavigate();
+
+  //頁面攜帶資料useContext
+  const UserContext = createContext();
+
+  function Test(d) {
+    console.log(d);
+  } //test後面的參數可以隨意設定
+
   return (
     <>
       {newItems.map((v) => (
-        <Link to="/Hotel/Detail" >
-          <div className="Card-hotel">
+        <Link to={"/Hotel/Detail/" + v.hotel_id}>
+          <div
+            className="Card-hotel"
+            value={v}
+            // onClick={() => {Test(v);}}
+          >
             {/* <!-- 照片區 --> */}
             <div className="zoneImage">
               <img
                 src={process.env.PUBLIC_URL + "/img/Hotel_For_SQL/" + v.path}
-                alt="我很棒棒"
+                alt="圖片不見很棒棒"
               />
             </div>
             {/* <!-- 描述區 --> */}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAuthToken } from "./utils";
+import { getAuthToken } from "./Utils";
 
 // axios預設值
 export const http = axios.create({

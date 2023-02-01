@@ -7,58 +7,54 @@
   #376b6d
 ); */
 /* *{ */
-  /* border: 1px solid #000; */
-  /* outline: #da663c solid 1px; */
+/* border: 1px solid #000; */
+/* outline: #da663c solid 1px; */
 /* } */
-#indexContext{
-  width:100%;
-  height:60vh;
+#indexContext {
+  width: 100%;
+  height: 60vh;
   background-color: #f7905c;
-
 }
-#contextBG{
-  width:100%;
-  height:60vh; 
-  background-image:url("/public/img/hotel_img/index-bg.jpg") ;
-  background-position:center;
+#contextBG {
+  width: 100%;
+  height: 60vh;
+  background-image: url("/public/img/hotel_img/index-bg.jpg");
+  background-position: center;
   background-size: cover;
   /* background-color: yellowgreen; */
-  
 }
-#greenFilter{
+#greenFilter {
   width: 100%;
-  height:100%;
-  background-color:rgba(55,107,109,0.5) ;
+  height: 100%;
+  background-color: rgba(55, 107, 109, 0.5);
 }
 /* 內容抓80%置中 */
-.contextArea{
+.contextArea {
   width: 70%;
   margin: auto;
   position: relative;
-  
 }
-#indexTitle{
-  position: absolute ;
-  top:18vh;
+#indexTitle {
+  position: absolute;
+  top: 18vh;
 }
 
-#indexTitle p:nth-child(1){
+#indexTitle p:nth-child(1) {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--white-color);
   /* text-shadow:#262626 0.2em 0.1em 0.2em ; */
-  
 }
-#indexTitle p:nth-child(2){
-  font-size:1.5rem ;
+#indexTitle p:nth-child(2) {
+  font-size: 1.5rem;
   font-weight: 1000;
   color: var(--white-color);
 
-  margin-top:30px ;
+  margin-top: 30px;
   /* text-shadow:#262626 0.2em 0.1em 0.2em ; */
 }
 /* ___搜尋區_________________________________ */
-#btnArea{
+#btnArea {
   display: flex;
   position: absolute;
   align-items: center;
@@ -68,7 +64,6 @@
   /* left:40%; */
   /* left: 30%; */
   /* transform: translate(-50%, -50%); */
-  
 }
 
 #searchBar {
@@ -77,7 +72,8 @@
   width: 30vw;
   border-radius: 18px;
 }
-#submitBtn,form button {
+#submitBtn,
+form button {
   padding: 5px;
   /* height: 20px; */
   width: 65px;
@@ -87,27 +83,27 @@
   border: 2px solid var(--white-color);
   cursor: pointer;
 }
-.Position-relative{
+.Position-relative {
   position: relative;
 }
-.filterBtnPosition{
+.filterBtnPosition {
   position: absolute;
   bottom: 5%;
-  right:3%;
+  right: 3%;
 }
-.closeBtn{
+.closeBtn {
   width: 28px;
-  height:28px;
+  height: 28px;
   background-size: contain;
   /* background-image:url("/tripschedule/public/img/hotel-icon/close.png") ; */
 
-  position:absolute;
+  position: absolute;
   right: 3%;
-  top:3%;
+  top: 3%;
 }
-.closeBtn img{
-  width:100%;
-  height:100%;
+.closeBtn img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -115,317 +111,296 @@
 #timing {
   font-size: 3em;
 } */
-nav{
+nav {
   position: relative;
 }
 
-#filterZone{
+#filterZone {
   width: 80%;
-  height:30vh;
+  height: 30vh;
   border-radius: 10px;
-  background-color:#dcfff2;
+  background-color: #dcfff2;
   position: relative;
-  top: 4.5rem; 
-  left: 50%; 
+  top: 4.5rem;
+  left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow:rgb(113, 173, 166) 0.2em 0.2em 0.5em;
+  box-shadow: rgb(113, 173, 166) 0.2em 0.2em 0.5em;
 
   display: flex;
-
 }
 /* 內容區塊 */
-.checkZone{
+.checkZone {
   width: 100%;
-  height:100%;
+  height: 100%;
   /* background-color: yellow; */
 }
-.flexForm{
+.flexForm {
   display: flex;
   /* justify-content: center; */
- 
-} 
-.choosingZone{
-  
+}
+.choosingZone {
   background-color: #376b6d;
-  height:100%;
-  
+  height: 100%;
+
   /* width: 100%; */
 }
-.choosingZone div{
+.choosingZone div {
   font-size: 20px;
 }
-.dad-flex{
+.dad-flex {
   display: flex;
 }
-.district10{
-  flex:1;
+.district10 {
+  flex: 1;
 }
 /* --------------000 */
-.bgpink{
+.bgpink {
   background-color: pink;
 }
-.h100{
-  height:100%;
+.h100 {
+  height: 100%;
   background-color: #17a2b8;
   border-radius: 10px;
 }
 /* _______________ */
-.portion10{
-  flex:1;
+.portion10 {
+  flex: 1;
 }
 
-.portion13{
-  flex:1.3;
+.portion13 {
+  flex: 1.3;
 }
-.portion08{
-  flex:0.8;
+.portion08 {
+  flex: 0.8;
 }
-.district50{
+.district50 {
   width: 49%;
   background-color: #17a2b8;
   padding: 5px;
   border-radius: 20px;
 }
 
-
-.flexTitle{
-  flex:2;
+.flexTitle {
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.flexTitle p{
-  color:#376B6D;
+.flexTitle p {
+  color: #376b6d;
   font-size: 30px;
   font-weight: bold;
   /* line-height: 40px; */
   text-align: center;
   margin-bottom: 20px;
-  
 }
-.flexContent{
-  flex:3;
+.flexContent {
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.searchBtnArea{
-  padding:5px;
+.searchBtnArea {
+  padding: 5px;
 
   width: 70%;
   height: 70%;
   /* background-color: rgb(94, 227, 85); */
   border-radius: 15px;
-  border:1.5px solid #376B6D;
+  border: 1.5px solid #376b6d;
 
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
-.searchBtnArea:hover{
+.searchBtnArea:hover {
   background-color: #b1f7dd;
   cursor: pointer;
   transition: 0.1s ease-in;
-
-
 }
-.searchBtnArea div:nth-child(1){
+.searchBtnArea div:nth-child(1) {
   width: 100%;
   text-align: center;
-  
+
   color: #376b6d;
 }
-#btnName{
+#btnName {
   font-size: 20px;
 }
-.iconForSearch{
-  width:40%;
-  height:40%;
-
+.iconForSearch {
+  width: 40%;
+  height: 40%;
 }
-.iconForSearch img{
-  margin-top:15px ;
+.iconForSearch img {
+  margin-top: 15px;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
- 
+
 /* ____________________________ */
-.recommendationTitle{
-  margin-top:15vh ;
-  margin-bottom: 15vh ;
- 
+.recommendationTitle {
+  margin-top: 15vh;
+  margin-bottom: 15vh;
 }
-.recommendationTitle p:nth-child(1){
+.recommendationTitle p:nth-child(1) {
   text-align: center;
   font-size: 30px;
   font-weight: 700;
-  color: #376B6D;
+  color: #376b6d;
 }
-.recommendationTitle p:nth-child(2){
+.recommendationTitle p:nth-child(2) {
   text-align: center;
   font-size: 15px;
   /* font-weight: 700; */
   color: #000000;
 }
 /* _______________________________ */
-.optionZone{
- 
-  margin:auto;
+.optionZone {
+  margin: auto;
 
   display: flex;
   /* justify-content: space-around; */
   /* width:80% ; */
   /* background-color: #da663c; */
 }
-.wid80{
-  width:80%;
+.wid80 {
+  width: 80%;
   margin: auto;
 }
 /* _____提示___________________________ */
-.reminderZone{
+.reminderZone {
   position: absolute;
   top: 15vh;
-  right:10%;
+  right: 10%;
   padding: 5vh;
   color: var(--white-color);
   background-color: #376b6d;
   opacity: 0.9;
   border-radius: 10px;
 }
-.reminderZone p,.reminderZone div{
+.reminderZone p,
+.reminderZone div {
   font-size: small;
 }
-.currentTripName{
+.currentTripName {
   border-radius: 0.5rem;
   background-color: var(--white-color);
   color: #376b6d;
-  padding: 8px ;
+  padding: 8px;
   margin-top: 3px;
   margin-bottom: 3px;
 }
 /* _彈出篩選器________________________________ */
-.filterZone-outer{
+.filterZone-outer {
   position: fixed;
-  width:100% ;
-  height:100vh;
-  background-color: rgba(55, 107, 109,0.5)	;
-  
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(55, 107, 109, 0.5);
 
   z-index: 1000;
 
- 
-
   display: flex;
-
-  
 }
 
-.filterZone{
+.filterZone {
   border-radius: 15px;
- 
+
   /* margin:20%; */
   width: 80%;
   height: 60%;
-  
+
   background-color: var(--white-color);
-  
+
   /* left: 0; */
   /* top: 0; */
   /* right: 0; */
   /* bottom: 0; */
   margin: auto;
 
-  display:flex;
+  display: flex;
   /* align-items: center; */
   justify-content: center;
-
-
-  
 
   /* justify-content: space-between; */
 
   padding: 3vh;
   box-shadow: #376b6d 0.3em 0.2em 0.2em;
-  
-  
 }
-.H{
+.H {
   background-color: pink;
-  
+
   height: 100%;
 }
-.W{
+.W {
   width: 100%;
-  border:1px solid red;
+  border: 1px solid red;
   border-radius: 10px;
 }
-.filterTitle{
+.filterTitle {
   font-size: 18px;
   margin-bottom: 15px;
 }
-.makeFlex{
+.makeFlex {
   display: flex;
 }
-.makeHalf{
+.makeHalf {
   flex: 1;
   /* background-color: green; */
   border-radius: 15px;
 }
-.makeHalf p, .faciFont p{
+.makeHalf p,
+.faciFont p {
   font-size: 18px;
   margin-bottom: 8px;
 }
-.filterPart{
+.filterPart {
   width: 23%;
-  height:100%;
-  display:flex;
+  height: 100%;
+  display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   /* background-color: aqua; */
   /* background-color: var(--white-color); */
   /* margin: 3%; */
   /* border-radius: 10px; */
-  
 }
 
-.padding-narrow{
-  padding-left:2%;
-  padding-right:2%;
+.padding-narrow {
+  padding-left: 2%;
+  padding-right: 2%;
 }
-.filterPart-36{
-  flex:1;
+.filterPart-36 {
+  flex: 1;
   /* width: 28%; */
-  height:100%;
+  height: 100%;
   /* background-color: aqua; */
   background-color: var(--white-color);
-  /* margin: 3%; */ 
+  /* margin: 3%; */
 }
-.filterPart-36 p,.filterPart p{
+.filterPart-36 p,
+.filterPart p {
   font-size: 20px;
   margin-bottom: 15px;
 }
-.filterPart-36 >div{
+.filterPart-36 > div {
   display: flex;
-  width:100%
+  width: 100%;
 }
-.filterPart-36 >div >div{
-  width:50%
+.filterPart-36 > div > div {
+  width: 50%;
 }
 /* ____________________________________________ */
-.footerBgColor{
-  background-color: #376B6D;
+.footerBgColor {
+  background-color: #376b6d;
   width: 100%;
-  height:10vh;
+  height: 10vh;
 }
 /* 代替原始的nav */
-.nav{
-  position:relative;
+.nav {
+  position: relative;
 }
-
-
-
 
 /* ------------------------------------------- */
 .price-input {
@@ -437,17 +412,14 @@ nav{
   flex-direction: column;
   justify-content: center;
   /* margin: 30px 0 35px; */
-  
-  
+
   /* align-items:flex-start;  */
 
   /* width: 130px; */
-  
-  
+
   /* align-items: center; */
-  
 }
-.inner-input{
+.inner-input {
   /* width: 100%; */
   /* height: 100%; */
   /* background-color: aqua; */
@@ -456,7 +428,7 @@ nav{
   justify-content: center;
   margin-bottom: 30px;
 }
-.inner-progress{
+.inner-progress {
   /* width: 100%; */
   /* height: 100%; */
   /* background-color: yellow; */
@@ -464,31 +436,30 @@ nav{
   /* display: flex; */
   /* align-items: center; */
 }
-.separator{
+.separator {
   /* width: 130px; */
   display: flex;
   font-size: 22px;
   align-items: center;
   justify-content: center;
-  padding:0 10px;
+  padding: 0 10px;
   /* background-color: red; */
 }
 
 /* 價錢篩選 */
-.makeRangeFlex{
+.makeRangeFlex {
   display: flex;
   align-items: center;
   padding: 5%;
-
 }
 
- .field {
+.field {
   display: flex;
   /* width: 100%; */
   height: 45px;
   align-items: center;
   /* background-color: greenyellow; */
- } 
+}
 .field input {
   width: 100%;
   height: 100%;
@@ -500,10 +471,10 @@ nav{
   border: 1px solid #999;
   -moz-appearance: textfield;
 }
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
 
 .slider {
   height: 5px;
@@ -519,7 +490,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   background: #a6a6a6;
 }
 
-.progress { 
+.progress {
   height: 100%;
   left: 25%;
   right: 25%;
@@ -529,10 +500,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   border: 1px solid #fe8331;
 }
 
-.range-input { 
+.range-input {
   position: relative;
- 
-} 
+}
 .range-input input {
   position: absolute;
   width: 100%;
@@ -563,4 +533,4 @@ input[type="range"]::-moz-range-thumb {
   pointer-events: auto;
   -moz-appearance: none;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-}  
+}

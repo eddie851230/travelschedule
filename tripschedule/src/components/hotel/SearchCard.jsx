@@ -1,61 +1,78 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useState } from "react";
-import './searchCard.css';
-import{Link} from 'react-router-dom';
-import axios from 'axios';
+import "./searchCard.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 // import { useState } from 'react';
+//轉跳其他頁面
+// 1.引用
+import { useNavigate } from "react-router-dom";
 
+// 提取後端資料
 const SearchCard = () => {
+  // 搜尋資料導入細節頁
+  const navigateDetail = useNavigate();
+  function GoDetail() {
+    navigateDetail("/Hotel/Detail");
+  }
 
-  // 提取後端資料
-  const[items,setItems] = useState([]);
+  const [items, setItems] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getAllHotel();
-  },[]);
+  }, []);
 
-  const getAllHotel = ()=>{
-    axios.get('http://127.0.0.1:8000/hotel_list')
-      .then((response)=>{
-        console.log(response.data);
+  const getAllHotel = () => {
+    axios.get("http://127.0.0.1:8000/hotelList").then((response) => {
+      console.log(response.data);
 
-        return setItems(response.data);
-      });
+      return setItems(response.data);
+    });
   };
 
-
-  return (  
+  return (
     <>
-      {items.map((v)=>(
+      {items.map((v) => (
+        <Link to={{ pathname: "/Hotel/Detail/" + v.hotel_id, state: v }}>
           <div className="cardArea">
-          {/* 照片 */}
-          <Link to="/Hotel/Detail">
-          <div id="imageZone">
-            <img id="wherePicture" src={process.env.PUBLIC_URL+"/img/Hotel_For_SQL/"+ v.path} alt=""/>
+            {/* 照片 */}
+
+            <div id="imageZone">
+              <img
+                id="wherePicture"
+                src={process.env.PUBLIC_URL + "/img/Hotel_For_SQL/" + v.path}
+                alt=""
+              />
+            </div>
+            {/* </Link> */}
+            {/* <!-- 飯店描述 --> */}
+            <div className="hotelDescription">
+              <p id="hotelTitle">{v.name_CH}</p>
+              <span id="hotelDetails">
+                位在<span>{v.area}</span>
+              </span>
+              <span id="hotelDetails">
+                評價:&nbsp;<span>{v.stars}</span>&nbsp;/5顆星
+              </span>
+              <p className="priceF">
+                NT$&nbsp;<span>{v["min(hotels_roomtype.price_weekdays)"]}</span>
+                元/晚
+              </p>
+            </div>
+            {/* <!-- 放入收藏與行程 --> */}
+            <div className="btnZone">
+              <button id="btnText01" className="btnStyle colorCollection">
+                放入收藏
+              </button>
+              <button id="btnText02" className="btnStyle colorSchedule">
+                安排行程
+              </button>
+            </div>
           </div>
-          </Link>
-          {/* <!-- 飯店描述 --> */}
-          <div className="hotelDescription">
-    
-            <p id="hotelTitle">{v.name_CH}</p>
-            <span id="hotelDetails">位在<span>{v.area}</span></span>
-            <span id="hotelDetails">評價:&nbsp;<span>{v.stars}</span>&nbsp;/5顆星</span>
-            <p className="priceF">NT$&nbsp;<span>{v["min(hotels_roomtype.price_weekdays)"]}</span>元/晚</p>
-          </div>
-          {/* <!-- 放入收藏與行程 --> */}
-          <div className="btnZone">
-    
-            <button id='btnText01' className='btnStyle colorCollection'>放入收藏</button>
-            <button id='btnText02' className='btnStyle colorSchedule'>安排行程</button>
-          </div>
-        </div>
+        </Link>
       ))}
     </>
+  );
+};
 
-
-    
-    
-  )
-}
-
-export default SearchCard
+export default SearchCard;

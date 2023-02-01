@@ -1,34 +1,37 @@
 /* --卡片----------------------------------- */
-.cardArea{
+.cardArea {
   /* padding: 10px; */
-  margin-top:2vh;
+  margin-top: 2vh;
   /* clear: both; */
   /* width: 100%; */
   height: 25vh;
   display: flex;
-  border: 1.5px solid #376B6D;
+  border: 1.5px solid #376b6d;
   border-radius: 10px;
   /* background-color:yellow ; */
 }
-#imageZone{
+.cardArea:hover {
+  cursor: pointer;
+}
+#imageZone {
   /* flex:4; */
   width: 280px;
-  height:100%;
+  height: 100%;
   border-radius: 10px;
 
   /* background-color: rgb(255, 169, 40); */
 }
-#wherePicture{
-  width:100%;
-  height:100%;
+#wherePicture {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 /* 文字說明區 */
-.hotelDescription{
-  flex:4;
+.hotelDescription {
+  flex: 4;
   /* width:40% ; */
-  height:100%;
+  height: 100%;
 
   /* background-color: aquamarine; */
 
@@ -37,82 +40,76 @@
 
   position: relative;
 }
-#hotelTitle{
+#hotelTitle {
   font-size: 28px;
   font-weight: bold;
-  color: #376B6D;
+  color: #376b6d;
   margin-bottom: 30px;
   /* line-height: 2rem; */
 }
-#hotelDetails{
+#hotelDetails {
   font-size: 20px;
   font-weight: 900;
-  color: #376B6D;
+  color: #376b6d;
 }
 
-.hotelDescription>span{
+.hotelDescription > span {
   display: block;
-  font-size:12px;
+  font-size: 12px;
 }
 /* ------------按鈕區-------------------- */
-.btnZone{
+.btnZone {
   /* padding: 0 10px; */
-  flex:1.5;
+  flex: 1.5;
   /* width:% ; */
-  height:100%;
+  height: 100%;
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 
   /* background-color: rgb(73, 156, 239); */
 }
 #btnText01 {
-  font-size:20px;
-  background-color: #376B6D;
-  color:#fff;
+  font-size: 20px;
+  background-color: #376b6d;
+  color: #fff;
 }
-#btnText02{
-  font-size:20px;
+#btnText02 {
+  font-size: 20px;
   background-color: rgb(254, 218, 2);
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
-#btnText01:hover{
+#btnText01:hover {
   background-color: #57a6a9;
   transition: 0.2s ease-in;
 }
-#btnText02:hover{
+#btnText02:hover {
   background-color: rgb(254, 226, 68);
   transition: 0.2s ease-in;
 }
-.btnStyle{
+.btnStyle {
   width: 60%;
 
-  
-  padding:10px;
+  padding: 10px;
   text-align: center;
   border-radius: 20px;
   border: 1.5px solid var(--white-color);
 
-
   margin-right: 10px;
 }
 
-
-
-
 /* --------------------------- */
-.priceF{
+.priceF {
   color: rgb(44, 44, 44);
   font-size: 18px;
 
   position: absolute;
   bottom: 15%;
-  right:5%;
-} */
-
-.priceF span{
+  right: 5%;
+}
+*/ .priceF span {
   color: #da663c;
   font-size: 25px;
   /* font-weight: 600; */

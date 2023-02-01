@@ -1,80 +1,88 @@
-.Card-hotel{
+.Card-hotel {
   /* flex: 1; */
   /* width: 25%; */
   height: 500px;
   /* background-color: #da663c; */
   padding: 20px;
- 
 }
-.zoneImage{
+.Card-hotel:hover {
+  cursor: pointer;
+}
+.zoneImage {
   width: 100%;
   height: 55%;
   /* background-color: aqua; */
   border-radius: 10px;
 }
-.zoneImage img{
+.zoneImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
-.hotelTextZone{
-  padding: 8px;
+.zoneImage img:hover {
+  transition: 0.1s ease-out;
+  outline: 10px solid rgb(168, 255, 226);
+}
+.hotelTextZone {
+  margin-top: 5%;
+  padding: 15px;
   width: 100%;
-  height:45%;
+  height: 45%;
   /* background-color: blueviolet; */
 
   position: relative;
 }
-.hotelName{
-  color:#376B6D;
+.hotelTextZone:hover {
+  background-color: rgb(168, 255, 226);
+  border-radius: 15px;
+}
+.hotelName {
+  color: #376b6d;
   font-size: 22px;
   font-weight: bolder;
-  margin-bottom:10px ;
+  margin-bottom: 10px;
   height: 25px;
   line-height: 25px;
-
 }
-.overFlowHandel{
-  
+.overFlowHandel {
   overflow: hidden;
 
   white-space: nowrap;
 
   text-overflow: ellipsis;
 }
-.hotelName-EN{
-  color:#376B6D;
+.hotelName-EN {
+  color: #376b6d;
   font-size: 18px;
-  
+
   /* margin-bottom:15px ; */
 }
-.marginTop38{
+.marginTop38 {
   margin-top: 38px;
 }
-.hotelStars{
+.hotelStars {
   /* margin-top: 38px; */
-  color: #376B6D;
+  color: #376b6d;
 }
-.hotelStars{
+.hotelStars {
   font-size: 18px;
   line-height: 22px;
   margin-bottom: 5px;
 }
-.hotelStars span{
+.hotelStars span {
   font-size: 18px;
 }
-.showPrice{
+.showPrice {
   font-size: 20px;
-  color: #376B6D;
+  color: #376b6d;
 
   position: absolute;
-  bottom:30px ;
+  bottom: 30px;
   right: 20px;
 }
-.showPrice span{
-  
+.showPrice span {
   font-size: 30px;
   font-weight: bold;
-  color:#da663c;
+  color: #da663c;
 }
