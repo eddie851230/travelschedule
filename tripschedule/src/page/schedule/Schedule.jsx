@@ -1,25 +1,90 @@
-import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import "../schedule/schedule.css";
-import Favoritelist from "../../components/schedule/Favoritelist";
-import SchduleList from "../../components/schedule/SchduleList";
+import React, { useEffect, useState } from "react";
+//匯入package
+// import { Helmet } from "react-helmet";
+import axios from "axios";
+//匯入CSS
+// import "../schedule/schedule.css";
+import "./schedule.css";
+
+//匯入component
+import Favoritelist from "../../components/schedule/FavoriteArea/Favoritelist";
+import ScheduleList from "../../components/schedule/ScheduleArea/ScheduleList";
 // import Favoritelisttest from "../../components/schedule/Favoritelist copy";
 // import SchduleListtest from "../../components/schedule/SchduleList copy";
+
 import { columnsFromBackend } from "./scheduledata";
+import { initSpotListinfo } from "./scheduledataa";
+// import SpotMap from "./SpotMap";
+import SpotMap from "../../components/schedule/SpotMap/SpotMap";
+
+import { DragDropContext } from "react-beautiful-dnd";
 // import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import $ from "jquery";
 
-
+// -----------------------------------------------------------------------------
 function Schedule() {
+  // const spotListinfo = [
+  //   {
+  //     id: {},
+  //     name: {},
+  //     opentime: 1,
+  //     clickrate: 1,
+  //     ticketprice: 1,
+  //     address: 1,
+  //     suggestedtime: 1,
+  //     path: 1,
+  //   },
+  //   {
+  //     id: {},
+  //     name: {},
+  //     opentime: 1,
+  //     clickrate: 1,
+  //     ticketprice: 1,
+  //     address: 1,
+  //     suggestedtime: 1,
+  //     path: 1,
+  //   },
+  // ];
+  //hooks
+  const [spotListinfo, setSpotListinfo] = useState(initSpotListinfo);
 
+  //定義改資料的方法傳給子
 
+  let loadDataAsync = async () => {
+    // let response=await fetch(
+    //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
+    //   {}
+    // )
+    let response = await axios({
+      //请求方法
+      method: "GET",
+      //url
+      // url: "http://127.0.0.1:8000/schedules",
+      url: "http://127.0.0.1:8000/showSpot",
+      // url: "https://jsonplaceholder.typicode.com/users",
+    });
+    //响应状态码
+    console.log(response.status);
+    //响应状态字符串
+    console.log(response.statusText);
+    //响应头信息
+    console.log(response.headers);
+    //响应体
+    console.log(response.data);
+    //response.data array
+    setSpotListinfo([...response.data]);
+    // console.log(response.data);
+  };
 
+  useEffect(() => {
+    loadDataAsync();
+  }, []);
 
   // 先找有幾天，再來找一天內早中晚各幾筆資料
 
   // 多個拖拉的表單DEMO
   const [columns, setColumns] = useState(columnsFromBackend);
-  console.log(columns);
+  // console.log(columns);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -57,39 +122,35 @@ function Schedule() {
     }
   };
 
-  // 
+  //
 
   // 打開收藏名單編輯
   const openFavorite = () => {
-    let display = $('.favorite').css('display');
-    if (display !== 'block') {
-      $('.favorite').addClass('slidOut');
+    let display = $(".favorite").css("display");
+    if (display !== "block") {
+      $(".favorite").addClass("slidOut");
       setTimeout(() => {
-        $('.favorite').removeClass('slidOut');
+        $(".favorite").removeClass("slidOut");
       }, 200);
-      $('.favorite').css('display', 'block');
+      $(".favorite").css("display", "block");
       $("#editSchdule").css({
         backgroundColor: "#feda02",
-        color: "#000"
+        color: "#000",
       });
       $("#editSchdule").text("編輯完成");
-
-    }
-    else {
-      $('.favorite').addClass('slidClose');
+    } else {
+      $(".favorite").addClass("slidClose");
       setTimeout(() => {
-        $('.favorite').removeClass('slidClose');
-        $('.favorite').css('display', 'none');
+        $(".favorite").removeClass("slidClose");
+        $(".favorite").css("display", "none");
       }, 200);
       $("#editSchdule").css({
         backgroundColor: "var(--nav-bg-color)",
-        color: "#fff"
+        color: "#fff",
       });
       $("#editSchdule").text("編輯行程");
-
     }
-
-  }
+  };
 
   // 切換收藏名單分類
   const listChangeGroup = () => {
@@ -101,10 +162,9 @@ function Schedule() {
       setTimeout(() => {
         $(".selectList").removeClass("showup");
         $(".list .fHotel").removeClass("showup");
-      }, 1500)
+      }, 1500);
       $(".list .fHotel").css("display", "block");
       $(".list .fSpot").css("display", "none");
-
     }
     if (changeSpot === "飯店") {
       $(".selectList").addClass("showup");
@@ -112,21 +172,22 @@ function Schedule() {
       setTimeout(() => {
         $(".selectList").removeClass("showup");
         $(".list .fSpot").removeClass("showup");
-      }, 1500)
+      }, 1500);
       $(".list .fSpot").css("display", "block");
       $(".list .fHotel").css("display", "none");
       $(".selectList").text("景點");
     }
-  }
+  };
 
   // 行程表內部拖曳
-
 
   return (
     <>
       {/* <!-- 主要網站部分 --> */}
       <div className="scheduleMainpage">
-        {/* <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}> */}
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        >
           {/* <!-- 行程表------------------------------------------- --> */}
           <div className="schedule">
             {/* <!-- 行程表頭部 --> */}
@@ -145,7 +206,9 @@ function Schedule() {
               {/* <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) --> */}
               <button>複製行程</button>
               <button>分享行程</button>
-              <button id="editSchdule" onClick={openFavorite}>編輯行程</button>
+              <button id="editSchdule" onClick={openFavorite}>
+                編輯行程
+              </button>
             </div>
             {/* <!-- 行程表頭部結束 --> */}
 
@@ -164,50 +227,51 @@ function Schedule() {
                   Day<span> 1 </span>
                 </a>
 
-                <a>
+                <a href="/">
                   12月18日
                   <br />
                   Day<span> 2 </span>
                 </a>
 
-                <a>
+                <a href="/">
                   12月19日
                   <br />
                   Day<span> 3 </span>
                 </a>
 
-                <a style={{ visibility: "hidden" }}>
+                <a href="/" style={{ visibility: "hidden" }}>
                   12月20日
                   <br />
                   Day<span> 4 </span>
                 </a>
 
-                <a style={{ visibility: "hidden" }}>
+                <a href="/" style={{ visibility: "hidden" }}>
                   12月21日
                   <br />
                   Day<span> 5 </span>
                 </a>
-
               </div>
-
 
               {/* <!-- 右鍵 --> */}
               <div className="next">
                 <div></div>
               </div>
-
             </div>
             {/* <!-- 行程日期條結束 --> */}
 
-
             {/* <!-- 行程表景點及交通------------------------------------ --> */}
             <div className="tripSpot">
-              <SchduleList />
+              <ScheduleList
+                spotListinfo={spotListinfo}
+                setSpotListinfo={setSpotListinfo}
+                loadDataAsync={function () {
+                  loadDataAsync();
+                }}
+              />
             </div>
 
             {/* <!-- 行程表結束 --> */}
           </div>
-
 
           {/* <!-- 收藏名單 -------------------------------------------> */}
           <div className="favorite">
@@ -226,17 +290,25 @@ function Schedule() {
               </div>
             </div>
             <Favoritelist />
-            <div className="close" onClick={openFavorite}>&times;</div>
+            <div className="close" onClick={openFavorite}>
+              &times;
+            </div>
           </div>
           {/* <!-- 收藏名單結束 --> */}
-        {/* </DragDropContext> */}
-
-
+        </DragDropContext>
         {/* <!-- 地圖------------------------------------------------> */}
-        <div id="myMap" className="mapping"></div>
+        {/* <SpotMap
+          spotListinfo={spotListinfo}
+          setSpotListinfo={setSpotListinfo}
+          loadDataAsync={() => {
+            loadDataAsync();
+          }}
+        /> */}
+        {/* <div id="myMap" className="mapping"></div>
+        
         <Helmet>
           <script src="./openstreetmap.js"></script>
-        </Helmet>
+        </Helmet> */}
       </div>
     </>
   );

@@ -13,7 +13,7 @@
     height: 100%;
     object-fit: cover;
 }
-article{
+.articleZone{
     
     width: 75%;
     /* height: 180vh ; */
@@ -61,13 +61,14 @@ p{
     text-align: center;
     border: 1.5px solid #376B6D;
     font-size:medium ;
+    margin-bottom: 15px;
     
 }
 label{
     height: 100%;
     margin-left: 0.5rem;
 }
-input{
+.hotel input{
     width:15px;
     height:15px;
 }
@@ -182,6 +183,7 @@ p, .opH{
     font-size: 22px;
     font-weight: 700;
     color: #376B6D;
+    margin-bottom: 30px;
     /* line-height: 2rem; */
 }
 .hotelDescription>span{
@@ -222,12 +224,13 @@ p, .opH{
     background-color: #f69b7a;
     transition: 0.2s ease-in;
 }
+/* --------------------------- */
 .priceF{
     color: rgb(44, 44, 44);
     font-size: 18px;
 
     position: absolute;
-    bottom: 1%;
+    bottom: 15%;
     right:5%;
 }
 .priceF span{
@@ -282,10 +285,10 @@ footer {
     vertical-align: middle;
 }
 
-.container::before{
-    content: ". ";
-    letter-spacing: 2px;
-}
+/* .container::before{
+    /* content: ". "; */
+    /* letter-spacing: 2px; */
+/* } */
 
 
 /* 隱藏多選格預設 */
@@ -344,11 +347,11 @@ footer {
     transform: rotate(45deg);
 }
 /* ----------確認按鈕-------------- */
-#searchBtn{
+#searchBtn {
     padding: 5px;
-    font-size: 18px;
+    font-size: 12px;
     /* height: 20px; */
-    width: 80px;
+    width: 80%;
     border-radius: 18px;
     background-color: #da663c;
     color: var(--white-color);

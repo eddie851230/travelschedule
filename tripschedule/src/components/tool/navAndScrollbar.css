@@ -47,6 +47,7 @@
 
 body {
     background: var(--body-bg-color);
+    overflow-x: hidden;
 }
 
 section {
@@ -128,7 +129,6 @@ header .logo img:first-child {
 
 
 
-
 .navigation .nav-items a:not(:last-child) {
     margin-right: 25px;
 }
@@ -148,7 +148,6 @@ header .navigation .nav-items a:hover:before,header .navigation .nav-items div:h
     width: 100%;
     background-color: #feda02;
 }
-
 
 header .navigation .nav-items a:hover,header .navigation .nav-items div:hover{
     color: #feda02;

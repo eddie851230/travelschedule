@@ -2,19 +2,25 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import AuthContext from '../../contexts';
-import { setAuthToken } from '../../utils';
+import { setAuthToken, setAuthTokenlimter } from '../../utils';
 
 const Memberlist = (props) => {
     // 導向頁面的宣告
-    const {setUser}  = useContext(AuthContext);
     const navigate = useNavigate();
+    
 
     // 設定登出後狀態
     const handleLogout = () => {
         setAuthToken("");
+        setAuthTokenlimter("");
         setUser(null);
         navigate("/");
     };
+
+    
+    // 判斷是否有會員登入中
+    const {user,setUser}  = useContext(AuthContext);
+// console.log(user)
 
     // CSS
     const Modelbox = styled.div`
@@ -94,10 +100,10 @@ const Memberlist = (props) => {
         <Modelbox onClick={() => props.setShow(false)}>
             <MemberList>
                 <Userinfo>
-                    <Userimg src="/img/淺草寺.jpg" alt="avatar" />
+                    <Userimg src={user.profile_photo_path} alt="avatar" />
                     <UserInfotext>
-                        <Username>檸檬怪</Username>
-                        <Email>jennifer53085@gmail.com</Email>
+                        <Username>{user.name}</Username>
+                        <Email>{user.email}</Email>
                     </UserInfotext>
                 </Userinfo>
                 <hr />

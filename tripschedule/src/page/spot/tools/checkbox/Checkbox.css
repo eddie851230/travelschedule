@@ -1,0 +1,10 @@
+.form h3{
+    color: #fff;
+    font-size: 30px;
+}
+
+.form-check-input {
+    position: absolute;
+    margin-top: 0;
+    margin-left: -1.25rem;
+}

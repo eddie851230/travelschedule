@@ -59,6 +59,7 @@ const Favoritelisttest = () => {
         // result.source.index把元件放到index的哪裡
         // result.destination.index從index的哪裡出發
         const hotelItems = Array.from(hotelinfo);
+        console.log(hotelItems)
         const [hotelreorderedItem] = hotelItems.splice(result.source.index, 1);
         hotelItems.splice(result.destination.index, 0, hotelreorderedItem);
         updateHotelinfo(hotelItems);

@@ -1,12 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from "axios";
+import AuthContext from '../../contexts';
+
 
 
 const CreateNewSchedule = (props) => {
-
+    // 設定路由轉址
     const navigate = useNavigate();
+
+     // 判斷是否有會員登入中
+     const {user}  = useContext(AuthContext);
 
 
 
@@ -110,10 +115,14 @@ const CreateNewSchedule = (props) => {
 
 
     const createSchdule = (schduleName, startdate, enddate) => {
+        if(!schduleName||!startdate||!enddate){
+            return alert('請填入完整行程資訊')
+        }
         axios.post("http://localhost:8000/schedules", {
             schduleName: schduleName,
             startdate: startdate,
-            enddate: enddate
+            enddate: enddate,
+            userid:user.id
         }).then((response) => {
             props.setSchdule([response.data, ...props.schdule]);
         });

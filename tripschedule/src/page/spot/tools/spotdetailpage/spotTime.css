@@ -1,0 +1,41 @@
+.sptimetable{
+    background-color: rgba(21, 194, 194, 0.151);
+    width: 24vw;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.sptimetable img{
+    border-radius: 20px;
+    height: 350px;
+    width: 450px;
+    margin: 40px 5px 0 5px;
+}
+
+.sptimetable .tablep{
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+.tablep h5{
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.tablep p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.tablep1{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.sptimetable .spdeCard3{
+    margin-top: 3vh;
+    margin-left: 2vw;
+}

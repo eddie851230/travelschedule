@@ -9,6 +9,7 @@
 .membermain a:active {
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 
 /* 會員中心的按鈕格式 */
@@ -33,6 +34,7 @@
     background-color: #feda02;
     font-weight: 700;
     border: 2px solid var(--white-color);
+    cursor: pointer;
 }
 
 .card-columns {
@@ -127,15 +129,16 @@ h5{
     background-color: #f1f1f1;
 }
 
-.membermain .sidebar a div {
+.membermain .sidebar .thisPage{
     background-color: #f1f1f1;
     color: var(--nav-bg-color);
 }
 
-.membermain .sidebar a div:hover:not(.active) {
+.membermain .sidebar .thisPage:hover:not(.active) {
     background-color: #feda02;
     color: #000;
     transition: .2s cubic-bezier(0.215, 0.610, 0.355, 1);
+    cursor: pointer;
 }
 
 
@@ -189,6 +192,8 @@ div.content {
     border-color: var(--nav-bg-color);
     color: var(--nav-bg-color);
 }
+
+
 
 /* 卡片裝飾 */
 

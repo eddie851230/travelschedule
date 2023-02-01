@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'provider',
+        'provider_id',
         'name',
         'email',
         'password',
+        'profile_photo_path',
+        'coverphoto_path',
+       
     ];
 
     /**
@@ -31,6 +36,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -41,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // function Provider(){
+    //     return $this->hasMany(Provider::class, 'user_id', 'id');
+    // }
 }

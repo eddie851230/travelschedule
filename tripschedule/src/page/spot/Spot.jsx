@@ -5,6 +5,7 @@ import Sphot from "../spot/tools/sphot";
 import Spserch from "../spot/tools/spserch";
 import Nerspot from "../spot/tools/nerspot";
 import Oneday from "../spot/tools/oneday";
+// import Calendar from "../spot/tools/calendar/onDragEnd";
 const Spot = () => {
         return (<div>
             <Sptop/>
@@ -13,6 +14,7 @@ const Spot = () => {
             <Nerspot/>
             <Oneday/>
             <Footer/>
+            {/* <Calendar/> */}
             </div>
         );
 }

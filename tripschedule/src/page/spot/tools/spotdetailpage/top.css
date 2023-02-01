@@ -1,0 +1,17 @@
+.topp{
+    background-image: linear-gradient( to right,rgb(55, 107, 109),rgb(178, 230, 231));
+    /* background:rgb(55, 107, 109); */
+    width: 90vw;
+    margin-left: 5vw;
+    border-radius: 10px;
+    margin-top: 2vh;
+    color: #fff;
+    height: 6vh;
+}
+
+.topp h2{
+    margin-left: 2vw;
+    height: 100%;
+    padding-top: 10px;
+    font-weight: 600;
+}
