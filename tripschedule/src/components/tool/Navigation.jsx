@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Memberlist from '../member/Memberlist';
 import AuthContext from '../../contexts';
+import { getAuthToken } from 'utils';
 
 import { UilHome, UilPlaneDeparture, UilMapPinAlt, UilBed, UilSchedule, UilUserCircle, UilApps } from "@iconscout/react-unicons";
 import "https://kit.fontawesome.com/11f63461bc.js";
@@ -11,7 +12,7 @@ import "./navAndScrollbar.css";
 const Navigation = () => {
    
    // 判斷是否有會員登入中
-   const { user,isLoading } = useContext(AuthContext);
+   const { user } = useContext(AuthContext);
    
 
    // 控制展開
@@ -19,7 +20,7 @@ const Navigation = () => {
    const [show, setShow] = useState(false);
 
 
-   return (user!==null && !isLoading)?(
+   return (user!==null && getAuthToken())?(
   
       <header>
          <div className="nav-bar">
@@ -60,7 +61,7 @@ const Navigation = () => {
          <div className="navigation">
             <div className="nav-items">
                {/* 登入前 */}
-               {!isLoading&&<NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>}
+               {!getAuthToken()&&<NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>}
                
             </div>
 

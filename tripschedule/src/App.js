@@ -55,13 +55,15 @@ import GoogleLogin from './components/member/GoogleLogin';
 function App() {
 
 
+
   //  驗證是否持續還在登入中
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
- 
+
     const fetchData = async () => {
+      
       // 以 getAuthToken 從 localstorage讀取 token
       if (getAuthToken()) {
         // 有 token 才 call API
@@ -76,6 +78,8 @@ function App() {
           setIsLoading(false);
         }
       }
+       
+ 
     };
     fetchData();
   }, [getAuthToken()]);
@@ -93,13 +97,14 @@ function App() {
 
             <Routes>
 
-              {(user === null&&!isLoading) && (<Route path="/" element={<BeforeLogin />} />)}
+              {(!user&&!getAuthToken()) && (<Route path="/" element={<BeforeLogin />} />)}
               {(user && !isLoading) && (<Route path="/" element={<Home />} />)}
               {!isLoading && (<Route path="/Airticket" element={<Airticket />} />)}
               {!isLoading && (<Route path="/Spot" element={<Spot />} />)}
-              {!isLoading && (<Route path="/Spot/:id" element={<Spot />} />)}
+              {!isLoading && (<Route path="/Spot/:id" element={<Spotdetail />} />)}
               {!isLoading && (<Route path="/Hotel" element={<Hotel />} />)}
-              {!isLoading && (<Route path="/Hotel/:id" element={<Hotel />} />)}
+              {!isLoading && (<Route path="/Hotel/Search" element={<Search />} />)}
+              {!isLoading && (<Route path="/Hotel/Detail/:id" element={<Detail />} />)}
               {!isLoading && (<Route path="/Schedule" element={<Schedule />} />)}
               <Route path="/LoginandSignup" element={<LoginandSignup />} />
               {!isLoading && (<Route path="/member/MemberFavorite/" element={<MemberFavorite />} />)}

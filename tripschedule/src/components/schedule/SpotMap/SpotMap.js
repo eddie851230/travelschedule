@@ -8,7 +8,6 @@ export default function Spotmap(p) {
   console.log(p.spotListinfo);
 
 
-
   //methods
   //-----------------------------------------------------------------
   // loadDataAsync = async () => {

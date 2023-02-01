@@ -13,10 +13,10 @@ const Video = () => {
     if (oIcon.current) {
       oIcon.current.addEventListener('click', handleClick);
       oClear.current.addEventListener('click', handleClick);
-      return () => {
-        oIcon.current.removeEventListener('click', handleClick);
-        oClear.current.removeEventListener('click', handleClick);
-      };
+      // return () => {
+      //   oIcon.current.removeEventListener('click', handleClick);
+      //   oClear.current.removeEventListener('click', handleClick);
+      // };
     }
 
     function handleClick() {

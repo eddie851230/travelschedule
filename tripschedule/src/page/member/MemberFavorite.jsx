@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useRef } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "../member/member.css";
 import styled from 'styled-components';
@@ -173,7 +173,7 @@ margin:5%;
                                             <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
                                         </h5>
                                         <Link to={"/Spot/"+attraction_id}><button>詳細資訊</button></Link>
-                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                        <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
                                 </Card>
@@ -190,8 +190,8 @@ margin:5%;
                                         <h5 className="card-text">
                                             <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
                                         </h5>
-                                        <Link to={"/Hotel/"+hotel_id}><button>詳細資訊</button></Link>
-                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                        <Link to={"/Hotel/Detail/"+hotel_id}><button>詳細資訊</button></Link>
+                                        <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
                                 </Card>

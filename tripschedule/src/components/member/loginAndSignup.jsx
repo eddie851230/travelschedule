@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./loginAndSignup.css";
 import "../tool/cueTitle.css";
 import { http, loginapi, memberapi } from '../../WebAPI';
-import { setAuthToken, setAuthTokenlimter } from "../../utils";
+import { setAuthToken, setAuthTokenlimter, getAuthToken } from "../../utils";
 import AuthContext from "../../contexts";
 import GoogleLogo from './GoogleLogo';
 
@@ -17,8 +17,17 @@ const LoginandSignup = () => {
     // 轉跳頁面
     const navigate = useNavigate();
 
+
     // 登入辨認
     const { user, setUser } = useContext(AuthContext);
+
+    // 防止登入後會看到該畫面
+    useEffect(() => {
+        if (getAuthToken() && getAuthToken() === null) {
+            return navigate("/");
+        }
+    }, [])
+
 
 
     // ----------------------------------讓興趣取值
@@ -49,28 +58,6 @@ const LoginandSignup = () => {
         ]
     )
 
-    // const [checkedState, setCheckedState] = useState(
-    //     new Array(interst.length).fill(false)
-    // );
-
-    // const handleOnChange = (position) => {
-    //     const updatedCheckedState = checkedState.map((item, index) =>
-    //       index === position ? !item : item
-    //     );
-    //     // alert(updatedCheckedState);
-
-    //     setCheckedState(updatedCheckedState);
-    // };
-    // // 將checkedstate的index
-    // checkedState.map((item, index)=>{
-    //     console.log(item)
-    //     if(item===false){
-    //             interst.map((index)=>{
-    //             setInterst[index].value=null;
-    //             console.log(setInterst[index].value);
-    //         })
-    //         }
-    //     })
     // --------------------------------------分辨是送出還是要轉換畫面的function
     const defineClick = () => {
 
@@ -97,7 +84,7 @@ const LoginandSignup = () => {
 
         e.preventDefault();
 
-
+        setTimeout(() => setRegErrorMessage(""), 2500);
         //  前端偵測是否符合資料
         // 密碼驗證符合格式
         let lowerCaseLetters = /[a-z]/g;
@@ -105,18 +92,24 @@ const LoginandSignup = () => {
         let numbers = /[0-9]/g;
 
         if (username === "" || resEmail === "" || resPassword === "" || checkpwd === "") {
+
             return setRegErrorMessage("必填資料未填");
         } else if (!resPassword.match(upperCaseLetters)) {
+
             return setRegErrorMessage("密碼缺少大寫英文");
         } else if (!resPassword.match(numbers)) {
+
             return setRegErrorMessage("密碼缺少數字");
         } else if (resPassword.length < 8) {
+
             return setRegErrorMessage("密碼長度需8個字以上");
         }
         else if (checkpwd !== resPassword) {
+
             return setRegErrorMessage("確認密碼不符，請再檢視");
         }
         else if (!resPassword.match(lowerCaseLetters)) {
+
             return setRegErrorMessage("密碼缺少小寫英文");
 
         } else {
@@ -154,6 +147,7 @@ const LoginandSignup = () => {
 
                 if (error.response.data.message === "The email has already been taken.") {
                     setAuthToken(null);
+                    setTimeout(() => setRegErrorMessage(""), 2500);
                     return setRegErrorMessage("信箱已註冊");
                 }
 
@@ -208,7 +202,12 @@ const LoginandSignup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setTimeout(() => setErrorMessage(""), 2500);
+        
+        if (!email || !password) {
+            setTimeout(() => setErrorMessage(""), 2500);
+            return setErrorMessage('請填入帳號密碼');
+        }
 
         await http.get('/sanctum/csrf-cookie');
         await loginapi(email, password).then((data) => {
@@ -234,6 +233,7 @@ const LoginandSignup = () => {
                     setAuthToken(null);
                     setAuthTokenlimter(null);
                     setErrorMessage("密碼錯誤");
+                    setTimeout(() => setErrorMessage(""), 2500);
                 }
                 else {
                     // 導到首頁 
@@ -292,7 +292,7 @@ const LoginandSignup = () => {
             .catch(error => console.log(error));
     }, []);
 
-    
+
 
 
 
@@ -367,7 +367,7 @@ const LoginandSignup = () => {
                         <form>
                             <div className="step1" ref={step1} style={{ display: toggle ? "block" : "none" }}>
                                 <div className="social">
-                                <a href={googleLoginUrl} className="google"><GoogleLogo/><span>使用Google登入</span></a>
+                                    <a href={googleLoginUrl} className="google"><GoogleLogo /><span>使用Google登入</span></a>
                                     {/* <a href={googleLoginUrl} className="google"><i className="fa-brands fa-google"></i>使用Google登入</a> */}
                                     {/* <div className="facebook"><i className="fa-brands fa-facebook"></i></div> */}
                                     {/* <div className="line"><i className="fa-brands fa-line"></i></div> */}
@@ -382,7 +382,7 @@ const LoginandSignup = () => {
                                 <input type="password" className="input" placeholder="再次確認密碼(必填)" onChange={(e) => setCheckpwd(e.target.value)} value={checkpwd} required />
                                 {/* 偵錯 */}
                                 {regErrorMessage && <><div className="loginError">{regErrorMessage}</div></>}
-                             
+
                             </div>
                         </form>
                         {/* 註冊頁面二 */}
@@ -415,15 +415,15 @@ const LoginandSignup = () => {
 
                 </div>
                 {/* 登入 */}
-                
+
                 <div className="login" ref={loginRef}>
                     <div className="center">
                         <h2 className="form-title" id="login" onClick={loginOpen}>登入</h2>
                         <form>
                             <div className="form-holder">
                                 <div className="social">
-                                <a href={googleLoginUrl} className="google"><GoogleLogo/><span>使用Google登入</span></a>
-                                {/* <a href={googleLoginUrl} className="google"><i className="fa-brands fa-google"></i><span>使用Google登入</span></a> */}
+                                    <a href={googleLoginUrl} className="google"><GoogleLogo /><span>使用Google登入</span></a>
+                                    {/* <a href={googleLoginUrl} className="google"><i className="fa-brands fa-google"></i><span>使用Google登入</span></a> */}
                                     {/* <div className="facebook"><i className="fa-brands fa-facebook"></i></div> */}
                                     {/* <div className="line"><i className="fa-brands fa-line"></i></div> */}
                                 </div>
@@ -437,7 +437,7 @@ const LoginandSignup = () => {
                                 <input type="checkbox" name="remember" value={remember} onClick={() => setRemember(!remember)} />
                                 <span className="checkmark"></span>
                             </label>
-                          
+
                         </form>
                         <Link to="/forgot-password"><div className="forget">忘記密碼</div></Link>
                     </div>

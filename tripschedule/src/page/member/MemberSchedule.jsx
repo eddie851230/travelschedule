@@ -135,7 +135,7 @@ const MemberSchedule = () => {
                                         <h3 className="card-title">{name}</h3>
                                         <p className="card-text">{date_start}至{date_end}</p>
                                         <Link to={'/Schedule/' + id}><button>編輯</button></Link>
-                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                        <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
                                 </Card>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Footer from "../../components/tool/Footer";
 import Video from "../index/tools/video";
 import Teach from "../index/tools/teach";
@@ -7,10 +7,23 @@ import Homesch from "../index/tools/homeHotSchedule";
 import "../index/Home.css";
 import CreateNewSchedule from "../../components/member/CreateNewSchedule";
 
+import { getAuthToken } from 'utils';
+import  AuthContext  from 'contexts';
+
 
 const Home = () => {
-    
-// 展開建立行程表單
+    const { setIsLoading } = useContext(AuthContext);
+    // 自動登出之後返回未登入前
+    useEffect(() => {
+        setIsLoading(true)
+        if (!getAuthToken()) {
+            window.location.reload();
+            setIsLoading(false);
+        }else{
+            setIsLoading(false);
+        }
+    }, [])
+    // 展開建立行程表單
     const [scheShow, setScheshow] = useState(false);
 
     return (
@@ -18,7 +31,7 @@ const Home = () => {
             < Video />
             < Teach />
             <div className="homeBtn"><button type="button" onClick={() => setScheshow(true)}>開始您的行程</button></div>
-            <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow}/>
+            <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow} />
             < Homesch />
             < Hhtspot />
             <section className="cta">

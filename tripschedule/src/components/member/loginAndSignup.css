@@ -60,6 +60,7 @@
 .signup.slide-up .form-holder,
 .signup.slide-up .submit-btn {
   opacity: 0;
+  /* height: 0; */
   /* visibility: hidden; */
 }
 
