@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AirBackgroundImg from "../../components/airticket/Airticket_Components/AirBackgroundImg/AirBackgroundImg"
 import AirticketSearchList from '../../components/airticket/Airticket_Components/AirticketSearchList/AirticketSearchList';
 import AirticketSearchButton from '../../components/airticket/Airticket_Components/AirticketSearchButton/AirticketSearchButton';

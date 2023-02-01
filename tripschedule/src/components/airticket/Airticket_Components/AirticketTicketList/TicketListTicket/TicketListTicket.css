@@ -6,6 +6,7 @@
     border-radius: 19px;
     display: flex;
     padding: 2vw;
+    justify-content: space-around;
 }
 
 .ticketCarrierImg {
@@ -14,12 +15,72 @@
 }
 
 .placeTime {
-    border: solid black 1px;
     width: 30vw;
-}
-
-.ticketPrice {
-    font-size: 3rem;
-    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     
 }
+
+
+.nextTicket {
+    background-color: #376B6D;
+    color: #fff;
+    height: fit-content;
+    border-radius: 4px;
+    padding: 5px;
+    height: 6vh;
+    width: 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+.nextTicket:hover{
+    cursor: pointer;
+}
+
+.ticketLink {
+    color: blue;
+    font-size: 3vh;
+}
+
+.ticketTime {
+    color: #376B6D;
+    font-size: 5vh;
+}
+
+#airTime {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bolder;
+}
+
+.flightIcons{
+    font-size: 5vh;
+    color: #376B6D;
+    margin-top: -0.3vw;
+}
+
+#airPlace {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bolder;
+    font-size: 2vh;
+}
+
+#priceLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+
+.ticketPrice {
+    font-size: 3vh;
+    font-weight: 700;
+}
+

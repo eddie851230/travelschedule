@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./TicketListTicket.css"
+import { FiArrowRight } from "react-icons/fi";
 // import Fake from '../../AirticketSideFilter/SideFilter/SideFilterCompany/Fake';
 
 function TicketListTicket(props) {
@@ -29,19 +30,19 @@ function TicketListTicket(props) {
 
     return (
       <div className={marketingCarrierIds + " ticketBox"} key={ticketNum}>
-        {marketingCarrierIds}
+
         <img className="ticketCarrierImg" src={ticketSearch.content.results.carriers[marketingCarrierIds].imageUrl} alt={ticketSearch.content.results.carriers[marketingCarrierIds].name} />
 
         <div className='placeTime'>
 
           <div id="airTime">
             {/* 起飛時間 */}
-            <div className='ticketStartTime'>
+            <div className='ticketStartTime ticketTime'>
               {String(startDateTime.hour).padStart(2, "0")} : {String(startDateTime.minute).padStart(2, "0")}
             </div>
-
+            <div className='flightIcons'><FiArrowRight /></div>
             {/* 抵達時間 */}
-            <div className='ticketArrivalTime'>
+            <div className='ticketArrivalTime ticketTime'>
               {String(endDateTime.hour).padStart(2, "0")} : {String(endDateTime.minute).padStart(2, "0")}
             </div>
           </div>
@@ -57,12 +58,14 @@ function TicketListTicket(props) {
               {ticketSearch.content.results.places[destinationPlaceId].name}
             </div>
           </div>
-
-          <div><a href={deepLink}>LINK</a></div>
+        </div>
+        <div id="priceLink">
+          <div className="ticketPrice">價格 : {Math.ceil(priceAmount / 1000)}.NT</div>
+          <div><a className='ticketLink' href={deepLink}>購買連結</a></div>
+          <div className="nextTicket">下一步</div>
         </div>
 
-        <div className="ticketPrice">價格 : {priceAmount / 1000}</div>
-
+        
       </div>
     )
   })
@@ -70,7 +73,7 @@ function TicketListTicket(props) {
   useEffect(() => {
     var filterArr = []
     for (let key in props.sideFilter) {
-      if (props.sideFilter[key] === true) { 
+      if (props.sideFilter[key] === true) {
         filterArr.push(key)
       }
     }
@@ -91,4 +94,4 @@ function TicketListTicket(props) {
 }
 
 
-export default TicketListTicket; 
+export default TicketListTicket;

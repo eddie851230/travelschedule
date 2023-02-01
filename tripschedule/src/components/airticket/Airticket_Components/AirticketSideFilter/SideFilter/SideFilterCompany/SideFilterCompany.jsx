@@ -10,7 +10,7 @@ function SideFilterCompany(props) {
    
     // first
     var searchStateObj = Carrierskey.reduce((a, v) => ({...a, [v]: true}),{})
-    useEffect(() => {props.setsideFilter(searchStateObj)},[])
+    useEffect(() => {props.setsideFilter(searchStateObj)},[props.apiData])
 
 
     const searchcheck = (e) => {
@@ -30,11 +30,12 @@ function SideFilterCompany(props) {
 
     return (
         <>
-            <div id='SideFilterCompanyTitle'>Company</div>
+            <div id='SideFilterCompanyTitle'>航空公司：</div>
+            <br />
             <div id="SideFilterCompany">
                 {CoolCatMaker}
             </div>
-        </>
+        </> 
     );
 }
 

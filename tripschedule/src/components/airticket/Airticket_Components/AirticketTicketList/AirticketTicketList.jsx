@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./AirticketTicketList.css"
 import TicketListTicket from './TicketListTicket/TicketListTicket';
 
