@@ -52,12 +52,14 @@ class AuthController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    public function logout()
-    {
-        Auth::user()->tokens()->delete();
-        
-        return  response([
-            'message' => '登出'
-        ],Response::HTTP_OK);
+    public function update(){
+        DB::connection('mysql');
+        $data = request()->all();
+        $user = DB::table('users')
+        ->where('id',$data['user'])
+        ->update(
+            ['name' => $data['name']]
+            );
+        return $user;
     }
 }
