@@ -60,7 +60,8 @@
 .signup.slide-up .form-holder,
 .signup.slide-up .submit-btn {
   opacity: 0;
-  visibility: hidden;
+  /* height: 0; */
+  /* visibility: hidden; */
 }
 
 .signup.slide-up .form-title {
@@ -262,70 +263,85 @@
 .login a {
   text-align: center;
   text-decoration: none;
-  color: #376B6D4c;
+  color: #376B6Ddd;
   font-weight: 700;
 }
 
 .login a:hover {
-  color: #6B92A4;
-}
+  color: #3b7f9e;
+  
+} 
 
 /* 第三方登入icon */
 .social {
   display: flex;
-  padding: 10px 10px 0;
+  padding: 10px 8px 0;
   width: 100%;
   justify-content: space-around;
+  align-items: center;
 }
 
 .signup .google,
-.signup .line,
-.signup .facebook {
-  font-size: 150%;
+.login .google{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 125%;
+  padding:1.5%;
+  letter-spacing: 0.05rem;
   text-align: center;
   vertical-align: middle;
   border: 6px double var(--nav-bg-color);
   border-radius: 10px;
-  width: 3rem;
+  width: 15rem;
   height: 3rem;
   color: #376B6D;
   transition: .2s ease-in;
   cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.signup .google:hover,
-.signup .line:hover,
-.signup .facebook:hover {
+
+
+
+
+/* .signup .line:hover,
+.signup .facebook:hover  */
+.signup .google:hover,.login .google:hover
+{
   box-shadow: 0 0 5px #666666;
   background-color: #376B6D;
   color: #fff;
 }
 
 /*  */
-.login .google,
-.login .line,
+/* .login .google, */
+/* .login .line,
 .login .facebook {
-  font-size: 150%;
+  font-size: 130%;
+  padding:1%;
+  letter-spacing: 0.1rem;
   text-align: center;
   vertical-align: middle;
   border: 6px double #fff;
   border-radius: 10px;
-  width: 3rem;
+  width: 15rem;
   height: 3rem;
   background-color: #376B6D4c;
   color: #fff;
   transition: .2s ease-in;
   cursor: pointer;
-}
+} */
 
-.login .google:hover,
+/* .login .google:hover,
 .login .line:hover,
 .login .facebook:hover {
   box-shadow: 0 0 5px #666666;
   background-color: #6B92A4;
   color: #fff;
   border-color: #fff;
-}
+} */
 
 /*  */
 /* 註冊上一頁 */

@@ -10,29 +10,43 @@
 }
 
 .chicon {
-    background-color: var(--nicegreen);
-    width: 10vw;
+    background-color: rgb(55, 107, 109);
+    width: 13vw;
     border-radius: 20px;
     border: 10px 10px 10px 10px;
-    margin: 0 3% 0 10%;
-    height: 75vh;
+    margin: 0 1% 0 10%;
+    height: 65vh;
 
 }
 
 .spcicons {
     height: 100%;
     font-size: 25px;
+    color: rgb(255, 255, 255);
+    margin-left: 20px;
+    
 }
 
 .spcicons input {
-    margin: 15px 20px;
-    margin-top: 30px;
-    margin-left: 20px;
+    /* margin: 15px 20px; */
+    /* margin-top: 30px; */
+    /* margin-left: 20px; */
+    height: 100%;
 }
+
+.form-check{
+    margin-top: 18px;
+}
+
+.form-check:hover{
+    color: rgb(254, 218, 2);
+}
+
+
 
 .spotde {
     background-color: var(--nicegreen);
-    height: 85vh;
+    height: 92vh;
     width: 100%;
     margin-right: 10%;
     border-radius: 10px;
@@ -76,9 +90,9 @@
 }
 
 .spde .spdeInformation {
-    width: 34vw;
+    width: 32vw;
     height: 29vh;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 5px;
 }
 
 .spde .spdeInformation h1 {

@@ -14,17 +14,7 @@ const MemberSchedule = () => {
 
 
     // 判斷是否有會員登入中
-    const { user, setUser } = useContext(AuthContext);
-
-    useEffect(() => {
-        if (!getAuthToken()) {
-            setUser(null);
-            navigate("/");
-        } else {
-            setUser(user)
-        }
-    }, [setUser, navigate])
-
+    const { user } = useContext(AuthContext);
 
 
     // 轉址後轉跳最上方
@@ -59,44 +49,52 @@ const MemberSchedule = () => {
     object-fit:cover;
     `;
 
+    const Shownone = styled.h3`
+    width:100%;
+    text-align:center;
+    margin:5%;
+    `
 
 
-
-    // 
+    // 開啟建立新行程表
     const [scheShow, setScheshow] = useState(false);
 
 
 
     // 從laravel拉資料
-    const [schdule, setSchdule] = useState(null);
+    const [schdule, setSchdule] = useState([]);
+        // 控制加載完才出現資訊
+        const [isLoading,setIsLoading]=useState(false);
 
     //   讀取行程表資料
     useEffect(() => {
-        http.get('http://localhost:8000/schedules/').then((response) => {
-            let newArray = response.data.filter(({ user_id }) => {
-                return user_id === user.id
-            })
-            setSchdule(newArray);
-
+        setIsLoading(true);
+        http.get('/schedules/').then((response) => {
+            let newArray = response.data.filter(({ user_id }) =>user_id === user.id)
+            setIsLoading(false);
+            return setSchdule(newArray);
+            
         }).catch(() => "無法找到");
 
-
-
-    }, []);
+    }, [user]);
 
     const handleDelete = (id) => {
         // 新array
         let newSchdule = schdule.filter(e => e.id !== id);
-        http.delete('http://localhost:8000/schedules/' + id)
-            .then(response =>console.log(response))
+        http.delete('/schedules/' + id)
+            .then(response => console.log(response))
             .catch(error => console.log(error));
         // 使用 setState 更新 並重新渲染
         return setSchdule(newSchdule);
     }
 
 
-
-
+    // 行程表隨機圖
+    const imgArr = ['/img/晴空塔.jpg', '/img/迪士尼.jpg', '/img/民治神功.jpg', '/img/淺草寺(維基百科夜景).jpg', '/img/淺草寺.jpg']
+    const getRandomImage = () => {
+        const random = Math.floor(Math.random() * imgArr.length);
+        return imgArr[random];
+    }
 
 
     return (
@@ -126,17 +124,18 @@ const MemberSchedule = () => {
 
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
-                        {!schdule && <h3><b>沒有行程表</b></h3>}
-                        {schdule && schdule.map(({ id, name, date_start, date_end }) => {
+                        {isLoading && <Shownone><b>資料正在找尋中，請稍後</b></Shownone>}
+                        {(schdule.length === 0 && !isLoading) && <Shownone><b>沒有行程表</b></Shownone>}
+                        {(schdule.length !== 0 && !isLoading) && schdule.map(({ id, name, date_start, date_end }) => {
                             return (
                                 <Card className="card p-3" key={id}>
 
-                                    <Cardimg className="card-img-top" src="https://picsum.photos/500/250" alt="Card cap" />
+                                    <Cardimg className="card-img-top" src={getRandomImage()} alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">{name}</h3>
                                         <p className="card-text">{date_start}至{date_end}</p>
                                         <Link to={'/Schedule/' + id}><button>編輯</button></Link>
-                                        <button style={{ color: '#FFF', 'background-color': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                        <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
                                 </Card>

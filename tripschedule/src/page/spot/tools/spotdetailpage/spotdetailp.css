@@ -1,0 +1,16 @@
+.disneyL{
+    width: 80vw;
+    margin-left: 10vw;
+    text-align: center;
+}
+.disneyL img{
+    margin: 20px;
+    height: 650px;
+    width: 65vw;
+    object-fit: contain;
+}
+.disneyL p{
+    font-size: 22px;
+    text-align: left;
+    font-weight: 600;
+}

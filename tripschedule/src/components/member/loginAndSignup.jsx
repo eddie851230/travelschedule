@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./loginAndSignup.css";
 import "../tool/cueTitle.css";
 import { http, loginapi, memberapi } from '../../WebAPI';
-import { setAuthToken, setAuthTokenlimter } from "../../utils";
+import { setAuthToken, setAuthTokenlimter, getAuthToken } from "../../utils";
 import AuthContext from "../../contexts";
-import axios from 'axios';
-import { GoogleLogin } from '@react-oauth/google';
+import GoogleLogo from './GoogleLogo';
 
 
 
@@ -18,8 +17,17 @@ const LoginandSignup = () => {
     // 轉跳頁面
     const navigate = useNavigate();
 
+
     // 登入辨認
-    const { setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
+
+    // 防止登入後會看到該畫面
+    useEffect(() => {
+        if (getAuthToken() && getAuthToken() === null) {
+            return navigate("/");
+        }
+    }, [])
+
 
 
     // ----------------------------------讓興趣取值
@@ -50,31 +58,16 @@ const LoginandSignup = () => {
         ]
     )
 
-    // const [checkedState, setCheckedState] = useState(
-    //     new Array(interst.length).fill(false)
-    // );
-
-    // const handleOnChange = (position) => {
-    //     const updatedCheckedState = checkedState.map((item, index) =>
-    //       index === position ? !item : item
-    //     );
-    //     // alert(updatedCheckedState);
-
-    //     setCheckedState(updatedCheckedState);
-    // };
-
     // --------------------------------------分辨是送出還是要轉換畫面的function
-    // const defineClick=()=>{
-    //     // alert("defineClick?");
-    //     if(toggle){
-    //         // alert("stepChange?");
-    //         return stepChange;
-    //     }
-    //     if(toggle===false){
-    //         // alert("handleSubmitR?");
-    //         return handleSubmitR;
-    //     }
-    // }
+    const defineClick = () => {
+
+        if (toggle === false) {
+            return handleInterst;
+        }
+        if (toggle) {
+            return handleSubmitR;
+        }
+    }
 
     //----------------------------------------------註冊api
     const [username, setUsername] = useState("");
@@ -91,17 +84,7 @@ const LoginandSignup = () => {
 
         e.preventDefault();
 
-        // // 將checkedstate的index
-        // checkedState.map((item, index)=>{
-        //     console.log(item)
-        //     if(item===false){
-        //             interst.map((index)=>{
-        //             setInterst[index].value=null;
-        //             console.log(setInterst[index].value);
-        //         })
-        //         }
-        //     })
-
+        setTimeout(() => setRegErrorMessage(""), 2500);
         //  前端偵測是否符合資料
         // 密碼驗證符合格式
         let lowerCaseLetters = /[a-z]/g;
@@ -109,18 +92,24 @@ const LoginandSignup = () => {
         let numbers = /[0-9]/g;
 
         if (username === "" || resEmail === "" || resPassword === "" || checkpwd === "") {
+
             return setRegErrorMessage("必填資料未填");
         } else if (!resPassword.match(upperCaseLetters)) {
+
             return setRegErrorMessage("密碼缺少大寫英文");
         } else if (!resPassword.match(numbers)) {
+
             return setRegErrorMessage("密碼缺少數字");
         } else if (resPassword.length < 8) {
+
             return setRegErrorMessage("密碼長度需8個字以上");
         }
         else if (checkpwd !== resPassword) {
+
             return setRegErrorMessage("確認密碼不符，請再檢視");
         }
         else if (!resPassword.match(lowerCaseLetters)) {
+
             return setRegErrorMessage("密碼缺少小寫英文");
 
         } else {
@@ -131,33 +120,34 @@ const LoginandSignup = () => {
                 name: username,
                 email: resEmail,
                 password: resPassword
-            }).then((res) => {
+            }).then(res => {
 
-                // 如果回應成功變200時進行登入
+                // 如果回應成功變200時進行下一步
                 if (res.status === 200) {
                     // 順便登入
                     loginapi(resEmail, resPassword).then((data) => {
 
-                        setAuthToken(data.data.token);
+                        setAuthTokenlimter(data.data.token);
 
                         // 驗證
                         memberapi().then((res) => {
 
                             if (res.status === 200) {
-                                
+
                                 setUser(res.data);
-                                // 導到首頁
-                                navigate("/");
+
+
                             }
                         })
                     });
-
+                    return stepChange();
                 }
 
             }).catch((error) => {
 
-                if (error.response.data.message === "The email has already been taken.") { // alert("該信箱已註冊，請回到上一步修改");
+                if (error.response.data.message === "The email has already been taken.") {
                     setAuthToken(null);
+                    setTimeout(() => setRegErrorMessage(""), 2500);
                     return setRegErrorMessage("信箱已註冊");
                 }
 
@@ -167,8 +157,38 @@ const LoginandSignup = () => {
 
     }
 
+    // 確認密碼是否重複
     const handleRPassword = (e) => {
         setResPassword(e.target.value)
+    }
+
+    // 上傳興趣
+    const [check, setCheck] = useState([])
+    const handleCheck = (e) => {
+        const value = parseInt(e.target.value)
+        if (e.target.checked === true) {
+            setCheck([...check, value])
+            console.log('check', check)
+
+        } else {
+
+            let newArr = check.filter(e => e !== parseInt(value))
+            setCheck(newArr);
+            console.log('ok', check)
+        }
+
+    }
+
+    const handleInterst = () => {
+        http.post('/addCollection', {
+            attraction_id: check,
+            user: user.id
+        }).then(() => {
+            //    導至首頁
+            return navigate('/');
+
+        })
+            .catch(err => console.log(err))
     }
 
     //---------------------------------------------登入api
@@ -182,7 +202,12 @@ const LoginandSignup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setTimeout(() => setErrorMessage(""), 2500);
+        
+        if (!email || !password) {
+            setTimeout(() => setErrorMessage(""), 2500);
+            return setErrorMessage('請填入帳號密碼');
+        }
 
         await http.get('/sanctum/csrf-cookie');
         await loginapi(email, password).then((data) => {
@@ -208,6 +233,7 @@ const LoginandSignup = () => {
                     setAuthToken(null);
                     setAuthTokenlimter(null);
                     setErrorMessage("密碼錯誤");
+                    setTimeout(() => setErrorMessage(""), 2500);
                 }
                 else {
                     // 導到首頁 
@@ -255,47 +281,20 @@ const LoginandSignup = () => {
 
     //第三方登入-----------------------------------------------------
 
-    // 另外開啟小視窗設定
-    const smallwindow = () => {
-        window.open(googleLoginUrl, "WindowOpen1", "toolbar=Yes,location=Yes,directories=Yes,width=800,height=600");
-
-    }
-
     // google
     const [googleLoginUrl, setGoogleLoginUrl] = useState(null);
 
     useEffect(() => {
         http.get('/auth/google', { headers: { accept: 'application/json' } })
-            .then(response => setGoogleLoginUrl(response.data))
+            .then(response => {
+                return setGoogleLoginUrl(response.data)
+            })
             .catch(error => console.log(error));
     }, []);
 
 
 
 
-
-
-
-    // http.get('/login/google', {
-    //     headers: {
-    //         'Access-Control-Allow-Origin': 'https://accounts.google.com'
-    //     }
-    // })
-    //     .then(response => {
-    //         // handle success
-    //         console.log(response);
-    //         // return setGoogle(response.data)
-
-    //     })
-    //     .catch(error => {
-    //         // handle error
-    //         console.log(error);
-    //     });
-
-
-
-
-    // }
 
     // 前端動畫-----------------------------------------------------
 
@@ -329,11 +328,6 @@ const LoginandSignup = () => {
         // alert("stepChangeInner");
         let step1Node = step1.current;
         let step2Node = step2.current;
-
-        //    // 密碼驗證符合格式
-        //     let lowerCaseLetters = /[a-z]/g;
-        //     let upperCaseLetters = /[A-Z]/g;
-        //     let numbers = /[0-9]/g;
 
         if (toggle) {
             step1Node.classList.add("closeSignupStep");
@@ -369,13 +363,15 @@ const LoginandSignup = () => {
                 {/* 註冊 */}
                 <div className="signup slide-up" ref={signupRef}>
                     <h2 className="form-title" id="signup" onClick={signupOpen}>註冊</h2>
-                    <form>
-                        <div className="form-holder">
+                    <div className="form-holder">
+                        <form>
                             <div className="step1" ref={step1} style={{ display: toggle ? "block" : "none" }}>
                                 <div className="social">
-                                    <div data-url={googleLoginUrl} className="google" onClick={smallwindow}><i className="fa-brands fa-google"></i></div>
-                                    <div className="facebook"><i className="fa-brands fa-facebook"></i></div>
-                                    <div className="line"><i className="fa-brands fa-line"></i></div>
+                                    <a href={googleLoginUrl} className="google"><GoogleLogo /><span>使用Google登入</span></a>
+                                    {/* <a href={googleLoginUrl} className="google"><i className="fa-brands fa-google"></i>使用Google登入</a> */}
+                                    {/* <div className="facebook"><i className="fa-brands fa-facebook"></i></div> */}
+                                    {/* <div className="line"><i className="fa-brands fa-line"></i></div> */}
+                                    {/* <div id="buttonDiv"></div>  */}
                                 </div>
                                 <hr />
                                 <input type="text" className="input" placeholder="暱稱(必填)" onChange={(e) => setUsername(e.target.value)} value={username} name="username" required />
@@ -388,9 +384,9 @@ const LoginandSignup = () => {
                                 {regErrorMessage && <><div className="loginError">{regErrorMessage}</div></>}
 
                             </div>
-
-
-                            {/* 註冊頁面二 */}
+                        </form>
+                        {/* 註冊頁面二 */}
+                        <form>
                             <div className="step2" ref={step2} style={{ display: toggle ? "none" : "block" }}>
 
                                 {/* <!-- 興趣偏好 --> */}
@@ -400,8 +396,7 @@ const LoginandSignup = () => {
                                             return (
                                                 <label className="container" key={index}>{name}
                                                     <input type="checkbox" name="interst" value={value}
-                                                    // checked={checkedState[index]}
-                                                    //  onChange={() => handleOnChange(index)}
+                                                        onChange={handleCheck}
                                                     />
                                                     <span className="checkmark"></span>
                                                 </label>
@@ -411,32 +406,26 @@ const LoginandSignup = () => {
 
                                 </div>
 
-                                <div className="back" onClick={stepChange}><div></div>back</div>
+                                {/* <div className="back" onClick={stepChange}><div></div>back</div> */}
                             </div>
-                        </div>
-                        <button className="submit-btn" id="signsubmit" onClick={handleSubmitR}>註冊</button>
-                        {/* <button className="submit-btn" id="signsubmit" onClick={defineClick}>{toggle ? "下一步" : "註冊"}</button> */}
-                    </form>
+                        </form>
+                    </div>
+                    {/* <button className="submit-btn" id="signsubmit" onClick={handleSubmitR}>註冊</button> */}
+                    <button className="submit-btn" id="signsubmit" onClick={defineClick()}>{toggle ? "註冊" : "選擇完成"}</button>
+
                 </div>
                 {/* 登入 */}
+
                 <div className="login" ref={loginRef}>
                     <div className="center">
                         <h2 className="form-title" id="login" onClick={loginOpen}>登入</h2>
                         <form>
                             <div className="form-holder">
                                 <div className="social">
-                                    <GoogleLogin
-                                        type="icon"
-                                        shape="square"
-                                        onSuccess={credentialResponse => {
-                                            console.log(credentialResponse);
-                                        }}
-
-                                        onError={() => {
-                                            console.log('Login Failed');
-                                        }} />
-                                    <div className="facebook"><i className="fa-brands fa-facebook"></i></div>
-                                    <div className="line"><i className="fa-brands fa-line"></i></div>
+                                    <a href={googleLoginUrl} className="google"><GoogleLogo /><span>使用Google登入</span></a>
+                                    {/* <a href={googleLoginUrl} className="google"><i className="fa-brands fa-google"></i><span>使用Google登入</span></a> */}
+                                    {/* <div className="facebook"><i className="fa-brands fa-facebook"></i></div> */}
+                                    {/* <div className="line"><i className="fa-brands fa-line"></i></div> */}
                                 </div>
                                 <hr />
                                 <input type="email" name="email" className="input" placeholder="Email" required onChange={handleEmail} value={email} />
@@ -448,12 +437,13 @@ const LoginandSignup = () => {
                                 <input type="checkbox" name="remember" value={remember} onClick={() => setRemember(!remember)} />
                                 <span className="checkmark"></span>
                             </label>
+
                         </form>
                         <Link to="/forgot-password"><div className="forget">忘記密碼</div></Link>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 };
 

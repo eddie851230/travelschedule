@@ -35,7 +35,6 @@ export default function Spotmap(p) {
   //     // console.log(response.data);
 
   //   };
-
   //hooks
   //-----------------------------------------------------------------
   useEffect(() => {

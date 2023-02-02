@@ -3,8 +3,8 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const ScheduleList = (p) => {
   // console.log(p);
-  // console.log(p.spotDateInfo);
-
+  
+  
   const airPlaneDepartinfo = [
     {
       id: "depart",

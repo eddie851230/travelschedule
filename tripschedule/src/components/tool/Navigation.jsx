@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Memberlist from '../member/Memberlist';
 import AuthContext from '../../contexts';
+import { getAuthToken } from 'utils';
 
 import { UilHome, UilPlaneDeparture, UilMapPinAlt, UilBed, UilSchedule, UilUserCircle, UilApps } from "@iconscout/react-unicons";
 import "https://kit.fontawesome.com/11f63461bc.js";
@@ -19,7 +20,7 @@ const Navigation = () => {
    const [show, setShow] = useState(false);
 
 
-   return (user!==null)?(
+   return (user!==null && getAuthToken())?(
   
       <header>
          <div className="nav-bar">
@@ -60,7 +61,7 @@ const Navigation = () => {
          <div className="navigation">
             <div className="nav-items">
                {/* 登入前 */}
-               <NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>
+               {!getAuthToken()&&<NavLink to="/LoginandSignup"><UilHome /> 註冊/登入</NavLink>}
                
             </div>
 

@@ -115,6 +115,9 @@ const CreateNewSchedule = (props) => {
 
 
     const createSchdule = (schduleName, startdate, enddate) => {
+        if(!schduleName||!startdate||!enddate){
+            return alert('請填入完整行程資訊')
+        }
         axios.post("http://localhost:8000/schedules", {
             schduleName: schduleName,
             startdate: startdate,
