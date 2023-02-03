@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext,useRef } from "react";
 //匯入package
 // import { Helmet } from "react-helmet";
 import axios from "axios";
@@ -20,36 +20,36 @@ import SpotMap from "../../components/schedule/SpotMap/SpotMap";
 import { DragDropContext } from "react-beautiful-dnd";
 // import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import $ from "jquery";
+import { useParams } from "react-router";
+import AuthContext from "contexts";
+
+
+
+  //景點行程表的context-------------------------------------------------
+  export const ListContext=React.createContext(null);
+
 
 // -----------------------------------------------------------------------------
 function Schedule() {
-  // const spotListinfo = [
-  //   {
-  //     id: {},
-  //     name: {},
-  //     opentime: 1,
-  //     clickrate: 1,
-  //     ticketprice: 1,
-  //     address: 1,
-  //     suggestedtime: 1,
-  //     path: 1,
-  //   },
-  //   {
-  //     id: {},
-  //     name: {},
-  //     opentime: 1,
-  //     clickrate: 1,
-  //     ticketprice: 1,
-  //     address: 1,
-  //     suggestedtime: 1,
-  //     path: 1,
-  //   },
-  // ];
-  //hooks
+
+  // 抓取會員資料
+  const{user}=useContext(AuthContext)
+// 抓取行程表參數
+const params=useParams();
+
+
+console.log(params.id)
+
+
+
+  // 行程表
   const [spotListinfo, setSpotListinfo] = useState(initSpotListinfo);
+  const [hotelListinfo, setHotelListinfo] = useState([]);
+  // 如果有更新需要重新整理
+  const [renew,setRenew]=useState(false);
 
   //定義改資料的方法傳給子
-
+// 下方行程表資訊
   let loadDataAsync = async () => {
     // let response=await fetch(
     //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
@@ -60,7 +60,7 @@ function Schedule() {
       method: "GET",
       //url
       // url: "http://127.0.0.1:8000/schedules",
-      url: "http://127.0.0.1:8000/showSpot",
+      url: "http://127.0.0.1:8000/showSpot/"+user.id,
       // url: "https://jsonplaceholder.typicode.com/users",
     });
     //响应状态码
@@ -70,15 +70,30 @@ function Schedule() {
     //响应头信息
     console.log(response.headers);
     //响应体
-    console.log(response.data);
+    console.log("schedule",response.data);
     //response.data array
     setSpotListinfo([...response.data]);
     // console.log(response.data);
+    
+    
   };
+// -----------------------------新增行程時會自動轉跳最底部
+const scheRef=useRef(null);
+const [newHeight,setNewHeight]=useState(0);
+if(renew&&newHeight!==scheRef.current.scrollHeight){
+  setTimeout(()=>scheRef.current.scrollTop = scheRef.current.scrollHeight,1000)
+}
+  
+// 更新行程表資訊
+useEffect(() => {
 
-  useEffect(() => {
     loadDataAsync();
-  }, []);
+      setRenew(false);
+      setNewHeight(scheRef.current.scrollHeight)
+     
+
+  }, [renew]);
+
 
   // 先找有幾天，再來找一天內早中晚各幾筆資料
 
@@ -122,9 +137,10 @@ function Schedule() {
     }
   };
 
-  //
 
-  // 打開收藏名單編輯
+
+
+  // 打開收藏名單編輯---------------------------------------------------
   const openFavorite = () => {
     let display = $(".favorite").css("display");
     if (display !== "block") {
@@ -179,10 +195,11 @@ function Schedule() {
     }
   };
 
-  // 行程表內部拖曳
+
 
   return (
-    <>
+
+    <ListContext.Provider value={{spotListinfo, setSpotListinfo,hotelListinfo,setHotelListinfo,setRenew}}>
       {/* <!-- 主要網站部分 --> */}
       <div className="scheduleMainpage">
         <DragDropContext
@@ -239,18 +256,18 @@ function Schedule() {
                   Day<span> 3 </span>
                 </a>
 
-                <a href="/" style={{ visibility: "hidden" }}>
+                <a href="/">
                   12月20日
                   <br />
                   Day<span> 4 </span>
                 </a>
 
-                <a href="/" style={{ visibility: "hidden" }}>
+                <a href="/">
                   12月21日
                   <br />
                   Day<span> 5 </span>
                 </a>
-              </div>
+              </div> 
 
               {/* <!-- 右鍵 --> */}
               <div className="next">
@@ -260,7 +277,7 @@ function Schedule() {
             {/* <!-- 行程日期條結束 --> */}
 
             {/* <!-- 行程表景點及交通------------------------------------ --> */}
-            <div className="tripSpot">
+            <div className="tripSpot" ref={scheRef}>
               <ScheduleList
                 spotListinfo={spotListinfo}
                 setSpotListinfo={setSpotListinfo}
@@ -289,7 +306,7 @@ function Schedule() {
                 <div></div>
               </div>
             </div>
-            <Favoritelist />
+            <Favoritelist/>
             <div className="close" onClick={openFavorite}>
               &times;
             </div>
@@ -310,7 +327,8 @@ function Schedule() {
           <script src="./openstreetmap.js"></script>
         </Helmet> */}
       </div>
-    </>
+    </ListContext.Provider>
+ 
   );
 }
 

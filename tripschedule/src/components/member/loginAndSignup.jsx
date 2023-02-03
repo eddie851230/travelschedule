@@ -84,7 +84,7 @@ const LoginandSignup = () => {
 
         e.preventDefault();
 
-        setTimeout(() => setRegErrorMessage(""), 2500);
+
         //  前端偵測是否符合資料
         // 密碼驗證符合格式
         let lowerCaseLetters = /[a-z]/g;
@@ -95,22 +95,27 @@ const LoginandSignup = () => {
 
             return setRegErrorMessage("必填資料未填");
         } else if (!resPassword.match(upperCaseLetters)) {
+            setRegErrorMessage("密碼缺少大寫英文");
 
-            return setRegErrorMessage("密碼缺少大寫英文");
+            return setTimeout(() => setRegErrorMessage(""), 3000);
         } else if (!resPassword.match(numbers)) {
 
-            return setRegErrorMessage("密碼缺少數字");
+            setRegErrorMessage("密碼缺少數字");
+            return setTimeout(() => setRegErrorMessage(""), 3000);
         } else if (resPassword.length < 8) {
 
-            return setRegErrorMessage("密碼長度需8個字以上");
+            setRegErrorMessage("密碼長度需8個字以上");
+            return setTimeout(() => setRegErrorMessage(""), 3000);
         }
         else if (checkpwd !== resPassword) {
 
-            return setRegErrorMessage("確認密碼不符，請再檢視");
+            setRegErrorMessage("確認密碼不符，請再檢視");
+            return setTimeout(() => setRegErrorMessage(""), 3000);
         }
         else if (!resPassword.match(lowerCaseLetters)) {
 
-            return setRegErrorMessage("密碼缺少小寫英文");
+            setRegErrorMessage("密碼缺少小寫英文");
+            return setTimeout(() => setRegErrorMessage(""), 3000);
 
         } else {
 
@@ -124,6 +129,7 @@ const LoginandSignup = () => {
 
                 // 如果回應成功變200時進行下一步
                 if (res.status === 200) {
+
                     // 順便登入
                     loginapi(resEmail, resPassword).then((data) => {
 
@@ -147,8 +153,8 @@ const LoginandSignup = () => {
 
                 if (error.response.data.message === "The email has already been taken.") {
                     setAuthToken(null);
-                    setTimeout(() => setRegErrorMessage(""), 2500);
-                    return setRegErrorMessage("信箱已註冊");
+                    setRegErrorMessage("信箱已註冊");
+                    return setTimeout(() => setRegErrorMessage(""), 3000);
                 }
 
             });
@@ -198,24 +204,33 @@ const LoginandSignup = () => {
     const [errorMessage, setErrorMessage] = useState();
     const [remember, setRemember] = useState(false);
 
+    // 登入加載
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setTimeout(() => setErrorMessage(""), 2500);
-        
+        setIsLoading(true);
         if (!email || !password) {
-            setTimeout(() => setErrorMessage(""), 2500);
-            return setErrorMessage('請填入帳號密碼');
+            setIsLoading(false);
+            setErrorMessage('請填入帳號密碼');
+            return setTimeout(() => setErrorMessage(""), 3000);
         }
 
         await http.get('/sanctum/csrf-cookie');
         await loginapi(email, password).then((data) => {
 
-
+           
             // 失敗顯示登入失敗原因
-            if (data === 422) setErrorMessage(`帳密錯誤`);
-            else if (data === 401) return setErrorMessage("密碼錯誤");
+            if (data === 422) {
+                setErrorMessage(`帳密錯誤`)
+                setIsLoading(false);
+                return setTimeout(() => setErrorMessage(""), 3000);
+            } else if (data === 401) {
+                setErrorMessage("密碼錯誤")
+                setIsLoading(false);
+                return setTimeout(() => setErrorMessage(""), 3000);
+            };
 
 
             // 成功的話就把 token 存到 localStorage
@@ -233,11 +248,13 @@ const LoginandSignup = () => {
                     setAuthToken(null);
                     setAuthTokenlimter(null);
                     setErrorMessage("密碼錯誤");
-                    setTimeout(() => setErrorMessage(""), 2500);
+                    setTimeout(() => setErrorMessage(""), 3000);
+                    setIsLoading(false);
                 }
                 else {
                     // 導到首頁 
                     navigate("/");
+                    setIsLoading(false);
                     return setUser(res.data);
                 }
             })
@@ -432,7 +449,7 @@ const LoginandSignup = () => {
                                 <input type="password" name="password" className="input" placeholder="密碼" required onChange={handlePassword} value={password} />
                                 {errorMessage && <><div className="loginError">{errorMessage}</div></>}
                             </div>
-                            <button className="submit-btn" onClick={handleSubmit}>登 入</button>
+                            <button className="submit-btn" onClick={handleSubmit}>{isLoading ? "登入中..." : "登 入"}</button>
                             <label className="container">記住我
                                 <input type="checkbox" name="remember" value={remember} onClick={() => setRemember(!remember)} />
                                 <span className="checkmark"></span>

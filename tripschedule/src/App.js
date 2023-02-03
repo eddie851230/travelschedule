@@ -106,6 +106,7 @@ function App() {
               {!isLoading && (<Route path="/Hotel/Search" element={<Search />} />)}
               {!isLoading && (<Route path="/Hotel/Detail/:id" element={<Detail />} />)}
               {!isLoading && (<Route path="/Schedule" element={<Schedule />} />)}
+              {!isLoading && (<Route path="/Schedule/:id" element={<Schedule />} />)}
               <Route path="/LoginandSignup" element={<LoginandSignup />} />
               {!isLoading && (<Route path="/member/MemberFavorite/" element={<MemberFavorite />} />)}
               {!isLoading && (<Route path="/member/MemberSchedule/" element={<MemberSchedule />} />)}

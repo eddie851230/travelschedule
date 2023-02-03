@@ -31,15 +31,26 @@ const CreateNewSchedule = (props) => {
     `;
 
     const Button = styled.button`
-    padding: 10px 30px;
-    letter-spacing: 2px;
-    background-color: #fff;
-    color: var(--nav-bg-color);
-    border: 5px solid var(--nav-bg-color);
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: large;
-    `
+    width: 120px;
+    color: var(--white-color);
+    font-size: 16px;
+    padding: 5px 10px;
+    background: rgb(240, 240, 240);
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top:10px;
+    color: rgb(55, 107, 109);
+    transition: 0.5s;
+    border: 2px solid rgb(95, 156, 127);
+    &:hover {
+        color: var(--black);
+        background-color: #feda02;
+        font-weight: 700;
+        border: 2px solid var(--white-color);
+        cursor: pointer;
+    }
+    `;
 
     const DateInput = styled.input`
     padding: 5px;
