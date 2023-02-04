@@ -9,7 +9,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // 提取後端資料
-const SearchCard = () => {
+const SearchCard = (props) => {
+  // 抓關鍵字
+  const key = props.keyWord;
+  console.log(key);
+
   // 搜尋資料導入細節頁
   const navigateDetail = useNavigate();
   function GoDetail() {
@@ -17,6 +21,8 @@ const SearchCard = () => {
   }
 
   const [items, setItems] = useState([]);
+
+  console.log(items);
 
   useEffect(() => {
     getAllHotel();
@@ -30,9 +36,15 @@ const SearchCard = () => {
     });
   };
 
+  // 將關鍵字放入item陣列做篩選得篩選結果
+  var filteredItems = items.filter((eachHotel) =>
+    eachHotel.name_CH.includes(key)
+  );
+  // console.log(filteredItems);
+
   return (
     <>
-      {items.map((v) => (
+      {filteredItems.map((v) => (
         <Link to={{ pathname: "/Hotel/Detail/" + v.hotel_id, state: v }}>
           <div className="cardArea">
             {/* 照片 */}
@@ -59,13 +71,14 @@ const SearchCard = () => {
                 元/晚
               </p>
             </div>
+
             {/* <!-- 放入收藏與行程 --> */}
             <div className="btnZone">
-              <button id="btnText01" className="btnStyle colorCollection">
+              {/* <button id="btnText01" className="btnStyle colorCollection">
                 放入收藏
-              </button>
+              </button> */}
               <button id="btnText02" className="btnStyle colorSchedule">
-                安排行程
+                點擊查看
               </button>
             </div>
           </div>

@@ -1,4 +1,49 @@
 /* background照片 */
+.putCollectionBtn {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 200px;
+  height: 160px;
+  background-color: #376b6d;
+  z-index: 1000;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#collectWindow {
+  width: 350px;
+  height: 220px;
+}
+.putCollectionBtn p {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 15px;
+}
+.putCollectionBtn button {
+  margin-top: 30px;
+  border: 2.5px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  background-color: #376b6d;
+  padding: 8px;
+  border-radius: 10px;
+}
+.putCollectionBtn button:hover {
+  background-color: #57a6a9;
+  transition: 0.1s ease-in;
+}
+.nightNum {
+  width: 30px;
+  height: 25px;
+}
 #detailBG {
   width: 100%;
   height: 35vh;
@@ -26,7 +71,7 @@
 }
 /* 包所有近期資訊 */
 #yourTrip {
-  margin-top: 5vh;
+  margin-top: 2vh;
   /* border: 10px solid black; */
   display: flex;
   width: 100%;
@@ -67,7 +112,7 @@
 }
 /* 主要內容 */
 .hotelBar {
-  margin-top: 5vh;
+  margin-top: 1vh;
   width: 100%;
   /* background-color: antiquewhite; */
   padding-top: 10px;
@@ -132,6 +177,7 @@
 .mapZone {
   height: 60%;
   width: 100%;
+  padding: 10px;
 }
 /* _______________________________ */
 /* 飯店搜尋 */

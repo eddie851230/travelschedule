@@ -8,7 +8,7 @@ import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../../Contexts";
 import { setAuthToken } from "../../Utils";
-//轉跳其他頁面
+// 搜尋功能&轉跳其他頁面
 // 1.引用
 import { useNavigate } from "react-router-dom";
 
@@ -109,8 +109,25 @@ const Hotel = (props) => {
   // const {user,setUser}  = useContext(AuthContext);
   // console.log(user);
 
-  // useContext
-  const UserContext = createContext();
+  //在在 form 或按钮元素上设置 onSubmit 或 onClick 事件处理程序
+  //用 navigate 并将数据作为参数传递
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   navigate("/Hotel/Search?data=$(searchKey)");
+  // };
+
+  // 搜尋功能//儲存關鍵字
+  // const searchNavi = useNavigate();
+
+  const [searchKey, setSearchKey] = useState("");
+
+  // 在 input 元素上设置 onChange 事件处理程序，input的值可以被保存
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setSearchKey(e.target.value);
+    console.log(searchKey);
+  };
 
   return (
     <div id="likeBody">
@@ -212,7 +229,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d01">足立區</label>
                     </p>
@@ -222,7 +239,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d02">文京區</label>
                     </p>
@@ -232,7 +249,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d03">千代田區</label>
                     </p>
@@ -242,7 +259,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d04">中央區</label>
                     </p>
@@ -252,7 +269,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d05">江戶川區</label>
                     </p>
@@ -262,7 +279,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d06">板橋區</label>
                     </p>
@@ -272,7 +289,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d07">葛飾區</label>
                     </p>
@@ -282,7 +299,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d08">江東區</label>
                     </p>
@@ -292,7 +309,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d09">港區</label>
                     </p>
@@ -302,7 +319,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d10">目黑區</label>
                     </p>
@@ -312,7 +329,7 @@ const Hotel = (props) => {
                         type="checkbox"
                         value=""
                         name="location"
-                        checked
+                        // checked
                       />
                       <label for="d11">中野區</label>
                     </p>
@@ -546,17 +563,30 @@ const Hotel = (props) => {
 
               {/* <!-- 搜尋欄位 --> */}
               <div id="btnArea">
-                {/* <!-- 你好 --> */}
-                <input
-                  id="searchBar"
-                  type="search"
-                  placeholder="東京王子飯店"
-                />
-                {/* <Link to="/Hotel/Search"> */}
-                <button id="submitBtn" type="submit" onClick={goSearch}>
-                  搜尋
-                </button>
-                {/* </Link> */}
+                <form
+                // onSubmit={handleSubmit}
+                >
+                  {/* <!-- 你好 --> */}
+                  <input
+                    id="searchBar"
+                    type="text"
+                    placeholder="輸入飯店關鍵字"
+                    value={searchKey}
+                    onChange={handleInputChange}
+                    // disabled={true}
+                  />
+                  <Link to={`/Hotel/Search/${searchKey}`}>
+                    <button
+                      id="submitBtn"
+                      type="submit"
+                      // onClick={goSearch}
+                    >
+                      搜尋
+                    </button>
+                    {/* Input寫法 */}
+                    {/* <input id="submitBtn" type="submit" value="搜尋" /> */}
+                  </Link>
+                </form>
               </div>
             </div>
           </div>
@@ -565,10 +595,10 @@ const Hotel = (props) => {
         {/* <!-- 目前搜尋提示 --> */}
         <div className="reminderZone">
           <p>目前行程</p>
-          <div className="currentTripName">五天四夜春季東京之旅</div>
+          <div className="currentTripName">東京古蹟三天兩夜</div>
           <p>日期:</p>
           <div>
-            <span>2023/01/16</span>到<span>2023/01/20</span>
+            <span>2023/2/10</span>到<span>2023/2/12</span>
           </div>
         </div>
       </div>

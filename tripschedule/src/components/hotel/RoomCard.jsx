@@ -3,7 +3,12 @@ import "./RoomCard.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const RoomCard = () => {
+const RoomCard = ({
+  putCollection,
+  setPutCollection,
+  putThisPlan,
+  setputThisPlan,
+}) => {
   const params = useParams();
   // console.log(params.id);
 
@@ -52,8 +57,19 @@ const RoomCard = () => {
             </div>
             {/* 按鈕區 */}
             <div className="btnForRooms">
-              <button className="styleForBtn colorCollection">放入收藏</button>
-              <button className="styleForBtn colorSchedule">安排此行程</button>
+              <button
+                onClick={() => setPutCollection(!putCollection)}
+                className="styleForBtn colorCollection"
+              >
+                放入收藏
+              </button>
+
+              <button
+                className="styleForBtn colorSchedule"
+                onClick={() => setputThisPlan(!putThisPlan)}
+              >
+                安排此行程
+              </button>
             </div>
           </div>
         );

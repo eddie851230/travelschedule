@@ -69,7 +69,16 @@ function App() {
           <Route path="/Spot" element={<Spot />} />
           <Route path="/Spot/:id" element={<Spot />} />
           <Route path="/Hotel" element={<Hotel />} exact />
-          <Route path="/Hotel/Search" element={<Search />} exact />
+          {/* <Route path="/Hotel/Search" element={<Search />} exact /> */}
+          {/*  */}
+          <Route path="/Hotel/Search/:searchKey" element={<Search />} exact />
+          {/*  */}
+          <Route
+            path="/Hotel/Search/:saveMinPrice/:saveMaxPrice"
+            element={<Search />}
+            exact
+          />
+          {/*  */}
           <Route path="/Hotel/Detail/:id" element={<Detail />} exact />
           <Route path="/Schedule" element={<Schedule />} />
           <Route path="/LoginandSignup" element={<LoginandSignup />} />

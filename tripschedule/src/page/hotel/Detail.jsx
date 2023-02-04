@@ -22,12 +22,13 @@ const Detail = (props) => {
   const [main, setMain] = useState([]);
   const [side, setSide] = useState([]);
   const [hotelInfo, setHotelInfo] = useState([]);
-
+  const [hotelFac, setHotelFac] = useState([]);
   // 偵測加在中
   const [loading, setLoading] = useState(true);
+  // 全選按鈕
 
   useEffect(() => {
-    alert("1");
+    // alert("1");
     axios
       .get("http://127.0.0.1:8000/hotelsearch/" + params.id)
       .then((response) => {
@@ -42,6 +43,7 @@ const Detail = (props) => {
         // console.log("side", side);
         setLoading(false);
       });
+
     axios
       .get("http://127.0.0.1:8000/hotelInfo/" + params.id)
       .then((response) => {
@@ -49,14 +51,54 @@ const Detail = (props) => {
         // console.log(response.data[0].map_url);
         return setHotelInfo(response.data[0]);
       });
+
+    axios
+      .get("http://127.0.0.1:8000/hotelFac/" + params.id)
+      .then((response) => {
+        console.log(response.data);
+        return setHotelFac(response.data);
+      });
   }, [params, loading]);
   // console.log("params", params.idf);
   // const hotelid = params.idf;
   //
   window.scrollTo(0, 0);
 
+  // 放入收藏夾視窗
+  const [putCollection, setPutCollection] = useState(false);
+  // 排入此行程視窗
+  const [putThisPlan, setputThisPlan] = useState(false);
+
   return (
     <>
+      {/* 01放入收藏夾彈出框 */}
+      <div
+        className="putCollectionBtn"
+        style={{ visibility: putCollection ? "visible" : "hidden" }}
+      >
+        <p>已放入收藏夾</p>
+        <button onClick={() => setPutCollection(!putCollection)}>確認</button>
+      </div>
+
+      {/* 02放入此行程彈出框 */}
+      <div
+        className="putCollectionBtn"
+        id="collectWindow"
+        // putThisPlanBtn
+        style={{ visibility: putThisPlan ? "visible" : "hidden" }}
+      >
+        <p>目前行程</p>
+        <p>請問要安排哪幾晚?</p>
+        <p>
+          第
+          <input type="text" className="nightNum" />
+          晚&nbsp;&nbsp;到&nbsp;&nbsp;第
+          <input type="text" className="nightNum" />晚
+        </p>
+
+        <button onClick={() => setputThisPlan(!putThisPlan)}>確認</button>
+      </div>
+
       <div id="body">
         <div id="detailBG">
           <img
@@ -92,7 +134,7 @@ const Detail = (props) => {
               </div>
               <div className="cardText">
                 <p>出發日</p>
-                <p>2023/01/16</p>
+                <p>2023/02/10</p>
               </div>
             </div>
             {/* <!-- 回程日期 --> */}
@@ -105,7 +147,7 @@ const Detail = (props) => {
               </div>
               <div className="cardText">
                 <p>回程日</p>
-                <p>2023/01/20</p>
+                <p>2023/02/12</p>
               </div>
             </div>
             {/* <!-- 人數 --> */}
@@ -117,10 +159,8 @@ const Detail = (props) => {
                 />
               </div>
               <div className="cardText extraW">
-                <p>人入</p>
-                <p>
-                  大人:<span>2</span>人;小孩<span>0</span>人
-                </p>
+                <p>行程表</p>
+                <p>東京古蹟三天兩夜</p>
               </div>
             </div>
           </div>
@@ -182,10 +222,21 @@ const Detail = (props) => {
                 {hotelInfo.jp === 1 && <span>日文、</span>}
                 {hotelInfo.en === 1 && <span>英文</span>}
               </p>
+              <p>提供設施</p>
+              {hotelFac.map((fac) => (
+                <p>{fac.facilities_id}</p>
+              ))}
             </div>
             <div className="roomTitle">選擇房型</div>
             <div className="allRooms">
-              <RoomCard />
+              <RoomCard
+                //放入收藏
+                setPutCollection={setPutCollection}
+                putCollection={putCollection}
+                // 放入此行程
+                putThisPlan={putThisPlan}
+                setputThisPlan={setputThisPlan}
+              />
             </div>
           </div>
 
@@ -208,7 +259,6 @@ const Detail = (props) => {
 
         <Footer />
       </div>
-      ;
     </>
   );
 };

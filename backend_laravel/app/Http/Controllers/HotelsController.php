@@ -3,188 +3,139 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+// 01我們需要在class外新增系統操作資料庫的類別，
+// 所以在class的上方加上以下兩行：
+use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
 class HotelsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        function array_to_json($sel_array)
-        {
+  //寫下一個名叫function1的方法，
+  // 並在裡面做對資料庫進行查詢的功能，所以整體的程式碼如下：
+  public function hotelList()
+  {
 
-            foreach ($sel_array as $key => $value) {
-                if (
-                    is_string($key) || is_string($value)
-                ) {
+    //第一種
+    // $data = DB::table('hotels_info')->where('id',2)->get();
 
-                    $new_array[urlencode($key)] = urlencode($value);
-                }
-            }
+    //第二種(同第一種意思依樣)
+    // $data = DB::select('select * from hotels_info where ID = :id', ['id'=>2]); 
+    //->where('id',2) 表示搜尋條件，如果沒有表示全選
+    //這行程式碼的意思等於以下的SQL語法：
+    //SELECT * FROM store_list WHERE ID = 2
 
-            return urldecode(json_encode($new_array));
-        }
-
-        DB::connection('mysql');
-        //1
-        // $a=DB::table('hotels_roomtype')
-        // ->select(DB::raw('min(hotels_roomtype.price_weekdays) as b, hotels_roomtype.hotel_id, hotels_info.name_CH, hotels_info.name_EN, hotels_info.area, hotels_info.stars'))
-        // ->join('hotels_info', 'hotels_roomtype.hotel_id', '=', 'hotels_info.id')
-        // ->groupBy('hotels_roomtype.hotel_id')
-        // ->get();
+    // 呼叫Database的一個叫"store_list"的資料表，
+    //    對其進行讀取的動作，並把資料存在$data的這個變數。
+    // dd($data);
+    //第14行的dd()則是將資料印出來的意思
 
 
-        //2
-        $a=
-        DB::table('hotels_roomtype')
-        ->select(DB::raw('min(hotels_roomtype.price_weekdays)'), 'hotels_roomtype.hotel_id', 'hotels_info.name_CH', 'hotels_info.name_EN', 'hotels_info.area', 'hotels_info.stars')
-        ->join('hotels_info', 'hotels_roomtype.hotel_id', '=', 'hotels_info.id')
-        ->groupBy('hotels_roomtype.hotel_id')
-        ->get();
-$b= json_decode($a->toJson());
-        // dd($b);
-        // // $data = [];
-        return $b;
+    // 執行查詢
+    // $results = DB::select('select * from hotels_info where id = ?', [4]);
+    // dd($results);
+
+    // 建立真實的
+    //     $hotel_pics = DB::table('hotels_img')
+    //   ->select(DB::raw('hotels_img.path'), 'hotels_img.hotel_id')
+    //   ->groupBy('hotel_id')
+    //   ->get();
+
+    // $hotels_all = DB::table('hotels_roomtype')
+    // ->select(DB::raw('min(hotels_roomtype.price_weekdays)'),'hotels_roomtype.hotel_id','hotels_info.name_CH','hotels_info.name_EN','hotels_info.area','hotels_info.stars','hotels_img.path')
+    // ->from(' hotels_roomtype')
+    // ->join('hotels_info','hotels_roomtype.hotel_id','=','hotels_info.id')
+    // ->groupBy('hotels_info.id')
+    // ->get();
+
+    $hotels_all = DB::select('
+        SELECT 		min(hotels_roomtype.price_weekdays), 
+    		hotels_roomtype.hotel_id,
+			hotels_info.name_CH,
+    		hotels_info.name_EN,
+    		hotels_info.area,
+    		hotels_info.stars,
+            hotels_img.path
+		FROM (
+            hotels_roomtype
+			inner JOIN hotels_info
+			on hotels_roomtype.hotel_id = hotels_info.id
+		) inner JOIN hotels_img on hotels_roomtype.hotel_id=hotels_img.hotel_id group by hotel_id', []);
+
+    // dd($hotels_all);
+    return $hotels_all;
+  }
+
+  public function roomsearch($hotelid)
+  {
+
+    $data = DB::table('hotels_roomtype')
+      ->join('hotels_roomtypeimg', 'hotels_roomtype.roomtype_num', '=', 'hotels_roomtypeimg.hotels_roomtype')
+      ->where('hotel_id', $hotelid)
+      ->groupBy('roomtype_id')
+      ->select('hotels_roomtypeimg.id', 'hotels_roomtypeimg.path', 'hotels_roomtypeimg.hotels_roomtype', 'hotels_roomtypeimg.roomtype_id', 'hotels_roomtype.price_weekdays', 'hotels_roomtype.doublebed', 'hotels_roomtype.singlebed', 'hotels_roomtype.roomarea', 'hotels_roomtype.roomname', 'hotels_roomtype.hotel_id')
+      ->get();
+
+    return $data;
+  }
+
+  // public function hotelInfo($hotelid)
+  // {
+  //   $hotels_information = DB::table('hotels_info')
+  //     ->where('id', '=', $hotelid)
+  //     ->get();
+  //   return $hotels_information;
+  // }
+
+  // public function hotelInfo($hotelid)
+  // {
+  //   $hotels_information = DB::table('hotels_info')
+  //     ->select('*')
+  //     ->where('id', $hotelid)
+  //     ->get();
+
+  //   return $hotels_information;
+  // }
+
+  // public function hotelInfo($hotelid)
+  // {
+  //   $hotels_information = DB::select('SELECT * FROM hotels_img 
+  //   INNER JOIN hotels_info 
+  //   on hotels_img.hotel_id=hotels_info.id
+  //   WHERE hotels_img.hotel_id= $hotelid', []);
+
+  //   return $hotels_information;
+  // }
+
+  public function hotelInfo($hotelid)
+  {
+    $hotels_information = DB::table('hotels_info')
+      ->where('hotels_info.id', $hotelid)
+      ->get();
 
 
 
-        // foreach ($b as $key => $value) {
-        //     $data[$key] = (array)$value;
-        // }
+    return $hotels_information;
+  }
 
-
-        // foreach ($a as $key => $value) {
-
-        //     echo array_to_json($data[$key]);
-        // }
-
-
-
-        // foreach ($b as $key => $value) {
-
-        //     $b[$key] = array_to_json($b[$key]);
-        // }
-        // return $b;
+  public function hotelImg($hotelid)
+  {
+    $hotels_information = DB::table('hotels_img')
+      ->where('hotels_img.hotel_id', $hotelid)
+      ->get();
 
 
 
+    return $hotels_information;
+  }
+  public function hotelFac($hotelid)
+  {
+    $facNum = DB::table('hotels_vs_facilities')
+      ->select('hotel_id', 'fac_name')
+      ->where('hotel_id', $hotelid)
+      ->get();
 
 
-
-
-
-
-
-
-
-
-
-        
-        // var_dump($a);
-        // foreach ($a as $key => $value) {
-        //     $data[$key] = (array)$value;
-        // }
-
-
-        // // foreach ($a as $key => $value) {
-
-        // //     echo array_to_json($data[$key]);
-        // // }
-        // foreach ($a as $key => $value) {
-
-        //     $data[$key] = array_to_json($data[$key]);
-        // }
-
-
-        // // //select
-        // // $a = DB::select('select * from hotels_info where active = ?', [1]);
-        // // //insert
-        // // DB::insert('insert into a (id, name) values (?, ?)', [1, 'Dayle']);
-        // // //update
-        // // $affected = DB::update('update a set votes = 100 where name = ?', ['John']);
-        // // //delete，後面一樣可以接 where 語句設定條件
-        // // $deleted = DB::delete('delete from a where id = ?', [1]);
-        // // //一般陳述式
-        // // DB::statement('drop table a');
-
-        // // var_dump($data) ;
-        // return $data;
-        // // return json_encode($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-
-    }
+    return $facNum;
+  }
 }

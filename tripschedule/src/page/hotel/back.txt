@@ -1,183 +1,272 @@
-<div className=" filterPart-36">
-        <p>篩選地區</p>
-        {/* <!-- 包地區的表 --> */}
-        <div>
-          <div className="optionFontStyle">
-            <p>
-              <input id="d01" type="checkbox" value="" />
-              <label for="d01">足立區</label>
-            </p>
-            <p>
-              <input id="d02" type="checkbox" value="" />
-              <label for="d02">文京區</label>
-            </p>
-            <p>
-              <input id="d03" type="checkbox" value="" />
-              <label for="d03">千代田區</label>
-            </p>
-            <p>
-              <input id="d04" type="checkbox" value="" />
-              <label for="d04">中央區</label>
-            </p>
-            <p>
-              <input id="d05" type="checkbox" value="" />
-              <label for="d05">江戶川區</label>
-            </p>
-            <p>
-              <input id="d06" type="checkbox" value="" />
-              <label for="d06">板橋區</label>
-            </p>
-            <p>
-              <input id="d07" type="checkbox" value="" />
-              <label for="d07">葛飾區</label>
-            </p>
-            <p>
-              <input id="d08" type="checkbox" value="" />
-              <label for="d08">江東區</label>
-            </p>
-            <p>
-              <input id="d09" type="checkbox" value="" />
-              <label for="d09">港區</label>
-            </p>
-            <p>
-              <input id="d10" type="checkbox" value="" />
-              <label for="d10">目黑區</label>
-            </p>
-            <p>
-              <input id="d11" type="checkbox" value="" />
-              <label for="d11">中野區</label>
-            </p>
-          </div>
-          {/* ------------------------- */}
-          <div className="optionFontStyle">
-            <p>
-              <input id="d12" type="checkbox" value="" />
-              <label for="d12">練馬區</label>
-            </p>
-            <p>
-              <input id="d13" type="checkbox" value="" />
-              <label for="d13">大田區</label>
-            </p>
-            <p>
-              <input id="d14" type="checkbox" value="" />
-              <label for="d14">世田谷區</label>
-            </p>
-            <p>
-              <input id="d15" type="checkbox" value="" />
-              <label for="d15">澀谷區</label>
-            </p>
-            <p>
-              <input id="d16" type="checkbox" value="" />
-              <label for="d16">品川區</label>
-            </p>
-            <p>
-              <input id="d17" type="checkbox" value="" />
-              <label for="d17">新宿區</label>
-            </p>
-            <p>
-              <input id="d18" type="checkbox" value="" />
-              <label for="d18">杉並區</label>
-            </p>
-            <p>
-              <input id="d19" type="checkbox" value="" />
-              <label for="d19">墨田區</label>
-            </p>
-            <p>
-              <input id="d20" type="checkbox" value="" />
-              <label for="d20">台東區</label>
-            </p>
-            <p>
-              <input id="d21" type="checkbox" value="" />
-              <label for="d21">豐島區</label>
-            </p>
-            <p>
-              <input id="d22" type="checkbox" value="" />
-              <label for="d22">北區</label>
-            </p>
-          </div>
-        </div>
-      </div>
+{/* <label className="container">
+                {" "}
+                足立區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d01"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                文京區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d02"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                千代田區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d03"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                中央區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d04"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                江戶川區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d05"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                板橋區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d06"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
 
+              <label className="container">
+                {" "}
+                葛飾區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d07"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                江東區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d08"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label> */}
 
-      {/* 未完成篩選價格 */}
-      <div className="filterPart">
-        <p>篩選價格</p>
-        
-          {/* 00001_價格吧*/}
-          <div className="price-input">
+              --------------------------------
+              {/* <label className="container">
+                {" "}
+                練馬區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d12"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                大田區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d13"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
 
-            {/* 放輸入框 */}
-            <div className="inner-input">
-                {/* ------------------------- */}
-                <div className="field">
-                  <span>Min</span>
-                  <input type="number" className="input-min" value="2500"/>
-                </div>
-              {/* ---------------------- */}
-                <div className="separator">-</div>
-                {/* ---------------------- */}
-                <div className="field">
-                  <span>Max</span>
-                  <input type="number" className="input-max" value="7500"/>
-                </div>
-            </div>
-            {/* 00002_放吧條 */}
-            <div className="inner-progress">
-              <div className="slider">
-                <div className="progress"></div>
-              </div>
-              {/* 吧上的點點 */}
-              {/* -------------------------- */}
-              <div className="range-input">
-              <input type="range" className="range-min" min="0" max="10000" value="2500" step="100"/>
-              <input type="range" className="range-max" min="0" max="10000" value="7500" step="100"/>
-              </div>
-            </div>           
-          </div>
+              <label className="container">
+                {" "}
+                世田谷區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d14"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                澀谷區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d15"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                品川區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d16"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                新宿區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d17"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                杉並區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d18"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                墨田區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d19"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                台東區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d20"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                豐島區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d21"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label>
+              <label className="container">
+                {" "}
+                北區
+                <input
+                  checked={!comfirm}
+                  type="checkbox"
+                  name="company"
+                  value="d22"
+                  onClick={(e) => {
+                    isComfirm(!e.target.checked);
+                  }}
+                />
+                <span className="checkmark"></span>
+              </label> */}
+
           
-            
-            
-        
-        
-      </div>
-      
-      <div className=" filterPart-36">
-        <p>選擇設施</p>
-        <div className="optionFontStyle">
-        <form action="" >
-          <p>
-            <input id="equip01" type="checkbox" value="" />
-            <label for="equip01">停車</label>
-          </p>
-          <p>
-            <input id="equip02" type="checkbox" value="" />
-            <label for="equip02">SPA</label>
-          </p>
-          <p>
-            <input id="equip03" type="checkbox" value="" />
-            <label for="equip03">廚房</label>
-          </p>
-          <p>
-            <input id="equip04" type="checkbox" value="" />
-            <label for="equip04">免費無線上網</label>
-          </p>
-          <p>
-            <input id="equip05" type="checkbox" value="" />
-            <label for="equip05">游泳池</label>
-          </p>
-          <p>
-            <input id="equip06" type="checkbox" value="" />
-            <label for="equip06">寵物友善</label>
-          </p>
-          <p>
-            <input id="equip07" type="checkbox" value="" />
-            <label for="equip07">洗衣機</label>
-          </p>
-          <p>
-            <input id="equip08" type="checkbox" value="" />
-            <label for="equip08">健身房</label>
-          </p>
-        </form>
-        </div>
-      </div>
-    </div>
