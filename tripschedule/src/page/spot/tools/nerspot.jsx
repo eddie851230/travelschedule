@@ -21,20 +21,20 @@ const Nerspot = () => {
                     <p>看看周圍的景點~</p>
                     <div className="nerspotrow">
                         <div className="nerspot-col">
-                            <img src="/img/jp1.jpg" />
-                            <p>淺間神社</p>
+                            <img src="/img/spotDetail/新倉山淺間公園01.jpg" />
+                            <p>新倉山淺間公園</p>
                         </div>
                         <div className="nerspot-col">
-                            <img src="/img/晴空塔.jpg" />
+                            <img src="/img/spotDetail/晴空塔01.jpg" />
                             <p>晴空塔</p>
                         </div>
                         <div className="nerspot-col">
-                            <img src="/img/disney.jpg" />
+                            <img src="/img/spotDetail/tokyodisneyland4.jpg" />
                             <p>東京迪士尼</p>
                         </div>
                         <div className="nerspot-col">
-                            <img src="/img/mount fuji.jpg" />
-                            <p>新倉山淺間公園</p>
+                            <img src="/img/spotDetail/築地市場01.jpg" />
+                            <p>築地市場</p>
                         </div>
                     </div>
                 </div>
