@@ -2,13 +2,12 @@ import React from 'react';
 import "./AirticketTicketList.css"
 import TicketListTicket from './TicketListTicket/TicketListTicket';
 
-function AirticketTicketList() {
+function AirticketTicketList(props) {
     return (
         <div id='AirticketTicketList'>
-            {TicketListTicket()}
-   
+            <TicketListTicket apiData={props.apiData} sideFilter={props.sideFilter}/>
         </div>
      );
 }
-
+ 
 export default AirticketTicketList;
