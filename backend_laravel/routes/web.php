@@ -35,16 +35,17 @@ Route::resource('schedules', SchedulesController::class);
 
 //寫法二
 Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
+Route::get('/showScheduleName/{user}', [SchedulesController::class, 'showSchedule']);
 
 
 // 收藏名單
-        // 飯店
-        Route::get('/favorite/hotel', [FavoriteController::class, 'hotelFavoriteList']);
-        Route::delete('/favorite/hotel/{id}', [FavoriteController::class, 'deleteHotel']);
+// 飯店
+Route::get('/favorite/hotel/{user}', [FavoriteController::class, 'hotelFavoriteList']);
+Route::delete('/favorite/hotel/{id}', [FavoriteController::class, 'deleteHotel']);
 
-        // 景點
-        Route::get('/favorite/spot', [FavoriteController::class, 'spotFavoriteList']);
-        Route::delete('/favorite/spot/{id}', [FavoriteController::class, 'deleteSpot']);
+// 景點
+Route::get('/favorite/spot/{user}', [FavoriteController::class, 'spotFavoriteList']);
+Route::delete('/favorite/spot/{id}', [FavoriteController::class, 'deleteSpot']);
 
 // 會員中心興趣取向
 // 查看是否已經有會員資料登記了

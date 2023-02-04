@@ -186,19 +186,138 @@ class SchedulesController extends Controller
 
 
 
-    public function showSpot()
+    public function showSchedule($user)
     {
         //
 
 
         DB::connection('mysql');
 
-        $users
-            = DB::table('attractions_info')
-            ->join('attraction_img', 'attraction_img.attraction_id', '=', 'attractions_info.id')
+
+        $data =
+            DB::table('schedules_info')
+            ->select('*')
+            ->where('user_id', $user)
             ->get();
 
-        $users = json_decode($users->toJson());
-        return $users;
+        $data  = json_decode($data->toJson());
+        return $data;
+    }
+    public function showSpotDate($scheduleid)
+    {
+        //
+
+
+        DB::connection('mysql');
+
+
+        $data =
+            DB::table('attractions_info')
+            ->join('schedules_spotplan', 'schedules_spotplan.attraction_id', '=', 'attractions_info.id')
+            ->join('schedules_info', 'schedules_spotplan.schedule_id', '=', 'schedules_info.id')
+            ->select('schedules_spotplan.id', 'schedules_spotplan.date', 'schedules_spotplan.schedule_id', 'schedules_info.user_id')
+            ->where('schedules_info.id', $scheduleid)
+            ->groupBy('schedules_spotplan.date')
+            ->get();
+
+        $data  = json_decode($data->toJson());
+        return $data;
+    }
+    public function showSpot($user,$schedule)
+    {
+        //
+
+
+        DB::connection('mysql');
+
+        //  $data
+        //     = DB::table('attractions_info')
+        //     ->get();
+        //  $data=
+        // DB::table('attractions_info')
+        // // ->select('schedules_spotplan.*', 'attractions_info.*', 'schedules_info.user_id')
+        // // ->select(DB::raw('schedules_spotplan.*', 'attractions_info.*', 'schedules_info.user_id'))
+
+        // ->crossJoin('schedules_spotplan')
+        // ->crossJoin('schedules_info')
+        // // ->where([['schedules_spotplan.attraction_id', 'attractions_info.id'], ['schedules_spotplan.schedule_id', 'schedules_info.id'], ['schedules_info.user_id', 1]])
+        // ->whereColumn('schedules_spotplan.attraction_id', 'attractions_info.id')
+        // ->whereColumn('schedules_spotplan.schedule_id', 'schedules_info.id')
+        // ->where('schedules_info.user_id', 1)
+        // ->get();
+
+
+
+
+
+        // DB::table('attractions_info')
+        // ->select('schedules_spotplan.*', 'attractions_info.*', 'schedules_info.user_id')
+        // // ->crossJoin('schedules_spotplan')
+        // // ->crossJoin('schedules_info')
+        // // ->where([['schedules_spotplan.attraction_id', 'attractions_info.id'], ['schedules_spotplan.schedule_id', 'schedules_info.id'], ['schedules_info.user_id', 1]])
+        // ->get();
+
+
+        $data =
+        DB::table('attractions_info')
+        ->join('schedules_spotplan', 'schedules_spotplan.attraction_id', '=', 'attractions_info.id')
+            ->join('schedules_info', 'schedules_spotplan.schedule_id', '=', 'schedules_info.id')
+            ->select('schedules_spotplan.*', 'attractions_info.name', 'attractions_info.opentime', 'attractions_info.clickrate', 'attractions_info.ticketprice', 'attractions_info.address', 'attractions_info.suggestedtime', 'attractions_info.coordinates', 'attractions_info.lat', 'attractions_info.lng', 'schedules_info.user_id', 'attractions_img.path')
+            ->join('attractions_img', 'attractions_img.attraction_id', '=', 'attractions_info.id')
+            ->where('schedules_info.user_id', $user)
+            ->where('schedules_info.id',$schedule)
+            // ->where('schedules_spotplan.date_order', 1)
+            ->groupBy('schedules_spotplan.id')
+            // ->where('schedules_info.user_id', :user_id)
+            ->get();
+
+        $data  = json_decode($data->toJson());
+        return $data;
+    }
+
+
+
+
+
+    // 將收藏名單傳入行程表
+    public function addSchedule()
+    {
+        DB::connection('mysql');
+        $data = request()->all();
+        $schedule = DB::table('schedules_spotplan')->insert([
+            'date' => $data['date'],
+            'attraction_id' => $data['attraction_id'],
+            'schedule_id' => $data['schedule_id'],
+            'date_order' => $data['date_order']
+        ]);
+
+
+        return $schedule;
+    }
+
+    public function addHotel()
+    {
+        DB::connection('mysql');
+        $data = request()->all();
+        $schedule = DB::table('schedules_spotplan')->insert([
+            'room_id' => $data['room_id'],
+            'hotel_id' => $data['hotel_id'],
+            'schedule_id' => $data['schedule_id'],
+            'date_order' => $data['date_order']
+        ]);
+
+
+        return $schedule;
+    }
+    // 刪除單一行程表景點
+    public function deleteSpot($id)
+    {
+        DB::connection('mysql');
+
+        $spot
+            = DB::table('schedules_spotplan')
+            ->where('id', $id)
+            ->delete();
+        return $spot;
     }
 }

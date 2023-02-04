@@ -110,7 +110,7 @@ export default function Spotmap(p) {
       );
 
       map.addLayer(layer1);
-      console.log(2);
+      // console.log(2);
 
       //===============================================================
       //3標記點 加入
@@ -153,7 +153,6 @@ export default function Spotmap(p) {
             價格: ${p.spotListinfo[index].ticketprice}<br/>
             `;
 
-        
         let marker = L.marker(
           [p.spotListinfo[index].lat, p.spotListinfo[index].lng],
           {
@@ -161,40 +160,43 @@ export default function Spotmap(p) {
           }
         );
         marker.addTo(map).bindPopup(popupmsg);
-
-        // // get the div block
-        // var divBlock = document.getElementById("2");
-
-        // // // add the event listener
-        // divBlock.addEventListener("mouseenter", function () {
-        //   marker.openPopup();
-        // });
-        // =============================================================================
-
-        // this["marker" + index] = L.marker(
-        //   [p.spotListinfo[index].lat, p.spotListinfo[index].lng],
-        //   {
-        //     icon: greenIcon,
-        //   }
-        // );
-        // this["marker" + index].addTo(map).bindPopup(popupmsg);
-
-        // // get the div block
-        // var divBlock = document.getElementById("2");
-
-        // // add the event listener
-        // divBlock.addEventListener("mouseenter", function () {
-        //   this["marker" + index].openPopup();
-        // });
-
-        //    divBlock.addEventListener("mouseenter", function () {
-        // marker.openPopup();
-        // .openPopup();
       }
-      // L.marker([p.spotListinfo[index].lat, p.spotListinfo[index].lng], {
-      //   icon: greenIcon,
-      // }).addTo(map);
     }; //end   mapping = () => {
+    // ============================
+    // // get the div block
+    // var divBlock = document.getElementById("2");
+
+    // // // add the event listener
+    // divBlock.addEventListener("mouseenter", function () {
+    //   marker.openPopup();
+    // });
+    // =============================================================================
+
+    // this["marker" + index] = L.marker(
+    //   [p.spotListinfo[index].lat, p.spotListinfo[index].lng],
+    //   {
+    //     icon: greenIcon,
+    //   }
+    // );
+    // this["marker" + index].addTo(map).bindPopup(popupmsg);
+
+    // // get the div block
+    // var divBlock = document.getElementById("2");
+
+    // // add the event listener
+    // divBlock.addEventListener("mouseenter", function () {
+    //   this["marker" + index].openPopup();
+    // });
+
+    //    divBlock.addEventListener("mouseenter", function () {
+    // marker.openPopup();
+    // .openPopup();
+    // }
+    // L.marker([p.spotListinfo[index].lat, p.spotListinfo[index].lng], {
+    //   icon: greenIcon,
+    // }).addTo(map);
+
+    // ======================
 
     mapping();
   });
@@ -232,7 +234,7 @@ export default function Spotmap(p) {
     // )
     <div
       id="Spotmap"
-      style={{ width: "100%" }}
+      style={{ width: "100%", zIndex: "1" }}
       // key={p.spotListinfo}
       key={new Date().getTime()}
     >

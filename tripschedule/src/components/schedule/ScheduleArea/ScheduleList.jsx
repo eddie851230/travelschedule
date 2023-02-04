@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-
+import { http } from "WebAPI";
+import { ListContext } from "page/schedule/Schedule";
+import { useContext } from "react";
 const ScheduleList = (p) => {
   // console.log(p);
-  
-  
+  // console.log("p.spotListinfo"+p.spotListinfo);
+
+  // 使用schdule的變數
+  const { spotListinfo, setRenew } = useContext(ListContext);
+
+  console.log(p.spotListinfo);
   const airPlaneDepartinfo = [
     {
       id: "depart",
@@ -137,99 +143,226 @@ const ScheduleList = (p) => {
     p.setSpotListinfo(items);
   }
 
+  function MouseEnterHandler() {}
 
-
-  function MouseEnterHandler(){
-
-
-
-  }
+  // ==========================================
   // 一天內早上中午晚上的資料分類(array)
   // const morningSpot = spotinfo.filter((elem) => elem.dayTime === "morning");
 
   // const afternoonSpot = spotinfo.filter((elem) => elem.dayTime === "afternoon");
   // const eveningSpot = spotinfo.filter((elem) => elem.dayTime === "evening");
 
+  // {p.spotListinfo.filter((e)=>{})};
+
+  //
+  // 新增刪除按鈕可以直接在行程進行刪除--------------------------------
+  const [deletebtn, setDeletebtn] = useState(null);
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    await http
+      .delete("/api/deleteSpot/" + e.target.id)
+      .then(() => setDeletebtn(null))
+      .then(() => spotListinfo.filter((r) => r.id !== e.target.id))
+      .then(() => setRenew(true))
+      .catch((e) => console.log(e));
+  };
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="Day1">
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            <div className="dayNum" id="Day1">
-              <p>
-                <span>Day</span>
-                <span> 1</span>: 禮拜
-                <span>{"一"}</span>
-              </p>
-            </div>
-
             {/*  */}
             {/* <div className="dayTime">上午</div> */}
             {/* <!-- 飛機格 --> */}
 
-            {airPlaneDepartinfo.map((item, index) => (
-              <div className="airplane" key={item.id}>
-                <img src={item.flyIcon} alt={item.airPlaneName} />
-                <div className="text">
-                  <div className="name">{item.airportName}</div>
-                  <div className="info">
-                    抵達時間:
-                    <span>{item.arrivingTime}</span>&Iota;
-                    <span>{item.airPlaneName}</span>
+            {p.spotListinfoFilter1 &&
+              airPlaneDepartinfo.map((item, index) => (
+                <div className="airplane" key={item.id}>
+                  <img src={item.flyIcon} alt={item.airPlaneName} />
+                  <div className="text">
+                    <div className="name">{item.airportName}</div>
+
+                    <div className="Addr">{`地址:${item.addr}`}</div>
+                    <div className="info">
+                      抵達時間:
+                      <span>{item.arrivingTime}</span>&Iota;
+                      <span>{item.airPlaneName}</span>
+                    </div>
                   </div>
-                  <div className="Addr">{item.addr}</div>
+                  <a href={item.herf}>
+                    <button>
+                      查看
+                      <br />
+                      詳情
+                    </button>
+                  </a>
                 </div>
-                <a href={item.herf}>
+              ))}
+
+            {/* <!-- 景點或飯店格 --> */}
+
+            {p.spotListinfoFilter1 &&
+              p.spotListinfoFilter1.map((item, index) => {
+                return (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id.toString()}
+                    index={index}
+                    // onMouseEnter={MouseEnterHandler}
+                  >
+                    {(provided) => (
+                      <div
+                        className="spot"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        key={index}
+                        // id={index}
+                      >
+                        <img src={item.path} alt={index + 1} />
+                        <div className="text">
+                          <div className="name">{item.name}</div>
+                          <div className="">{`營業時間:${item.opentime}`}</div>
+                          <div className="info">
+                            <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
+                          </div>
+                          <div className="Addr">{`地址:${item.address}`}</div>
+                          <div className="">{`票價:${item.ticketprice}`}</div>
+                        </div>
+                        <a href={item.href}>
+                          <button>
+                            查看
+                            <br />
+                            詳情
+                          </button>
+                        </a>
+                        {/* <div
+                          className="delete"
+                          id={item.id}
+                          onClick={handleDelete}
+                          style={{
+                            display: deletebtn === item.id ? "block" : "none",
+                          }}
+                        >
+                          &times;
+                        </div> */}
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
+            {p.spotListinfoFilter2 &&
+              p.spotListinfoFilter2.map((item, index) => {
+                return (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id.toString()}
+                    index={index}
+                    // onMouseEnter={MouseEnterHandler}
+                  >
+                    {(provided) => (
+                      <div
+                        className="spot"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        key={index}
+                        // id={index}
+                      >
+                        <img src={item.path} alt={index + 1} />
+                        <div className="text">
+                          <div className="name">{item.name}</div>
+                          <div className="Addr">{`地址:${item.address}`}</div>
+                          <div className="">{item.opentime}</div>
+                          <div className="info">
+                            <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
+                          </div>
+
+                          <div className="">{`票價:${item.ticketprice}`}</div>
+                        </div>
+                        <a href={item.href}>
+                          <button>
+                            查看
+                            <br />
+                            詳情
+                          </button>
+                        </a>
+                        {/* <div
+                          className="delete"
+                          id={item.id}
+                          onClick={handleDelete}
+                          style={{
+                            display: deletebtn === item.id ? "block" : "none",
+                          }}
+                        >
+                          &times;
+                        </div> */}
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
+
+            {!p.spotListinfoFilter3 && (
+              <div className="airplane hotel">
+                <img
+                  src="/img/Hotel_For_SQL/A03_01.webp"
+                  alt=""
+                  style={{ objectFit: "cover" }}
+                />
+                <div className="text">
+                  <div className="name">西新宿大和 ROYNET 飯店</div>
+                  <div className="Addr">
+                    地址:6-12-39, Nishi-Shinjuku, Shinjuku-ku, Tokyo, Tokyo
+                  </div>
+                  <div>房型:標準雙人房</div>
+                  <div>價格:3000</div>
+                </div>
+                <a href>
                   <button>
                     查看
                     <br />
                     詳情
                   </button>
                 </a>
+               
               </div>
-            ))}
-
-            {/* <!-- 景點或飯店格 --> */}
-            {p.spotListinfo.map((item, index) => {
-              return (
-                <Draggable
-                  key={item.id}
-                  draggableId={item.id.toString()}
-                  index={index}
-                  // onMouseEnter={MouseEnterHandler}
-                >
-                  {(provided) => (
-                    <div
-                      className="spot"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      key={index}
-                      // id={index}
-                    >
-                      <img src={item.path} alt={index + 1} />
-                      <div className="text">
-                        <div className="name">{item.name}</div>
-                        <div className="">{item.opentime}</div>
-                        <div className="info">
-                          遊玩時間: <span>{item.suggestedtime}</span>
-                        </div>
-                        <div className="Addr">{item.address}</div>
-                        <div className="">{item.ticketprice}</div>
-                      </div>
-                      <a href={item.href}>
-                        <button>
-                          查看
-                          <br />
-                          詳情
-                        </button>
-                      </a>
+            )}
+            {p.spotListinfoFilter3 &&
+              airPlaneDepartinfo.map((item, index) => (
+                <div className="airplane" key={item.id}>
+                  <img src={item.flyIcon} alt={item.airPlaneName} />
+                  <div className="text">
+                    <div className="name">{item.airportName}</div>
+                    <div className="info">
+                      抵達時間:
+                      <span>{item.arrivingTime}</span>&Iota;
+                      <span>{item.airPlaneName}</span>
                     </div>
-                  )}
-                </Draggable>
-              );
-            })}
-
+                    <div className="Addr">{`地址:${item.addr}`}</div>
+                  </div>
+                  <a href={item.herf}>
+                    <button>
+                      查看
+                      <br />
+                      詳情
+                    </button>
+                  </a>
+                  <div
+                    className="delete"
+                    id={item.id}
+                    onClick={handleDelete}
+                    style={{
+                      display: deletebtn === item.id ? "block" : "none",
+                    }}
+                  >
+                    &times;
+                  </div>
+                </div>
+              ))}
+            {/* ========================================= */}
             {/*  */}
             {/* <div className="dayTime">下午</div> */}
 

@@ -76,14 +76,40 @@ Route::group(['middleware' => ['auth:sanctum']], function () { {
             return $request->user();
         });
 
-       
+
         Route::resource('schedules', SchedulesController::class);
 
         // Route::resource('hotels', HotelsController::class);
 
-        //寫法2
-        Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
+
 
 
     }
 });
+
+//寫法2
+Route::get('/showSpot/{user}/{scheduleid}', [SchedulesController::class, 'showSpot']);
+Route::get(
+    '/showSpotDate/{scheduleid}',
+    [SchedulesController::class, 'showSpotDate']
+);
+Route::get(
+    '/showSchedule/{user}',
+    [SchedulesController::class, 'showSchedule']
+);
+
+
+// 收藏名單 把景點飯店加入、刪除
+
+Route::post(
+    '/addSchedule',
+    [SchedulesController::class, 'addSchedule']
+);
+Route::post(
+    '/addHotel',
+    [SchedulesController::class, '/addHotel']
+);
+Route::delete(
+    '/deleteSpot/{spotid}',
+    [SchedulesController::class, 'deleteSpot']
+);

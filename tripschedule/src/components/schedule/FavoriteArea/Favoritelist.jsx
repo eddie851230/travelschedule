@@ -1,161 +1,116 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import AuthContext from '../../../contexts';
-import { http } from '../../../WebAPI';
+import React, { useState, useEffect, useContext } from "react";
+import AuthContext from "../../../contexts";
+import { ListContext } from "page/schedule/Schedule";
+import { http } from "../../../WebAPI";
+import AddSpot from "./AddSpot";
 
 const Favoritelist = () => {
-    // 判斷是否有會員登入中
-    const { user } = useContext(AuthContext);
-    console.log('user', user)
+  // 判斷是否有會員登入中
+  const { user } = useContext(AuthContext);
+  const { spotListinfo } = useContext(ListContext);
+  // console.log('user', user)
 
+  const [spotinfo, updateSpotinfo] = useState([]);
 
-    // ---------------景點資訊
-    // const spotListinfo = [
-    //     {
-    //         spotid: 'S01',
-    //         imgsrc: '/img/Hotel_For_SQL/A01_01.jpg',
-    //         info: '東京晴空塔1'
-    //     },
-    //     {
-    //         spotid: 'S02',
-    //         imgsrc: '/img/淺草寺(維基百科夜景).jpg',
-    //         info: '淺草寺2'
-    //     }, {
-    //         spotid: 'S03',
-    //         imgsrc: '/img/淺草寺.jpg',
-    //         info: '淺草寺白天3'
-    //     }, {
+  // 開啟收藏名單編輯
+  const [trigger, setTrigger] = useState(false);
 
-    //         spotid: 'S04',
-    //         imgsrc: '/img/淺草寺.jpg',
-    //         info: '淺草寺4'
+  // 偵測加載中
+  const [loading, setLoading] = useState(true);
 
-    //     }
-    // ];
+  // 抓取收藏名單資料
+  useEffect(() => {
+    http
+      .get("/favorite/spot/" + user.id)
+      .then((response) => {
+        setLoading(false);
+        return updateSpotinfo(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [user, loading]);
 
-    const [spotinfo, updateSpotinfo] = useState([]);
+  const [hotelinfo, updateHotelinfo] = useState([]);
+  useEffect(() => {
+    http
+      .get("/favorite/hotel/" + user.id)
+      .then((response) => updateHotelinfo(response.data))
+      .catch((error) => console.log(error));
+    setLoading(false);
+  }, [user, loading, spotListinfo]);
 
-    useEffect(() => {
+  // 抓取個別資訊
+  const [detail, setDetail] = useState(null);
 
-        http.get('http://localhost:8000/favorite/spot')
-            .then(response => {
-                let newArray = response.data.filter(({ user_id }) => user_id === user.id);
-                return updateSpotinfo(newArray);
-            })
-            .catch(error => console.log(error));
+  const handleDetail = (e) => {
+    setTrigger(true);
+    let id = parseInt(e.currentTarget.dataset.id);
+    let newArr = spotinfo.filter((r) => r.attraction_id === id);
+    return setDetail(newArr[0]);
+  };
+  const handleHotelDetail = (e) => {
+    setTrigger(true);
+    let id = e.currentTarget.dataset.id;
+    let newArr = hotelinfo.filter((r) => r.room_id === id);
 
-    }, [user]);
+    return setDetail(newArr[0]);
+  };
 
-    // -----------------飯店資訊
-    // const hotelListinfo = [
-    //     {
-    //         hotelid: 'A01',
-    //         imgsrc: '/img/Hotel_For_SQL/A01_01.jpg',
-    //         info: '八蚊子飯店'
-    //     },
-    //     {
-    //         hotelid: 'A02',
-    //         imgsrc: '/img/Hotel_For_SQL/A02_01.webp',
-    //         info: '我孫子飯店'
-    //     }, {
-    //         hotelid: 'A03',
-    //         imgsrc: '/img/Hotel_For_SQL/A03_01.webp',
-    //         info: '我爺爺飯店'
-    //     }, {
-    //         hotelid: 'A04',
-    //         imgsrc: '/img/Hotel_For_SQL/A04_01.webp',
-    //         info: '我奶奶飯店'
-    //     }
-    // ];
+  return (
+    <div className="list">
+      {/* 景點 */}
 
-    const [hotelinfo, updateHotelinfo] = useState([]);
-    useEffect(() => {
-
-        http.get('http://localhost:8000/favorite/hotel')
-            .then(response => {
-                let newArray = response.data.filter(({ user_id }) => user_id === user.id);
-                return updateHotelinfo(newArray);
-            })
-            .catch(error => console.log(error));
-
-    }, [user]);
-
-
-    function fhandleOnDragEnd(result) {
-        // console.log(result);
-        if (!result.destination) return;
-        // result.source.index把元件放到index的哪裡
-        // result.destination.index從index的哪裡出發
-        const hotelItems = Array.from(hotelinfo);
-        const [hotelreorderedItem] = hotelItems.splice(result.source.index, 1);
-        hotelItems.splice(result.destination.index, 0, hotelreorderedItem);
-        updateHotelinfo(hotelItems);
-
-        const spotItems = Array.from(spotinfo);
-        const [spotreorderedItem] = spotItems.splice(result.source.index, 1);
-        spotItems.splice(result.destination.index, 0, spotreorderedItem);
-        updateSpotinfo(spotItems);
-    }
-
-    return (
-        <DragDropContext onDragEnd={fhandleOnDragEnd} >
-            <div className="list">
-
-                {/* 景點 */}
-                <Droppable droppableId='fSpot'>
-                    {provided => (
-                        <div className="fSpot" ref={provided.innerRef}
-                            {...provided.droppableProps} >
-
-                            {spotinfo.map(({ attraction_id, path, name }, index) => (
-                                <Draggable key={attraction_id} draggableId={attraction_id} index={index}>
-                                    {provided => (
-                                        <div ref={provided.innerRef}
-                                            {...provided.dragHandleProps} key={attraction_id} className="listinfo"  draggable='true'>
-                                            <img src={path} alt={name} />
-                                            <div className="text">{name}</div>
-                                        </div>
-                                    )
-
-                                    }
-
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-
-
-                {/* 飯店 */}
-                <Droppable droppableId='fHotel'>
-                    {provided => (
-                        <div className="fHotel" ref={provided.innerRef}
-                            {...provided.droppableProps} >
-
-                            {hotelinfo.map(({ hotel_id, path, name_CH }, index) => (
-                                <Draggable key={hotel_id} draggableId={hotel_id} index={index}>
-                                    {provided => (
-                                        <div ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps} key={hotel_id} className="listinfo" draggable="true">
-                                            <img src={path} alt={name_CH} />
-                                            <div className="text">{name_CH}</div>
-                                        </div>
-                                    )
-
-                                    }
-
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
+      <div className="fSpot">
+        <AddSpot
+          trigger={trigger}
+          setTrigger={setTrigger}
+          detail={detail}
+          spotinfo={spotinfo}
+          updateSpotinfo={updateSpotinfo}
+        />
+        {loading && <></>}
+        {!loading &&
+          spotinfo.map(({ attraction_id, path, name }) => (
+            <div
+              key={attraction_id}
+              className="listinfo"
+              onClick={handleDetail}
+              data-id={attraction_id}
+            >
+              <img src={path} alt={name} />
+              <div className="text">{name}</div>
             </div>
-        </DragDropContext>
+          ))}
+      </div>
 
-    )
-}
+      {/* 飯店 */}
+
+      <div className="fHotel">
+        {loading && <></>}
+        {!loading &&
+          hotelinfo.map(({ path, name_CH, room_id, roomtype }) => (
+            <div
+              key={room_id}
+              className="listinfo"
+              onClick={handleHotelDetail}
+              data-id={room_id}
+            >
+              <img src={path} alt={name_CH} />
+              <div className="text" style={{ fontSize: "13px" }}>
+                {name_CH}
+              </div>
+              <div style={{ color: "#da663c" }}>{roomtype}</div>
+            </div>
+          ))}
+        <AddSpot
+          trigger={trigger}
+          setTrigger={setTrigger}
+          detail={detail}
+          hotelinfo={hotelinfo}
+          updateHotelinfo={updateHotelinfo}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Favoritelist;

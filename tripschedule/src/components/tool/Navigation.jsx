@@ -9,6 +9,12 @@ import "https://kit.fontawesome.com/11f63461bc.js";
 import "./navAndScrollbar.css";
 
 
+
+
+
+// 行程表
+
+
 const Navigation = () => {
    
    // 判斷是否有會員登入中
@@ -38,7 +44,7 @@ const Navigation = () => {
                   <NavLink to="/Airticket"><UilPlaneDeparture /> 機票</NavLink>
                   <NavLink to="/Spot"><UilMapPinAlt /> 景點推薦</NavLink>
                   <NavLink to="/Hotel"><UilBed /> 住宿推薦</NavLink>
-                  <NavLink to="/Schedule"><UilSchedule /> 行程表規劃</NavLink>
+                  <NavLink to="/Schedule/1"><UilSchedule /> 行程表規劃</NavLink>
                   <div onClick={()=>setShow(true)}><UilUserCircle /> 會員中心</div>
                </div>
 
