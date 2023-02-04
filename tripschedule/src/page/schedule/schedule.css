@@ -356,8 +356,8 @@
 
 /* 上方收藏名單設定 */
 .scheduleMainpage .favoriteTitle {
-    position: relative;
-    top: 0;
+    /* position: relative;
+    top: 0; */
     background-color: #feda02;
     color: #000;
     font-weight: 700;
@@ -369,8 +369,8 @@
 
 .scheduleMainpage .list {
     width: 100%;
-    position: relative;
-    top: 0;
+    /* position: relative;
+    top: 0; */
     height: calc(100% - (40px + 20px));
     overflow-y: scroll;
     color: var(--nav-bg-color);

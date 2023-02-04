@@ -1,11 +1,11 @@
 /* 顯示最底層 */
 .AddSpot{
-    position: fixed;
+    position: absolute;
     top: 0;
-    left:30%;
+    left:0;
     height: 100%;
-    width: 15vw;
-    background-color: rgba(129, 129, 129, 0.9);
+    width: 100%;
+    background-color: rgba(129, 129, 129,.9);
     padding:1.5%;
     margin:auto;
     display:flex;

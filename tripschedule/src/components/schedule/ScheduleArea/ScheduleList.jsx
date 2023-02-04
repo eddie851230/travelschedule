@@ -3,11 +3,14 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { http } from "WebAPI";
 import { ListContext } from "page/schedule/Schedule";
 import { useContext } from "react";
+import { useEffect } from "react";
 
 const ScheduleList = (p) => {
   // console.log(p);
   // 使用schdule的變數
-  const { spotListinfo, setRenew } = useContext(ListContext)
+  const { spotListinfo, setRenew ,editRef} = useContext(ListContext)
+
+
 
   const airPlaneDepartinfo = [
     {
@@ -147,9 +150,22 @@ const ScheduleList = (p) => {
   // const afternoonSpot = spotinfo.filter((elem) => elem.dayTime === "afternoon");
   // const eveningSpot = spotinfo.filter((elem) => elem.dayTime === "evening");
 
+// ----------------------之後再說
+//  useEffect(()=>{
+//   if(editRef.current.innerText==='編輯完成'){
+//   console.log(editRef.current.innerText)
+//     setDeletebtn(true);
+//   }else{
+//     alert('2')
+//     setDeletebtn(null);
+//   }
+//  },[editRef.current.innerText])
 
   // 新增刪除按鈕可以直接在行程進行刪除--------------------------------
   const [deletebtn, setDeletebtn] = useState(null);
+
+
+  
   const handleDelete = async (e) => {
     e.preventDefault();
 
@@ -158,12 +174,10 @@ const ScheduleList = (p) => {
       .then(() => spotListinfo.filter(r => r.id !== e.target.id))
       .then(() => setRenew(true))
       .catch(e => console.log(e));
-    // e.target.style.display = "none";
+    
   }
 
-  // useEffect(()=>{
-  //   setSpotListinfo(spotListinfo)
-  // },[handleDelete])
+ 
 
   return (
 
@@ -173,8 +187,8 @@ const ScheduleList = (p) => {
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <div className="dayNum" id="Day1">
               Day
-              <span> 1 {+1}</span>: 禮拜
-              <span>一</span>
+              <span> {+1}</span>: 禮拜
+              <span>五</span>
             </div>
 
             {/*  */}
@@ -230,7 +244,7 @@ const ScheduleList = (p) => {
                           遊玩時間: <span>{item.suggestedtime}</span>
                         </div>
                         <div className="Addr">{item.address}</div>
-                        <div className="">{item.ticketprice}</div>
+                        <div className="">{item.ticketprice}NTD</div>
                       </div>
                       <a href={item.href}>
                         <button>

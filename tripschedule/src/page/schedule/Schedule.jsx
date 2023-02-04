@@ -138,7 +138,8 @@ useEffect(() => {
   };
 
 
-
+// 針對行程表進行展開
+const editRef=useRef(null);
 
   // 打開收藏名單編輯---------------------------------------------------
   const openFavorite = () => {
@@ -153,7 +154,7 @@ useEffect(() => {
         backgroundColor: "#feda02",
         color: "#000",
       });
-      $("#editSchdule").text("編輯完成");
+      editRef.current.innerText="編輯完成";
     } else {
       $(".favorite").addClass("slidClose");
       setTimeout(() => {
@@ -164,7 +165,7 @@ useEffect(() => {
         backgroundColor: "var(--nav-bg-color)",
         color: "#fff",
       });
-      $("#editSchdule").text("編輯行程");
+      editRef.current.innerText="編輯行程";
     }
   };
 
@@ -199,7 +200,7 @@ useEffect(() => {
 
   return (
 
-    <ListContext.Provider value={{spotListinfo, setSpotListinfo,hotelListinfo,setHotelListinfo,setRenew}}>
+    <ListContext.Provider value={{spotListinfo, setSpotListinfo,hotelListinfo,setHotelListinfo,setRenew,editRef}}>
       {/* <!-- 主要網站部分 --> */}
       <div className="scheduleMainpage">
         <DragDropContext
@@ -223,7 +224,7 @@ useEffect(() => {
               {/* <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) --> */}
               <button>複製行程</button>
               <button>分享行程</button>
-              <button id="editSchdule" onClick={openFavorite}>
+              <button id="editSchdule" onClick={openFavorite} ref={editRef}>
                 編輯行程
               </button>
             </div>
@@ -239,24 +240,24 @@ useEffect(() => {
               {/* <!-- 日期 --> */}
               <div className="daymain">
                 <a href="#Day1">
-                  12月17日
+                  2023-02-10
                   <br />
                   Day<span> 1 </span>
                 </a>
 
                 <a href="/">
-                  12月18日
+                2023-02-11
                   <br />
                   Day<span> 2 </span>
                 </a>
 
                 <a href="/">
-                  12月19日
+                2023-02-12
                   <br />
                   Day<span> 3 </span>
                 </a>
 
-                <a href="/">
+                {/* <a href="/">
                   12月20日
                   <br />
                   Day<span> 4 </span>
@@ -266,7 +267,7 @@ useEffect(() => {
                   12月21日
                   <br />
                   Day<span> 5 </span>
-                </a>
+                </a> */}
               </div> 
 
               {/* <!-- 右鍵 --> */}
@@ -314,13 +315,14 @@ useEffect(() => {
           {/* <!-- 收藏名單結束 --> */}
         </DragDropContext>
         {/* <!-- 地圖------------------------------------------------> */}
-        {/* <SpotMap
+        <SpotMap
           spotListinfo={spotListinfo}
           setSpotListinfo={setSpotListinfo}
           loadDataAsync={() => {
             loadDataAsync();
           }}
-        /> */}
+          style={{zIndex: '1'}}
+        />
         {/* <div id="myMap" className="mapping"></div>
         
         <Helmet>
