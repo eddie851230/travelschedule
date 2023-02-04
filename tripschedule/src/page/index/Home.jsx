@@ -11,7 +11,6 @@ const Home = () => {
         <div>
             < Video />
             < Teach />
-            <div className="homeBtn"><button type="button">開始您的行程</button></div>
             < Homesch />
             < Hhtspot />
             <section className="cta">
