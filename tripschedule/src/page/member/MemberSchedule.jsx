@@ -5,7 +5,6 @@ import CreateNewSchedule from "../../components/member/CreateNewSchedule";
 import styled from 'styled-components';
 import { http } from '../../WebAPI';
 import AuthContext from '../../contexts';
-import { getAuthToken } from "../../utils";
 
 
 const MemberSchedule = () => {
@@ -89,7 +88,7 @@ const MemberSchedule = () => {
 
 
     // 行程表隨機圖
-    const imgArr = ['/img/晴空塔.jpg', '/img/迪士尼.jpg', '/img/民治神功.jpg', '/img/淺草寺(維基百科夜景).jpg', '/img/淺草寺.jpg']
+    const imgArr = ['/img/紅色幾何圖.jpg', '/img/綠色幾何圖.jpg',  '/img/藍色幾何圖.jpg','/img/淡黃色幾何圖.jpg','/img/漸層幾何圖.jpg','/img/紫色幾何圖.jpg','/img/純綠幾何圖.jpg']
     const getRandomImage = () => {
         const random = Math.floor(Math.random() * imgArr.length);
         return imgArr[random];

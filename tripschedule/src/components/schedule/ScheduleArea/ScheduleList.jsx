@@ -6,8 +6,8 @@ import { useContext } from "react";
 
 const ScheduleList = (p) => {
   // console.log(p);
-// 使用schdule的變數
-const {spotListinfo,setRenew}=useContext(ListContext)
+  // 使用schdule的變數
+  const { spotListinfo, setRenew } = useContext(ListContext)
 
   const airPlaneDepartinfo = [
     {
@@ -150,13 +150,13 @@ const {spotListinfo,setRenew}=useContext(ListContext)
 
   // 新增刪除按鈕可以直接在行程進行刪除--------------------------------
   const [deletebtn, setDeletebtn] = useState(null);
-  const handleDelete = async(e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
 
-    await http.delete('/api/deleteSpot/'+e.target.id)
-    .then(() => setDeletebtn(null))
-    .then(()=>spotListinfo.filter(r=>r.id!==e.target.id))
-    .then(()=>setRenew(true))
+    await http.delete('/api/deleteSpot/' + e.target.id)
+      .then(() => setDeletebtn(null))
+      .then(() => spotListinfo.filter(r => r.id !== e.target.id))
+      .then(() => setRenew(true))
       .catch(e => console.log(e));
     // e.target.style.display = "none";
   }
@@ -219,7 +219,7 @@ const {spotListinfo,setRenew}=useContext(ListContext)
                       {...provided.dragHandleProps}
                       key={index} onClick={(e) => {
                         e.preventDefault();
-                        return setDeletebtn(item.id)
+                        return deletebtn ? setDeletebtn(null) : setDeletebtn(item.id)
                       }}
                     >
                       <img src={item.path} alt={index + 1} />
