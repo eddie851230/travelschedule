@@ -1,7 +1,7 @@
 #AirticketSearchBar {
     /* 寬高 */
-    width: 80%;
-    padding:0 30px;
+    width: 70%;
+    /* padding:0 30px; */
     height: 20%;
     background-color: var(--nav-bg-color);
     border-radius: 10px;

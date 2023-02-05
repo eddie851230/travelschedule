@@ -147,7 +147,7 @@ margin:5%;
     return (
         <>
             {/* <!-- 封面故事 --> */}
-            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100"style={{objectPosition: '0 40%'}} />
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
@@ -180,8 +180,10 @@ margin:5%;
                                             <Favorititle>營業時間</Favorititle>&nbsp;<span className="text-info"><b>{opentime}</b></span><br /><br />
                                             <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
                                         </h5>
-                                        <Link to={"/Spot/" + attraction_id}><button>詳細資訊</button></Link>
+                                        
+                                        <Link to={"/Spot/" + attraction_id}><button>詳細資訊</button></Link>&nbsp;&nbsp;&nbsp;
                                         <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                       
                                     </div>
 
                                 </Card>
@@ -198,10 +200,11 @@ margin:5%;
                                         <h3 className="card-title">{roomtype}</h3>
                                         <h5 className="card-text">
 
-                                            <Favorititle>價格</Favorititle>&nbsp;<span className="text-info"><b>{price_weekdays}NTD</b></span><br /><br />
+                                            <Favorititle>價格</Favorititle>&nbsp;<span className="text-info"><b>{price_weekdays}.NT</b></span><br /><br />
                                             <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
                                         </h5>
-                                        <Link to={"/Hotel/Detail/" + hotel_id}><button>詳細資訊</button></Link>
+                                       
+                                        <Link to={"/Hotel/Detail/" + hotel_id}><button>詳細資訊</button></Link>&nbsp;&nbsp;&nbsp;
                                         <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 

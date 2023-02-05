@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext,useRef } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 //匯入package
 // import { Helmet } from "react-helmet";
 import axios from "axios";
@@ -25,20 +25,20 @@ import AuthContext from "contexts";
 
 
 
-  //景點行程表的context-------------------------------------------------
-  export const ListContext=React.createContext(null);
+//景點行程表的context-------------------------------------------------
+export const ListContext = React.createContext(null);
 
 
 // -----------------------------------------------------------------------------
 function Schedule() {
 
   // 抓取會員資料
-  const{user}=useContext(AuthContext)
-// 抓取行程表參數
-const params=useParams();
+  const { user } = useContext(AuthContext)
+  // 抓取行程表參數
+  const params = useParams();
 
 
-console.log(params.id)
+  console.log(params.id)
 
 
 
@@ -46,10 +46,10 @@ console.log(params.id)
   const [spotListinfo, setSpotListinfo] = useState(initSpotListinfo);
   const [hotelListinfo, setHotelListinfo] = useState([]);
   // 如果有更新需要重新整理
-  const [renew,setRenew]=useState(false);
+  const [renew, setRenew] = useState(false);
 
   //定義改資料的方法傳給子
-// 下方行程表資訊
+  // 下方行程表資訊
   let loadDataAsync = async () => {
     // let response=await fetch(
     //   "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json?fbclid=IwAR3fyzFIBPOMj1WcDLJaXEYFZQiAlfW9BFYpsSN_sELepbKtdjM4HGgP7NM",
@@ -60,7 +60,7 @@ console.log(params.id)
       method: "GET",
       //url
       // url: "http://127.0.0.1:8000/schedules",
-      url: "http://127.0.0.1:8000/showSpot/"+user.id,
+      url: "http://127.0.0.1:8000/showSpot/" + user.id,
       // url: "https://jsonplaceholder.typicode.com/users",
     });
     //响应状态码
@@ -70,27 +70,27 @@ console.log(params.id)
     //响应头信息
     console.log(response.headers);
     //响应体
-    console.log("schedule",response.data);
+    console.log("schedule", response.data);
     //response.data array
     setSpotListinfo([...response.data]);
     // console.log(response.data);
-    
-    
+
+
   };
-// -----------------------------新增行程時會自動轉跳最底部
-const scheRef=useRef(null);
-const [newHeight,setNewHeight]=useState(0);
-if(renew&&newHeight!==scheRef.current.scrollHeight){
-  setTimeout(()=>scheRef.current.scrollTop = scheRef.current.scrollHeight,1000)
-}
-  
-// 更新行程表資訊
-useEffect(() => {
+  // -----------------------------新增行程時會自動轉跳最底部
+  const scheRef = useRef(null);
+  const [newHeight, setNewHeight] = useState(0);
+  if (renew && newHeight !== scheRef.current.scrollHeight) {
+    setTimeout(() => scheRef.current.scrollTop = scheRef.current.scrollHeight, 1000)
+  }
+
+  // 更新行程表資訊
+  useEffect(() => {
 
     loadDataAsync();
-      setRenew(false);
-      setNewHeight(scheRef.current.scrollHeight)
-     
+    setRenew(false);
+    setNewHeight(scheRef.current.scrollHeight)
+
 
   }, [renew]);
 
@@ -138,8 +138,11 @@ useEffect(() => {
   };
 
 
-// 針對行程表進行展開
-const editRef=useRef(null);
+  // 針對行程表進行展開(可改可不改，不影響)-------------------------------
+  const editRef = useRef(null);
+  // 新增刪除按鈕可以直接在行程進行刪除(主要改這行)--------------------------------
+  const [deletebtn, setDeletebtn] = useState(false);
+
 
   // 打開收藏名單編輯---------------------------------------------------
   const openFavorite = () => {
@@ -154,7 +157,8 @@ const editRef=useRef(null);
         backgroundColor: "#feda02",
         color: "#000",
       });
-      editRef.current.innerText="編輯完成";
+      editRef.current.innerText = "編輯完成";//(原本為$('#editSchdule').text-可改可不改，不影響)
+      setDeletebtn(true);//主要改這行
     } else {
       $(".favorite").addClass("slidClose");
       setTimeout(() => {
@@ -165,9 +169,11 @@ const editRef=useRef(null);
         backgroundColor: "var(--nav-bg-color)",
         color: "#fff",
       });
-      editRef.current.innerText="編輯行程";
+      editRef.current.innerText = "編輯行程";//(原本為$('#editSchdule').text-可改可不改，不影響)
+      setDeletebtn(false);//主要改這行
     }
   };
+
 
   // 切換收藏名單分類
   const listChangeGroup = () => {
@@ -198,9 +204,10 @@ const editRef=useRef(null);
 
 
 
+// ListContext.Provider value裡面要加上
   return (
 
-    <ListContext.Provider value={{spotListinfo, setSpotListinfo,hotelListinfo,setHotelListinfo,setRenew,editRef}}>
+    <ListContext.Provider value={{ spotListinfo, setSpotListinfo, hotelListinfo, setHotelListinfo, setRenew, deletebtn }}>
       {/* <!-- 主要網站部分 --> */}
       <div className="scheduleMainpage">
         <DragDropContext
@@ -214,12 +221,12 @@ const editRef=useRef(null);
                 行程表:&nbsp;&nbsp;
                 {/* <!-- 可以同時編輯多個行程表 --> */}
                 <select name="schedule">
-                  <option value="tokyo">春天東京五天四夜</option>
+                  <option value="tokyo">解封東京之旅</option>
                   <option value="tokyo">夏天東京五天四夜</option>
                   <option value="tokyo">2020夏季奧運東京五天四夜</option>
                   <option value="tokyo">冬天東京五天四夜</option>
                 </select>
-                <div>日期:2022/12/18-2022/12/22</div>
+                <div>日期:2023/02/10-2023/02/12</div>
               </div>
               {/* <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) --> */}
               <button>複製行程</button>
@@ -246,13 +253,13 @@ const editRef=useRef(null);
                 </a>
 
                 <a href="/">
-                2023-02-11
+                  2023-02-11
                   <br />
                   Day<span> 2 </span>
                 </a>
 
                 <a href="/">
-                2023-02-12
+                  2023-02-12
                   <br />
                   Day<span> 3 </span>
                 </a>
@@ -268,7 +275,7 @@ const editRef=useRef(null);
                   <br />
                   Day<span> 5 </span>
                 </a> */}
-              </div> 
+              </div>
 
               {/* <!-- 右鍵 --> */}
               <div className="next">
@@ -307,7 +314,7 @@ const editRef=useRef(null);
                 <div></div>
               </div>
             </div>
-            <Favoritelist/>
+            <Favoritelist />
             <div className="close" onClick={openFavorite}>
               &times;
             </div>
@@ -321,7 +328,7 @@ const editRef=useRef(null);
           loadDataAsync={() => {
             loadDataAsync();
           }}
-          style={{zIndex: '1'}}
+          style={{ zIndex: '1' }}
         />
         {/* <div id="myMap" className="mapping"></div>
         
@@ -330,7 +337,7 @@ const editRef=useRef(null);
         </Helmet> */}
       </div>
     </ListContext.Provider>
- 
+
   );
 }
 

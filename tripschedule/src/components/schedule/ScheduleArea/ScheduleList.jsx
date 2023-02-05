@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const ScheduleList = (p) => {
   // console.log(p);
   // 使用schdule的變數
-  const { spotListinfo, setRenew ,editRef} = useContext(ListContext)
+  const { spotListinfo, setRenew ,deletebtn} = useContext(ListContext)
 
 
 
@@ -25,90 +25,7 @@ const ScheduleList = (p) => {
       herf: "/Airticket/output/1",
     },
   ];
-  // ---------------景點資訊
-  // console.log(p.spotListinfo);
-  // spotListinfo = {
-  //   address: "東京都千葉縣浦安市舞浜1-1",
-  //   clickrate: 1000,
-  //   id: 1,
-  //   name: "東京迪士尼樂園",
-  //   opentime: "08:00~22:00",
-  //   suggestedtime: 8,
-  //   ticketprice: 1800,
-  // };
-
-  // const spotData = [
-  //   {
-  //     id: "S01",
-  //     day: "Day1",
-  //     dayTime: "morning",
-  //     spotImg: "/img/景點相片預覽(明亮).jpg",
-  //     spotName: "東京鐵塔",
-  //     duringTime: "1小時",
-  //     addr: "1-1 Furugome, Narita, Chiba 282-0004日本",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S02",
-  //     day: "Day1",
-  //     dayTime: "morning",
-  //     spotImg: "/img/景點相片預覽(暗色).jpg",
-  //     spotName: "東京晴空塔",
-  //     duringTime: "1.5小時",
-  //     addr: "日本東京銀座區富人天堂",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S03",
-  //     day: "Day1",
-  //     dayTime: "afternoon",
-  //     spotImg: "/img/淺草寺.jpg",
-  //     spotName: "東京淺草寺",
-  //     duringTime: "2小時",
-  //     addr: "日本東京銀座區假鬼假怪逛不了街",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S04",
-  //     day: "Day1",
-  //     dayTime: "evening",
-  //     spotImg: "/img/淺草寺(維基百科夜景).jpg",
-  //     spotName: "東京淺草寺(晚上)",
-  //     duringTime: "2小時",
-  //     addr: "日本東京銀座區假鬼假怪逛不了街",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S05",
-  //     day: "Day1",
-  //     dayTime: "evening",
-  //     spotImg: "/img/淺.jpg",
-  //     spotName: "東",
-  //     duringTime: "2小時",
-  //     addr: "日本東京銀座區假鬼假怪逛不了街",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S06",
-  //     day: "Day1",
-  //     dayTime: "evening",
-  //     spotImg: "/img/淺草.jpg",
-  //     spotName: "東京",
-  //     duringTime: "2小時",
-  //     addr: "日本東京銀座區假鬼假怪逛不了街",
-  //     href: "/Spot",
-  //   },
-  //   {
-  //     id: "S07",
-  //     day: "Day1",
-  //     dayTime: "evening",
-  //     spotImg: "/img/淺草寺.jpg",
-  //     spotName: "東京淺",
-  //     duringTime: "2小時",
-  //     addr: "日本東京銀座區假鬼假怪逛不了街",
-  //     href: "/Spot",
-  //   },
-  // ];
+ 
 
   //   // 調整拖曳功能可以儲存
 
@@ -161,8 +78,7 @@ const ScheduleList = (p) => {
 //   }
 //  },[editRef.current.innerText])
 
-  // 新增刪除按鈕可以直接在行程進行刪除--------------------------------
-  const [deletebtn, setDeletebtn] = useState(null);
+
 
 
   
@@ -170,7 +86,6 @@ const ScheduleList = (p) => {
     e.preventDefault();
 
     await http.delete('/api/deleteSpot/' + e.target.id)
-      .then(() => setDeletebtn(null))
       .then(() => spotListinfo.filter(r => r.id !== e.target.id))
       .then(() => setRenew(true))
       .catch(e => console.log(e));
@@ -231,20 +146,17 @@ const ScheduleList = (p) => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      key={index} onClick={(e) => {
-                        e.preventDefault();
-                        return deletebtn ? setDeletebtn(null) : setDeletebtn(item.id)
-                      }}
+                      key={index}
                     >
                       <img src={item.path} alt={index + 1} />
                       <div className="text">
                         <div className="name">{item.name}</div>
-                        <div className="">{item.opentime}</div>
+                        <div className="">營業時間:{item.opentime}</div>
                         <div className="info">
-                          遊玩時間: <span>{item.suggestedtime}</span>
+                          遊玩時間: <span>{item.suggestedtime}小時</span>
                         </div>
                         <div className="Addr">{item.address}</div>
-                        <div className="">{item.ticketprice}NTD</div>
+                        <div className="">價格:&nbsp;{item.ticketprice}.NT</div>
                       </div>
                       <a href={item.href}>
                         <button>
@@ -253,7 +165,7 @@ const ScheduleList = (p) => {
                           詳情
                         </button>
                       </a>
-                      <div className="delete" id={item.id} onClick={handleDelete} style={{ display: deletebtn === item.id ? 'block' : 'none' }}>&times;</div>
+                      <div className="delete" id={item.id} onClick={handleDelete} style={{ display: deletebtn ? 'block' : 'none' }}>&times;</div>
                     </div>
                   )}
                 </Draggable>

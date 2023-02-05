@@ -78,7 +78,7 @@ const AddSpot = (props) => {
                         <div className='descriptTitle'>營業時間</div>
                         <div className="info">{props.detail.opentime}</div>
                         <div className='descriptTitle'>價格</div>
-                        <div className="info"><span className='price'>{props.detail.ticketprice}</span>&nbsp;NTD</div>
+                        <div className="info"><span className='price'>{props.detail.ticketprice}</span>&nbsp;.NT</div>
                     </>) : (
                     <>
                         <h3>{props.detail.name_CH}</h3>
@@ -86,7 +86,7 @@ const AddSpot = (props) => {
                         <div className='descriptTitle'>房型</div>
                         <div className="info"><span>{props.detail.roomtype}</span></div>
                         <div className='descriptTitle'>價格</div>
-                        <div className="info"><span className='price'>{props.detail.price_weekdays}&nbsp;</span>NTD</div>
+                        <div className="info"><span className='price'>{props.detail.price_weekdays}&nbsp;</span>.NT</div>
                     </>
                 )}
 

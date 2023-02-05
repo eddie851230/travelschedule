@@ -61,17 +61,17 @@ const MemberSchedule = () => {
 
     // 從laravel拉資料
     const [schdule, setSchdule] = useState([]);
-        // 控制加載完才出現資訊
-        const [isLoading,setIsLoading]=useState(false);
+    // 控制加載完才出現資訊
+    const [isLoading, setIsLoading] = useState(false);
 
     //   讀取行程表資料
     useEffect(() => {
         setIsLoading(true);
         http.get('/schedules/').then((response) => {
-            let newArray = response.data.filter(({ user_id }) =>user_id === user.id)
+            let newArray = response.data.filter(({ user_id }) => user_id === user.id)
             setIsLoading(false);
             return setSchdule(newArray);
-            
+
         }).catch(() => "無法找到");
 
     }, [user]);
@@ -88,17 +88,17 @@ const MemberSchedule = () => {
 
 
     // 行程表隨機圖
-    const imgArr = ['/img/紅色幾何圖.jpg', '/img/綠色幾何圖.jpg',  '/img/藍色幾何圖.jpg','/img/淡黃色幾何圖.jpg','/img/漸層幾何圖.jpg','/img/紫色幾何圖.jpg','/img/純綠幾何圖.jpg']
-    const getRandomImage = () => {
-        const random = Math.floor(Math.random() * imgArr.length);
-        return imgArr[random];
+    const imgArr = ['/img/紅色幾何圖.jpg', '/img/綠色幾何圖.jpg', '/img/藍色幾何圖.jpg', '/img/漸層幾何圖.jpg', '/img/淡黃色幾何圖.jpg', '/img/純綠幾何圖.jpg', '/img/紫色幾何圖.jpg']
+    const getRandomImage = (e) => {
+        let index = e % 7;
+        return imgArr[index];
     }
 
 
     return (
         <>
             {/* <!-- 封面故事 --> */}
-            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" style={{objectPosition: '0 40%'}}/>
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
@@ -124,15 +124,15 @@ const MemberSchedule = () => {
                     <Col className="col">
                         {isLoading && <Shownone><b>資料正在找尋中，請稍後</b></Shownone>}
                         {(schdule.length === 0 && !isLoading) && <Shownone><b>沒有行程表</b></Shownone>}
-                        {(schdule.length !== 0 && !isLoading) && schdule.map(({ id, name, date_start, date_end }) => {
+                        {(schdule.length !== 0 && !isLoading) && schdule.map(({ id, name, date_start, date_end }, index) => {
                             return (
                                 <Card className="card p-3" key={id}>
 
-                                    <Cardimg className="card-img-top" src={getRandomImage()} alt="Card cap" />
+                                    <Cardimg className="card-img-top" src={getRandomImage(index)} alt="Card cap" />
                                     <div className="card-body">
                                         <h3 className="card-title">{name}</h3>
                                         <p className="card-text">{date_start}至{date_end}</p>
-                                        <Link to={'/Schedule/' + id}><button>編輯</button></Link>
+                                        <Link to={'/Schedule/' + id}><button>編輯</button></Link>&nbsp;&nbsp;&nbsp;
                                         <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 
