@@ -103,6 +103,10 @@ Route::get('/showSpot/{user}', [SchedulesController::class, 'showSpot']);
         '/addSchedule',
         [SchedulesController::class, 'addSchedule']
     );
+    Route::post(
+        '/addHotel',
+        [SchedulesController::class, 'addHotel']
+    );
     Route::delete(
         '/deleteSpot/{spotid}',
         [SchedulesController::class, 'deleteSpot']
