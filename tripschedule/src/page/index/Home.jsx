@@ -30,8 +30,6 @@ const Home = () => {
         <div>
             < Video />
             < Teach />
-            <div className="homeBtn"><button type="button" onClick={() => setScheshow(true)}>開始您的行程</button></div>
-            <CreateNewSchedule trigger={scheShow} setScheshow={setScheshow} />
             < Homesch />
             < Hhtspot />
             <section className="cta">

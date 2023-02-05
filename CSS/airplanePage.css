@@ -4,7 +4,7 @@
 header {
     background-color: var(--nav-bg-color);
     position: fixed;
-    top:0;
+    top: 0;
     z-index: 999;
 }
 
@@ -209,10 +209,10 @@ button {
     font-weight: 800;
 }
 
-.text+button div{
+.text+button div {
     clip-path: polygon(50% 100%, 0 0, 100% 0);
     background-color: #fff;
-    width:20px;
+    width: 20px;
     height: 10px;
     margin: auto;
     margin-top: 5px;
@@ -238,7 +238,7 @@ button {
 /* ------------------------------------------ */
 
 /* 展開後畫面 */
-.openDiv{
+.openDiv {
     width: 94%;
     /* padding: 3% 0.5%; */
     background-color: #f1f1f1;
@@ -249,23 +249,22 @@ button {
     align-items: center;
 }
 
-.flyingTime{
-    padding:3%;
+.flyingTime {
+    padding: 3%;
     font-size: 1.2rem;
 }
 
-.openDiv button{
+.openDiv button {
     margin: 3%;
     border: #376B6D 5px solid;
     background-color: #fff;
     color: #376B6D;
 }
 
-.openDiv button:hover{
+.openDiv button:hover {
     box-shadow: 0 0 5px #8a8a8a;
 }
 
-.openDiv a{
-    width:12%;
+.openDiv a {
+    width: 12%;
 }
-

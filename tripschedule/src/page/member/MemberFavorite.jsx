@@ -4,6 +4,7 @@ import "../member/member.css";
 import styled from 'styled-components';
 import { http } from '../../WebAPI';
 import AuthContext from '../../contexts';
+import Uploadimg from '../../components/member/Uploadimg'
 
 const MemberFavorite = () => {
 
@@ -68,6 +69,8 @@ position: absolute;
 top: calc(35vh + 7vh);
 left: calc(100% * (2 / 8));
 cursor: pointer;
+width:60%;
+text-align:center;
 &:focus{
         box-shadow: 0 0 5px var(--nav-bg-color);
 }
@@ -84,9 +87,13 @@ position: absolute;
 top: calc(35vh + 7vh);
 left: calc(100% / 4);
 cursor: pointer;
+&:not(:checked) {
+    background-color: var(--nav-bg-color);
+    color: #fff;
+}
 `
 
-const Shownone = styled.h3`
+    const Shownone = styled.h3`
 width:100%;
 text-align:center;
 margin:5%;
@@ -98,12 +105,12 @@ margin:5%;
     // 選擇不同的畫面
     const [listChange, setListChange] = useState("spot");
     // 控制加載完才出現資訊
-    const [isLoading,setIsLoading]=useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = () => {
 
-        if (listChange === "spot") { return '/favorite/spot' }
-        else { return '/favorite/hotel' };
+        if (listChange === "spot") { return '/favorite/spot/' }
+        else { return '/favorite/hotel/' };
 
     }
 
@@ -113,7 +120,7 @@ margin:5%;
 
     useEffect(() => {
         setIsLoading(true);
-        http.get(handleChange())
+        http.get(handleChange() + user.id)
             .then(response => {
                 let newArray = response.data.filter(({ user_id }) => user_id === user.id);
                 setIsLoading(false);
@@ -128,8 +135,8 @@ margin:5%;
         // 將刪除的名單從 favorite 中移除
         const Newfavorite = favorite.filter(e => e.id !== id);
 
-        http.delete(handleChange() + '/' + id)
-            .then(response =>console.log(response))
+        http.delete(`${handleChange()}${id}`)
+            .then(response => console.log(response))
             .catch(error => console.log(error));
         // 使用 setState 更新 favorite 並重新渲染
         return setFavorite(Newfavorite);
@@ -140,7 +147,7 @@ margin:5%;
     return (
         <>
             {/* <!-- 封面故事 --> */}
-            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100" />
+            <img src={user["coverphoto_path"]} alt="mainstory" id="mainstory" className="w-100"style={{objectPosition: '0 40%'}} />
             {/* <!-- 主要頁面 --> */}
             <div className="membermain">
                 <Row className="row w-100">
@@ -160,9 +167,9 @@ margin:5%;
                     </FavoritSelect>
                     {/* <!-- 卡片分頁 --> */}
                     <Col className="col">
-                        {isLoading&&<Shownone><b>資料正在找尋中，請稍後</b></Shownone>}
-                        {(favorite.length===0 && !isLoading) && <Shownone><b>沒有收藏名單</b></Shownone>}
-                        {(listChange === "spot" &&favorite.length!==0 && !isLoading) && favorite.map(({ id, attraction_id, name, path, suggestedtime }) => {
+                        {isLoading && <Shownone><b>資料正在找尋中，請稍後</b></Shownone>}
+                        {(favorite.length === 0 && !isLoading) && <Shownone><b>沒有收藏名單</b></Shownone>}
+                        {(listChange === "spot" && favorite.length !== 0 && !isLoading) && favorite.map(({ id, attraction_id, name, path, suggestedtime, opentime }) => {
                             return (
                                 <Card className="card p-3" key={attraction_id}>
 
@@ -170,27 +177,34 @@ margin:5%;
                                     <div className="card-body">
                                         <h3 className="card-title">{name}</h3>
                                         <h5 className="card-text">
+                                            <Favorititle>營業時間</Favorititle>&nbsp;<span className="text-info"><b>{opentime}</b></span><br /><br />
                                             <Favorititle>遊玩時長</Favorititle>&nbsp;<span className="text-info"><b>{suggestedtime}小時</b></span><br />
                                         </h5>
-                                        <Link to={"/Spot/"+attraction_id}><button>詳細資訊</button></Link>
+                                        
+                                        <Link to={"/Spot/" + attraction_id}><button>詳細資訊</button></Link>&nbsp;&nbsp;&nbsp;
                                         <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
+                                       
                                     </div>
 
                                 </Card>
                             )
                         })}
 
-                        {(listChange === "hotel" &&favorite.length!==0 && !isLoading) && favorite.map(({ id, hotel_id, name_CH, path, area }) => {
+                        {(listChange === "hotel" && favorite.length !== 0 && !isLoading) && favorite.map(({ id, hotel_id, name_CH, path, area, room_id, roomtype, price_weekdays }) => {
                             return (
-                                <Card className="card p-3" key={hotel_id} id={hotel_id}>
+                                <Card className="card p-3" key={room_id} id={room_id}>
 
-                                    <Cardimg className="card-img-top" src={path} alt={name_CH} />
+                                    <Cardimg className="card-img-top" src={path} alt={name_CH} style={{ fontSize: '19px' }} />
                                     <div className="card-body">
-                                        <h3 className="card-title">{name_CH}</h3>
+                                        <h3 className="card-title" style={{ fontSize: '18px' }}>{name_CH}</h3>
+                                        <h3 className="card-title">{roomtype}</h3>
                                         <h5 className="card-text">
+
+                                            <Favorititle>價格</Favorititle>&nbsp;<span className="text-info"><b>{price_weekdays}.NT</b></span><br /><br />
                                             <Favorititle>所在區域</Favorititle>&nbsp;<span className="text-info"><b>{area}</b></span><br />
                                         </h5>
-                                        <Link to={"/Hotel/Detail/"+hotel_id}><button>詳細資訊</button></Link>
+                                       
+                                        <Link to={"/Hotel/Detail/" + hotel_id}><button>詳細資訊</button></Link>&nbsp;&nbsp;&nbsp;
                                         <button style={{ color: '#FFF', 'backgroundColor': 'red' }} onClick={() => handleDelete(id)}>刪除</button>
                                     </div>
 

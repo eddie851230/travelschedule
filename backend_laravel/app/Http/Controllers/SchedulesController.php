@@ -201,4 +201,44 @@ class SchedulesController extends Controller
         $users = json_decode($users->toJson());
         return $users;
     }
+
+    
+    // 將收藏名單傳入行程表
+    public function addSchedule() {
+        DB::connection('mysql');
+        $data = request()->all();
+        $schedule=DB::table('schedules_spotplan')->insert([
+            'date' => $data['date'],
+            'attraction_id' => $data['attraction_id'],
+            'schedule_id' => $data['schedule_id'],
+            'date_order' => $data['date_order']
+        ]);
+      
+
+        return $schedule;
+    }
+
+    public function addHotel(){
+        DB::connection('mysql');
+        $data = request()->all();
+        $schedule=DB::table('schedules_spotplan')->insert([
+            'room_id' => $data['room_id'],
+            'hotel_id' => $data['hotel_id'],
+            'schedule_id' => $data['schedule_id'],
+            'date_order' => $data['date_order']
+        ]);
+      
+
+        return $schedule;
+    }
+    // 刪除單一行程表景點
+    public function deleteSpot($id){
+        DB::connection('mysql');
+
+        $spot
+            = DB::table('schedules_spotplan')
+            ->where('id', $id)
+            ->delete();
+        return $spot;
+    }
 }

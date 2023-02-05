@@ -1,6 +1,7 @@
 #AirticketSearchBar {
     /* 寬高 */
     width: 70%;
+    /* padding:0 30px; */
     height: 20%;
     background-color: var(--nav-bg-color);
     border-radius: 10px;
@@ -9,10 +10,12 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    z-index: 99;
 
     /* 字體大小 */
     font-weight: 600;
-    font-size: large;
+    /* font-size: large; */
+    color: #fff;
 }
 
 #AirticketSearchBar input,

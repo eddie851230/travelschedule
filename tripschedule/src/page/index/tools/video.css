@@ -1,85 +1,69 @@
-.search {
-    width: 25%;
-    z-index: 100;
-    position: relative;
-    bottom: -35vh;
-    height: 50px;
-    border-radius: 15px 0 0 15px;
-    background: rgb(199, 199, 199);
-    font-size: 20px;
-    font-weight: 450;
-    padding-left: 20px;
-}
-
-.vh button{
-    width: 5%;
-    z-index: 100;
-    position: relative;
-    bottom: -33.8vh;
-    height: 45px;
-    border-radius:0 15px 15px 0;
-    background: rgb(199, 199, 199);
-    font-size: 25px;
-    font-weight: 450;
-    background: var(--white-color);
-    color: var(--nicegreen);
-    border: 0 0 0 -20px;
-}
-
-.vh button:hover{
-    background: var(--niceye);
-    color: var(--black);
-    font-weight: 700;
-}
-
 .vh {
-    height: 70vh;
+    height: 100%;
     text-align: center;
-    display: flex;
+    /* display: flex; */
 }
 
-/* .searchvh{
-    width: 300px;
-    height: 40px;
-    border: 2px solid #fff;
-    border-radius: 20px;
-} */
-/* ====== home ======= */
 .home {
-    height: 70vh;
+    height: 95vh;
     background-color: var(--black);
 }
 
 .home video {
     width: 100%;
-    height: 70vh;
+    height: 90%;
     object-fit: cover;
     background-position: center;
     background-size: cover;
     pointer-events: none;
-    clip-path: polygon(0 13%, 100% 13%, 100% 100%, 0% 100%);
+    /* clip-path: polygon(0 13%, 100% 13%, 100% 100%, 0% 100%); */
     z-index: 000;
     position: absolute;
 }
 
-.searchBar{
+.home .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    user-select: none;
+    mix-blend-mode: multiply;
+    filter: invert(1);
+}
+
+.vediotext h2 {
+    position: absolute;
+    z-index: 3;
+    font-size: 5vw;
+    color: #fff;
+    top: 24vh;
+    left: 23vw;
+    text-shadow: 0 20px 30px rgba(0, 0, 0), 0 20px 30px rgba(0, 0, 0);
+
+
+}
+
+.searchBar {
+    z-index: 13;
     margin-top: 5vh;
     margin-left: 2.5vw;
     width: 60px;
     height: 60px;
     background-color: #fff;
-    box-shadow: 0 0 20px rgba(250, 250, 250, 0.705);
+    box-shadow: 0 0 20px var(--nicegreen);
     border-radius: 60px;
-    position: relative;
+    position: fixed;
     overflow: hidden;
     transition: 0.5s;
 }
 
-.chengeWidth{
+.chengeWidth {
     width: 400px;
 }
 
-.iconvi{
+.iconvi {
     width: 60px;
     height: 60px;
     background-color: #fff;
@@ -90,25 +74,25 @@
     cursor: pointer;
 }
 
-.iconvi::before{
+.iconvi::before {
     content: '';
     width: 20px;
     height: 20px;
     border-radius: 50%;
     border: 3px solid var(--nicegreen);
     position: absolute;
-    transform: translate(-4px,-4px);
+    transform: translate(-4px, -4px);
 }
 
-.iconvi::after{
+.iconvi::after {
     content: '';
     width: 3px;
     height: 12px;
-    background-color:var(--nicegreen);
-    transform: translate(6px,6px) rotate(315deg);
+    background-color: var(--nicegreen);
+    transform: translate(6px, 6px) rotate(315deg);
 }
 
-.textInput{
+.textInput {
     width: 320px;
     height: 60px;
     display: flex;
@@ -120,7 +104,7 @@
     left: 60px;
 }
 
-.textInput input{
+.textInput input {
     width: 100%;
     height: 100%;
     border: none;
@@ -128,7 +112,7 @@
     font-size: 20px;
 }
 
-.clear{
+.clear {
     width: 15px;
     height: 15px;
     position: absolute;
@@ -141,7 +125,7 @@
     align-items: center;
 }
 
-.clear::before{
+.clear::before {
     content: '';
     width: 1px;
     height: 15px;
@@ -150,7 +134,7 @@
     position: absolute;
 }
 
-.clear::after{
+.clear::after {
     content: '';
     width: 1px;
     height: 15px;
@@ -158,7 +142,7 @@
     transform: rotate(315deg);
 }
 
-#go{
+#go {
     width: 12%;
     height: 60%;
     position: absolute;
@@ -166,11 +150,39 @@
     right: 0;
     border-radius: 8px;
     color: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
     background: var(--nicegreen);
 }
 
-#go:hover{
+#go:hover {
     cursor: pointer;
     background: var(--niceye);
+}
+
+.vh ul {
+    position: absolute;
+    top: 165px;
+    left: 2.75%;
+    right: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: 0;
+    z-index: 10;
+    width: 20%;
+    /* width: 100%;  */
+    border-radius: 20px;
+    height: 20vh;
+    overflow: scroll;
+}
+
+.vh li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.vh li:hover {
+    background-color: #ddd;
 }

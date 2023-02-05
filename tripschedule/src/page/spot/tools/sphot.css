@@ -15,8 +15,9 @@
     flex-basis: 23%;
     border-radius: 10px;
     margin-bottom: 5%;
-    text-align: left;
+    text-align: center;
     background-color: var(--nicegreen);
+    /* background-color: black; */
     height: 30vh;
 }
 
@@ -27,7 +28,95 @@
 
 .sphotspot-col img {
     width: 100%;
-    height: 70%;
+    height: 80%;
+    /* height: 100%; */
     border-radius: 10px;
     object-fit: cover;
+}
+
+
+
+.flotno1 {
+    /* position: absolute; */
+    /* left: 10px; */
+    /* top: 95px; */
+    color: var(--niceye);
+    font-weight: bold;
+    font-size: 30px;
+    animation: neon 1s ease-in-out infinite alternate;
+    /* -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.685); */
+    margin-top: 5px;
+
+}
+
+.flotno2 {
+    /* position: absolute; */
+    /* left: 400px; */
+    /* top: 95px; */
+    color: var(--niceye);
+    font-weight: bold;
+    font-size: 30px;
+    animation: neon 1s ease-in-out infinite alternate;
+    /* -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.74); */
+    margin-top: 5px;
+
+}
+
+.flotno3 {
+    /* position: absolute; */
+    /* left: 790px; */
+    top: 95px;
+    color: var(--niceye);
+    font-weight: bold;
+    font-size: 30px;
+    animation: neon 1s ease-in-out infinite alternate;
+    /* -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.74); */
+    margin-top: 5px;
+
+}
+
+.flotno4 {
+    color: var(--niceye);
+    font-weight: bold;
+    /* font-size: textpx 0.5s ease-in-out infinite alternate; */
+    animation: neon 1s ease-in-out infinite alternate;
+    /* -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.74); */
+    margin-top: 5px;
+
+}
+
+@keyframes neon {
+    0% {
+        font-size: 30px;
+    }
+
+    25% {
+        text-shadow:
+            0 0 15px rgb(255, 255, 255, 0.6),
+            0 0 90px rgb(255, 255, 255, 0.6),
+            0 0 15px rgb(255, 255, 255, 0.6);
+        font-size: 31px;
+    }
+    50% {
+        text-shadow:
+            0 0 20px rgb(255, 255, 255, 0.6),
+            0 0 100px rgb(255, 255, 255, 0.6),
+            0 0 20px rgb(255, 255, 255, 0.6);
+        font-size: 32px;
+    }
+    75% {
+        text-shadow:
+            0 0 25px rgb(255, 255, 255, 0.6),
+            0 0 110px rgb(255, 255, 255, 0.6),
+            0 0 25px rgb(255, 255, 255, 0.6);
+        font-size: 33px;
+    }
+
+    100% {
+        text-shadow:
+            0 0 30px rgba(255, 255, 255, 0.6),
+            0 0 120px rgb(255, 255, 255, 0.6),
+            0 0 30px rgb(255, 255, 255, 0.6);
+        font-size: 34px;
+    }
 }

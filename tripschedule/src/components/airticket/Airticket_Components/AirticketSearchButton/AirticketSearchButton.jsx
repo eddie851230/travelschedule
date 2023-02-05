@@ -3,14 +3,20 @@ import "./AirticketSearchButton.css"
 
 function AirticketSearchButton(props) {
 
-    return ( 
+
+
+    function col() {
+        props.setPage()
+        props.searchRef()
+    }
+
+    return (
         <>
-            <div id='AirticketSearchButton' 
-            onClick={props.setPage}
-            className={props.setSearchButton}
-            >開始</div>
+            <div id='AirticketSearchButton'
+                onClick={col}
+                className={props.setSearchButton}>開始</div>
         </>
-     );
+    );
 }
 
 export default AirticketSearchButton;

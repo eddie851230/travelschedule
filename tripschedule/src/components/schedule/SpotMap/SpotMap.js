@@ -199,7 +199,7 @@ export default function Spotmap(p) {
     // )
     <div
       id="Spotmap"
-      style={{ width: "100%" }}
+      style={{ width: "70%",zIndex:'1' }}
       // key={p.spotListinfo}
       key={new Date().getTime()}
     >

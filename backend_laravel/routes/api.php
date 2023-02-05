@@ -82,8 +82,35 @@ Route::group(['middleware' => ['auth:sanctum']], function () { {
         // Route::resource('hotels', HotelsController::class);
 
         //寫法2
-        Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
+        // Route::get('/showSpot', [SchedulesController::class, 'showSpot']);
 
 
     }
+
 });
+
+Route::get('/showSpot/{user}', [SchedulesController::class, 'showSpot']);
+    Route::get(
+        '/showSpotDate/{shceduleid}',
+        [SchedulesController::class, 'showSpotDate']
+    );
+    Route::get(
+        '/showSchedule/{user}',
+        [SchedulesController::class, 'showSchedule']
+    );
+
+    Route::post(
+        '/addSchedule',
+        [SchedulesController::class, 'addSchedule']
+    );
+    Route::post(
+        '/addHotel',
+        [SchedulesController::class, 'addHotel']
+    );
+    Route::delete(
+        '/deleteSpot/{spotid}',
+        [SchedulesController::class, 'deleteSpot']
+    );
+    
+
+    
