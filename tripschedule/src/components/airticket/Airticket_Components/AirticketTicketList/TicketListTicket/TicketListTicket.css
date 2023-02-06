@@ -53,7 +53,7 @@
 
 #airTime {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-weight: bolder;
 }
 
@@ -61,13 +61,6 @@
     font-size: 5vh;
     color: #376B6D;
     margin-top: -0.3vw;
-}
-
-#airPlace {
-    display: flex;
-    justify-content: space-around;
-    font-weight: bolder;
-    font-size: 2vh;
 }
 
 #priceLink {
@@ -84,3 +77,29 @@
     font-weight: 700;
 }
 
+#airPlace {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+    font-size: 2vh;
+}
+
+.ticketdestinationPlace {
+    width: 10vw;
+    text-align: center;
+}
+
+.ticketoriginPlace {
+    width: 10vw;
+    text-align: center;
+}
+
+.ticketStartTime {
+    width: 10vw;
+    text-align: center;
+}
+
+.ticketArrivalTime {
+    width: 10vw;
+    text-align: center;
+}

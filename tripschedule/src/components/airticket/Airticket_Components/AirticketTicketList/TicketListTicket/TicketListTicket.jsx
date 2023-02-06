@@ -61,8 +61,8 @@ function TicketListTicket(props) {
         </div>
         <div id="priceLink">
           <div className="ticketPrice">價格 : {Math.ceil(priceAmount / 1000)}.NT</div>
-          <div><a className='ticketLink' href={deepLink}>購買連結</a></div>
-          <div className="nextTicket">下一步</div>
+          <div><a className='ticketLink' href={deepLink} target="_blank">購買連結</a></div>
+          <div className="nextTicket">選擇</div>
         </div>
 
         
