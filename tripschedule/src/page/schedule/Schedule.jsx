@@ -165,7 +165,7 @@ function Schedule() {
     loadData0Async();
     loadDataAsync();
     loadData2Async();
-  }, []);
+  }, [renew]);
 
   // -----------------------------新增行程時會自動轉跳最底部
   const scheRef = useRef(null);
@@ -182,14 +182,18 @@ function Schedule() {
 
   // console.log(typeof spotListinfo[0].date_order);
   let spotListinfoFilter1 = spotListinfo.filter((obj) => {
-    return obj.date_order == 1;
+    return obj.date_order === 1;
   });
   let spotListinfoFilter2 = spotListinfo.filter((obj) => {
-    return obj.date_order == 2;
+    return obj.date_order === 2;
   });
   let spotListinfoFilter3 = spotListinfo.filter((obj) => {
-    return obj.date_order == 3;
+    return obj.date_order === 3;
   });
+
+
+
+  console.log(spotListinfoFilter3);
   // console.log(spotListinfoFilter1);
   // 先找有幾天，再來找一天內早中晚各幾筆資料
 
@@ -296,9 +300,8 @@ function Schedule() {
     <ListContext.Provider
       value={{
         spotListinfo,
-        setSpotListinfo,   
-        setRenew
-    
+        setSpotListinfo,
+        setRenew,
       }}
     >
       {/* <!-- 主要網站部分 --> */}
@@ -343,7 +346,7 @@ function Schedule() {
                 <div></div>
               </div>
 
-              {/* <!-- 日期 --> */}
+              {/* <!-- 日期Day --> */}
               <div className="daymain">
                 {spotDateInfo.map((item, index) => {
                   return (
@@ -381,11 +384,7 @@ function Schedule() {
                   Day<span> 4 </span>
                 </a>
 
-                <a href="/" style={{ visibility: "hidden" }}>
-                  12月21日
-                  <br />
-                  Day<span> 5 </span>
-                </a> */}
+                */}
               </div>
 
               {/* <!-- 右鍵 --> */}
@@ -398,8 +397,19 @@ function Schedule() {
             {/* ========================================================================================= */}
 
             {/* <!-- 行程表景點及交通------------------------------------ --> */}
-            <div className="tripSpot">
-              <div className="dayNum" id="Day1">
+            <div className="tripSpot" ref={scheRef}>
+              <div
+                className="dayNum"
+                id="Day1"
+                style={{
+                  backgroundColor: "rgb(244, 67, 54)",
+                  color: "#FFFFFF",
+                  width: "fit-content",
+                  borderRadius: "10px",
+                  margin: "1% auto",
+                  padding: "5px 10px",
+                }}
+              >
                 <p>
                   <span id="Day1">Day</span>
                   <span> 1</span>: 禮拜
@@ -416,7 +426,18 @@ function Schedule() {
                 }}
               />
 
-              <div className="dayNum" id="Day2">
+              <div
+                className="dayNum"
+                id="Day2"
+                style={{
+                  backgroundColor: "RGB(242,167,43)",
+                  color: "#FFFFFF",
+                  width: "fit-content",
+                  borderRadius: "10px",
+                  margin: "1% auto",
+                  padding: "5px 10px",
+                }}
+              >
                 <p>
                   <span id="Day2">Day</span>
                   <span> 2</span>: 禮拜
@@ -433,7 +454,18 @@ function Schedule() {
                   loadDataAsync();
                 }}
               />
-              <div className="dayNum" id="Day3">
+              <div
+                className="dayNum"
+                id="Day3"
+                style={{
+                  backgroundColor: "RGB(43,242,74)",
+                  color: "#FFFFFF",
+                  width: "fit-content",
+                  borderRadius: "10px",
+                  margin: "1% auto",
+                  padding: "5px 10px",
+                }}
+              >
                 <p>
                   <span id="Day3">Day</span>
                   <span> 3</span>: 禮拜
@@ -482,11 +514,13 @@ function Schedule() {
         <SpotMap
           spotListinfo={spotListinfo}
           setSpotListinfo={setSpotListinfo}
+          spotListinfoFilter1={spotListinfoFilter1}
+          spotListinfoFilter2={spotListinfoFilter2}
+          spotListinfoFilter3={spotListinfoFilter3}
           loadDataAsync={() => {
             loadDataAsync();
           }}
-
-          style={{width:"70%",zIndex:"1"}}
+          style={{ width: "70%", zIndex: "1" }}
         />
         {/* <div id="myMap" className="mapping"></div>
         

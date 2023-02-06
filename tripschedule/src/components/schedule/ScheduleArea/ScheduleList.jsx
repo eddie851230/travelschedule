@@ -7,6 +7,7 @@ const ScheduleList = (p) => {
   // console.log(p);
   // console.log("p.spotListinfo"+p.spotListinfo);
 
+  console.log(p.spotListinfoFilter3);
   // 使用schdule的變數
   const { spotListinfo, setRenew } = useContext(ListContext);
 
@@ -175,6 +176,8 @@ const ScheduleList = (p) => {
           <div ref={provided.innerRef} {...provided.droppableProps}>
             {/*  */}
             {/* <div className="dayTime">上午</div> */}
+
+            {/* 第一天 */}
             {/* <!-- 飛機格 --> */}
 
             {p.spotListinfoFilter1 &&
@@ -229,7 +232,7 @@ const ScheduleList = (p) => {
                             <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
                           </div>
                           <div className="Addr">{`地址:${item.address}`}</div>
-                          <div className="">{`票價:${item.ticketprice}`}</div>
+                          <div className="">{`價格:${item.ticketprice}.NT`}</div>
                         </div>
                         <a href={item.href}>
                           <button>
@@ -280,7 +283,59 @@ const ScheduleList = (p) => {
                             <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
                           </div>
 
-                          <div className="">{`票價:${item.ticketprice}`}</div>
+                          <div className="">{`價格:${item.ticketprice}.NT`}</div>
+                        </div>
+                        <a href={item.href}>
+                          <button>
+                            查看
+                            <br />
+                            詳情
+                          </button>
+                        </a>
+                        {/* <div
+                          className="delete"
+                          id={item.id}
+                          onClick={handleDelete}
+                          style={{
+                            display: deletebtn === item.id ? "block" : "none",
+                          }}
+                        >
+                          &times;
+                        </div> */}
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
+
+            {p.spotListinfoFilter3 &&
+              p.spotListinfoFilter3.map((item, index) => {
+                return (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id.toString()}
+                    index={index}
+                    // onMouseEnter={MouseEnterHandler}
+                  >
+                    {(provided) => (
+                      <div
+                        className="spot"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        key={index}
+                        // id={index}
+                      >
+                        <img src={item.path} alt={index + 1} />
+                        <div className="text">
+                          <div className="name">{item.name}</div>
+                          <div className="Addr">{`地址:${item.address}`}</div>
+                          <div className="">{item.opentime}</div>
+                          <div className="info">
+                            <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
+                          </div>
+
+                          <div className="">{`價格:${item.ticketprice}.NT`}</div>
                         </div>
                         <a href={item.href}>
                           <button>
@@ -318,7 +373,7 @@ const ScheduleList = (p) => {
                     地址:6-12-39, Nishi-Shinjuku, Shinjuku-ku, Tokyo, Tokyo
                   </div>
                   <div>房型:標準雙人房</div>
-                  <div>價格:3000</div>
+                  <div>價格:3000.NT</div>
                 </div>
                 <a href>
                   <button>
@@ -327,7 +382,6 @@ const ScheduleList = (p) => {
                     詳情
                   </button>
                 </a>
-               
               </div>
             )}
             {p.spotListinfoFilter3 &&

@@ -48,17 +48,17 @@ const AddSpot = (props) => {
 
   // 飯店加入行程表
   const updatehotel = (id) => {
-    http
-      .post("/api/addHotel", {
-        date: last.date,
-        room_id: id,
-        schedule_id: last.schedule_id,
-        date_order: last.date_order,
-      })
-      .then((r) => console.log("inserthotel", r))
-      .then(() => props.setTrigger(false))
-      .then(() => setRenew(true))
-      .catch((error) => console.log(error));
+    // http
+    //   .post("/api/addHotel", {
+    //     date: last.date,
+    //     room_id: id,
+    //     schedule_id: last.schedule_id,
+    //     date_order: last.date_order,
+    //   })
+    //   .then((r) => console.log("inserthotel", r))
+    //   .then(() => props.setTrigger(false))
+    //   .then(() => setRenew(true))
+    //   .catch((error) => console.log(error));
   };
 
   return props.trigger ? (
