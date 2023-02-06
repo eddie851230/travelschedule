@@ -161,12 +161,6 @@ function Schedule() {
     // console.log(response.data);
   };
 
-  useEffect(() => {
-    loadData0Async();
-    loadDataAsync();
-    loadData2Async();
-  }, [renew]);
-
   // -----------------------------新增行程時會自動轉跳最底部
   const scheRef = useRef(null);
   const [newHeight, setNewHeight] = useState(0);
@@ -176,9 +170,15 @@ function Schedule() {
       1000
     );
   }
+  useEffect(() => {
+    loadData0Async();
+    loadDataAsync();
+    loadData2Async();
+    setRenew(false);
+    setNewHeight(scheRef.current.scrollHeight);
+  }, [renew]);
 
-
-  // 
+  //
 
   // console.log(typeof spotListinfo[0].date_order);
   let spotListinfoFilter1 = spotListinfo.filter((obj) => {
@@ -190,8 +190,6 @@ function Schedule() {
   let spotListinfoFilter3 = spotListinfo.filter((obj) => {
     return obj.date_order === 3;
   });
-
-
 
   console.log(spotListinfoFilter3);
   // console.log(spotListinfoFilter1);
@@ -238,6 +236,8 @@ function Schedule() {
   };
 
   //
+  // 新增刪除按鈕可以直接在行程進行刪除(主要改這行)--------------------------------
+  const [deletebtn, setDeletebtn] = useState(false);
 
   // 打開收藏名單編輯
   const openFavorite = () => {
@@ -253,6 +253,7 @@ function Schedule() {
         color: "#000",
       });
       $("#editSchdule").text("編輯完成");
+      setDeletebtn(true);
     } else {
       $(".favorite").addClass("slidClose");
       setTimeout(() => {
@@ -264,6 +265,7 @@ function Schedule() {
         color: "#fff",
       });
       $("#editSchdule").text("編輯行程");
+      setDeletebtn(false);
     }
   };
 
@@ -302,6 +304,7 @@ function Schedule() {
         spotListinfo,
         setSpotListinfo,
         setRenew,
+        deletebtn
       }}
     >
       {/* <!-- 主要網站部分 --> */}
@@ -331,8 +334,8 @@ function Schedule() {
                 <div>日期:2023/2/10-2023/2/12</div>
               </div>
               {/* <!-- 分享連結、複製行程、編輯按鈕(點開後會出現收藏) --> */}
-              <button>複製行程</button>
-              <button>分享行程</button>
+              {/* <button>複製行程</button> */}
+              {/* <button>分享行程</button> */}
               <button id="editSchdule" onClick={openFavorite}>
                 編輯行程
               </button>
@@ -447,6 +450,7 @@ function Schedule() {
 
               <ScheduleList
                 spotListinfo={spotListinfo}
+                // spotListinfoFilter1={spotListinfoFilter1}
                 spotListinfoFilter2={spotListinfoFilter2}
                 setSpotListinfo={setSpotListinfo}
                 spotDateInfo={spotDateInfo}

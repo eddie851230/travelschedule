@@ -170,6 +170,7 @@
     font-size: 20px;
 }
 .scheduleMainpage .tripSpot {
+ 
     width: 100%;
     height: calc(100% - 180px - 50px);
     overflow-y: scroll;
@@ -197,11 +198,11 @@
 /* 景點文字及照片排版 */
 .scheduleMainpage .airplane,
 .scheduleMainpage .spot {
+       position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    padding: 3% 0;
     margin: 3% 0;
     box-shadow: 0 0 5px #acacac;
     cursor: grab;
@@ -223,8 +224,8 @@
 
 /* 景點照片 */
 .scheduleMainpage .tripSpot img {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -244,6 +245,7 @@
 }
 
 .scheduleMainpage .tripSpot button {
+  
     background-color: var(--nav-bg-color);
     color: #fff;
     padding: 5px;
@@ -279,7 +281,23 @@
     font-size: 0.75rem;
     color: #7a7a7a;
 }
-
+/* 行程表刪除按鈕--------------------------------------- */
+.scheduleMainpage .delete{
+    position:absolute;
+    top:10px;
+    right:10px;
+    color:#fff;
+    font-size:18px;
+    background-color: red;
+    width:25px;
+    height:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    clip-path:circle(50% at 50% 50%);
+    cursor:pointer;
+    z-index: 1000000;
+}
 
 /* ------------------------------------------ */
 

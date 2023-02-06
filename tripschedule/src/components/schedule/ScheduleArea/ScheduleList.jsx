@@ -7,11 +7,12 @@ const ScheduleList = (p) => {
   // console.log(p);
   // console.log("p.spotListinfo"+p.spotListinfo);
 
-  console.log(p.spotListinfoFilter3);
+  // console.log(p.spotListinfoFilter3);
   // 使用schdule的變數
-  const { spotListinfo, setRenew } = useContext(ListContext);
+  const { spotListinfo, setRenew,deletebtn } = useContext(ListContext);
 
-  console.log(p.spotListinfo);
+  // console.log(p.spotListinfo);
+  console.log(deletebtn)
   const airPlaneDepartinfo = [
     {
       id: "depart",
@@ -133,16 +134,22 @@ const ScheduleList = (p) => {
 
   // spotData.filter空的會回傳[]
   function handleOnDragEnd(result) {
-    console.log(result);
+    // console.log(result);
     if (!result.destination) return;
     const items = Array.from(p.spotListinfo);
-    console.log(items);
+    console.log("item", result.source);
+    console.log("item", result.source.index);
+    console.log("item", result.source.index);
     const [reorderedItem] = items.splice(result.source.index, 1);
     // console.log(reorderedItem);
     items.splice(result.destination.index, 0, reorderedItem);
-    console.log(items);
+    console.log("結束的items", items);
+    console.log("結束的items", items);
+    console.log("結束的items", items);
     p.setSpotListinfo(items);
   }
+
+ 
 
   function MouseEnterHandler() {}
 
@@ -157,14 +164,12 @@ const ScheduleList = (p) => {
 
   //
   // 新增刪除按鈕可以直接在行程進行刪除--------------------------------
-  const [deletebtn, setDeletebtn] = useState(null);
 
   const handleDelete = async (e) => {
     e.preventDefault();
 
     await http
       .delete("/api/deleteSpot/" + e.target.id)
-      .then(() => setDeletebtn(null))
       .then(() => spotListinfo.filter((r) => r.id !== e.target.id))
       .then(() => setRenew(true))
       .catch((e) => console.log(e));
@@ -203,9 +208,7 @@ const ScheduleList = (p) => {
                   </a>
                 </div>
               ))}
-
-            {/* <!-- 景點或飯店格 --> */}
-
+            {/* <!-- 景點格 --> */}
             {p.spotListinfoFilter1 &&
               p.spotListinfoFilter1.map((item, index) => {
                 return (
@@ -226,7 +229,23 @@ const ScheduleList = (p) => {
                       >
                         <img src={item.path} alt={index + 1} />
                         <div className="text">
-                          <div className="name">{item.name}</div>
+                          <div className="name">
+                            <span
+                            // style={{
+                            //   backgroundColor: "#CCCCCC",
+                            //   padding:'0 10px',
+                            //   textAlign:'center',
+                            //   // verticalAlign:'middle',
+                            //   // width: "25px",
+                            //   // height: "25px",
+                            //   display: "inline-block",
+                            //   borderRadius: "5px",
+                            // }}
+                            >
+                              {index + 1}.
+                            </span>
+                            {item.name}
+                          </div>
                           <div className="">{`營業時間:${item.opentime}`}</div>
                           <div className="info">
                             <span>{`遊玩時間:${item.suggestedtime}小時`}</span>
@@ -241,16 +260,14 @@ const ScheduleList = (p) => {
                             詳情
                           </button>
                         </a>
-                        {/* <div
+                        <div
                           className="delete"
                           id={item.id}
                           onClick={handleDelete}
-                          style={{
-                            display: deletebtn === item.id ? "block" : "none",
-                          }}
+                          style={{ display: deletebtn ? "block" : "none" }}
                         >
                           &times;
-                        </div> */}
+                        </div>
                       </div>
                     )}
                   </Draggable>
@@ -276,7 +293,23 @@ const ScheduleList = (p) => {
                       >
                         <img src={item.path} alt={index + 1} />
                         <div className="text">
-                          <div className="name">{item.name}</div>
+                          <div className="name">
+                            <span
+                            // style={{
+                            //   backgroundColor: "#CCCCCC",
+                            //   padding:'0 10px',
+                            //   textAlign:'center',
+                            //   // verticalAlign:'middle',
+                            //   // width: "25px",
+                            //   // height: "25px",
+                            //   display: "inline-block",
+                            //   borderRadius: "5px",
+                            // }}
+                            >
+                              {index + 1}.
+                            </span>
+                            {item.name}
+                          </div>
                           <div className="Addr">{`地址:${item.address}`}</div>
                           <div className="">{item.opentime}</div>
                           <div className="info">
@@ -292,16 +325,14 @@ const ScheduleList = (p) => {
                             詳情
                           </button>
                         </a>
-                        {/* <div
+                        <div
                           className="delete"
                           id={item.id}
                           onClick={handleDelete}
-                          style={{
-                            display: deletebtn === item.id ? "block" : "none",
-                          }}
+                          style={{ display: deletebtn ? "block" : "none" }}
                         >
                           &times;
-                        </div> */}
+                        </div>
                       </div>
                     )}
                   </Draggable>
@@ -328,7 +359,23 @@ const ScheduleList = (p) => {
                       >
                         <img src={item.path} alt={index + 1} />
                         <div className="text">
-                          <div className="name">{item.name}</div>
+                          <div className="name">
+                            <span
+                            // style={{
+                            //   backgroundColor: "#CCCCCC",
+                            //   padding:'0 10px',
+                            //   textAlign:'center',
+                            //   // verticalAlign:'middle',
+                            //   // width: "25px",
+                            //   // height: "25px",
+                            //   display: "inline-block",
+                            //   borderRadius: "5px",
+                            // }}
+                            >
+                              {index + 1}.
+                            </span>
+                            {item.name}
+                          </div>
                           <div className="Addr">{`地址:${item.address}`}</div>
                           <div className="">{item.opentime}</div>
                           <div className="info">
@@ -344,22 +391,20 @@ const ScheduleList = (p) => {
                             詳情
                           </button>
                         </a>
-                        {/* <div
+                        <div
                           className="delete"
                           id={item.id}
                           onClick={handleDelete}
-                          style={{
-                            display: deletebtn === item.id ? "block" : "none",
-                          }}
+                          style={{ display: deletebtn ? "block" : "none" }}
                         >
                           &times;
-                        </div> */}
+                        </div>
                       </div>
                     )}
                   </Draggable>
                 );
               })}
-
+            {/* 飯店 */}
             {!p.spotListinfoFilter3 && (
               <div className="airplane hotel">
                 <img
